@@ -6,17 +6,17 @@
  * Time: 21:42
  */
 
-//$username = "root";
-//$password = "";
-//$hostname = "localhost";
-//$dbname = "thegardrobe";
+$username = "root";
+$password = "";
+$hostname = "localhost";
+$dbname = "thegardrobe";
 
-
+/*
 $username = "a4955560_eren";
 $password = "892007061335XY";
 $hostname ="mysql12.000webhost.com"; //"server37.000webhost.com";
 $dbname = "a4955560_eren";
-
+*/
 
 
 //connection to the database
