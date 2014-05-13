@@ -274,7 +274,7 @@ $(document).ready(function(){
             url: "register.php",
             type: "POST",
             data:{ mail: _email, name:_name, surname:_surname,pass:_pass,gender:_gender,bdate:_bDate },
-            dataType:"text",
+            dataType:"json",
             cache: false,
             xhrFields: {
                 withCredentials: true
@@ -298,12 +298,13 @@ $(document).ready(function(){
             url: "login.php",
             type: "POST",
             data:{ mail: _email,pass:_pass},
-            dataType:"text",
+            dataType:"json",
             cache: false,
             xhrFields: {
                 withCredentials: true
             }
         }).done(function(data) {
+                debugger
             alert(data);
 
             // alert( "success" +data );
