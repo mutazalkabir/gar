@@ -61,22 +61,18 @@ function getMainPageFeed(){
     $.ajax({
         url: "main.php",
         type: "GET",
-        operation: "gethanger",
-        data:{state: "all"},
+        data:{operation: "gethanger", state: "all"},
         dataType:"json",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
     }).done(function(mainPageFeedData) {
-        debugger
         eval("createMainPageFeed(mainPageFeedData)");
         // alert( "success" +data );
         }).fail(function(data) {
-            debugger
         // alert( "error" +data );
         }).always(function(data) {
-            debugger
             // alert( "finished" + data);
         });
 }
