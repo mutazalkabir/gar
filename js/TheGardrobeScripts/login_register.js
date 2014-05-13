@@ -30,6 +30,7 @@ $(document).ready(function(){
     });
 
     $("#login_button").on("click",function(){
+        login("mutaz_alkabir@hotmail.com","ddd")
         var eMail = $("#login_e_mail").val();
         var atpos=eMail.indexOf("@");
         var dotpos=eMail.lastIndexOf(".");
@@ -97,6 +98,7 @@ $(document).ready(function(){
     });
 
     $("#register_button").on("click",function(){
+        register("mmm@gmail.com","içö","IÖçüğĞÜ","ddd","m","06/10/1982");
         var eMail = $("#register_e_mail").val();
         var atpos=eMail.indexOf("@");
         var dotpos=eMail.lastIndexOf(".");
@@ -265,4 +267,52 @@ $(document).ready(function(){
             $("#forgot_password").css("display","none");
         },1000);
     });
+    function register(_email,_name,_surname,_pass,_gender,_bDate)
+    {
+
+        $.ajax({
+            url: "register.php",
+            type: "POST",
+            data:{ mail: _email, name:_name, surname:_surname,pass:_pass,gender:_gender,bdate:_bDate },
+            dataType:"text",
+            cache: false,
+            xhrFields: {
+                withCredentials: true
+            }
+        }).done(function(data) {
+
+            // alert( "success" +data );
+        }).fail(function(data) {
+
+            // alert( "error" +data );
+        }).always(function(data) {
+
+            // alert( "finished" + data);
+        });
+    }
+
+    function login(_email,_pass)
+    {
+
+        $.ajax({
+            url: "login.php",
+            type: "POST",
+            data:{ mail: _email,pass:_pass},
+            dataType:"text",
+            cache: false,
+            xhrFields: {
+                withCredentials: true
+            }
+        }).done(function(data) {
+            alert(data);
+
+            // alert( "success" +data );
+        }).fail(function(data) {
+
+            // alert( "error" +data );
+        }).always(function(data) {
+
+            // alert( "finished" + data);
+        });
+    }
 });
