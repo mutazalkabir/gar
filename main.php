@@ -49,9 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     if ($operation == "gethanger") {
         $data = array();
-        $state = (string)$_GET['all'];
+        $state = (string)$_GET['state'];
+        $user_id = $_SESSION['userid'];
+        $result ="";
+        if($state=="all")
+        {
 
-        $result = mysql_query("SELECT * FROM hunger ");
+            $result = mysql_query("SELECT * FROM hanger limit 50");
+
+        }
+        else
+        {
+            $result = mysql_query("SELECT * FROM hanger");
+
+        }
+
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
