@@ -55,3 +55,29 @@ function login(_email,_pass)
         });
 }
 /* Login - Register */
+
+/* Main Page Feed */
+function getMainPageFeed(){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        operation: "gethanger",
+        data:{state: "all"},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(mainPageFeedData) {
+        debugger
+        eval("createMainPageFeed(mainPageFeedData)");
+        // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+        // alert( "error" +data );
+        }).always(function(data) {
+            debugger
+            // alert( "finished" + data);
+        });
+}
+/* Main Page Feed */

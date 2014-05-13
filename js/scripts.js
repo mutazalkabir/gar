@@ -9,7 +9,7 @@
 $(document).ready(function(){
     /* Ana Sayfa Main Feed
      ================================================== */
-        createMainPageFeed();
+        getMainPageFeed();
     /*================================================== */
 
     /* Personal Messages

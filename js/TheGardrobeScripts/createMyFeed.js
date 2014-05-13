@@ -6,7 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$(document).ready(function(){
     createMyFeed = function(){
         myFeedContainer = $("#my_feed");
 
@@ -23,4 +22,3 @@ $(document).ready(function(){
         }
         $("#my_feed").mCustomScrollbar();
     }
-});
