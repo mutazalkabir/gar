@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         if($state=="all")
         {
 
-            $result = mysql_query("SELECT * FROM hanger limit 50");
+            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.title, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date FROM user u, hanger h, gardrobe g,category c WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
 
         }
         else
@@ -64,12 +64,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         }
 
-
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
+
+        //get Likes
+        $max = sizeof($data);
+        for($i=0;$i<$max;$i++){
+            $id= $data[$i]['hanger_id'];
+
+            $result2 = mysql_query("SELECT *  FROM likes WHERE liked_id = $id");
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+            //    array_push($data[$i],array('like_count' => $row2));
+                $data[$i]["likes"]=$row2;
+            }
+        }
+        //get comments
+        $max = sizeof($data);
+        for($i=0;$i<$max;$i++){
+            $id= $data[$i]['hanger_id'];
+
+            $result2 = mysql_query("SELECT *  FROM comment WHERE hanger_id = $id");
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                //    array_push($data[$i],array('like_count' => $row2));
+                $data[$i]["comments"]=$row2;
+            }
+        }
+        //get shares
+        $max = sizeof($data);
+        for($i=0;$i<$max;$i++){
+            $id= $data[$i]['hanger_id'];
+
+            $result2 = mysql_query("SELECT *  FROM share WHERE hanger_id = $id");
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                //    array_push($data[$i],array('like_count' => $row2));
+                $data[$i]["shares"]=$row2;
+            }
+        }
+
+        //prepare array field names
         $field_names = array_keys($data[0]);
 
+
+        //return data
         header('Content-Type: application/json');
         echo json_encode($data);
 

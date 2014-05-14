@@ -3,13 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 13 May 2014, 21:02:07
+-- Üretim Zamanı: 14 May 2014, 23:03:28
 -- Sunucu sürümü: 5.6.16
 -- PHP Sürümü: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -20,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Veritabanı: `thegardrobe`
 --
+CREATE DATABASE IF NOT EXISTS `thegardrobe` DEFAULT CHARACTER SET utf8 COLLATE utf8_turkish_ci;
+USE `thegardrobe`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +28,7 @@ SET time_zone = "+00:00";
 -- Tablo için tablo yapısı `brands`
 --
 
+DROP TABLE IF EXISTS `brands`;
 CREATE TABLE IF NOT EXISTS `brands` (
   `brand_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `brand_name` int(11) NOT NULL,
@@ -40,6 +42,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
 -- Tablo için tablo yapısı `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `category_name` varchar(40) COLLATE utf8_turkish_ci NOT NULL,
@@ -61,13 +64,26 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 -- Tablo için tablo yapısı `comment`
 --
 
+DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `comment_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` int(11) NOT NULL,
   `hanger_id` bigint(20) NOT NULL,
+  `comment` varchar(400) COLLATE utf8_turkish_ci NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=6 ;
+
+--
+-- Tablo döküm verisi `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `user_id`, `date`, `hanger_id`, `comment`) VALUES
+(1, 4, 2147483647, 1, 'deneme 123'),
+(2, 5, 2147483647, 2, 'denemeeeee dadaasafasf '),
+(3, 4, 2147483647, 1, 'dada asdfas a das da sa sad'),
+(4, 0, 2147483647, 1, 'asdfasfagadsgs sadgsg sg gsadg'),
+(5, 4, 2147483647, 4, 'asdasgads asfa  fas af as fa');
 
 -- --------------------------------------------------------
 
@@ -75,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Tablo için tablo yapısı `emails`
 --
 
+DROP TABLE IF EXISTS `emails`;
 CREATE TABLE IF NOT EXISTS `emails` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mail` char(255) COLLATE utf8_turkish_ci NOT NULL,
@@ -97,6 +114,7 @@ INSERT INTO `emails` (`id`, `mail`) VALUES
 -- Tablo için tablo yapısı `fellowship`
 --
 
+DROP TABLE IF EXISTS `fellowship`;
 CREATE TABLE IF NOT EXISTS `fellowship` (
   `fellower_id` int(11) NOT NULL,
   `fellowed_id` int(11) NOT NULL,
@@ -111,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
 -- Tablo için tablo yapısı `gardrobe`
 --
 
+DROP TABLE IF EXISTS `gardrobe`;
 CREATE TABLE IF NOT EXISTS `gardrobe` (
   `gardrobe_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -134,6 +153,7 @@ INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `title`, `about`, `create_date
 -- Tablo için tablo yapısı `hanger`
 --
 
+DROP TABLE IF EXISTS `hanger`;
 CREATE TABLE IF NOT EXISTS `hanger` (
   `hanger_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -143,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `hanger` (
   `city` varchar(20) COLLATE utf8_turkish_ci NOT NULL,
   `place` varchar(40) COLLATE utf8_turkish_ci NOT NULL,
   `pic_id` int(11) NOT NULL,
+  `create_date` int(11) NOT NULL,
   UNIQUE KEY `hanger_id` (`hanger_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=8 ;
 
@@ -150,28 +171,68 @@ CREATE TABLE IF NOT EXISTS `hanger` (
 -- Tablo döküm verisi `hanger`
 --
 
-INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `about`, `city`, `place`, `pic_id`) VALUES
-(1, 4, 1, 1, 'denme deneme deneme', 'ankara', 'ankara', 1),
-(2, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1),
-(3, 4, 1, 1, '11', '1', '1', 23),
-(4, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1),
-(5, 4, 1, 1, '11', '1', '1', 23),
-(6, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1),
-(7, 4, 1, 1, '11', '1', '1', 23);
+INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `about`, `city`, `place`, `pic_id`, `create_date`) VALUES
+(1, 4, 1, 1, 'denme deneme deneme', 'ankara', 'ankara', 1, 1387756800),
+(2, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
+(3, 4, 1, 1, '11', '1', '1', 23, 1387756800),
+(4, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
+(5, 4, 1, 1, '11', '1', '1', 23, 1387756800),
+(6, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
+(7, 4, 1, 1, '11', '1', '1', 23, 1387756800);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `like`
+-- Tablo için tablo yapısı `likes`
 --
 
-CREATE TABLE IF NOT EXISTS `like` (
+DROP TABLE IF EXISTS `likes`;
+CREATE TABLE IF NOT EXISTS `likes` (
   `like_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `liked_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
+  `like_date` int(11) NOT NULL,
   UNIQUE KEY `like_id` (`like_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=7 ;
+
+--
+-- Tablo döküm verisi `likes`
+--
+
+INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `type`, `like_date`) VALUES
+(1, 1, 4, 1, 0),
+(2, 2, 4, 1, 0),
+(3, 1, 4, 1, 0),
+(4, 1, 5, 1, 0),
+(5, 1, 4, 1, 0),
+(6, 1, 5, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `share`
+--
+
+DROP TABLE IF EXISTS `share`;
+CREATE TABLE IF NOT EXISTS `share` (
+  `share_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `hanger_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `share_date` int(11) NOT NULL,
+  UNIQUE KEY `share_id` (`share_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=6 ;
+
+--
+-- Tablo döküm verisi `share`
+--
+
+INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`) VALUES
+(1, 1, 4, 1400101125),
+(2, 1, 5, 1400101125),
+(3, 2, 4, 1400101125),
+(4, 6, 5, 1400101125),
+(5, 4, 4, 1400101125);
 
 -- --------------------------------------------------------
 
@@ -179,6 +240,7 @@ CREATE TABLE IF NOT EXISTS `like` (
 -- Tablo için tablo yapısı `tag`
 --
 
+DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
   `tag_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -194,9 +256,31 @@ CREATE TABLE IF NOT EXISTS `tag` (
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
+  `type_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `type_name` varchar(11) COLLATE utf8_turkish_ci NOT NULL,
+  UNIQUE KEY `type_id` (`type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Tablo döküm verisi `type`
+--
+
+INSERT INTO `type` (`type_id`, `type_name`) VALUES
+(1, 'hanger'),
+(2, 'gardrobe');
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(25) COLLATE utf8_turkish_ci NOT NULL,
@@ -213,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci AUTO_INCREMENT=19 ;
 
 --
 -- Tablo döküm verisi `user`
