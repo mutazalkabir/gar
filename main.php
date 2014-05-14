@@ -127,8 +127,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $place = (string)$_GET['place'];
         $about = (string)$_GET['about'];
         $pic = (string)$_GET['pic'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
 
-        $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$pic')");
+        $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$pic','$date')");
 
         if($insert==false)
             echo mysql_error();
