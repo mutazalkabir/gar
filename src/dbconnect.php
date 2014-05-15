@@ -15,4 +15,6 @@ or die("Unable to connect to MySQL");
 //select a database to work with
 $selected = mysql_select_db($dbname,$dbhandle)
 or die("Could not select examples");
+
+mysql_query("set names 'utf8'");
 ?>

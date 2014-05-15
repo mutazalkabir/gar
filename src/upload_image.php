@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 /**
  * Created by PhpStorm.
@@ -5,16 +9,50 @@
  * Date: 13.05.2014
  * Time: 23:50
  */
-include "/src/constants";
+
+//create folder
+/*if (!file_exists('path/to/directory')) {
+    mkdir('path/to/directory', 0777, true);
+}*/
+
+include "includes.php";
+
+$_SESSION['userid']=4;
 
 
-if($_FILES['image']['name'])
+
+
+if ($_FILES["file"]["error"] > 0)
 {
-    $save_path=$UPLOADED_IMAGE_FOLDER_PATH .$_SESSION['userid']; // Folder where you wanna move the file.
-    $myname = strtolower($_FILES['image']['tmp_name']); //You are renaming the file here
-    move_uploaded_file($_FILES['image']['tmp_name'], $save_path.$myname); // Move the uploaded file to the desired folder
+
+    echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+}
+else
+{
+
+
+
+
+
+    $save_path=$UPLOADED_IMAGE_FOLDER_PATH.$_SESSION['userid']."/"; // Folder where you wanna move the file.
+    if (!file_exists($save_path)) {
+        mkdir($save_path, 0777, true);
+    }
+    $newfilename=genarateID().".".end(explode(".",$_FILES["file"]["name"]));
+    move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
+    // exec('doya_adi_duzenle.bat');
+
+    $dir = 'photos/';
+    foreach(glob($dir.'*.*') as $v){
+        unlink($v);
+    }
 }
 
-$inser_into_db="INSERT INTO `database`.`table` (`folder_name`, `file_name`) VALUES('$save_path', '$myname'))";
 
+
+// }
+//else
+//{
+//echo "Invalid file";
+//}
 ?>

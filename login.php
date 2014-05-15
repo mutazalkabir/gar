@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     $pass=(string)$_POST['pass'];
 
-    $result = mysql_query("SELECT * FROM `user` WHERE mail='$mail' AND pass='$pass' limit 1");
+    $result = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND pass='$pass' limit 1");
    // $value = mysql_fetch_object($result);
 
 

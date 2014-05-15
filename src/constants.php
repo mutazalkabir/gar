@@ -11,7 +11,7 @@ $password = "";
 $hostname = "localhost";
 $dbname = "thegardrobe";
 
-$UPLOADED_IMAGE_FOLDER_PATH="/storage/user_image/";
+$UPLOADED_IMAGE_FOLDER_PATH="../storage/user_images/";
 
 /*
 $username = "a4955560_eren";

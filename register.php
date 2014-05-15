@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $bdateTS = $bdate->getTimestamp();
     $date = new DateTime();
     $date=$date->getTimestamp();
-    $insert = mysql_query("INSERT INTO user VALUES('','$name','$surname','$bdateTS','$date','$mail','0','$gender','$pass','','','')");
+    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdateTS','$date','$mail','0','$gender','$pass','','','')");
     //execute the SQL query and return records
     header('Content-Type: application/json');
     echo json_encode($insert);
