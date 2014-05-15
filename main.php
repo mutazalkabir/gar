@@ -6,7 +6,7 @@
  * Time: 16:26
  */
 
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 include 'src/constants.php';
 include 'src/dbconnect.php';
 
@@ -14,7 +14,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $operation = (string)$_GET['operation'] ? : "";
+    $operation = (string)$_GET['operation'];
 
     /////////////////////////////////////CATEGORY/////////////////////////////////////
     if ($operation == "getcategory") {
@@ -50,13 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "gethanger") {
         $data = array();
         $state = (string)$_GET['state'];
-        $user_id = $_SESSION['userid'];
+        $user_id = 1;//$_SESSION['userid'];
         $result ="";
         if($state=="all")
         {
 
             $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.title, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date FROM user u, hanger h, gardrobe g,category c WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
-
+	
         }
         else
         {
