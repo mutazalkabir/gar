@@ -6,53 +6,87 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$(document).ready(function(){
-    showPopup = function(){
-        $("body").append('<div id="glass">' +
-                            '<div id="glass_inner" class="bounceInLeft animated">' +
+    showPopup = function(askiDetayData, whichAski){
+        debugger
+        var askiDetay = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"glass"},
+            htmlContent:'<div id="glass_inner" class="bounceInLeft animated">' +
                             '<i id="close_popup" class="fa fa-times fa-2"></i>' +
-                                '<div id="glass_inner_shadow">' +
-                                    '<div id="aski_picture_holder">' +
-                                        '<i class="fa fa-angle-left"></i>' +
-                                        '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
-                                        '<i class="fa fa-angle-right"></i>' +
-                                    '</div> ' +
-                                    '<div id="popup_profile_holder">' +
-                                        '<div id="popup_profile_picture" class="popup_profile_items">' +
-                                            '<img src="images/dummy_images/profil.jpg" />' +
-                                        '</div>'+
-                                        '<div id="popup_profile_name" class="popup_profile_items">Tunç Akın</div>'+
-                                        "<div id='popup_aski_date' class='popup_profile_items'><span>12.06.2014</span> tarihinde <span>Spor Kıyafetler</span> kategorisi altında <span>İlk Gardrobe</span>'um altında paylaşıldı</div>"+
-                                        '<div id="popup_aski_description" class="popup_profile_items">Spora giderken ne giyeceğim demekten bıkmışken, deneme 1-2 çok güzel bir yazı bu evet aynen öyle!</div>'+
-                                        '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
-                                            '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i>45 Beğeni</div>' +
-                                            '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i>10 Yorum</div>' +
-                                            '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i>6 Paylaşım</div>' +
-                                        '</div>'+
+                            '<div id="glass_inner_shadow">' +
 
-                                        '<div id="comments_holder" class="aski_detail_tab_contents">' +
+                            '</div> '+
+                        '</div> '
+        }));
 
-                                        '</div> ' +
+        $("body").append(askiDetay);
 
-                                        '<div id="likes_holder" class="aski_detail_tab_contents">' +
+        var askiDetay = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"glass"},
+            htmlContent:'<div id="glass_inner" class="bounceInLeft animated">' +
+                        '<i id="close_popup" class="fa fa-times fa-2"></i>' +
+                            '<div id="glass_inner_shadow">' +
 
-                                        '</div> ' +
+                            '</div> '+
+                        '</div> '
+        }));
 
-                                        '<div id="shares_holder" class="aski_detail_tab_contents">' +
+        var askiContentsHolder = $("#glass_inner_shadow");
+        var askiProfileItems = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"popup_profile_holder"},
+            htmlContent:'<div id="popup_profile_picture" class="popup_profile_items">' +
+                            '<img src="images/dummy_images/profil.jpg" />' +
+                        '</div>'+
 
-                                        '</div> ' +
+                        '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
+                        "<div id='popup_aski_date' class='popup_profile_items'><span>"+ askiDetayData.create_date +"</span> tarihinde, <span>"+ askiDetayData.category_name +"</span> kategorisinde, <span>" + askiDetayData.gardrobe_id +"</span> gardrobe'unda paylaşıldı.</div>"+
+                        '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
 
-                                        '<div id="send_comment">' +
-                                            '<div id="commentor_profile_picture" class="popup_profile_items">' +
-                                                '<img src="images/dummy_images/profil.jpg" />' +
-                                            '</div>'+
-                                            '<textarea id="aski_comment_textarea" placeholder="Yorumunuzu Girin"></textarea>'+
-                                            '<button type="submit">Yorum Gönder</button>'+
-                                        '</div> '+
-                                    '</div> ' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>');
+                        '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
+                            '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i>45 Beğeni</div>' +
+                            '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i>10 Yorum</div>' +
+                            '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i>6 Paylaşım</div>' +
+                        '</div>'+
+
+                        '<div id="comments_holder" class="aski_detail_tab_contents">' +
+
+                        '</div> ' +
+
+                        '<div id="likes_holder" class="aski_detail_tab_contents">' +
+
+                        '</div> ' +
+
+                        '<div id="shares_holder" class="aski_detail_tab_contents">' +
+
+                        '</div> '
+        }));
+
+        var askiPictureHolder = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"aski_picture_holder"},
+            htmlContent:'<i class="fa fa-angle-left"></i>' +
+                            '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
+                        '<i class="fa fa-angle-right"></i>'
+        }));
+
+        var askiSendCommentItems = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"send_comment"},
+            htmlContent:'<div id="commentor_profile_picture" class="popup_profile_items">' +
+                            '<img src="images/dummy_images/profil.jpg" />' +
+                        '</div>'+
+
+                        '<textarea id="aski_comment_textarea" placeholder="Yorumunuzu Girin"></textarea>'+
+
+                        '<button type="submit">Yorum Gönder</button>'
+        }));
+
+
+        askiContentsHolder.append(askiPictureHolder);
+        askiContentsHolder.append(askiProfileItems);
+        $("#popup_profile_holder").append(askiSendCommentItems);
 
         $("#send_comment").on("click",function(){
             $("#aski_comment_tab").trigger("click");
@@ -91,7 +125,7 @@ $(document).ready(function(){
         }
 
         for(var i=0;i<20;i++){
-            $("#shares_holder   ").append('<div class="my_feed_items">' +
+            $("#shares_holder").append('<div class="my_feed_items">' +
                                     '<div class="my_feed_item_content">' +
                                         '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
                                         '<span class="my_feed_feed_content">Tunç Akın</span>' +
@@ -120,4 +154,3 @@ $(document).ready(function(){
             },400);
         });
     }
-});

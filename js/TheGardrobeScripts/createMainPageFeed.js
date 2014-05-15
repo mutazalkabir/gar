@@ -27,61 +27,40 @@
         });
 
         mainPageFeedContainer = $("#page_contents");
-                                                  debugger
         for(var i=0; i<mainPageFeedData.length; i++){
-            var mainPageFollowingFeedItem =
-                '<div class="feed_item" following="true">' +
-                    '<i class="fa fa-check following_sign" title="Takip Ediyorsun"></i> ' +
-                    '<span class="cloth_cover">' +
-                        '<div class="buttons like_button"><i class="fa fa-heart-o"></i>Beğen</div>' +
-                        '<div class="buttons comment_button"><i class="fa fa-comment-o"></i>Yorum Yap</div>' +
-                        '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>' +
-                    '</span>'+
-                    '<div class="cloth_photo">' +
-                        '<span class="aski_owner_name">'+ mainPageFeedData[i].user_id +'</span>'+
-                        '<img src="images/dummy_images/kiyafet.jpg">' +
-                    '</div>'+
-                    '<div class="profile_photo">'+
-                        '<img src="images/dummy_images/profil.jpg">'+
-                    ' </div>'+
+            var mainPageFeedItem = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"feed_item",
+                attributes:{"following":"true"},
+                htmlContent:'<i class="fa fa-check following_sign" title="Takip Ediyorsun"></i> ' +
+                            '<span class="cloth_cover">' +
+                                '<div class="buttons like_button"><i class="fa fa-heart-o"></i>Beğen</div>' +
+                                '<div class="buttons comment_button"><i class="fa fa-comment-o"></i>Yorum Yap</div>' +
+                                '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>' +
+                            '</span>' +
+                            '<div class="cloth_photo">' +
+                                '<span class="aski_owner_name">'+ mainPageFeedData[i].name + " " + mainPageFeedData[i].surname +'</span>'+
+                                '<img src="images/dummy_images/kiyafet.jpg">' +
+                            '</div>' +
 
-                    '<span class="tag_name feed_item_span">Spor Kıyafetler</span>'+
-                    '<span class="description feed_item_span">'+ mainPageFeedData[i].about +'</span>'+
+                            '<div class="profile_photo">'+
+                                '<img src="images/dummy_images/profil.jpg">'+
+                            ' </div>'+
 
-                    '<div class="like_comment_share_holder">'+
-                        '<div class="like_count"><i class="fa fa-heart-o"></i>45 Beğeni</div>'+
-                        '<div class="comment_count"><i class="fa fa-comment-o"></i>10 Yorum</div>'+
-                        '<div class="share_count"><i class="fa fa-share"></i>6 Paylaşım</div>'+
-                    '</div>'+
-                '</div>'
+                            '<span class="tag_name feed_item_span">'+ mainPageFeedData[i].category_name +'</span>'+
+                            '<span class="description feed_item_span">'+ mainPageFeedData[i].about +'</span>'+
 
-            /*var mainPageNotFollowingFeedItem =
-                '<div class="feed_item" following="false">' +
-                    '<span class="cloth_cover">' +
-                        '<div class="buttons like_button"><i class="fa fa-heart-o"></i>Beğen</div>' +
-                        '<div class="buttons comment_button"><i class="fa fa-comment-o"></i>Yorum Yap</div>' +
-                        '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>' +
-                    '</span>'+
-                    '<div class="cloth_photo">' +
-                        '<span class="aski_owner_name">Tunç Akın</span>'+
-                        '<img src="images/dummy_images/kiyafet.jpg">' +
-                    '</div>'+
-                    '<div class="profile_photo">'+
-                        '<img src="images/dummy_images/profil.jpg">'+
-                    ' </div>'+
+                            '<div class="like_comment_share_holder">'+
+                                '<div class="like_count"><i class="fa fa-heart-o"></i>'+ mainPageFeedData[i].likes.length +' Beğeni</div>'+
+                                '<div class="comment_count"><i class="fa fa-comment-o"></i>'+ mainPageFeedData[i].comments.length +' Yorum</div>'+
+                                '<div class="share_count"><i class="fa fa-share"></i>'+ mainPageFeedData[i].shares.length +' Paylaşım</div>'+
+                            '</div>'
+            }));
+            mainPageFeedContainer.append(mainPageFeedItem);
 
-                    '<span class="tag_name feed_item_span">Spor Kıyafetler</span>'+
-                    '<span class="description feed_item_span">Spora giderken ne giyeceğim demekten bıkmışken, deneme 1-2 çok güzel bir yazı bu evet aynen öyle!</span>'+
-
-                    '<div class="like_comment_share_holder">'+
-                        '<div class="like_count"><i class="fa fa-heart-o"></i>45 Beğeni</div>'+
-                        '<div class="comment_count"><i class="fa fa-comment-o"></i>10 Yorum</div>'+
-                        '<div class="share_count"><i class="fa fa-share"></i>6 Paylaşım</div>'+
-                    '</div>'+
-                '</div>'
-
-            mainPageFeedContainer.append(mainPageNotFollowingFeedItem); */
-            mainPageFeedContainer.append(mainPageFollowingFeedItem);
+            mainPageFeedItem.on("click",function(){
+                showPopup(mainPageFeedData[i], i);
+            });
         }
     }
 

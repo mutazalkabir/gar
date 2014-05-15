@@ -826,7 +826,8 @@ input:focus{
     z-index: 99;
     height: 18px;
     line-height: 18px;
-    width: 100px;
+    width: 200px;
+    text-overflow: ellipsis;
     bottom: 10px;
     font-size: 18px;
     right: 75px;
