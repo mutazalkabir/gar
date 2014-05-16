@@ -2764,7 +2764,6 @@ input:focus{
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
     display: none;
     padding: 20px 10px;
-    overflow: hidden;
 }
 
 .gardrobe_karistir_sub_items_holder{
@@ -2848,6 +2847,13 @@ input:focus{
     position: relative;
 }
 
+#gardrobe_karistir_overflow_holder{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
 #gardrobe_karistir:before{
     content: "";
     position: absolute;
@@ -2858,5 +2864,10 @@ input:focus{
     border-color: transparent transparent #ffffff transparent;
     left: 200px;
     top: -15px;
+}
+
+#gardrobe_karistir input{
+    width: 85%;
+    float: left;
 }
 /* Search Bar Sub Menu */

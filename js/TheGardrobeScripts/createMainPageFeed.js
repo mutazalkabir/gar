@@ -7,6 +7,7 @@
  */
 
 createMainPageFeed = function(mainPageFeedData){
+    debugger
     $("#all_or_followers_only_selector span").on("click",function(){
         if($(this).html() == "Herkes"){
             $("#page_contents").addClass("show_everybody");
