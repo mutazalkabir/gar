@@ -7,7 +7,9 @@
  */
 
 $(document).ready(function(){
+    var thegardrobe = {
 
+    }
     /* Ana Sayfa Main Feed
      ================================================== */
         getMainPageFeed();
