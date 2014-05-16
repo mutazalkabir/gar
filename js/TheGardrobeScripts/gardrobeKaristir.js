@@ -21,6 +21,8 @@ $(document).ready(function(){
         },600);
 
         $(".gardrobe_karistir_sub_items_content_holder").mCustomScrollbar("update");
+
+        $("#datepicker").datepicker();
     }
 
     removeGardrobeKaristir = function(){

@@ -2819,6 +2819,50 @@ input:focus{
     margin: 2px 2px 2px 0px;
 }
 
+.gardrobe_karistir_brands{
+     display: block;
+     position: relative;
+     height: 60px;
+     width: 100%;
+     margin: 10px 0px 10px 0px;
+ }
+
+.gardrobe_karistir_brands:first-of-type{
+    margin-top: 0px;
+}
+
+.brands_holder{
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    text-align: left !important;
+    line-height: 60px;
+    height: 60px;
+}
+
+.brand_name{
+    text-align: left !important;
+    padding-left: 170px;
+}
+
+.brand_logo{
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    height: 40px;
+    margin-top: -20px;
+    text-align: center;
+    width: 135px;
+}
+
+.brand_logo img{
+    max-width:100%; max-height:100%;
+}
+
 .category_holder{
     border: 1px solid #cccccc;
     -webkit-border-radius: 5px;
@@ -2835,7 +2879,7 @@ input:focus{
     transition: all 250ms ease;
 }
 
-.category_holder:hover{
+.category_holder:hover, .brands_holder:hover{
     -webkit-box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow:    -1px -1px 8px 0px rgba(0, 0, 0, 0.1);
     box-shadow:         -1px -1px 8px 0px rgba(0, 0, 0, 0.1);
@@ -2870,4 +2914,70 @@ input:focus{
     width: 85%;
     float: left;
 }
+
+.uye_ara_picture_holder{
+    -webkit-border-radius: 70px;
+    -moz-border-radius: 70px;
+    border-radius: 70px;
+    height: 70px;
+    width: 70px;
+    border: 3px solid #cccccc;
+    overflow: hidden;
+    z-index: 10;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+.uye_ara_picture_holder:hover{
+    cursor: pointer;
+    border: 3px solid #50B075;
+}
+
+.uye_ara_picture_holder img{
+    -webkit-border-radius: 70px;
+    -moz-border-radius: 70px;
+    border-radius: 70px;
+    height: 70px;
+    width: 70px;
+}
+
+.uye_ara_uye_holder{
+    display: inline-block;
+    margin: 9px 7px;
+    float: left;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+#show_all_brands{
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#search_user input{
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+}
+
+#search_user button{
+    position: relative;
+    width: 100%;
+    background-color: #00cd66;
+    color: #ffffff;
+    -webkit-box-shadow: 0 6px #038a46;
+    -moz-box-shadow:    0 6px #038a46;
+    box-shadow:         0 6px #038a46;
+}
+
+#search_user button:hover{
+    top: 12px;
+    box-shadow: none;
+}
+
 /* Search Bar Sub Menu */

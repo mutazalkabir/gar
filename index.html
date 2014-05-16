@@ -12,7 +12,6 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <link href="css/flaticon.css" rel="stylesheet" type="text/css" />
-    <link href="css/date_picker/glDatePicker.flatwhite.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/helpers/browser_selector.js"></script>
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery.dev.1.7.1.js"></script>
@@ -34,7 +33,6 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/gardrobeKaristir.js"></script>
     <script type="text/javascript" src="js/helpers/domGenerator.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript" src="js/helpers/glDatePicker.min.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
     <link media="screen" type="text/css" href="css/photo_tagging/jquery-ui-1.8.17.custom.css" rel="stylesheet">
@@ -57,9 +55,50 @@
             <div id="gardrobe_karistir">
                 <div id="gardrobe_karistir_overflow_holder">
                     <div id="gardrobe_karistir_overflow">
-                        <div class="gardrobe_karistir_sub_items_holder">
+                        <div class="gardrobe_karistir_sub_items_holder" id="search_user">
                             <span>Üye Ara</span>
-                            <div class="gardrobe_karistir_sub_items_content_holder"></div>
+                            <div class="gardrobe_karistir_sub_items_content_holder">
+
+                                <div class="uye_ara_uye_holder">
+                                    <div class="uye_ara_picture_holder">
+                                        <img src="images/dummy_images/profil.jpg" />
+                                    </div>
+                                    <span class="follower_profile_name_holder">Tunç</span>
+                                </div>
+                                <div class="uye_ara_uye_holder">
+                                    <div class="uye_ara_picture_holder">
+                                        <img src="images/dummy_images/profil.jpg" />
+                                    </div>
+                                    <span class="follower_profile_name_holder">Tunç</span>
+                                </div>
+                                <div class="uye_ara_uye_holder">
+                                    <div class="uye_ara_picture_holder">
+                                        <img src="images/dummy_images/profil.jpg" />
+                                    </div>
+                                    <span class="follower_profile_name_holder">Tunç</span>
+                                </div>
+                                <div class="uye_ara_uye_holder">
+                                    <div class="uye_ara_picture_holder">
+                                        <img src="images/dummy_images/profil.jpg" />
+                                    </div>
+                                    <span class="follower_profile_name_holder">Tunç</span>
+                                </div>
+                                <div class="uye_ara_uye_holder">
+                                    <div class="uye_ara_picture_holder">
+                                        <img src="images/dummy_images/profil.jpg" />
+                                    </div>
+                                    <span class="follower_profile_name_holder">Tunç</span>
+                                </div>
+                                <div class="uye_ara_uye_holder">
+                                    <div class="uye_ara_picture_holder">
+                                        <img src="images/dummy_images/profil.jpg" />
+                                    </div>
+                                    <span class="follower_profile_name_holder">Tunç</span>
+                                </div>
+
+                                <input type="text" placeholder="Üye İsmi Giriniz">
+                                <button>Üye Ara</button>
+                            </div>
                         </div>
                         <div class="gardrobe_karistir_sub_items_holder" id="gardrobe_categories">
                             <span>Gardrobe Kategorileri</span>
@@ -88,48 +127,56 @@
                                     <div class="category_holder"></div>
                                     <span class="category_name">Şık</span>
                                 </div>
-                                <div class="gardrobe_karistir_category_items">
-                                    <div class="category_holder"></div>
-                                    <span class="category_name">Şık</span>
-                                </div>
-                                <div class="gardrobe_karistir_category_items">
-                                    <div class="category_holder"></div>
-                                    <span class="category_name">Şık</span>
-                                </div>
-                                <div class="gardrobe_karistir_category_items">
-                                    <div class="category_holder"></div>
-                                    <span class="category_name">Şık</span>
-                                </div>
-                                <div class="gardrobe_karistir_category_items">
-                                    <div class="category_holder"></div>
-                                    <span class="category_name">Şık</span>
-                                </div>
                             </div>
                         </div>
-                        <div class="gardrobe_karistir_sub_items_holder">
+                        <div class="gardrobe_karistir_sub_items_holder" id="brands_holder">
                             <span>Markalar</span>
                             <div class="gardrobe_karistir_sub_items_content_holder">
                                 <div class="gardrobe_karistir_brands">
                                     <div class="brands_holder">
-
+                                        <div class="brand_logo">
+                                            <img src="images/brand_images/koton_logo.png"/>
+                                        </div>
+                                        <span class="brand_name">Koton</span>
                                     </div>
-                                    <span class="brand_name">Zara</span>
                                 </div>
+                                <div class="gardrobe_karistir_brands">
+                                    <div class="brands_holder">
+                                        <div class="brand_logo">
+                                            <img src="images/brand_images/hm_logo.png"/>
+                                        </div>
+                                        <span class="brand_name">H&M</span>
+                                    </div>
+                                </div>
+                                <div class="gardrobe_karistir_brands">
+                                    <div class="brands_holder">
+                                        <div class="brand_logo">
+                                            <img src="images/brand_images/tommy_hilfiger_logo.png"/>
+                                        </div>
+                                        <span class="brand_name">Tommy Hilfiger</span>
+                                    </div>
+                                </div>
+                                <div class="gardrobe_karistir_brands">
+                                    <div class="brands_holder">
+                                        <div class="brand_logo">
+                                            <img src="images/brand_images/zara_logo.png"/>
+                                        </div>
+                                        <span class="brand_name">Zara</span>
+                                    </div>
+                                </div>
+
+                                <span id="show_all_brands">Tümünü Gör</span>
                             </div>
                         </div>
-                        <div class="gardrobe_karistir_sub_items_holder">
-                            <span>Yayınlandığı Yere Göre Ara</span>
-                            <div class="gardrobe_karistir_sub_items_content_holder">
-                                <input type="text" id="mydate" gldp-id="mydate" />
-                                <div gldp-el="mydate"
-                                     style="width:400px; height:300px; position:absolute; top:70px; left:100px;">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="gardrobe_karistir_sub_items_holder">
+                        <div class="gardrobe_karistir_sub_items_holder" id="date_search">
                             <span>Yayınlandığı Tarihe Göre Ara</span>
                             <div class="gardrobe_karistir_sub_items_content_holder">
-
+                                <input id="datepicker">
+                            </div>
+                        </div>
+                        <div class="gardrobe_karistir_sub_items_holder" id="place_search">
+                            <span>Yayınlandığı Yere Göre Ara</span>
+                            <div class="gardrobe_karistir_sub_items_content_holder">
                             </div>
                         </div>
                     </div>

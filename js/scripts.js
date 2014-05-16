@@ -23,9 +23,7 @@ $(document).ready(function(){
     /* Personal Messages
      ================================================== */
     $("#search_input").on("click",function(){
-        $('#mydate').glDatePicker();
         gardrobeKaristir();
-        $(".gardrobe_karistir_sub_items_content_holder").mCustomScrollbar();
     });
 
 /*    $("#search_input").on("blur",function(){
