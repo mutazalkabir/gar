@@ -26,7 +26,8 @@ $(document).ready(function(){
         gardrobeKaristir();
     });
 
-/*    $("#search_input").on("blur",function(){
+/*    $("body").on("click",function(e){
+        debugger
         removeGardrobeKaristir();
     });*/
     /*================================================== */
