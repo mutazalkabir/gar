@@ -1,1 +1,0 @@
-[ { "id": 25, "label": "Kot Pantalon", "value": "Kot Pantalon" },{ "id": 35, "label": "T-Shirt", "value": "T-Shirt" },{ "id": 45, "label": "Spor Ayakkabı", "value": "Spor Ayakkabı" },{ "id": 55, "label": "Gözlük", "value": "Gözlük" },{ "id": 55, "label": "Manto", "value": "Manto" } ]
