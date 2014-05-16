@@ -1202,6 +1202,10 @@ input:focus{
     max-width: 100%;
 }
 
+#aski_picture img{
+    max-width: 100%;
+}
+
 .fa-angle-left, .fa-angle-right{
     color: #ffffff;
     display: table-cell !important;

@@ -7,7 +7,7 @@
  */
 
     showPopup = function(askiDetayData, whichAski){
-        debugger
+
         var askiDetay = $(GenerateDomElement({
             nodeType:"div",
             attributes:{"id":"glass"},
