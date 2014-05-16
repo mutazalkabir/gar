@@ -28,10 +28,30 @@
 
         mainPageFeedContainer = $("#page_contents");
         for(var i=0; i<mainPageFeedData.length; i++){
+            if(mainPageFeedData[i].comments != undefined){
+                var commentCount = mainPageFeedData[i].comments.length;
+            }
+            else{
+                var commentCount = 0;
+            }
+
+            if(mainPageFeedData[i].shares != undefined){
+                var shareCount = mainPageFeedData[i].shares.length;
+            }
+            else{
+                var shareCount = 0;
+            }
+
+            if(mainPageFeedData[i].likes != undefined){
+                var likeCount = mainPageFeedData[i].likes.length;
+            }
+            else{
+                var likeCount = 0;
+            }
             var mainPageFeedItem = $(GenerateDomElement({
                 nodeType:"div",
                 classNames:"feed_item",
-                attributes:{"following":"true"},
+                attributes:{"following":"true", "order_number":i},
                 htmlContent:'<i class="fa fa-check following_sign" title="Takip Ediyorsun"></i> ' +
                             '<span class="cloth_cover">' +
                                 '<div class="buttons like_button"><i class="fa fa-heart-o"></i>Beğen</div>' +
@@ -51,15 +71,15 @@
                             '<span class="description feed_item_span">'+ mainPageFeedData[i].about +'</span>'+
 
                             '<div class="like_comment_share_holder">'+
-                                '<div class="like_count"><i class="fa fa-heart-o"></i>'+ mainPageFeedData[i].likes.length +' Beğeni</div>'+
-                                '<div class="comment_count"><i class="fa fa-comment-o"></i>'+ mainPageFeedData[i].comments.length +' Yorum</div>'+
-                                '<div class="share_count"><i class="fa fa-share"></i>'+ mainPageFeedData[i].shares.length +' Paylaşım</div>'+
+                                '<div class="like_count"><i class="fa fa-heart-o"></i>'+ likeCount +' Beğeni</div>'+
+                                '<div class="comment_count"><i class="fa fa-comment-o"></i>'+ commentCount +' Yorum</div>'+
+                                '<div class="share_count"><i class="fa fa-share"></i>'+ shareCount +' Paylaşım</div>'+
                             '</div>'
             }));
             mainPageFeedContainer.append(mainPageFeedItem);
 
             mainPageFeedItem.on("click",function(){
-                showPopup(mainPageFeedData[i], i);
+                showPopup(mainPageFeedData[$(this).attr("order_number")]);
             });
         }
     }

@@ -6,8 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-    showPopup = function(askiDetayData, whichAski){
-
+    showPopup = function(askiDetayData){
         var askiDetay = $(GenerateDomElement({
             nodeType:"div",
             attributes:{"id":"glass"},
@@ -33,6 +32,26 @@
         }));
 
         var askiContentsHolder = $("#glass_inner_shadow");
+        if(askiDetayData.comments != undefined){
+            var commentCount = askiDetayData.comments.length;
+        }
+        else{
+            var commentCount = 0;
+        }
+
+        if(askiDetayData.shares != undefined){
+            var shareCount = askiDetayData.shares.length;
+        }
+        else{
+            var shareCount = 0;
+        }
+
+        if(askiDetayData.likes != undefined){
+            var likeCount = askiDetayData.likes.length;
+        }
+        else{
+            var likeCount = 0;
+        }
         var askiProfileItems = $(GenerateDomElement({
             nodeType:"div",
             attributes:{"id":"popup_profile_holder"},
@@ -41,13 +60,13 @@
                         '</div>'+
 
                         '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
-                        "<div id='popup_aski_date' class='popup_profile_items'><span>"+ askiDetayData.create_date +"</span> tarihinde, <span>"+ askiDetayData.category_name +"</span> kategorisinde, <span>" + askiDetayData.gardrobe_id +"</span> gardrobe'unda paylaşıldı.</div>"+
+                        "<div id='popup_aski_date' class='popup_profile_items'><span>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span>"+ askiDetayData.category_name +"</span> kategorisinde, <span>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
                         '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
 
                         '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
-                            '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i>45 Beğeni</div>' +
-                            '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i>10 Yorum</div>' +
-                            '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i>6 Paylaşım</div>' +
+                            '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i>'+ likeCount +' Beğeni</div>' +
+                            '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i>'+ commentCount +'  Yorum</div>' +
+                            '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i>'+ shareCount +'  Paylaşım</div>' +
                         '</div>'+
 
                         '<div id="comments_holder" class="aski_detail_tab_contents">' +
@@ -106,31 +125,54 @@
               }); 
           }
         });
- 
-        for(var i=0;i<20;i++){
-            $("#comments_holder").append('<div class="my_feed_items">' +
-                                            '<div class="my_feed_item_content">' +
-                                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
-                                                '<span class="my_feed_feed_content">i alarak karıştırdığı 1500lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile v</span>' +
-                                            '</div>' +
-                                        '</div>');
+
+        if(commentCount == 0){
+            $("#comments_holder").append('<span class="no_item_span">Henüz bu askıya yorum yapılmamış</span>')
         }
-        for(var i=0;i<20;i++){
-            $("#likes_holder").append('<div class="my_feed_items">' +
-                                            '<div class="my_feed_item_content">' +
-                                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
-                                                '<span class="my_feed_feed_content">Tunç Akın</span>' +
-                                            '</div>' +
-                                        '</div>');
+        if(likeCount == 0){
+            $("#likes_holder").append('<span class="no_item_span">Henüz bu askıya beğeni verilmemiş</span>')
+        }
+        if(shareCount == 0){
+            $("#shares_holder").append('<span class="no_item_span">Henüz bu askıya hiç paylaşılmamış</span>')
         }
 
-        for(var i=0;i<20;i++){
-            $("#shares_holder").append('<div class="my_feed_items">' +
-                                    '<div class="my_feed_item_content">' +
-                                        '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
-                                        '<span class="my_feed_feed_content">Tunç Akın</span>' +
-                                    '</div>' +
-                                '</div>');
+        for(var i=0;i<commentCount;i++){
+            var commentItem = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"my_feed_items",
+                htmlContent:'<div class="my_feed_item_content">' +
+                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                                '<span class="my_feed_feed_content">'+ askiDetayData.comments[i].comment +'</span>' +
+                            '</div>'
+            }));
+
+            $("#comments_holder").append(commentItem);
+        }
+
+        for(var i=0;i<likeCount;i++){
+            var likeItem = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"my_feed_items",
+                htmlContent:'<div class="my_feed_item_content">' +
+                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                                '<span class="my_feed_feed_content">'+ askiDetayData.likes[i].user_id +'</span>' +
+                            '</div>'
+            }));
+
+            $("#likes_holder").append(likeItem);
+        }
+
+        for(var i=0;i<shareCount;i++){
+            var shareItem = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"my_feed_items",
+                htmlContent:'<div class="my_feed_item_content">' +
+                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                                '<span class="my_feed_feed_content">'+ askiDetayData.shares[0].user_id +'</span>' +
+                            '</div>'
+            }));
+
+            $("#shares_holder").append(shareItem);
         }
 
         $("#comments_holder, #likes_holder, #shares_holder").mCustomScrollbar();

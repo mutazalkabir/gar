@@ -1243,6 +1243,16 @@ input:focus{
     padding: 10px;
 }
 
+.no_item_span{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-weight: 100;
+    font-size: 18px;
+    float: left;
+    margin: 200px 0px 0px 10px;
+}
+
 .popup_profile_items{
     height: auto;
     width: 100%;
