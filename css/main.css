@@ -2763,6 +2763,89 @@ input:focus{
     border-radius: 3px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
     display: none;
+    padding: 20px 10px;
+    overflow: hidden;
+}
+
+.gardrobe_karistir_sub_items_holder{
+    display: inline-block;
+    height: 100%;
+    width: 190px;
+    border-right: 1px solid #cccccc;
+    padding: 0px 10px;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+    overflow: hidden;
+}
+
+.gardrobe_karistir_sub_items_holder:hover{
+    width: 300px;
+}
+
+.gardrobe_karistir_sub_items_holder:last-of-type{
+    border-right: none;
+}
+
+.gardrobe_karistir_sub_items_holder span{
+    font-weight: 100;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    white-space:nowrap;
+    text-align: center;
+}
+
+.gardrobe_karistir_sub_items_content_holder{
+    float: left;
+    width: 100%;
+    position: relative;
+    height: 320px;
+    margin-top: 10px;
+}
+
+#gardrobe_categories{
+    text-align: center;
+}
+
+.gardrobe_karistir_category_items{
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: auto;
+    margin: 2px 2px 2px 0px;
+}
+
+.category_holder{
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+.category_holder:hover{
+    -webkit-box-shadow: -1px -1px 8px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:    -1px -1px 8px 0px rgba(0, 0, 0, 0.1);
+    box-shadow:         -1px -1px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+#gardrobe_karistir_overflow{
+    width: 1500px;
+    height: 100%;
+    position: relative;
 }
 
 #gardrobe_karistir:before{

@@ -19,6 +19,8 @@ $(document).ready(function(){
         setTimeout(function(){
             $("#gardrobe_karistir").removeClass("fadeInDown animated");
         },600);
+
+        $(".gardrobe_karistir_sub_items_content_holder").mCustomScrollbar("update");
     }
 
     removeGardrobeKaristir = function(){

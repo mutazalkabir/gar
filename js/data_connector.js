@@ -77,3 +77,25 @@ function getMainPageFeed(){
         });
 }
 /* Main Page Feed */
+
+/* My Feed Data */
+function createMyFeed(){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "getfellowshipfeed"},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(mainPageFeedData) {
+            eval("setMyFeed(mainPageFeedData)");
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* My Feed Data */

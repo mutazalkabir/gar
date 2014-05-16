@@ -407,7 +407,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         //return data
         header('Content-Type: application/json');
-        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        echo json_encode($data);
 
     }
 

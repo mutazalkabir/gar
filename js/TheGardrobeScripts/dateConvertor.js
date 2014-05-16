@@ -7,7 +7,9 @@
  */
 
 convertDate = function(date){
-        var _date = new Date(date);
+        var intDate = parseInt(date);
+        var _date = new Date(intDate);
+
         var myDate = _date.getDate() + "/" + (_date.getMonth() + 1) + "/" + _date.getFullYear();
         return myDate;
 }

@@ -7,6 +7,7 @@
  */
 
 $(document).ready(function(){
+
     /* Ana Sayfa Main Feed
      ================================================== */
         getMainPageFeed();
@@ -19,13 +20,15 @@ $(document).ready(function(){
 
     /* Personal Messages
      ================================================== */
-    $("#search_input").on("focus",function(){
+    $("#search_input").on("click",function(){
+        $('#mydate').glDatePicker();
         gardrobeKaristir();
+        $(".gardrobe_karistir_sub_items_content_holder").mCustomScrollbar();
     });
 
-    $("#search_input").on("blur",function(){
+/*    $("#search_input").on("blur",function(){
         removeGardrobeKaristir();
-    });
+    });*/
     /*================================================== */
 
     /* Personal Notifications
