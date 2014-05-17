@@ -7,6 +7,7 @@
  */
 
 $(document).ready(function(){
+    window.gardrobeKaristirOpened = false;
     /* Ana Sayfa Main Feed
      ================================================== */
         getMainPageFeed();
@@ -20,7 +21,12 @@ $(document).ready(function(){
     /* Personal Messages
      ================================================== */
     $("#search_input").on("click",function(){
-        gardrobeKaristir();
+        if(window.gardrobeKaristirOpened == false){
+            gardrobeKaristir();
+        }
+        else{
+            removeGardrobeKaristir();
+        }
     });
 
 /*    $("body").on("click",function(e){

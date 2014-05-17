@@ -7,6 +7,7 @@
  */
 
 gardrobeKaristir = function(){
+    window.gardrobeKaristirOpened = true;
     $("#gardrobe_karistir").css("display","block");
     $("#gardrobe_karistir").addClass("fadeInDown animated");
     setTimeout(function(){
@@ -17,6 +18,7 @@ gardrobeKaristir = function(){
 }
 
 removeGardrobeKaristir = function(){
+    window.gardrobeKaristirOpened = false;
     $("#gardrobe_karistir").addClass("fadeOutUp animated");
     setTimeout(function(){
         $("#gardrobe_karistir").removeClass("fadeOutUp animated");

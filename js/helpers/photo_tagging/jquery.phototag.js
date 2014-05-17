@@ -32,7 +32,6 @@
 					autocompleteUrl: 'photo_tag_phps/brands.php',
 					label: '',
 					placeholder: "Marka Adı Giriniz"
-
 				}
 			},
 			parametersForRequest : ['image-id','album-id'],
@@ -207,13 +206,25 @@
 				if(properties.isAutocomplete){
 					$('#tempInput_'+i).parent().append($('<input name="'+properties.parameterKey+'_id" id="hidden_tempInput_'+i+'" type="hidden"/>'));
 					$('#tempInput_'+i).autocomplete({
-						source:properties.autocompleteUrl,
-						select: function( event, ui){
-							$('#hidden_tempInput_'+i).val(ui.item.id);
-						}
+                        source: function(req, response) {
+                            $.ajax({
+                                url: properties.autocompleteUrl,
+                                dataType: "json",
+                                success: function( data ) {
+                                    var re = $.ui.autocomplete.escapeRegex(req.term);
+                                    var matcher = new RegExp( "^" + re, "i" );
+                                    response($.grep(data, function(item){return matcher.test(item.value);}) );
+                                }
+                            });
+                        },
+                        minLength: 0,
+                        select: function(event, ui) {
+                            $('#hidden_tempInput_'+i).val(ui.item.id);
+                        }
 					});
 				}
 			});
+
 			var submit = $('<input class="inputSubmit" type="submit" value="' + options.literals.saveTag + '" />');
 			$('#tempNewTagForm').append(submit);
 			var hiddenInput = $("<input type='hidden' name='image_id' value ='" + image_id + "' />");

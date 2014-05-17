@@ -37,7 +37,7 @@ $(document).ready(function(){
                            source: data
                      });
                }
-          }); 
+          });
 
         $("#close_popup").on("click",function(){
             $("#glass_inner").removeClass("bounceInLeft animated");
