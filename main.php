@@ -373,8 +373,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "addfellower") {
         $data = array();
 
-        $fellower_id = (string)$_GET['brand_name'];
-        $fellowed_id = (string)$_GET['brand_name'];
+        $fellower_id = (string)$_GET['fellower_id'];
+        $fellowed_id = (string)$_GET['fellowed_id'];
         $date = new DateTime();
         $date = $date->getTimestamp();
 
@@ -385,15 +385,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 
 
+
+
         header('Content-Type: application/json');
         echo json_encode($insert);
+
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$fellower_id','$fellowed_id','4','null','$date')");
+        if($insert2==false)
+            echo mysql_error();
+
+
+
+        header('Content-Type: application/json');
+        echo json_encode($insert,$insert2);
         //   exit();
     }
+
+
+
+
+
+   // SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name FROM users u, users u2, users u3,fellowship f, likes l,type t WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id
+
+    /////////////////////////////////////feed/////////////////////////////////////
 
     if ($operation == "getfellowshipfeed") {
 
 
-        $result = mysql_query("SELECT u.pic_id as fellower_pic, u.user_id as fellower_id, CONCAT(u.name, ' ', u.surname) as fellower, u2.pic_id as fellowed_pic, u2.user_id as fellowed_id, CONCAT(u2.name, ' ', u2.surname) as fellowed FROM fellowship f, users u, users u2 WHERE u.user_id= f.fellower_id AND u2.user_id =f.fellowed_id ORDER BY fellowship_date ASC");
+        $result = mysql_query("SELECT u.pic_id as fellower_pic, u.user_id as fellower_id, CONCAT(u.name, ' ', u.surname) as fellower, u2.pic_id as fellowed_pic, u2.user_id as fellowed_id, CONCAT(u2.name, ' ', u2.surname) as fellowed
+        FROM fellowship f, users u, users u2
+        WHERE u.user_id= f.fellower_id AND u2.user_id =f.fellowed_id
+        ORDER BY fellowship_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -410,6 +432,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         echo json_encode($data);
 
     }
+
+
+   if ($operation == "getlikefeed") {
+
+
+       $result = mysql_query(" SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name
+       FROM users u, users u2, users u3,fellowship f, likes l,type t
+       WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id
+       ORDER BY l.like_date ASC");
+
+       //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+       while ($row = mysql_fetch_assoc($result)) {
+           $data[]=$row;
+       }
+
+       //prepare array field names
+       // $field_names = array_keys($data[0]);
+
+
+       //return data
+       header('Content-Type: application/json');
+       echo json_encode($data);
+
+   }
+    if ($operation == "getsharefeed") {
+
+
+        $result = mysql_query("SELECT u2.name as sharer_name, u2.surname as sharer_surname,u2.user_id as sharer_user_id, u3.name as shared_name, u3.surname as shared_surname,u3.user_id as shared_user_id, s.share_id, s.share_date
+        FROM users u, users u2, users u3,fellowship f, share s
+        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id
+        ORDER BY s.share_date ASC");
+
+        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+    }
+    if ($operation == "getcommentfeed") {
+
+
+        $result = mysql_query("SELECT u2.name as commenter_name, u2.surname as commenter_surname,u2.user_id as commenter_user_id, u3.name as commented_name, u3.surname as commented_surname,u3.user_id as commented_user_id, c.comment_id, c.comment_date
+        FROM users u, users u2, users u3,fellowship f, comment c
+        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id
+        ORDER BY c.comment_date ASC");
+
+        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+    }
+
 
 
 
@@ -434,13 +528,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     }
 
-    if ($operation == "getfellows") {
 
-        $fellower_id =(string)$_GET['fellower_id'];//$_SESSION['userid'];
+// $= (string)$_GET[''];
+    if ($operation == "addcomment") {
+        $data = array();
 
-        $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellower_id=$fellower_id AND u.user_id =f.fellowed_id;");
+        $hanger_id= (string)$_GET['hanger_id'];
+        $hanger_owner_id = (string)$_GET['hanger_owner_id'];
+        $comment= (string)$_GET['comment'];
+        $commeter_id= (string)$_GET['commeter_id'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
 
-        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+        $insert = mysql_query("INSERT INTO comment VALUES ('','$commeter_id','$date','$hanger_id','$comment','$hanger_owner_id')");
+        if($insert==false)
+            echo mysql_error();
+
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$commeter_id','$hanger_owner_id','3','$hanger_id','$date')");
+        if($insert2==false)
+            echo mysql_error();
+
+
+        header('Content-Type: application/json');
+        echo json_encode($insert,$insert2);
+        //   exit();
+    }
+
+
+    /////////////////////////////////////like/////////////////////////////////////
+    if ($operation == "getlike") {
+
+        $hanger_id =(string)$_GET['hanger_id'];//$_SESSION['userid'];
+
+        $result = mysql_query("SELECT * FROM likes WHERE hanger_id=$hanger_id");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;
@@ -456,25 +577,99 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     }
 
-    if ($operation == "addfellower") {
+
+// $= (string)$_GET[''];
+    if ($operation == "addlike") {
         $data = array();
 
-        $fellower_id = (string)$_GET['brand_name'];
-        $fellowed_id = (string)$_GET['brand_name'];
+        $liked_id= (string)$_GET['liked_id'];
+        $liked_type_id= (string)$_GET['liked_type_id'];
+        $liked_user_id = (string)$_GET['liked_user_id'];
+        $liker_id= (string)$_GET['liker_id'];
         $date = new DateTime();
         $date = $date->getTimestamp();
 
 
-        $insert = mysql_query("INSERT INTO fellowship VALUES ('$fellower_id','$fellowed_id','','$date')");
+        $insert = mysql_query("INSERT INTO comment VALUES ('','$liked_id','$liker_id','$liked_type_id','$date','$liked_user_id')");
         if($insert==false)
             echo mysql_error();
 
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$liker_id','$liked_user_id','1','$liked_id','$date','$liked_type_id')");
+        if($insert2==false)
+            echo mysql_error();
 
 
         header('Content-Type: application/json');
-        echo json_encode($insert);
+        echo json_encode($insert,$insert2);
         //   exit();
     }
+
+    /////////////////////////////////////share/////////////////////////////////////
+    if ($operation == "getsahre") {
+
+        $hanger_id =(string)$_GET['hanger_id'];//$_SESSION['userid'];
+
+        $result = mysql_query("SELECT * FROM share WHERE hanger_id=$hanger_id");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+
+    }
+
+
+// $= (string)$_GET[''];
+    if ($operation == "addshare") {
+        $data = array();
+
+        $hanger_id= (string)$_GET['hanger_id'];
+        $hared_user_id = (string)$_GET['shared_user_id'];
+        $sharer_id= (string)$_GET['sharer_id'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
+
+
+        $insert = mysql_query("INSERT INTO comment VALUES ('','$hanger_id','$sharer_id','$date','$hared_user_id')");
+        if($insert==false)
+            echo mysql_error();
+
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','shared_user_id','2','hanger_id','$date','')");
+        if($insert2==false)
+            echo mysql_error();
+
+
+        header('Content-Type: application/json');
+        echo json_encode($insert,$insert2);
+        //   exit();
+    }
+
+
+    /////////////////////////////////////messaging/////////////////////////////////////
+    if ($operation == "listmessage") {
+
+
+    }
+
+    if ($operation == "getmessage") {
+
+
+
+    }
+
+
+// $= (string)$_GET[''];
+    if ($operation == "sendmessage") {
+
+    }
+
 
 
 

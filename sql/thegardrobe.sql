@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 16 May 2014, 01:02:38
+-- Üretim Zamanı: 18 May 2014, 00:13:24
 -- Sunucu sürümü: 5.6.16
 -- PHP Sürümü: 5.5.9
 
@@ -78,22 +78,42 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 CREATE TABLE IF NOT EXISTS `comment` (
   `comment_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) NOT NULL,
-  `date` int(11) NOT NULL,
+  `comment_date` int(11) NOT NULL,
   `hanger_id` bigint(20) NOT NULL,
   `comment` varchar(400) NOT NULL,
+  `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Tablo döküm verisi `comment`
 --
 
-INSERT INTO `comment` (`comment_id`, `user_id`, `date`, `hanger_id`, `comment`) VALUES
-(1, 4, 2147483647, 1, 'deneme 123'),
-(2, 5, 2147483647, 2, 'denemeeeee dadaasafasf '),
-(3, 4, 2147483647, 1, 'dada asdfas a das da sa sad'),
-(4, 0, 2147483647, 1, 'asdfasfagadsgs sadgsg sg gsadg'),
-(5, 4, 2147483647, 4, 'asdasgads asfa  fas af as fa');
+INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `comment`, `commented_user_id`) VALUES
+(1, 4, 2147483647, 1, 'deneme 123', 5),
+(2, 5, 2147483647, 2, 'denemeeeee dadaasafasf ', 4),
+(3, 4, 2147483647, 1, 'dada asdfas a das da sa sad', 5),
+(4, 17, 2147483647, 1, 'asdfasfagadsgs sadgsg sg gsadg', 4),
+(5, 4, 2147483647, 4, 'asdasgads asfa  fas af as fa', 22),
+(6, 5, 1400354197, 1, ' ooo çok güzel olmuş mis vallaha :)', 4),
+(8, 17, 1400354376, 1, ' ooo çok güzel olmuş mis vallaha :)', 4),
+(9, 17, 1400354378, 1, ' ooo çok güzel olmuş mis vallaha :)', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `conversation`
+--
+
+CREATE TABLE IF NOT EXISTS `conversation` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_one` int(11) NOT NULL,
+  `user_two` int(11) NOT NULL,
+  `ip` varchar(30) DEFAULT NULL,
+  `time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`c_id`),
+  UNIQUE KEY `tag_id` (`c_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -130,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
   `fellowship_date` int(11) NOT NULL,
   PRIMARY KEY (`fellowship_id`),
   UNIQUE KEY `fellowship_id` (`fellowship_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Tablo döküm verisi `fellowship`
@@ -138,10 +158,6 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
 
 INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellowship_date`) VALUES
 (4, 5, 1, 1400187157),
-(4, 17, 2, 1400187161),
-(4, 5, 3, 1400187160),
-(4, 17, 4, 1400187160),
-(4, 5, 5, 1400187162),
 (4, 17, 6, 1400187163),
 (4, 18, 7, 1400187164),
 (4, 19, 8, 1400187165),
@@ -156,11 +172,11 @@ INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellow
 (25, 4, 17, 1400187160),
 (26, 4, 18, 1400187158),
 (5, 17, 19, 1400187160),
-(5, 19, 20, 1400187159),
 (5, 29, 21, 1400187160),
 (5, 28, 22, 1400187159),
 (5, 27, 23, 1400187154),
-(5, 26, 24, 1400187160);
+(5, 26, 24, 1400187160),
+(17, 20, 25, 1400350567);
 
 -- --------------------------------------------------------
 
@@ -209,10 +225,10 @@ CREATE TABLE IF NOT EXISTS `hanger` (
 --
 
 INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `about`, `city`, `place`, `pic_id`, `create_date`) VALUES
-(1, 4, 1, 1, 'denme deneme deneme', 'ankara', 'ankara', 1, 1387756800),
+(1, 5, 1, 1, 'denme deneme deneme', 'ankara', 'ankara', 1, 1387756800),
 (2, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
 (3, 4, 1, 1, '11', '1', '1', 23, 1387756800),
-(4, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
+(4, 5, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
 (5, 4, 1, 1, '11', '1', '1', 23, 1387756800),
 (6, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
 (7, 4, 1, 1, '11', '1', '1', 23, 1387756800);
@@ -227,8 +243,9 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `like_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `liked_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `type` int(11) NOT NULL,
+  `liked_type_id` int(11) NOT NULL,
   `like_date` int(11) NOT NULL,
+  `liked_user_id` int(11) NOT NULL,
   UNIQUE KEY `like_id` (`like_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
@@ -236,13 +253,77 @@ CREATE TABLE IF NOT EXISTS `likes` (
 -- Tablo döküm verisi `likes`
 --
 
-INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `type`, `like_date`) VALUES
-(1, 1, 4, 1, 0),
-(2, 2, 4, 1, 0),
-(3, 1, 4, 1, 0),
-(4, 1, 5, 1, 0),
-(5, 1, 4, 1, 0),
-(6, 1, 5, 1, 0);
+INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_date`, `liked_user_id`) VALUES
+(1, 1, 4, 1, 0, 5),
+(2, 2, 4, 1, 0, 5),
+(3, 3, 4, 1, 0, 5),
+(4, 1, 5, 1, 0, 4),
+(5, 1, 4, 1, 0, 5),
+(6, 1, 5, 2, 0, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `notifications`
+--
+
+CREATE TABLE IF NOT EXISTS `notifications` (
+  `notification_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `notifier_id` int(11) NOT NULL,
+  `notified_id` int(11) NOT NULL,
+  `notification_type_id` int(11) NOT NULL,
+  `notificated_item_id` int(11) NOT NULL,
+  `notification_date` int(11) NOT NULL,
+  UNIQUE KEY `notification_id` (`notification_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+
+--
+-- Tablo döküm verisi `notifications`
+--
+
+INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `notification_type_id`, `notificated_item_id`, `notification_date`) VALUES
+(1, 17, 20, 4, 0, 1400350567),
+(5, 17, 4, 3, 1, 1400354376);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `notification_types`
+--
+
+CREATE TABLE IF NOT EXISTS `notification_types` (
+  `notification_type_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `notification_type` varchar(20) NOT NULL,
+  UNIQUE KEY `notification_type_id` (`notification_type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+
+--
+-- Tablo döküm verisi `notification_types`
+--
+
+INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) VALUES
+(1, 'like'),
+(2, 'share'),
+(3, 'comment'),
+(4, 'fellowship');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `pm`
+--
+
+CREATE TABLE IF NOT EXISTS `pm` (
+  `message_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(256) NOT NULL,
+  `sender_id` bigint(20) NOT NULL,
+  `receiver_id` bigint(20) NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` int(10) NOT NULL,
+  `receiver_read` int(1) NOT NULL,
+  PRIMARY KEY (`message_id`),
+  UNIQUE KEY `brand_id` (`message_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -255,6 +336,7 @@ CREATE TABLE IF NOT EXISTS `share` (
   `hanger_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `share_date` int(11) NOT NULL,
+  `shared_user_id` int(11) NOT NULL,
   UNIQUE KEY `share_id` (`share_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
@@ -262,12 +344,12 @@ CREATE TABLE IF NOT EXISTS `share` (
 -- Tablo döküm verisi `share`
 --
 
-INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`) VALUES
-(1, 1, 4, 1400101125),
-(2, 1, 5, 1400101125),
-(3, 2, 4, 1400101125),
-(4, 6, 5, 1400101125),
-(5, 4, 4, 1400101125);
+INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_user_id`) VALUES
+(1, 1, 4, 1400101125, 0),
+(2, 1, 5, 1400101125, 0),
+(3, 2, 4, 1400101125, 0),
+(4, 6, 5, 1400101125, 0),
+(5, 4, 4, 1400101125, 0);
 
 -- --------------------------------------------------------
 
