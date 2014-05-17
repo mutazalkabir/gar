@@ -16,9 +16,7 @@ createMainPageFeed = function(mainPageFeedData){
         }
 
         if($(this).hasClass("active_selector_span")){
-            $(this).removeClass("active_selector_span");
-            $(".feed_item").attr("following","true").css("display","inline-block");
-
+            $(".feed_item[following='true']").css("display","inline-block");
         }
         else{
             $("#all_or_followers_only_selector span").removeClass("active_selector_span");
@@ -52,8 +50,7 @@ createMainPageFeed = function(mainPageFeedData){
             nodeType:"div",
             classNames:"feed_item",
             attributes:{"following":"true", "order_number":i},
-            htmlContent:'<i class="fa fa-check following_sign" title="Takip Ediyorsun"></i> ' +
-                        '<span class="cloth_cover">' +
+            htmlContent:'<span class="cloth_cover">' +
                             '<div class="buttons like_button"><i class="fa fa-heart-o"></i>Beğen</div>' +
                             '<div class="buttons comment_button"><i class="fa fa-comment-o"></i>Yorum Yap</div>' +
                             '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>' +
@@ -76,10 +73,11 @@ createMainPageFeed = function(mainPageFeedData){
                             '<div class="share_count"><i class="fa fa-share"></i>'+ shareCount +' Paylaşım</div>'+
                         '</div>'
         }));
+
         mainPageFeedContainer.append(mainPageFeedItem);
 
         mainPageFeedItem.on("click",function(e){
-            showPopup(mainPageFeedData[$(this).attr("order_number")]);
+            showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
         });
     }
 }

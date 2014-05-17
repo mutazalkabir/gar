@@ -6,30 +6,34 @@
  * To change this template use File | Settings | File Templates.
  */
 
-showPopup = function(askiDetayData){
-    var askiDetay = $(GenerateDomElement({
-        nodeType:"div",
-        attributes:{"id":"glass"},
-        htmlContent:'<div id="glass_inner" class="bounceInLeft animated">' +
-                        '<i id="close_popup" class="fa fa-times fa-2"></i>' +
-                        '<div id="glass_inner_shadow">' +
+showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
+    if(fromMainFeed == true){
+        var askiDetay = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"glass"},
+            htmlContent:'<div id="glass_inner" class="bounceInLeft animated">' +
+                            '<i id="close_popup" class="fa fa-times fa-2"></i>' +
+                                '<div id="glass_inner_shadow">' +
 
-                        '</div> '+
-                    '</div> '
-    }));
+                                '</div> '+
+                        '</div> '
+        }));
+    }
+    else{
+        var askiDetay = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"glass"},
+            htmlContent:'<div id="glass_inner" class="">' +
+                            '<i id="close_popup" class="fa fa-times fa-2"></i>' +
+                                '<div id="glass_inner_shadow">' +
+
+                                '</div> '+
+                        '</div> '
+        }));
+    }
+
 
     $("body").append(askiDetay);
-
-    var askiDetay = $(GenerateDomElement({
-        nodeType:"div",
-        attributes:{"id":"glass"},
-        htmlContent:'<div id="glass_inner" class="bounceInLeft animated">' +
-                    '<i id="close_popup" class="fa fa-times fa-2"></i>' +
-                        '<div id="glass_inner_shadow">' +
-
-                        '</div> '+
-                    '</div> '
-    }));
 
     var askiContentsHolder = $("#glass_inner_shadow");
     if(askiDetayData.comments != undefined){
@@ -82,13 +86,32 @@ showPopup = function(askiDetayData){
                     '</div> '
     }));
 
-    var askiPictureHolder = $(GenerateDomElement({
-        nodeType:"div",
-        attributes:{"id":"aski_picture_holder"},
-        htmlContent:'<i class="fa fa-angle-left"></i>' +
-                        '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
-                    '<i class="fa fa-angle-right"></i>'
-    }));
+    if(parseInt(orderNumber) == allFeed.length -1){
+        var askiPictureHolder = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"aski_picture_holder"},
+            htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
+                            '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'
+        }));
+    }
+    else if(parseInt(orderNumber) == 0){
+        var askiPictureHolder = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"aski_picture_holder"},
+            htmlContent:'<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
+                        '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
+        }));
+    }
+    else{
+        var askiPictureHolder = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"aski_picture_holder"},
+            htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
+                            '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
+                        '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
+        }));
+    }
+
 
     var askiSendCommentItems = $(GenerateDomElement({
         nodeType:"div",
@@ -194,5 +217,15 @@ showPopup = function(askiDetayData){
         setTimeout(function(){
             $("#glass, #glass_inner").remove();
         },400);
+    });
+
+    $(".fa-angle-left").on("click", function(){
+        askiDetay.remove();
+        showPopup(allFeed[$(this).attr("bring")], allFeed, $(this).attr("bring"), false);
+    });
+
+    $(".fa-angle-right").on("click", function(){
+        askiDetay.remove();
+        showPopup(allFeed[$(this).attr("bring")], allFeed, $(this).attr("bring"), false);
     });
 }
