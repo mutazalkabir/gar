@@ -31,9 +31,7 @@ function register(_email,_name,_surname,_pass,_gender,_bDate)
         });
 }
 
-function login(_email,_pass)
-{
-
+function login(_email,_pass){
     $.ajax({
         url: "login.php",
         type: "POST",
@@ -44,10 +42,10 @@ function login(_email,_pass)
             withCredentials: true
         }
     }).done(function(data) {
-
+            loginAndCreateCookie(data);
             // alert( "success" +data );
         }).fail(function(data) {
-
+            showWrongUserNameOrPassword();
             // alert( "error" +data );
         }).always(function(data) {
 

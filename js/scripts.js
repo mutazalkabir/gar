@@ -8,6 +8,9 @@
 
 $(document).ready(function(){
     window.gardrobeKaristirOpened = false;
+
+    readCookie();
+
     /* Ana Sayfa Main Feed
      ================================================== */
         getMainPageFeed();

@@ -30,7 +30,6 @@ $(document).ready(function(){
     });
 
     $("#login_button").on("click",function(){
-        login("mutaz_alkabir@hotmail.com","ddd")
         var eMail = $("#login_e_mail").val();
         var atpos=eMail.indexOf("@");
         var dotpos=eMail.lastIndexOf(".");
@@ -59,29 +58,79 @@ $(document).ready(function(){
                 return false;
             }
             else{
-                // Login Operasyonu başarılı mı değil mi?
-                if(1 == 1){
-                    $("#login_form_container").addClass("fadeOutLeft animatedSlow");
-                    setTimeout(function(){
-                        $("#wrong_username_password").css("display","block");
-                        $("#wrong_username_password").addClass("fadeInRight animatedSlow");
-                    },150);
-
-                    setTimeout(function(){
-                        $("#wrong_username_password").removeClass("fadeInRight animatedSlow");
-                        $("#login_form_container").removeClass("fadeOutLeft animatedSlow");
-                    },1000);
-                }
-                else{
-                    $("#login_form_container").addClass("fadeOutLeft animatedSlow");
-                    setTimeout(function(){
-                        $("#successfully_logged_in").css("display","block");
-                        $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
-                    },150);
-                }
+                login($("#login_e_mail").val(),$("#login_password").val());
             }
         }
     });
+
+    function JSONToString(Obj){
+        var outStr ='';
+        for (var prop in Obj) {
+            outStr = '{';
+            if (Obj.hasOwnProperty(prop)) {
+                if(typeof Obj[prop] == 'object'){
+                    outStr += JSONToString(Obj[prop]);
+                } else {
+                    outStr += prop + ':' + Obj[prop].toString();
+                }
+            }
+            outStr += '}';
+        }
+        return outStr;
+    }
+
+    loginAndCreateCookie = function(userData){
+        $("#login_form_container").addClass("fadeOutLeft animatedSlow");
+        setTimeout(function(){
+            $("#successfully_logged_in").css("display","block");
+            $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
+        },150);
+
+        createCookie("user", JSONToString(userData[0]), 10);
+
+        setTimeout(function(){
+            window.location = "index.html";
+        }, 2000);
+    }
+
+    showWrongUserNameOrPassword = function(){
+        $("#login_form_container").addClass("fadeOutLeft animatedSlow");
+        setTimeout(function(){
+            $("#wrong_username_password").css("display","block");
+            $("#wrong_username_password").addClass("fadeInRight animatedSlow");
+        },150);
+
+        setTimeout(function(){
+            $("#wrong_username_password").removeClass("fadeInRight animatedSlow");
+            $("#login_form_container").removeClass("fadeOutLeft animatedSlow");
+        },1000);
+    }
+
+
+    function createCookie(name, value, days) {
+        var expires;
+
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+    }
+
+    window.readCookie = function(name){
+        var nameEQ = escape(name) + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return unescape(c.substring(nameEQ.length, c.length));
+        }
+        return null;
+    }
+
 
     $("#show_register_form").on("click",function(){
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
