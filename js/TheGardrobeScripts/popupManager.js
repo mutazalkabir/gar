@@ -122,13 +122,39 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
                     '<textarea id="aski_comment_textarea" placeholder="Yorumunuzu Girin"></textarea>'+
 
-                    '<button type="submit">Yorum Gönder</button>'
+                    '<button id="send_comment_button" type="submit">Yorum Gönder</button>'
     }));
-
 
     askiContentsHolder.append(askiPictureHolder);
     askiContentsHolder.append(askiProfileItems);
     $("#popup_profile_holder").append(askiSendCommentItems);
+
+    $("#send_comment_button").on("click",function(){
+        if($.trim($("#aski_comment_textarea").val()) != ""){
+            sendComment(askiDetayData.hanger_id, askiDetayData.user_id, $("#aski_comment_textarea").val(), "3", askiDetayData.user_id);
+        }
+    });
+
+    setNewComment = function(newCommentData){
+
+        if(newCommentData == true){
+            var newComment = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"my_feed_items",
+                htmlContent:'<div class="my_feed_item_content">' +
+                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                                '<span class="my_feed_feed_content">'+ $("#aski_comment_textarea").val() +'</span>' +
+                            '</div>'
+            }));
+
+            $("#comments_holder").find(".no_item_span").remove();
+
+            $("#comments_holder").find(".mCSB_container").append(newComment);
+            $("#comments_holder").mCustomScrollbar("update");
+            $("#aski_comment_textarea").val("");
+            $("#comments_holder").mCustomScrollbar("scrollTo","bottom");
+        }
+    }
 
     $("#send_comment").on("click",function(){
         $("#aski_comment_tab").trigger("click");

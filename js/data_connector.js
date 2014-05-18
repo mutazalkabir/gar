@@ -99,3 +99,48 @@ function createMyFeed(){
         });
 }
 /* My Feed Data */
+
+
+/* My Feed Data */
+function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "addcomment", hanger_id:_hangerId,  owner_id:_ownerId, comment:_comment, commeter_id:_commentorId, hanger_owner_id:_hangerOwnerId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(newComment) {
+            eval("setNewComment(newComment)");
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* My Feed Data */
+
+/* Add Like */
+function addLike(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "addcomment", hanger_id:_hangerId,  owner_id:_ownerId, comment:_comment, commeter_id:_commentorId, hanger_owner_id:_hangerOwnerId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(newComment) {
+            eval("setNewComment(newComment)");
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Add Like */

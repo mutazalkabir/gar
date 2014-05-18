@@ -49,7 +49,7 @@ createMainPageFeed = function(mainPageFeedData){
         var mainPageFeedItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"feed_item",
-            attributes:{"following":"true", "order_number":i},
+            attributes:{"following":"true", "order_number":i, "hanger_id": mainPageFeedData[i].hanger_id},
             htmlContent:'<span class="cloth_cover">' +
                             '<div class="buttons like_button"><i class="fa fa-heart-o"></i>Beğen</div>' +
                             '<div class="buttons comment_button"><i class="fa fa-comment-o"></i>Yorum Yap</div>' +
@@ -77,7 +77,19 @@ createMainPageFeed = function(mainPageFeedData){
         mainPageFeedContainer.append(mainPageFeedItem);
 
         mainPageFeedItem.on("click",function(e){
-            showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
+            if(e.target.className == "buttons like_button"){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                addLike();
+            }
+            else if(e.target.className == "buttons share_button"){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                addShare();
+            }
+            else{
+                showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
+            }
         });
     }
 }
