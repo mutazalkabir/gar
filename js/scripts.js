@@ -9,7 +9,9 @@
 $(document).ready(function(){
     window.gardrobeKaristirOpened = false;
 
-    readCookie();
+    var user = JSON.parse(window.readCookie("user"));
+
+    $("#topbar_profile_picture_and_name span:first-of-type").text(user[0].name);
 
     /* Ana Sayfa Main Feed
      ================================================== */

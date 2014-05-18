@@ -63,22 +63,6 @@ $(document).ready(function(){
         }
     });
 
-    function JSONToString(Obj){
-        var outStr ='';
-        for (var prop in Obj) {
-            outStr = '{';
-            if (Obj.hasOwnProperty(prop)) {
-                if(typeof Obj[prop] == 'object'){
-                    outStr += JSONToString(Obj[prop]);
-                } else {
-                    outStr += prop + ':' + Obj[prop].toString();
-                }
-            }
-            outStr += '}';
-        }
-        return outStr;
-    }
-
     loginAndCreateCookie = function(userData){
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
         setTimeout(function(){
@@ -86,7 +70,7 @@ $(document).ready(function(){
             $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
         },150);
 
-        createCookie("user", JSONToString(userData[0]), 10);
+        createCookie("user", JSON.stringify(userData), 10);
 
         setTimeout(function(){
             window.location = "index.html";
