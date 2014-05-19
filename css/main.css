@@ -2891,6 +2891,12 @@ input:focus{
     -ms-transition: all 250ms ease;
     -o-transition: all 250ms ease;
     transition: all 250ms ease;
+    display: table;
+}
+
+.category_holder i{
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .category_holder:hover, .brands_holder:hover{

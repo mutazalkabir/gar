@@ -23,6 +23,7 @@ $(document).ready(function(){
 
     /* Personal Messages
      ================================================== */
+    $(".gardrobe_categories_scrollbar").mCustomScrollbar();
     $("#search_input").on("click",function(){
         if(window.gardrobeKaristirOpened == false){
             gardrobeKaristir();
@@ -31,11 +32,6 @@ $(document).ready(function(){
             removeGardrobeKaristir();
         }
     });
-
-/*    $("body").on("click",function(e){
-        debugger
-        removeGardrobeKaristir();
-    });*/
     /*================================================== */
 
     /* Personal Notifications

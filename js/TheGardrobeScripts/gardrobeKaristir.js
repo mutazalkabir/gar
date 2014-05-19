@@ -10,12 +10,15 @@ gardrobeKaristir = function(){
     window.gardrobeKaristirOpened = true;
     $("#gardrobe_karistir").css("display","block");
     $("#gardrobe_karistir").addClass("fadeInDown animated");
+
     setTimeout(function(){
         $("#gardrobe_karistir").removeClass("fadeInDown animated");
     },600);
 
-    $(".gardrobe_karistir_sub_items_content_holder").mCustomScrollbar("update");
-
+    $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    $(".gardrobe_categories_scrollbar").mouseenter(function(){
+        $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    });
     $("#place_search").mouseenter(function(){
         $("#date_search").css("width", "120px");
     });
