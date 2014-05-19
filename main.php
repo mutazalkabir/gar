@@ -726,7 +726,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
             $data2 = array();
             $receiver_read="false";
             $conversation_id=$row["conversation_id"];
-            $result2 = mysql_query(" SELECT * FROM pm WHERE conversation_id = '$conversation_id' ORDER BY conversation_date ASC");
+            $result2 = mysql_query(" SELECT * FROM pm WHERE conversation_id = '$conversation_id' ORDER BY message_date ASC");
 
             $max = sizeof($data);
 

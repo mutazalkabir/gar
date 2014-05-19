@@ -145,3 +145,25 @@ function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
         });
 }
 /* Add Like */
+
+/* Get Conversations */
+function getAllConversations(_userId){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "getallconversations", user_id:_userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(conversations) {
+            eval("createPersonalMessages(conversations)");
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Get Conversations */

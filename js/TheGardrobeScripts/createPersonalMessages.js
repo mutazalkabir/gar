@@ -6,30 +6,32 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$(document).ready(function(){
+createPersonalMessages = function(conservations){
     var  messagesContainer = $("#messages_content");
-
-    createPersonalMessages = function(){
-        var message = '<div class="messages">' +
-                            '<div class="message_sender_picture">' +
-                                '<img src="images/dummy_images/profil.jpg"/>' +
-                            '</div>' +
-                            '<div class="message_body">' +
-                                '<span class="message_sender_name">Tunç Akın</span>' +
-                                '<span class="message_content">Deneme Mesaj Body</span>' +
-                                '<span class="message_date">24/04/2014</span>' +
-                            '</div>' +
-                        '</div>'
-
-        for(i=0;i<100;i++){
-            messagesContainer.append(message);
+    for(i=0;i<conservations.length;i++){
+        var lastMessageBody = conservations[i].messages[conservations[i].messages.length -1].message;
+        if(lastMessageBody.length > 120){
+            lastMessageBody = lastMessageBody.substring(0, 120) + "... ";
         }
 
-        messagesContainer.mCustomScrollbar();
-
-        $(".messages").on("click",function(){
-           window.location = "messages_detail.html"
-        });
+        var message = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"messages",
+            htmlContent:'<div class="message_sender_picture">' +
+                            '<img src="images/dummy_images/profil.jpg"/>' +
+                        '</div>' +
+                        '<div class="message_body">' +
+                            '<span class="message_sender_name">'+ conservations[i].user_two_name +'</span>' +
+                            '<span class="message_content">'+ lastMessageBody +'</span>' +
+                            '<span class="message_date">'+ convertDate(conservations[i].date) +'</span>' +
+                        '</div>'
+        }));
+        messagesContainer.append(message);
     }
-});
+
+    messagesContainer.mCustomScrollbar();
+    $(".messages").on("click",function(){
+       window.location = "messages_detail.html"
+    });
+}
 

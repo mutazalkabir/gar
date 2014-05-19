@@ -2318,6 +2318,10 @@ input:focus{
     border-bottom: 1px solid #cccccc;
 }
 
+.messages:last-of-type, .notifications:last-of-type, .settings_submenu_items:last-of-type{
+    border-bottom: none;
+}
+
 .settings_submenu_items{
     height: 49px;
     text-align: left;

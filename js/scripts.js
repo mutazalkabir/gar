@@ -18,7 +18,7 @@ $(document).ready(function(){
 
     /* Personal Messages
      ================================================== */
-        createPersonalMessages();
+        getAllConversations(window.user[0].user_id);
     /*================================================== */
 
     /* Personal Messages
