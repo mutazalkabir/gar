@@ -16,6 +16,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     $operation = (string)$_GET['operation'];
 
+
+
+
+    /////////////////////////////////////USER/////////////////////////////////////
+    if ($operation == "getuser") {
+        $data = array();
+        $user_id = (string)$_GET['user_id'];
+        $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id ");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+        $field_names = array_keys($data[0]);
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+        //exit();
+    }
+
+    if ($operation == "getallusers") {
+        $data = array();
+        $result = mysql_query("SELECT * FROM users ");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+        $field_names = array_keys($data[0]);
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+        //exit();
+    }
+
     /////////////////////////////////////CATEGORY/////////////////////////////////////
     if ($operation == "getcategory") {
         $data = array();
@@ -655,18 +690,105 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     /////////////////////////////////////messaging/////////////////////////////////////
     if ($operation == "listmessage") {
 
+        $data = array();
+        $sender_id = (string)$_GET['sender_id'];
+        $receiver_id= (string)$_GET['receiver_id'];
+        $conversation_id= (string)$_GET['conversation_id'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
+
+        //check if there is valid conversation
+        $result = mysql_query("SELECT * FROM pm WHERE user_one=$sender_id AND user_two=$receiver_id OR user_one=$receiver_id AND user_two=$sender_id ORDER BY message_date ASC");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+
+
 
     }
-
-    if ($operation == "getmessage") {
-
-
-
-    }
-
-
 // $= (string)$_GET[''];
+
+
+    if($operation=="getconversation")
+    {
+        $data = array();
+        $sender_id = (string)$_GET['sender_id'];
+        $receiver_id= (string)$_GET['receiver_id'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
+
+        //check if there is valid conversation
+        $result = mysql_query("SELECT * FROM conversation WHERE user_one=$sender_id AND user_two=$receiver_id OR user_one=$receiver_id AND user_two=$sender_id");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+        if(sizeof($data)==0)
+        {
+            $insert = mysql_query("INSERT INTO conversation VALUES ('','$sender_id','$receiver_id','','$date')");
+            $conversation_id = mysql_insert_id();
+            if($insert==false)
+                echo mysql_error();
+
+            $result = mysql_query("SELECT * FROM conversation WHERE user_one=$sender_id AND user_two=$receiver_id OR user_one=$receiver_id AND user_two=$sender_id");
+            while ($row = mysql_fetch_assoc($result)) {
+                $data[]=$row;
+            }
+        }
+
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+
+
+
+    }
+
     if ($operation == "sendmessage") {
+
+        $data = array();
+
+        $conversation_id= (string)$_GET['conversation_id'];
+        $message= (string)$_GET['message'];
+        $sender_id = (string)$_GET['sender_id'];
+        $receiver_id= (string)$_GET['receiver_id'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
+
+
+        $insert = mysql_query("INSERT INTO pm VALUES ('','$sender_id','$receiver_id','$message','0','$conversation_id')");
+        if($insert==false)
+            echo mysql_error();
+
+
+
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
+
+    }
+
+
+    if ($operation == "markpmasread") {
+
+        $data = array();
+
+        $message_id= (string)$_GET['message_id'];
+        $date = new DateTime();
+        $date = $date->getTimestamp();
+
+        $insert = mysql_query("UPDATE pm SET receiver_read = 1 WHERE message_id=$message_id");
+        if($insert==false)
+            echo mysql_error();
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
 
     }
 
