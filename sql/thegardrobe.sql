@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 18 May 2014, 00:13:24
+-- Üretim Zamanı: 19 May 2014, 21:55:57
 -- Sunucu sürümü: 5.6.16
 -- PHP Sürümü: 5.5.9
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(400) NOT NULL,
   `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Tablo döküm verisi `comment`
@@ -97,7 +97,8 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 (5, 4, 2147483647, 4, 'asdasgads asfa  fas af as fa', 22),
 (6, 5, 1400354197, 1, ' ooo çok güzel olmuş mis vallaha :)', 4),
 (8, 17, 1400354376, 1, ' ooo çok güzel olmuş mis vallaha :)', 4),
-(9, 17, 1400354378, 1, ' ooo çok güzel olmuş mis vallaha :)', 4);
+(9, 17, 1400354378, 1, ' ooo çok güzel olmuş mis vallaha :)', 4),
+(10, 4, 1400529209, 1, 'süper', 5);
 
 -- --------------------------------------------------------
 
@@ -110,10 +111,20 @@ CREATE TABLE IF NOT EXISTS `conversation` (
   `user_one` int(11) NOT NULL,
   `user_two` int(11) NOT NULL,
   `ip` varchar(30) DEFAULT NULL,
-  `time` int(11) DEFAULT NULL,
+  `conversation_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `tag_id` (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Tablo döküm verisi `conversation`
+--
+
+INSERT INTO `conversation` (`c_id`, `user_one`, `user_two`, `ip`, `conversation_date`) VALUES
+(1, 4, 5, '', 1400521775),
+(2, 4, 17, '', 1400524078),
+(3, 4, 23, '', 1400524084),
+(4, 27, 4, '', 1400526305);
 
 -- --------------------------------------------------------
 
@@ -150,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
   `fellowship_date` int(11) NOT NULL,
   PRIMARY KEY (`fellowship_id`),
   UNIQUE KEY `fellowship_id` (`fellowship_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Tablo döküm verisi `fellowship`
@@ -176,7 +187,8 @@ INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellow
 (5, 28, 22, 1400187159),
 (5, 27, 23, 1400187154),
 (5, 26, 24, 1400187160),
-(17, 20, 25, 1400350567);
+(17, 20, 25, 1400350567),
+(17, 20, 30, 1400521579);
 
 -- --------------------------------------------------------
 
@@ -275,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificated_item_id` int(11) NOT NULL,
   `notification_date` int(11) NOT NULL,
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Tablo döküm verisi `notifications`
@@ -283,7 +295,9 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 
 INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `notification_type_id`, `notificated_item_id`, `notification_date`) VALUES
 (1, 17, 20, 4, 0, 1400350567),
-(5, 17, 4, 3, 1, 1400354376);
+(5, 17, 4, 3, 1, 1400354376),
+(7, 17, 20, 4, 0, 1400521579),
+(8, 4, 5, 3, 1, 1400529209);
 
 -- --------------------------------------------------------
 
@@ -315,15 +329,28 @@ INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) V
 
 CREATE TABLE IF NOT EXISTS `pm` (
   `message_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(256) NOT NULL,
-  `sender_id` bigint(20) NOT NULL,
-  `receiver_id` bigint(20) NOT NULL,
+  `user_one` bigint(20) NOT NULL,
+  `user_two` bigint(20) NOT NULL,
   `message` text NOT NULL,
-  `timestamp` int(10) NOT NULL,
+  `message_date` int(11) NOT NULL,
   `receiver_read` int(1) NOT NULL,
+  `conversation_id` int(11) NOT NULL,
   PRIMARY KEY (`message_id`),
   UNIQUE KEY `brand_id` (`message_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+
+--
+-- Tablo döküm verisi `pm`
+--
+
+INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date`, `receiver_read`, `conversation_id`) VALUES
+(1, 4, 5, 'dededeega  dfdfdf dgds', 1400521775, 0, 1),
+(2, 5, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400529000, 0, 1),
+(3, 4, 17, 'dededeega  dfdfdf dgds', 1400521910, 0, 2),
+(4, 17, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400531000, 0, 2),
+(5, 4, 23, 'dededeega  dfdfdf dgds', 1400523910, 0, 3),
+(6, 23, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400535000, 0, 3),
+(7, 27, 4, 'bla bla', 1400535000, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -411,14 +438,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
 --
 -- Tablo döküm verisi `users`
 --
 
 INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`) VALUES
-(4, 'mutaz', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir@hotmail.com', 0, 0, 'ddd', '1', '1', '1'),
+(4, 'mutaz', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir@hotmail.com', 0, 0, '123456', '1', '1', '1'),
 (5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 0, 0, 'ddd', '1', '1', '1'),
 (17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 0, 0, 'ddd', '1', '1', '1'),
 (19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 0, 0, 'ddd', '1', '1', '1'),

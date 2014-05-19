@@ -707,11 +707,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         header('Content-Type: application/json');
         echo json_encode($data);
 
+    }
+
+    if($operation=="getallconversations")
+    {
+        $data = array();
+
+        $user_id = (string)$_GET['user_id'];
+        $i=0;
+
+        //check if there is valid conversation
+        $result = mysql_query(" SELECT CONCAT(u.name, ' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name, ' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, c.conversation_date as date, c.c_id as conversation_id
+        FROM users u, users u2 ,conversation c
+        WHERE (u.user_id=c.user_one OR u.user_id=c.user_two) AND u.user_id=$user_id AND (u2.user_id=c.user_one OR u2.user_id=c.user_two) AND u2.user_id != $user_id ORDER BY c.conversation_date ASC");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+            $data2 = array();
+            $receiver_read="false";
+            $conversation_id=$row["conversation_id"];
+            $result2 = mysql_query(" SELECT * FROM pm WHERE conversation_id = '$conversation_id' ORDER BY conversation_date ASC");
+
+            $max = sizeof($data);
 
 
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                $data2[]=$row2;
+                if($row2["receiver_read"]=="1")
+                {
+                    $receiver_read="true";
+                }
+            }
+
+            if(sizeof($data2)>0)
+            {
+                $data[$i]["messages"]=$data2;
+                unset($data2);
+                $data[$i]["isread"]=$receiver_read;
+            }
+            $i++;
+        }
+
+
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
 
     }
-// $= (string)$_GET[''];
 
 
     if($operation=="getconversation")
@@ -767,10 +809,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
             echo mysql_error();
 
 
+        $update = mysql_query("UPDATE conversation SET conversation_date = $date WHERE c_id=$conversation_id");
+        if($update==false)
+            echo mysql_error();
 
 
         header('Content-Type: application/json');
-        echo json_encode($insert);
+        echo json_encode($insert,$update);
 
     }
 
@@ -783,12 +828,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $date = new DateTime();
         $date = $date->getTimestamp();
 
-        $insert = mysql_query("UPDATE pm SET receiver_read = 1 WHERE message_id=$message_id");
-        if($insert==false)
+        $update = mysql_query("UPDATE pm SET receiver_read = 1 WHERE message_id=$message_id");
+        if($update==false)
             echo mysql_error();
 
         header('Content-Type: application/json');
-        echo json_encode($insert);
+        echo json_encode($update);
 
     }
 
