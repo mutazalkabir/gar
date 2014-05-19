@@ -80,7 +80,7 @@ createMainPageFeed = function(mainPageFeedData){
             if(e.target.className == "buttons like_button"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                addLike();
+                addLike($(this).attr("hanger_id"),window.user[0].user_id,"3","4");
             }
             else if(e.target.className == "buttons share_button"){
                 e.preventDefault();

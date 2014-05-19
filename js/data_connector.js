@@ -122,20 +122,23 @@ function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId
 /* My Feed Data */
 
 /* Add Like */
-function addLike(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId){
+function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
+    debugger
     $.ajax({
         url: "main.php",
         type: "GET",
-        data:{operation: "addcomment", hanger_id:_hangerId,  owner_id:_ownerId, comment:_comment, commeter_id:_commentorId, hanger_owner_id:_hangerOwnerId},
+        data:{operation: "addcomment", liked_id:_likedId,  liker_id:_likerId, like_type_id:_likedTypeId, liked_user_id:_likedUserId},
         dataType:"json",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
-    }).done(function(newComment) {
+    }).done(function(newLike) {
+            debugger
             eval("setNewComment(newComment)");
             // alert( "success" +data );
         }).fail(function(data) {
+            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);

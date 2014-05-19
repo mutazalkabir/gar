@@ -115,6 +115,7 @@ $(document).ready(function(){
         return null;
     }
 
+    window.user = JSON.parse(window.readCookie("user"));
 
     $("#show_register_form").on("click",function(){
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
