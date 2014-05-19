@@ -15,6 +15,25 @@ gardrobeKaristir = function(){
     },600);
 
     $(".gardrobe_karistir_sub_items_content_holder").mCustomScrollbar("update");
+
+    $("#place_search").mouseenter(function(){
+        $("#date_search").css("width", "120px");
+    });
+
+    $("#place_search").mouseleave(function(){
+        $("#date_search").css("width", "190px");
+    });
+
+    $('#date-view1')
+        .datePicker({inline:true})
+        .bind(
+        'dateSelected',
+        function(e, selectedDate, $td)
+        {
+            $('#date1').val(selectedDate.asString());
+        }
+    );
+
 }
 
 removeGardrobeKaristir = function(){

@@ -131,12 +131,11 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
     $("#send_comment_button").on("click",function(){
         if($.trim($("#aski_comment_textarea").val()) != ""){
-            sendComment(askiDetayData.hanger_id, askiDetayData.user_id, $("#aski_comment_textarea").val(), "3", askiDetayData.user_id);
+            sendComment(askiDetayData.hanger_id, askiDetayData.user_id, $("#aski_comment_textarea").val(), window.user[0].user_id, askiDetayData.user_id);
         }
     });
 
     setNewComment = function(newCommentData){
-
         if(newCommentData == true){
             var newComment = $(GenerateDomElement({
                 nodeType:"div",

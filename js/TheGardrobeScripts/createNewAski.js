@@ -61,9 +61,9 @@ $(document).ready(function(){
                                     '<div id="add_new_aski_right_side">' +
                                         '<div id="aski_main_image_options"></div>'+
                                         '<div id="aski_uploaded_picture_holder">' +
-/*                                            '<i class="flaticon-clothing1"></i>' +
-                                            '<span class="new_aski_dummy_text">Sol taraftan bir askı eklediğiniz zaman burada görünecektir</span>' +*/
-                                            '<div id="aski_main_image_holder"><img class="photoTag" id="aski_main_image" src="images/dummy_images/kiyafet.jpg"/></div>'+
+                                            '<i class="flaticon-clothing1"></i>' +
+                                            '<span class="new_aski_dummy_text">Sol taraftan bir askı eklediğiniz zaman burada görünecektir</span>' +
+                                            //'<div id="aski_main_image_holder"><img class="photoTag" id="aski_main_image" src="images/dummy_images/kiyafet.jpg"/></div>'+
                                         '</div>' +
                                     '</div>' +
                                 '</div> '

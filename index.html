@@ -12,6 +12,7 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <link href="css/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="css/datePicker.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/helpers/browser_selector.js"></script>
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery.dev.1.7.1.js"></script>
@@ -32,6 +33,8 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/messaging.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/gardrobeKaristir.js"></script>
     <script type="text/javascript" src="js/helpers/domGenerator.js"></script>
+    <script type="text/javascript" src="js/helpers/dataPicker.js"></script>
+    <script type="text/javascript" src="js/helpers/date.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
@@ -165,18 +168,29 @@
                                     </div>
                                 </div>
 
-                                <span id="show_all_brands">Tümünü Gör</span>
+                                <span id="show_all_brands">Hepsini Göster</span>
                             </div>
                         </div>
                         <div class="gardrobe_karistir_sub_items_holder" id="date_search">
                             <span>Yayınlandığı Tarihe Göre Ara</span>
                             <div class="gardrobe_karistir_sub_items_content_holder">
-                                <input id="datepicker">
+                                <div class="turn-me-into-datepicker" id="date-view1">
+                                    The contents of this div will be replaced by the inline datePicker.
+                                </div>
+
                             </div>
                         </div>
                         <div class="gardrobe_karistir_sub_items_holder" id="place_search">
                             <span>Yayınlandığı Yere Göre Ara</span>
-                            <div class="gardrobe_karistir_sub_items_content_holder">
+                            <div class="gardrobe_karistir_sub_items_content_holder" id="place">
+                                <span><i class="fa fa-caret-right"></i>İstanbul</span>
+                                <span><i class="fa fa-caret-right"></i>Ankara</span>
+                                <span><i class="fa fa-caret-right"></i>İzmir</span>
+                                <span><i class="fa fa-caret-right"></i>Antalya</span>
+                                <span><i class="fa fa-caret-right"></i>Bodrum</span>
+                                <span><i class="fa fa-caret-right"></i>Konya</span>
+                                <span><i class="fa fa-caret-right"></i>Trabzon</span>
+                                <span id="show_all_cities">Hepsini Göster</span>
                             </div>
                         </div>
                     </div>

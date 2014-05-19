@@ -188,11 +188,8 @@ a.symbol:before {
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 4px;
     position: relative;
     color: #333333;
-    border-color: rgba(0,0,0,0.2);
     margin: 0px 8px 0px 8px;
 }
 
@@ -202,25 +199,6 @@ a.symbol:before {
 
 .social_login_buttons:last-of-type{
     margin-right: 0;
-}
-
-.btn-twitter:hover{
-    background-color: #55acee;
-    color: #ffffff;
-}
-
-.btn-facebook:hover{
-    background-color: #3b5998;
-    color: #ffffff;
-}
-
-.btn-google-plus:hover{
-    background-color: #dd4b39;
-    color: #ffffff;
-}
-
-.social_login_buttons:hover i{
-    color: #ffffff;
 }
 
 .social_login_buttons :first-child {
@@ -1908,6 +1886,11 @@ input:focus{
     top: 34px;
 }
 
+
+.mac .return_to_login_button:before{
+    top: 31px;
+}
+
 .gecko .return_to_login_button:before{
     top: 32px;
 }
@@ -2053,6 +2036,10 @@ input:focus{
     margin-top: 100px;
     float: left;
     width: 100%;
+}
+
+.mac .new_aski_dummy_text{
+    top: 55%;
 }
 
 .new_aski_dummy_text{
@@ -2766,6 +2753,33 @@ input:focus{
     padding: 20px 10px;
 }
 
+#place span{
+    text-align: left;
+    padding: 12px 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+#place i{
+    margin-right: 5px;
+}
+
+#place span:hover{
+    background-color: #efefef;
+    cursor: pointer;
+    padding-left: 20px;
+}
+
+#place span:last-of-type{
+    text-align: center;
+}
+
 .gardrobe_karistir_sub_items_holder{
     display: inline-block;
     height: 100%;
@@ -2781,7 +2795,7 @@ input:focus{
 }
 
 .gardrobe_karistir_sub_items_holder:hover{
-    width: 300px;
+    width: 300px !important;
 }
 
 .gardrobe_karistir_sub_items_holder:last-of-type{
@@ -2956,8 +2970,22 @@ input:focus{
 }
 
 #show_all_brands{
-    margin-top: 10px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
     cursor: pointer;
+}
+
+#show_all_cities{
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    cursor: pointer;
+    padding: 0px !important;
+}
+
+#show_all_cities:hover{
+    background-color: transparent !important;
 }
 
 #search_user input{

@@ -61,7 +61,7 @@ createMainPageFeed = function(mainPageFeedData){
                         '</div>' +
 
                         '<div class="profile_photo">'+
-                            '<img src="images/dummy_images/profil.jpg">'+
+                            '<img class="main_page_feed_profile_image" src="images/dummy_images/profil.jpg">'+
                         ' </div>'+
 
                         '<span class="tag_name feed_item_span">'+ mainPageFeedData[i].category_name +'</span>'+
@@ -86,6 +86,14 @@ createMainPageFeed = function(mainPageFeedData){
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 addShare();
+            }
+            else if(e.target.className == "main_page_feed_profile_image"){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }
+            else if(e.target.className == "tag_name feed_item_span"){
+                e.preventDefault();
+                e.stopImmediatePropagation();
             }
             else{
                 showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
