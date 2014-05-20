@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 20 May 2014, 10:24:34
+-- Üretim Zamanı: 20 May 2014, 11:38:30
 -- Sunucu sürümü: 5.5.24-log
 -- PHP Sürümü: 5.3.13
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(400) NOT NULL,
   `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=167 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=168 ;
 
 --
 -- Tablo döküm verisi `comment`
@@ -254,7 +254,8 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 (163, 4, 1400579442, 8, 'sadfsadf', 32),
 (164, 4, 1400579443, 8, 'sadfasdf', 32),
 (165, 4, 1400579444, 8, 'sadfsadf', 32),
-(166, 4, 1400579446, 8, 'asdfsadf', 32);
+(166, 4, 1400579446, 8, 'asdfsadf', 32),
+(167, 4, 1400583090, 11, 'Canım çok güzel çıkmışsın :)', 35);
 
 -- --------------------------------------------------------
 
@@ -360,19 +361,25 @@ CREATE TABLE IF NOT EXISTS `gardrobe` (
   `create_date` int(11) NOT NULL,
   PRIMARY KEY (`gardrobe_id`),
   UNIQUE KEY `gardrobe_id` (`gardrobe_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Tablo döküm verisi `gardrobe`
 --
 
 INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `create_date`) VALUES
-(1, 4, 'deneme', 'denme deneme deneme', 1399826280),
+(1, 1, 'deneme', 'denme deneme deneme', 1399826280),
 (2, 32, 'Yeni Gardrobe', 'Yeni Gardrobe', 0),
 (3, 33, 'Yeni Gardrobe', 'Yeni Gardrobe', 0),
 (4, 34, 'Yeni Gardrobe', 'Yeni Gardrobe', 0),
 (5, 35, 'Yeni Gardrobe', 'Yeni Gardrobe', 0),
-(6, 5, 'Yeni Gardrobe', 'Yeni Gardrobe', 0);
+(6, 5, 'Yeni Gardrobe', 'Yeni Gardrobe', 0),
+(7, 36, 'Gardrobe''larım', 'Bu gardrobe çok çok güzel :)', 0),
+(8, 37, 'Deneme gardrobe ', 'Deneme gardrobe ', 0),
+(9, 38, 'Başka Gardrobe', 'Çok güzel bir yer burası', 0),
+(10, 39, 'Benim gardrobe''um en güzel', 'Çok güzel gerçekten', 0),
+(11, 40, 'Son gardrobe', 'Hadi bakalım', 0),
+(12, 41, 'Bence bitti', 'Bence de bitti', 0);
 
 -- --------------------------------------------------------
 
@@ -391,24 +398,24 @@ CREATE TABLE IF NOT EXISTS `hanger` (
   `pic_id` int(11) NOT NULL,
   `create_date` int(11) NOT NULL,
   UNIQUE KEY `hanger_id` (`hanger_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
 
 --
 -- Tablo döküm verisi `hanger`
 --
 
 INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `about`, `city`, `place`, `pic_id`, `create_date`) VALUES
-(1, 5, 1, 1, 'denme deneme deneme', 'ankara', 'ankara', 1, 1387756800),
-(2, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
-(3, 4, 1, 1, '11', '1', '1', 23, 1387756800),
-(4, 5, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
-(5, 4, 1, 1, '11', '1', '1', 23, 1387756800),
-(6, 4, 1, 1, 'sadd', 'ankara', 'burasu', 1, 1387756800),
-(7, 4, 1, 1, '11', '1', '1', 23, 1387756800),
-(8, 32, 2, 2, 'Yeni Askı', 'Ankara', 'Starbucks', 1, 0),
-(9, 33, 2, 3, '', '', '', 2, 0),
-(10, 34, 2, 4, '', '', '', 3, 0),
-(11, 35, 1, 5, '', '', '', 4, 0);
+(8, 32, 2, 2, 'Okula gidiyor :(', 'Ankara', 'Starbucks', 1, 0),
+(9, 33, 2, 3, 'Sahilde vakit geçiriyor', 'İstanbul', 'Moda Sahili', 2, 0),
+(10, 34, 2, 4, 'Arkadaşlarla kahve keyfi', 'Trabzon', 'Meydan', 3, 0),
+(11, 35, 1, 5, 'Akşam arkadaşlarıyla buluşmak için hazırlanıyor.', 'Manisa', 'Manisa', 4, 0),
+(12, 1, 2, 1, 'Gün içerisinde rahatlıkla giyebileceğim kıyafetler!', 'Ankara', 'Çankaya', 0, 0),
+(13, 36, 2, 6, 'Yolculukta', 'Sakarya', 'Adapazarı', 0, 0),
+(14, 37, 2, 7, 'Kahve içiyor ve üşümüş :(', 'Ankara', 'TOBB ETÜ Starbucks', 0, 0),
+(15, 38, 2, 8, 'Tatilin tadını çıkartıyor :)', 'İzmir', 'Çeşme', 0, 0),
+(16, 39, 2, 9, 'Mezuniyet Balosu', 'Manisa', '', 0, 0),
+(17, 40, 2, 10, 'Dışarı çıkmaya hazırlanıyor ve heyecanlı :)', 'Ankara', '', 0, 0),
+(18, 41, 2, 12, '', '', '', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -424,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `like_date` int(11) NOT NULL,
   `liked_user_id` int(11) NOT NULL,
   UNIQUE KEY `like_id` (`like_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Tablo döküm verisi `likes`
@@ -444,7 +451,22 @@ INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_da
 (11, 2, 4, 3, 1400577235, 4),
 (12, 1, 4, 3, 1400577284, 5),
 (13, 1, 4, 3, 1400577300, 5),
-(14, 9, 4, 3, 1400579391, 33);
+(14, 9, 4, 3, 1400579391, 33),
+(15, 8, 4, 3, 1400581813, 32),
+(16, 9, 4, 3, 1400581815, 33),
+(17, 9, 4, 3, 1400581815, 33),
+(18, 9, 4, 3, 1400581815, 33),
+(19, 9, 4, 3, 1400581815, 33),
+(20, 9, 4, 3, 1400581815, 33),
+(21, 9, 4, 3, 1400581815, 33),
+(22, 9, 4, 3, 1400581816, 33),
+(23, 9, 4, 3, 1400581816, 33),
+(24, 9, 4, 3, 1400581816, 33),
+(25, 9, 4, 3, 1400581816, 33),
+(26, 9, 4, 3, 1400581816, 33),
+(27, 9, 4, 3, 1400581816, 33),
+(28, 9, 4, 3, 1400581817, 33),
+(29, 8, 4, 3, 1400583034, 32);
 
 -- --------------------------------------------------------
 
@@ -460,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificated_item_id` int(11) NOT NULL,
   `notification_date` int(11) NOT NULL,
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=187 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=203 ;
 
 --
 -- Tablo döküm verisi `notifications`
@@ -648,7 +670,23 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 (183, 4, 32, 3, 8, 1400579442),
 (184, 4, 32, 3, 8, 1400579443),
 (185, 4, 32, 3, 8, 1400579444),
-(186, 4, 32, 3, 8, 1400579446);
+(186, 4, 32, 3, 8, 1400579446),
+(187, 4, 32, 1, 8, 1400581813),
+(188, 4, 33, 1, 9, 1400581815),
+(189, 4, 33, 1, 9, 1400581815),
+(190, 4, 33, 1, 9, 1400581815),
+(191, 4, 33, 1, 9, 1400581815),
+(192, 4, 33, 1, 9, 1400581815),
+(193, 4, 33, 1, 9, 1400581815),
+(194, 4, 33, 1, 9, 1400581816),
+(195, 4, 33, 1, 9, 1400581816),
+(196, 4, 33, 1, 9, 1400581816),
+(197, 4, 33, 1, 9, 1400581816),
+(198, 4, 33, 1, 9, 1400581816),
+(199, 4, 33, 1, 9, 1400581816),
+(200, 4, 33, 1, 9, 1400581817),
+(201, 4, 32, 1, 8, 1400583034),
+(202, 4, 35, 3, 11, 1400583090);
 
 -- --------------------------------------------------------
 
@@ -789,7 +827,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 --
 -- Tablo döküm verisi `users`
@@ -814,7 +852,13 @@ INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `
 (32, 'Selen', 'Bayramin', 0, 0, 'selenbayramin@gmail.com', 0, 1, '123456', 'sadas', 'dsa', 'avatar.png'),
 (33, 'Berre', 'Tekeoğlu', 0, 0, 'berretekeoglu@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
 (34, 'Günsu Dilek', 'Kobya', 0, 0, 'gunsukobya@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(35, 'Meral', 'Görgülü', 0, 0, 'meralgorgulu@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png');
+(35, 'Meral', 'Görgülü', 0, 0, 'meralgorgulu@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
+(36, 'Sezgincan', 'Mailmail', 0, 0, 'sezgincan@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
+(37, 'Esma', 'Yemeztaşlıca', 0, 0, 'esma@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
+(38, 'Elif', 'Oran', 0, 0, 'eliforan@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
+(39, 'Gözde', 'Asena Olcay', 0, 0, 'gozde@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
+(40, 'Batuhan', 'Sezgin', 0, 0, 'batuhansezgin@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
+(41, 'Ecem', 'Yalız', 0, 0, 'ecemyaliz@gmail.com', 0, 0, '123456', '', '', 'avatar.png');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
