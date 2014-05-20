@@ -71,6 +71,28 @@ function getMainPageFeed(){
         }).fail(function(data) {
         // alert( "error" +data );
         }).always(function(data) {
+            return data;
+            // alert( "finished" + data);
+        });
+}
+
+function updateLikes(){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "gethanger", state: "all"},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(mainPageFeedData) {
+            eval("updateFeed(mainPageFeedData)");
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            return data;
             // alert( "finished" + data);
         });
 }

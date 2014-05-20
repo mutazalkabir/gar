@@ -69,7 +69,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
                     '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
                         '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i>'+ likeCount +' Beğeni</div>' +
-                        '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i>'+ commentCount +'  Yorum</div>' +
+                        '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i><span id="aski_detay_comment">'+ commentCount +'</span>  Yorum</div>' +
                         '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i>'+ shareCount +'  Paylaşım</div>' +
                     '</div>'+
 
@@ -147,7 +147,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             }));
 
             $("#comments_holder").find(".no_item_span").remove();
-
+            $("#aski_detay_comment").text(parseInt($("#aski_detay_comment").text()) + 1);
             $("#comments_holder").find(".mCSB_container").append(newComment);
             $("#comments_holder").mCustomScrollbar("update");
             $("#aski_comment_textarea").val("");
@@ -242,15 +242,24 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         setTimeout(function(){
             $("#glass, #glass_inner").remove();
         },400);
+
+        $(".feed_item").remove();
+        getMainPageFeed();
     });
+
+    updateFeed = function(feedData){
+        allFeed = feedData;
+    }
 
     $(".fa-angle-left").on("click", function(){
         askiDetay.remove();
+        updateLikes();
         showPopup(allFeed[$(this).attr("bring")], allFeed, $(this).attr("bring"), false);
     });
 
     $(".fa-angle-right").on("click", function(){
         askiDetay.remove();
+        updateLikes();
         showPopup(allFeed[$(this).attr("bring")], allFeed, $(this).attr("bring"), false);
     });
 }

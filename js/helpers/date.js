@@ -51,7 +51,7 @@ Date.abbrDayNames = ['Paz', 'Pzt', 'Sal', 'Çrş', 'Per', 'Cum', 'Cmt'];
  * @type Array
  * @cat Plugins/Methods/Date
  */
-Date.monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+Date.monthNames = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Ekm', 'Kas', 'Arl'];
 
 /**
  * An Array of abbreviated month names starting with Jan.

@@ -1238,6 +1238,10 @@ input:focus{
     margin: 10px 0px;
 }
 
+#aski_detay_comment{
+    border-bottom: none;
+}
+
 .popup_profile_items span{
     border-bottom: 1px dotted #333333;
     cursor: pointer;
