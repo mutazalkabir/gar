@@ -66,6 +66,7 @@ function getMainPageFeed(){
             withCredentials: true
         }
     }).done(function(mainPageFeedData) {
+        removePreloader();
         eval("createMainPageFeed(mainPageFeedData)");
         // alert( "success" +data );
         }).fail(function(data) {

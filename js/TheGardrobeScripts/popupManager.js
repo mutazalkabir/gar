@@ -243,6 +243,8 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             $("#glass, #glass_inner").remove();
         },400);
 
+        showPreloader();
+
         $(".feed_item").remove();
         getMainPageFeed();
     });
