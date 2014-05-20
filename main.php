@@ -625,11 +625,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $date = $date->getTimestamp();
 
 
-        $insert = mysql_query("INSERT INTO comment VALUES ('','$liked_id','$liker_id','$liked_type_id','$date','$liked_user_id')");
+        $insert = mysql_query("INSERT INTO likes VALUES ('','$liked_id','$liker_id','$liked_type_id','$date','$liked_user_id')");
         if($insert==false)
             echo mysql_error();
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$liker_id','$liked_user_id','1','$liked_id','$date','$liked_type_id')");
+// $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$commeter_id','$hanger_owner_id','3','$hanger_id','$date')");
+
+
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$liker_id','$liked_user_id','1','$liked_id','$date')");
         if($insert2==false)
             echo mysql_error();
 
@@ -672,7 +675,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $date = $date->getTimestamp();
 
 
-        $insert = mysql_query("INSERT INTO comment VALUES ('','$hanger_id','$sharer_id','$date','$hared_user_id')");
+        $insert = mysql_query("INSERT INTO comment VALUES ('','$hanger_id','$sharer_id','$date','$shared_user_id')");
         if($insert==false)
             echo mysql_error();
 

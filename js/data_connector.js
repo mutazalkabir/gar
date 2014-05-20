@@ -77,7 +77,7 @@ function getMainPageFeed(){
         });
 }
 
-function updateLikes(){
+function updateComments(){
     $.ajax({
         url: "main.php",
         type: "GET",
@@ -122,7 +122,7 @@ function createMyFeed(){
 /* My Feed Data */
 
 
-/* My Feed Data */
+/* Send New Comment */
 function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId){
     $.ajax({
         url: "main.php",
@@ -142,23 +142,44 @@ function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId
             // alert( "finished" + data);
         });
 }
-/* My Feed Data */
+/* Send New Comment */
 
 /* Add Like */
 function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
-    debugger
     $.ajax({
         url: "main.php",
         type: "GET",
-        data:{operation: "addcomment", liked_id:_likedId,  liker_id:_likerId, like_type_id:_likedTypeId, liked_user_id:_likedUserId},
+        data:{operation: "addlike", liked_id:_likedId,  liker_id:_likerId, liked_type_id:_likedTypeId, liked_user_id:_likedUserId},
         dataType:"json",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
     }).done(function(newLike) {
+            eval("setNewLike(newLike)");
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Add Like */
+
+/* Add Share */
+function addShare(_sharedId, _sharerId, _sharedUserId){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "addshare", $hanger_id:_sharedId,  liker_id:_sharerId, $shared_user_id:_sharedUserId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(newShare) {
             debugger
-            eval("setNewComment(newComment)");
+            eval("setNewShare(newShare)");
             // alert( "success" +data );
         }).fail(function(data) {
             debugger
@@ -167,7 +188,7 @@ function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
             // alert( "finished" + data);
         });
 }
-/* Add Like */
+/* Add Share */
 
 /* Get Conversations */
 function getAllConversations(_userId){

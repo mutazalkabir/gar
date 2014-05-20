@@ -86,19 +86,21 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
                     '</div> '
     }));
 
+    var askiPicturePath = "storage/user_images/";
+
     if(parseInt(orderNumber) == allFeed.length -1){
         var askiPictureHolder = $(GenerateDomElement({
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
-                            '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'
+                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'.png" /></div>'
         }));
     }
     else if(parseInt(orderNumber) == 0){
         var askiPictureHolder = $(GenerateDomElement({
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
-            htmlContent:'<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
+            htmlContent:'<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'.png" /></div>'+
                         '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
         }));
     }
@@ -107,7 +109,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
-                            '<div id="aski_picture"><img src="images/dummy_images/kiyafet.jpg" /></div>'+
+                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'.png" /></div>'+
                         '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
         }));
     }
@@ -255,13 +257,13 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
     $(".fa-angle-left").on("click", function(){
         askiDetay.remove();
-        updateLikes();
+        updateComments();
         showPopup(allFeed[$(this).attr("bring")], allFeed, $(this).attr("bring"), false);
     });
 
     $(".fa-angle-right").on("click", function(){
         askiDetay.remove();
-        updateLikes();
+        updateComments();
         showPopup(allFeed[$(this).attr("bring")], allFeed, $(this).attr("bring"), false);
     });
 }
