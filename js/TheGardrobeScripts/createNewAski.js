@@ -14,13 +14,14 @@ $(document).ready(function(){
                                 '<div id="glass_inner_shadow">' +
                                 '<div id="add_new_aski">' +
                                     '<div id="add_new_aski_left_side">' +
+                            '<form method="post" enctype="multipart/form-data" name="image_upload_form" id="image_upload_form">'+
                                         '<div id="new_aski_header">Yeni Askı Yükle</div>' +
                                         '<table>' +
                                             '<tr style="position: relative">' +
                                                 '<td>Askı</td>' +
                                                 '<td style="position: relative">'+
                                                     '<div id="file_browse_wrapper">Askı Yükle'+
-                                                        '<input type="file" id="file_browse">' +
+                                                        '<input type="file" type="file" name="file" id="file_browse">' +
                                                     '</div>' +
                                                 '</td>' +
                                             '</tr>' +     
@@ -56,7 +57,9 @@ $(document).ready(function(){
                                                 '<td><textarea rows="5" placeholder="Askınız hakkında kısa bir açıklama girin..."></textarea></td>' +
                                             '</tr>' +
                                         '</table>'+
-                                        '<button>Kaydet</button>'+
+
+                                        '<button id="add_new_aski_button">Kaydet</button>'+
+                                    '</form>'+
                                     '</div>' +
                                     '<div id="add_new_aski_right_side">' +
                                         '<div id="aski_main_image_options"></div>'+
@@ -78,5 +81,34 @@ $(document).ready(function(){
                 $("#glass, #glass_inner").remove();
             },400);
         });
+        $("form[name='image_upload_form']").submit(function(e) {
+            var formData = new FormData($(this)[0]);
+            alert("tık");
+debugger
+
+            formData.append("user_id","4");
+            formData.append("gardrobe_id","5");
+            formData.append("category_id","1");
+            formData.append("city","ankara");
+            formData.append("place","starbucks");
+            formData.append("about","nothing");
+            $.ajax({
+                url: "src/upload_image.php",
+                type: "POST",
+                //data: {operation:"addhanger",formData:formData,user_id:"4",gardrobe_id:"5", category_id:"1",city:"ankara",place:"starbucks",about:"nothing"},
+                data:formData,
+                dataType:"multipart/form-data",
+                async: false,
+                success: function (msg) {
+                    alert(msg)
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            e.preventDefault();
+        });
+
     }
 });

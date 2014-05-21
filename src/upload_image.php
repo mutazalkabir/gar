@@ -19,7 +19,15 @@ include "includes.php";
 
 $_SESSION['userid']=4;
 
-
+$data = array();
+$user_id = $_SESSION['userid'];
+$category_id = (string)$_POST['category_id'];
+$gardrobe_id = (string)$_POST['gardrobe_id'];
+$city = (string)$_POST['city'];
+$place = (string)$_POST['place'];
+$about = (string)$_POST['about'];
+$date = new DateTime();
+$date = $date->getTimestamp();
 
 
 if ($_FILES["file"]["error"] > 0)
@@ -30,11 +38,8 @@ if ($_FILES["file"]["error"] > 0)
 else
 {
 
-
-
-
-
     $save_path=$UPLOADED_IMAGE_FOLDER_PATH.$_SESSION['userid']."/"; // Folder where you wanna move the file.
+    //chmod($save_path, 0777);
     if (!file_exists($save_path)) {
         mkdir($save_path, 0777, true);
     }
@@ -48,6 +53,16 @@ else
     }
 }
 
+
+
+
+$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$date')");
+
+if($insert==false)
+    echo mysql_error();
+
+header('Content-Type: application/json');
+echo json_encode($insert);
 
 
 // }
