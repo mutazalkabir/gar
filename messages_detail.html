@@ -12,6 +12,8 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <link href="css/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="css/flaticon_gardrobe.css" rel="stylesheet" type="text/css" />
+    <link href="css/datePicker.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/helpers/browser_selector.js"></script>
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery.dev.1.7.1.js"></script>
@@ -19,6 +21,9 @@
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+    <script type="text/javascript" src="js/data_connector.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/popupManager.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMainPageFeed.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMyFeed.js"></script>
@@ -29,7 +34,10 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/createNotifications.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/messaging.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/gardrobeKaristir.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/createMessagingDetail.js"></script>
     <script type="text/javascript" src="js/helpers/domGenerator.js"></script>
+    <script type="text/javascript" src="js/helpers/dataPicker.js"></script>
+    <script type="text/javascript" src="js/helpers/date.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
@@ -47,6 +55,12 @@
             display: inline-block;
         }
     </style>
+
+    <script type="text/javascript">
+        $("document").ready(function(){
+            createMessagingDetail();
+        });
+    </script>
 </head>
 
 <body>
@@ -114,130 +128,12 @@
                 Mesajlar
             </span>
             <div id="messages_detail_content_holder">
-                <div class="message_block clearfix left_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
 
-                <div class="message_block clearfix right_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
-
-                <div class="message_block clearfix left_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
-
-                <div class="message_block clearfix right_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
-
-                <div class="message_block clearfix left_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
-
-                <div class="message_block clearfix right_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
-
-                <div class="message_block clearfix left_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
-
-                <div class="message_block clearfix right_side">
-                    <span class="message_detail_sender_name">
-                        Tunç Akın
-                    </span>
-                    <div class="sender_profile_picture">
-                        <img src="images/dummy_images/profil.jpg" />
-                    </div>
-                    <div class="message_detail_message_body">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </div>
-                    <span class="message_detail_message_date">
-                        25.04.2014 / 13:24 tarihinde gönderildi
-                    </span>
-                </div>
             </div>
             <div id="messages_detail_new_message_block">
                 <div id="message_detail_message_box_holder">
-                    <textarea placeholder="Mesajınızı buraya yazınız..."></textarea>
-                    <button>Gönder</button>
+                    <textarea id="message_body" placeholder="Mesajınızı buraya yazınız..."></textarea>
+                    <button id="message_detail_send_message_button">Gönder</button>
                 </div>
             </div>
         </div>

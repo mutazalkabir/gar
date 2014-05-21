@@ -1178,6 +1178,12 @@ input:focus{
     max-height: 100%;
 }
 
+#aski_picture:before{
+    content: "";
+    height: 100%;
+    vertical-align: middle;
+}
+
 .fa-angle-left, .fa-angle-right{
     color: #ffffff;
     display: table-cell !important;
@@ -2257,6 +2263,8 @@ input:focus{
     z-index: 100;
 }
 
+
+
 .topbar_items_submenus a{
     font-size: 14px;
     font-weight: 100;
@@ -2444,7 +2452,6 @@ input:focus{
     min-height: 200px;
     height: auto;
     margin-top: 10px;
-    max-height: 500px;
     overflow: auto;
     border-bottom: 1px solid #cccccc;
 }

@@ -17,6 +17,7 @@ createPersonalMessages = function(conservations){
         var message = $(GenerateDomElement({
             nodeType:"div",
             classNames:"messages",
+            attributes:{"message_body": JSON.stringify(conservations[i].messages) },
             htmlContent:'<div class="message_sender_picture">' +
                             '<img src="images/dummy_images/profil.jpg"/>' +
                         '</div>' +
@@ -31,7 +32,10 @@ createPersonalMessages = function(conservations){
 
     messagesContainer.mCustomScrollbar();
     $(".messages").on("click",function(){
-       window.location = "messages_detail.html"
+        window.location = "messages_detail.html";
+        if (typeof(Storage) != "undefined"){
+            localStorage.setItem("conservation", $(this).attr("message_body"));
+        }
     });
 }
 

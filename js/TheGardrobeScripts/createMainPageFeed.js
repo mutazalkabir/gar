@@ -73,7 +73,7 @@ createMainPageFeed = function(mainPageFeedData){
                         '<div class="like_comment_share_holder">'+
                             '<div class="like_count"><i class="fa fa-heart-o"></i><span class="main_page_feed_like_count">'+ likeCount +'</span> Beğeni</div>'+
                             '<div class="comment_count"><i class="fa fa-comment-o"></i>'+ commentCount +' Yorum</div>'+
-                            '<div class="share_count"><i class="fa fa-share"></i>'+ shareCount +' Paylaşım</div>'+
+                            '<div class="share_count"><i class="fa fa-share"></i><span class="main_page_feed_share_count">'+ shareCount +'</span> Paylaşım</div>'+
                         '</div>'
         }));
 
@@ -93,11 +93,17 @@ createMainPageFeed = function(mainPageFeedData){
                 });
                 $(this).find(".like_button").attr('onclick','').unbind('click');
                 addLike($(this).attr("hanger_id"),window.user[0].user_id,"3",$(this).attr("hanger_owner_id"));
-
             }
             else if(e.target.className == "buttons share_button"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
+                var shareCount = parseInt($(this).find(".main_page_feed_share_count").text());
+                $(this).find(".main_page_feed_share_count").text(shareCount + 1);
+                $(this).find(".share_button").text("Paylaştın");
+                $(this).find(".share_button").css({
+                    opacity:"0.8",
+                    cursor:"default"
+                });
                 addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
             }
             else if(e.target.className == "main_page_feed_profile_image"){

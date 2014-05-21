@@ -182,7 +182,6 @@ function addShare(_sharedId, _sharerId, _sharedUserId){
             eval("setNewShare(newShare)");
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -211,3 +210,26 @@ function getAllConversations(_userId){
         });
 }
 /* Get Conversations */
+
+/* Send Message */
+function sendMessage(_conversationId, _messageBody, _senderId, _receiverId, _successFunction){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "sendmessage", sender_id:_senderId, receiver_id:_receiverId, message:_messageBody, conversation_id:_conversationId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(newMessageData) {
+            _successFunction(newMessageData);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Send Message */
