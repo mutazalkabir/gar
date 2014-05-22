@@ -61,10 +61,10 @@ $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','
 if($insert==false)
     echo mysql_error();
 */
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 //echo json_encode('<img src=\"/storage/user_image/.$user_id/.$newfilename\">');
 
-echo '<img src='storage/user_images/75/".$newfilename."'  class='aski_uploaded_picture_holder'>';
+echo "<img id='$newfilename' src='storage/user_images/75/".$newfilename."'  class='aski_uploaded_picture_holder'>";
 
 
 // }

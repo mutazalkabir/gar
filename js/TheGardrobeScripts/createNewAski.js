@@ -90,8 +90,14 @@ $(document).ready(function(){
                 $("#image_upload_form").ajaxForm({
                     target: '#aski_uploaded_picture_holder'
                 }).submit();
-
             });
+
+        $("#image_upload_form").bind('ajax:complete', function(e) {
+            debugger
+            alert("asdf");
+
+
+        });
 
 /*
         $("#file_browse").live('change',function(e) {
