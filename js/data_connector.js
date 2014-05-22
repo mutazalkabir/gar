@@ -247,7 +247,7 @@ function getCategories(){
             withCredentials: true
         }
     }).done(function(data) {
-            setCategory(data);
+            setCategories(data);
             // alert( "success" +data );
         }).fail(function(data) {
             debugger
@@ -257,3 +257,70 @@ function getCategories(){
         });
 }
 /* Aski Yükle */
+
+/* Gardrobe Ekle */
+function addGardrobe(_userId, _title, _about){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "addgardrobe", user_id: _userId, title: _title, about: _about},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            addNewGardrobe(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+
+function getGardrobes(_userId){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "listgardrobe", user_id: _userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            setGardrobes(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Gardrobe Ekle */
+
+/* Aski Ekle */
+function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "addhanger", user_id: _userId, category_id: _categoryId, gardrobe_id: _gardrobeId, about: _about, city: _city, place: _place, newfilename: _newFileName},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            hangerSuccessfullyAdded(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Aski Ekle */

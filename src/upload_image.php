@@ -65,8 +65,7 @@ if($insert==false)
 //header('Content-Type: application/json');
 //echo json_encode('<img src=\"/storage/user_image/.$user_id/.$newfilename\">');
 
-echo "<img id='$newfilename' src='storage/user_images/75/".$newfilename."'  class='aski_uploaded_picture_holder'>";
-
+echo "<img class="photoTag aski_main_image" id='$newfilename' src='storage/user_images/75/".$newfilename."'  class='aski_uploaded_picture_holder'>";
 
 // }
 //else
