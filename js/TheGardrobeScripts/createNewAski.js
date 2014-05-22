@@ -14,7 +14,7 @@ $(document).ready(function(){
                                 '<div id="glass_inner_shadow">' +
                                 '<div id="add_new_aski">' +
                                     '<div id="add_new_aski_left_side">' +
-                            '<form method="post" enctype="multipart/form-data" name="image_upload_form" id="image_upload_form">'+
+                            '<form method="post" enctype="multipart/form-data" name="image_upload_form" id="image_upload_form" action="src/upload_image.php">'+
                                         '<div id="new_aski_header">Yeni Askı Yükle</div>' +
                                         '<table>' +
                                             '<tr style="position: relative">' +
@@ -81,10 +81,23 @@ $(document).ready(function(){
                 $("#glass, #glass_inner").remove();
             },400);
         });
-        $("form[name='image_upload_form']").submit(function(e) {
+
+
+
+            $('#file_browse').live('change', function(){
+            //    $("#preview").html('');
+              //  $("#preview").html('<img src="loader.gif" alt="Uploading...."/>');
+                $("#image_upload_form").ajaxForm({
+                    target: '#aski_uploaded_picture_holder'
+                }).submit();
+
+            });
+
+/*
+        $("#file_browse").live('change',function(e) {
             var formData = new FormData($(this)[0]);
             alert("tık");
-debugger
+            debugger
 
             formData.append("user_id","4");
             formData.append("gardrobe_id","5");
@@ -109,6 +122,36 @@ debugger
 
             e.preventDefault();
         });
+
+    }*/
+
+   /*     $("form[name='image_upload_form']").submit(function(e) {
+            var formData = new FormData($(this)[0]);
+            alert("tık")
+
+            formData.append("user_id","4");
+            formData.append("gardrobe_id","5");
+            formData.append("category_id","1");
+            formData.append("city","ankara");
+            formData.append("place","starbucks");
+            formData.append("about","nothing");
+            $.ajax({
+                url: "src/upload_image.php",
+                type: "POST",
+                //data: {operation:"addhanger",formData:formData,user_id:"4",gardrobe_id:"5", category_id:"1",city:"ankara",place:"starbucks",about:"nothing"},
+                data:formData,
+                dataType:"multipart/form-data",
+                async: false,
+                success: function (msg) {
+                    alert(msg)
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+            e.preventDefault();
+        });*/
 
     }
 });

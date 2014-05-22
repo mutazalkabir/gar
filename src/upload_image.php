@@ -18,7 +18,7 @@
 include "includes.php";
 
 $_SESSION['userid']=75;
-
+/*
 $data = array();
 $user_id = $_SESSION['userid'];
 $category_id = (string)$_POST['category_id'];
@@ -28,7 +28,7 @@ $place = (string)$_POST['place'];
 $about = (string)$_POST['about'];
 $date = new DateTime();
 $date = $date->getTimestamp();
-
+*/
 
 if ($_FILES["file"]["error"] > 0)
 {
@@ -54,15 +54,17 @@ else
 }
 
 
-
+/*
 
 $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$date')");
 
 if($insert==false)
     echo mysql_error();
-
+*/
 header('Content-Type: application/json');
-echo json_encode($insert);
+//echo json_encode('<img src=\"/storage/user_image/.$user_id/.$newfilename\">');
+
+echo '<img src='storage/user_images/75/".$newfilename."'  class='aski_uploaded_picture_holder'>';
 
 
 // }

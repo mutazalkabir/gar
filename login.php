@@ -5,10 +5,11 @@
  * Date: 19.04.2014
  * Time: 11:56
  */
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 include 'src/constants.php';
 include 'src/dbconnect.php';
 
+error_reporting(E_ALL ^ E_DEPRECATED);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {

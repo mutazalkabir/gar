@@ -8,7 +8,7 @@
 
 include 'src/constants.php';
 include 'src/dbconnect.php';
-
+error_reporting(E_ALL ^ E_DEPRECATED);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
