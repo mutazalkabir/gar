@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
             $id= $data[$i]['hanger_id'];
             $likes= array();
 
-            $result2 = mysql_query("SELECT *  FROM likes WHERE liked_id = $id");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id");
 
             while ($row2 = mysql_fetch_assoc($result2)) {
                 array_push($likes,$row2);
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $shares= array();
-            $result2 = mysql_query("SELECT *  FROM share WHERE hanger_id = $id");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id");
 
 
 
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $comments= array();
-            $result2 = mysql_query("SELECT *  FROM comment WHERE hanger_id = $id");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id");
 
 
 
@@ -182,11 +182,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $city = (string)$_GET['city'];
         $place = (string)$_GET['place'];
         $about = (string)$_GET['about'];
-        $pic = (string)$_GET['pic'];
+        $newfilename = (string)$_GET['$pic_name'];
         $date = new DateTime();
         $date = $date->getTimestamp();
+        
 
-        $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$pic','$date')");
+		$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$date')");
+        
+
+     
 
         if($insert==false)
             echo mysql_error();

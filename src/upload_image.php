@@ -28,6 +28,7 @@ $place = (string)$_POST['place'];
 $about = (string)$_POST['about'];
 $date = new DateTime();
 $date = $date->getTimestamp();
+$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$date')");
 */
 
 if ($_FILES["file"]["error"] > 0)
