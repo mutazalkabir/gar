@@ -683,7 +683,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         if($insert==false)
             echo mysql_error();
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','shared_user_id','2','hanger_id','$date','')");
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','shared_user_id','2','hanger_id','$date')");
+        
         if($insert2==false)
             echo mysql_error();
 
