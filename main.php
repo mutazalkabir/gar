@@ -205,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "listgardrobe") {
         $data = array();
         $user_id = (string)$_GET['user_id'];
-        $result = mysql_query("SELECT * FROM `gardrobe` WHERE user_id=$user_id ");
+        $result = mysql_query("SELECT * FROM gardrobe WHERE user_id=$user_id ");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "addgardrobe") {
         $data = array();
 
-        $user_id = $_SESSION['userid'];
+        $user_id = (string)$_GET['user_id'];
         $title = (string)$_GET['title'];
         $about = (string)$_GET['about'];
         $date = new DateTime();
