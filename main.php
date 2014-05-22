@@ -679,7 +679,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $date = $date->getTimestamp();
 
 
-        $insert = mysql_query("INSERT INTO comment VALUES ('','$hanger_id','$sharer_id','$date','$shared_user_id')");
+        $insert = mysql_query("INSERT INTO share VALUES ('','$hanger_id','$sharer_id','$date','$shared_user_id')");
         if($insert==false)
             echo mysql_error();
 
