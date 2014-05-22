@@ -673,7 +673,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $data = array();
 
         $hanger_id= (string)$_GET['hanger_id'];
-        $hared_user_id = (string)$_GET['shared_user_id'];
+        $shared_user_id = (string)$_GET['shared_user_id'];
         $sharer_id= (string)$_GET['sharer_id'];
         $date = new DateTime();
         $date = $date->getTimestamp();
