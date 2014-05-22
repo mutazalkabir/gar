@@ -205,7 +205,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
                             '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
-                            '<span class="my_feed_feed_content">'+ askiDetayData.likes[i].user_id +'</span>' +
+                            '<span class="my_feed_feed_content">'+ askiDetayData.likes[i].liker_name +'</span>' +
                         '</div>'
         }));
 
@@ -218,7 +218,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
                             '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
-                            '<span class="my_feed_feed_content">'+ askiDetayData.shares[i].user_id +'</span>' +
+                            '<span class="my_feed_feed_content">'+ askiDetayData.shares[i].liker_name +'</span>' +
                         '</div>'
         }));
 

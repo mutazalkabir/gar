@@ -168,10 +168,11 @@ function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
 
 /* Add Share */
 function addShare(_sharedId, _sharerId, _sharedUserId){
+    debugger
     $.ajax({
         url: "main.php",
         type: "GET",
-        data:{operation: "addshare", $hanger_id:_sharedId,  liker_id:_sharerId, $shared_user_id:_sharedUserId},
+        data:{operation: "addshare", hanger_id:_sharedId,  sharer_id:_sharerId, shared_user_id:_sharedUserId},
         dataType:"json",
         cache: false,
         xhrFields: {
@@ -182,6 +183,7 @@ function addShare(_sharedId, _sharerId, _sharedUserId){
             eval("setNewShare(newShare)");
             // alert( "success" +data );
         }).fail(function(data) {
+            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
