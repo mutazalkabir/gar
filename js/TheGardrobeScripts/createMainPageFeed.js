@@ -60,7 +60,7 @@ createMainPageFeed = function(mainPageFeedData){
                         '</span>' +
                         '<div class="cloth_photo">' +
                             '<span class="aski_owner_name">'+ mainPageFeedData[i].name + " " + mainPageFeedData[i].surname +'</span>'+
-                            '<img src="'+ askiPicturePath + mainPageFeedData[i].user_id + "/" + mainPageFeedData[i].pic_id +'.png">' +
+                            '<img src="'+ askiPicturePath + mainPageFeedData[i].user_id + "/" + mainPageFeedData[i].pic_id +'">' +
                         '</div>' +
 
                         '<div class="profile_photo">'+

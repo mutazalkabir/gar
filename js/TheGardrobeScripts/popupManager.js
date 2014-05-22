@@ -93,14 +93,14 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
-                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'.png" /></div>'
+                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'
         }));
     }
     else if(parseInt(orderNumber) == 0){
         var askiPictureHolder = $(GenerateDomElement({
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
-            htmlContent:'<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'.png" /></div>'+
+            htmlContent:'<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
                         '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
         }));
     }
@@ -109,7 +109,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
-                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'.png" /></div>'+
+                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
                         '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
         }));
     }

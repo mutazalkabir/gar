@@ -2,10 +2,10 @@
 -- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Anamakine: localhost
--- Üretim Zamanı: 20 May 2014, 11:38:30
--- Sunucu sürümü: 5.5.24-log
--- PHP Sürümü: 5.3.13
+-- Host: localhost
+-- Generation Time: May 22, 2014 at 06:20 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Veritabanı: `thegardrobe`
+-- Database: `thegardrobe`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `brands`
+-- Table structure for table `brands`
 --
 
 CREATE TABLE IF NOT EXISTS `brands` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Tablo döküm verisi `brands`
+-- Dumping data for table `brands`
 --
 
 INSERT INTO `brands` (`brand_id`, `brand_name`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `brands` (`brand_id`, `brand_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Tablo döküm verisi `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`category_id`, `category_name`) VALUES
@@ -72,7 +72,7 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
@@ -83,10 +83,10 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(400) NOT NULL,
   `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=168 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=172 ;
 
 --
--- Tablo döküm verisi `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `comment`, `commented_user_id`) VALUES
@@ -255,12 +255,16 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 (164, 4, 1400579443, 8, 'sadfasdf', 32),
 (165, 4, 1400579444, 8, 'sadfsadf', 32),
 (166, 4, 1400579446, 8, 'asdfsadf', 32),
-(167, 4, 1400583090, 11, 'Canım çok güzel çıkmışsın :)', 35);
+(167, 4, 1400583090, 11, 'Canım çok güzel çıkmışsın :)', 35),
+(168, 4, 1400593481, 10, 'sadf', 34),
+(169, 4, 1400593490, 11, 'de', 35),
+(170, 4, 1400660389, 10, 'chjgfjghj', 34),
+(171, 4, 1400660391, 10, 'fghjgjf', 34);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `conversation`
+-- Table structure for table `conversation`
 --
 
 CREATE TABLE IF NOT EXISTS `conversation` (
@@ -269,24 +273,25 @@ CREATE TABLE IF NOT EXISTS `conversation` (
   `user_two` int(11) NOT NULL,
   `ip` varchar(30) DEFAULT NULL,
   `conversation_date` int(11) DEFAULT NULL,
+  `receiver_read` int(1) NOT NULL,
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `tag_id` (`c_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Tablo döküm verisi `conversation`
+-- Dumping data for table `conversation`
 --
 
-INSERT INTO `conversation` (`c_id`, `user_one`, `user_two`, `ip`, `conversation_date`) VALUES
-(1, 4, 5, '', 1400521775),
-(2, 4, 17, '', 1400524078),
-(3, 4, 23, '', 1400524084),
-(4, 27, 4, '', 1400526305);
+INSERT INTO `conversation` (`c_id`, `user_one`, `user_two`, `ip`, `conversation_date`, `receiver_read`) VALUES
+(1, 4, 5, '', 1400677290, 0),
+(2, 4, 17, '', 1400668743, 0),
+(3, 4, 23, '', 1400524084, 0),
+(4, 27, 4, '', 1400677314, 0);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `emails`
+-- Table structure for table `emails`
 --
 
 CREATE TABLE IF NOT EXISTS `emails` (
@@ -296,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Tablo döküm verisi `emails`
+-- Dumping data for table `emails`
 --
 
 INSERT INTO `emails` (`id`, `mail`) VALUES
@@ -308,7 +313,7 @@ INSERT INTO `emails` (`id`, `mail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `fellowship`
+-- Table structure for table `fellowship`
 --
 
 CREATE TABLE IF NOT EXISTS `fellowship` (
@@ -321,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
--- Tablo döküm verisi `fellowship`
+-- Dumping data for table `fellowship`
 --
 
 INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellowship_date`) VALUES
@@ -350,7 +355,7 @@ INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellow
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `gardrobe`
+-- Table structure for table `gardrobe`
 --
 
 CREATE TABLE IF NOT EXISTS `gardrobe` (
@@ -364,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `gardrobe` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
--- Tablo döküm verisi `gardrobe`
+-- Dumping data for table `gardrobe`
 --
 
 INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `create_date`) VALUES
@@ -384,7 +389,7 @@ INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `cre
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `hanger`
+-- Table structure for table `hanger`
 --
 
 CREATE TABLE IF NOT EXISTS `hanger` (
@@ -395,32 +400,35 @@ CREATE TABLE IF NOT EXISTS `hanger` (
   `about` text NOT NULL,
   `city` varchar(20) NOT NULL,
   `place` varchar(40) NOT NULL,
-  `pic_id` int(11) NOT NULL,
+  `pic_id` varchar(20) NOT NULL,
   `create_date` int(11) NOT NULL,
   UNIQUE KEY `hanger_id` (`hanger_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
--- Tablo döküm verisi `hanger`
+-- Dumping data for table `hanger`
 --
 
 INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `about`, `city`, `place`, `pic_id`, `create_date`) VALUES
-(8, 32, 2, 2, 'Okula gidiyor :(', 'Ankara', 'Starbucks', 1, 0),
-(9, 33, 2, 3, 'Sahilde vakit geçiriyor', 'İstanbul', 'Moda Sahili', 2, 0),
-(10, 34, 2, 4, 'Arkadaşlarla kahve keyfi', 'Trabzon', 'Meydan', 3, 0),
-(11, 35, 1, 5, 'Akşam arkadaşlarıyla buluşmak için hazırlanıyor.', 'Manisa', 'Manisa', 4, 0),
-(12, 1, 2, 1, 'Gün içerisinde rahatlıkla giyebileceğim kıyafetler!', 'Ankara', 'Çankaya', 0, 0),
-(13, 36, 2, 6, 'Yolculukta', 'Sakarya', 'Adapazarı', 0, 0),
-(14, 37, 2, 7, 'Kahve içiyor ve üşümüş :(', 'Ankara', 'TOBB ETÜ Starbucks', 0, 0),
-(15, 38, 2, 8, 'Tatilin tadını çıkartıyor :)', 'İzmir', 'Çeşme', 0, 0),
-(16, 39, 2, 9, 'Mezuniyet Balosu', 'Manisa', '', 0, 0),
-(17, 40, 2, 10, 'Dışarı çıkmaya hazırlanıyor ve heyecanlı :)', 'Ankara', '', 0, 0),
-(18, 41, 2, 12, '', '', '', 0, 0);
+(8, 32, 2, 2, 'Okula gidiyor :(', 'Ankara', 'Starbucks', '1.png', 0),
+(9, 33, 2, 3, 'Sahilde vakit geçiriyor', 'İstanbul', 'Moda Sahili', '2.png', 0),
+(10, 34, 2, 4, 'Arkadaşlarla kahve keyfi', 'Trabzon', 'Meydan', '3.png', 0),
+(11, 35, 1, 5, 'Akşam arkadaşlarıyla buluşmak için hazırlanıyor.', 'Manisa', 'Manisa', '4.png', 0),
+(12, 1, 2, 1, 'Gün içerisinde rahatlıkla giyebileceğim kıyafetler!', 'Ankara', 'Çankaya', '0.png', 0),
+(13, 36, 2, 6, 'Yolculukta', 'Sakarya', 'Adapazarı', '0.png', 0),
+(14, 37, 2, 7, 'Kahve içiyor ve üşümüş :(', 'Ankara', 'TOBB ETÜ Starbucks', '0.png', 0),
+(15, 38, 2, 8, 'Tatilin tadını çıkartıyor :)', 'İzmir', 'Çeşme', '0.png', 0),
+(16, 39, 2, 9, 'Mezuniyet Balosu', 'Manisa', '', '0.png', 0),
+(17, 40, 2, 10, 'Dışarı çıkmaya hazırlanıyor ve heyecanlı :)', 'Ankara', '', '0.png', 0),
+(18, 41, 2, 12, '', '', '', '0.png', 0),
+(19, 4, 1, 5, 'nothing', 'ankara', 'starbucks', 'rxsgo85513kahxg1.png', 1400739084),
+(20, 4, 1, 5, 'nothing', 'ankara', 'starbucks', '477efq8xhrfaeerp.png', 1400739107),
+(21, 75, 1, 5, 'nothing', 'ankara', 'starbucks', '5g2kibok1kw8v3w6.htm', 1400739397);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE IF NOT EXISTS `likes` (
@@ -431,10 +439,10 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `like_date` int(11) NOT NULL,
   `liked_user_id` int(11) NOT NULL,
   UNIQUE KEY `like_id` (`like_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
--- Tablo döküm verisi `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_date`, `liked_user_id`) VALUES
@@ -466,12 +474,19 @@ INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_da
 (26, 9, 4, 3, 1400581816, 33),
 (27, 9, 4, 3, 1400581816, 33),
 (28, 9, 4, 3, 1400581817, 33),
-(29, 8, 4, 3, 1400583034, 32);
+(29, 8, 4, 3, 1400583034, 32),
+(30, 8, 4, 3, 1400587777, 32),
+(31, 8, 4, 3, 1400587778, 32),
+(32, 8, 4, 3, 1400587778, 32),
+(33, 8, 4, 3, 1400587778, 32),
+(34, 8, 4, 3, 1400587898, 32),
+(35, 8, 4, 3, 1400592079, 32),
+(36, 9, 4, 3, 1400592082, 33);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE IF NOT EXISTS `notifications` (
@@ -482,10 +497,10 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificated_item_id` int(11) NOT NULL,
   `notification_date` int(11) NOT NULL,
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=203 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=214 ;
 
 --
--- Tablo döküm verisi `notifications`
+-- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `notification_type_id`, `notificated_item_id`, `notification_date`) VALUES
@@ -686,12 +701,23 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 (199, 4, 33, 1, 9, 1400581816),
 (200, 4, 33, 1, 9, 1400581817),
 (201, 4, 32, 1, 8, 1400583034),
-(202, 4, 35, 3, 11, 1400583090);
+(202, 4, 35, 3, 11, 1400583090),
+(203, 4, 32, 1, 8, 1400587777),
+(204, 4, 32, 1, 8, 1400587778),
+(205, 4, 32, 1, 8, 1400587778),
+(206, 4, 32, 1, 8, 1400587778),
+(207, 4, 32, 1, 8, 1400587898),
+(208, 4, 32, 1, 8, 1400592079),
+(209, 4, 33, 1, 9, 1400592082),
+(210, 4, 34, 3, 10, 1400593481),
+(211, 4, 35, 3, 11, 1400593490),
+(212, 4, 34, 3, 10, 1400660389),
+(213, 4, 34, 3, 10, 1400660391);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `notification_types`
+-- Table structure for table `notification_types`
 --
 
 CREATE TABLE IF NOT EXISTS `notification_types` (
@@ -701,7 +727,7 @@ CREATE TABLE IF NOT EXISTS `notification_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- Tablo döküm verisi `notification_types`
+-- Dumping data for table `notification_types`
 --
 
 INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) VALUES
@@ -713,7 +739,7 @@ INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) V
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `pm`
+-- Table structure for table `pm`
 --
 
 CREATE TABLE IF NOT EXISTS `pm` (
@@ -722,29 +748,40 @@ CREATE TABLE IF NOT EXISTS `pm` (
   `user_two` bigint(20) NOT NULL,
   `message` text NOT NULL,
   `message_date` int(11) NOT NULL,
-  `receiver_read` int(1) NOT NULL,
   `conversation_id` int(11) NOT NULL,
   PRIMARY KEY (`message_id`),
   UNIQUE KEY `brand_id` (`message_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
--- Tablo döküm verisi `pm`
+-- Dumping data for table `pm`
 --
 
-INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date`, `receiver_read`, `conversation_id`) VALUES
-(1, 4, 5, 'dededeega  dfdfdf dgds', 1400521775, 0, 1),
-(2, 5, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400529000, 0, 1),
-(3, 4, 17, 'dededeega  dfdfdf dgds', 1400521910, 0, 2),
-(4, 17, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400531000, 0, 2),
-(5, 4, 23, 'dededeega  dfdfdf dgds', 1400523910, 0, 3),
-(6, 23, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400535000, 0, 3),
-(7, 27, 4, 'bla bla', 1400535000, 1, 4);
+INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date`, `conversation_id`) VALUES
+(1, 4, 5, 'dededeega  dfdfdf dgds', 1400521775, 1),
+(2, 5, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400529000, 1),
+(3, 4, 17, 'dededeega  dfdfdf dgds', 1400521910, 2),
+(4, 17, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400531000, 2),
+(5, 4, 23, 'dededeega  dfdfdf dgds', 1400523910, 3),
+(6, 23, 4, '12412412421 sada as fas fa sa asfsaf fa a', 1400535000, 3),
+(7, 27, 4, 'bla bla', 1400535000, 4),
+(8, 4, 5, 'Naber fıstık?;)', 1400666922, 1),
+(9, 4, 5, 'asdf', 1400667027, 1),
+(10, 4, 5, 'deneme', 1400667321, 1),
+(11, 4, 5, 'Esra naber ya?', 1400668500, 1),
+(12, 4, 4, 'Oldu mu?', 1400668696, 4),
+(13, 4, 4, 'asdf', 1400668701, 4),
+(14, 4, 17, 'deneme', 1400668725, 2),
+(15, 4, 17, 'olur mu', 1400668731, 2),
+(16, 4, 17, '', 1400668743, 2),
+(17, 4, 5, 'asdf', 1400677290, 1),
+(18, 4, 4, 'asdf', 1400677304, 4),
+(19, 4, 4, 'asdf', 1400677314, 4);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `share`
+-- Table structure for table `share`
 --
 
 CREATE TABLE IF NOT EXISTS `share` (
@@ -757,7 +794,7 @@ CREATE TABLE IF NOT EXISTS `share` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Tablo döküm verisi `share`
+-- Dumping data for table `share`
 --
 
 INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_user_id`) VALUES
@@ -770,7 +807,7 @@ INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_u
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `tag`
+-- Table structure for table `tag`
 --
 
 CREATE TABLE IF NOT EXISTS `tag` (
@@ -788,7 +825,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `type`
+-- Table structure for table `type`
 --
 
 CREATE TABLE IF NOT EXISTS `type` (
@@ -798,7 +835,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Tablo döküm verisi `type`
+-- Dumping data for table `type`
 --
 
 INSERT INTO `type` (`type_id`, `type_name`) VALUES
@@ -808,7 +845,7 @@ INSERT INTO `type` (`type_id`, `type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -830,7 +867,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 --
--- Tablo döküm verisi `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`) VALUES
