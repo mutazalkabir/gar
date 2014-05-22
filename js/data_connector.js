@@ -168,7 +168,6 @@ function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
 
 /* Add Share */
 function addShare(_sharedId, _sharerId, _sharedUserId){
-    debugger
     $.ajax({
         url: "main.php",
         type: "GET",
@@ -235,3 +234,26 @@ function sendMessage(_conversationId, _messageBody, _senderId, _receiverId, _suc
         });
 }
 /* Send Message */
+
+/* Aski Yükle */
+function getCategories(){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "getcategory"},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            setCategory(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Aski Yükle */
