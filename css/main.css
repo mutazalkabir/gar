@@ -3224,3 +3224,74 @@ input:focus{
 
 }
 /* Preloader */
+
+/* General Popups */
+.popup_glass{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 10003;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.0);
+    display: table;
+}
+
+.popup_glass_inner{
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+.status_popup{
+    display: inline-block;
+    vertical-align: middle;
+    z-index: 100000;
+    position: relative;
+    background-color: white;
+    color: #333333;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 50px;
+    text-align: center;
+    max-width: 570px;
+    max-height: 640px;
+    min-height: 300px;
+    min-width: 500px;
+    -webkit-box-shadow: 1px 1px 14px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    1px 1px 14px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:         1px 1px 14px 0px rgba(0, 0, 0, 0.3);
+}
+
+.popup_top_bar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 40px;
+}
+
+.popup_top_bar[type="success"]{
+    background-color: #00cd66;
+}
+
+.popup_top_bar[type="error"]{
+    background-color: #ff3030;
+}
+
+.popup_top_bar i{
+    color: #ffffff;
+}
+
+.popup_body{
+    font-size: 22px;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    text-align: center;
+    left: 0;
+    right: 0;
+}
+/* General Popups */

@@ -49,7 +49,12 @@ setMessages = function(messages){
     }
 
     $("#message_detail_send_message_button").on("click",function(){
-        sendMessage(conversationId, $("#message_body").val(), window.user[0].user_id, receiverId, appendNewMessage);
+        if($.trim($("#message_body").val()) != ""){
+            sendMessage(conversationId, $("#message_body").val(), window.user[0].user_id, receiverId, appendNewMessage);
+        }
+        else{
+            showStatusPopup("Lütfen bir mesaj giriniz","error","")
+        }
     });
 
     appendNewMessage = function(result){
