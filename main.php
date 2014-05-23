@@ -176,13 +176,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     if ($operation == "addhanger") {
         $data = array();
-        $user_id = $_SESSION['userid'];
+        $user_id = (string)$_GET['user_id'];
         $category_id = (string)$_GET['category_id'];
         $gardrobe_id = (string)$_GET['gardrobe_id'];
         $city = (string)$_GET['city'];
         $place = (string)$_GET['place'];
         $about = (string)$_GET['about'];
-        $newfilename = (string)$_GET['$pic_name'];
+        $newfilename = (string)$_GET['newfilename'];
         $date = new DateTime();
         $date = $date->getTimestamp();
         

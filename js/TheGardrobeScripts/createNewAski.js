@@ -86,7 +86,6 @@ openAddAskiPopup = function(){
             addGardrobe(window.user[0].user_id, $("#gardrobe_title").val()  , "dummy");
             $("#my_gardrobes  option").remove();
             showStatusPopup("Gardrobe Başarıyla Oluşturuldu!", "success", "");
-            //getGardrobes(window.user[0].user_id);
         }
         else{
             showStatusPopup("Lütfen Gardrobe Adı Giriniz!", "error", "");
@@ -130,7 +129,16 @@ openAddAskiPopup = function(){
     });
 
     hangerSuccessfullyAdded = function(data){
-        debugger
+        if(data == true){
+            showStatusPopup("Askı Başarıyla Oluşturuldu!", "success", "");
+            showPreloader();
+
+            $(".feed_item").remove();
+            getMainPageFeed();
+        }
+        else{
+            showStatusPopup("Askı Oluşturulamadı :(", "error", "");
+        }
     }
 
 
