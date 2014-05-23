@@ -1922,6 +1922,11 @@ input:focus{
     bottom: 0;
 }
 
+#aski_uploaded_picture_holder img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
 #add_new_gardrobe{
     width: 55px;
     height: 55px;

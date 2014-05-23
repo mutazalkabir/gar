@@ -132,8 +132,14 @@ openAddAskiPopup = function(){
         window.selectedGardrobeId = $(this).find("option:selected").attr("id");
     });
 
+    $('#file_browse').live('change', function(){
+        $("#image_upload_form").ajaxForm({
+            target: '#aski_uploaded_picture_holder'
+        }).submit();
+    });
+
     $("#add_new_aski_button").on("click",function(){
-        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), "asdf.png");
+        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $("#aski_uploaded_picture_holder img").attr("src"));
     });
 
     hangerSuccessfullyAdded = function(data){
@@ -224,15 +230,6 @@ openAddAskiPopup = function(){
             $("#glass, #glass_inner").remove();
         },400);
     });
-
-
-
-    $('#file_browse').live('change', function(){
-        $("#image_upload_form").ajaxForm({
-            target: '#aski_uploaded_picture_holder'
-        }).submit();
-    });
-
 /*
     $("#file_browse").live('change',function(e) {
         var formData = new FormData($(this)[0]);
