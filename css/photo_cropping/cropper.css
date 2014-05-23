@@ -1,5 +1,6 @@
 .cropper-container {
     position: relative;
+    z-index: 99;
     overflow: hidden;
     -webkit-user-select: none;
        -moz-user-select: none;
@@ -9,6 +10,13 @@
 
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
+}
+
+#img_container{
+    position: absolute;
+    width: 500px;
+    height: auto;
+    left: 250px;
 }
 
 .cropper-container .cropper-modal {

@@ -58,7 +58,7 @@ openAddAskiPopup = function(){
                                     '<div id="create_new_gardrobe_submenu">' +
                                         '<span>Yeni Gardrobe Oluştur</span>' +
                                         '<input type="text" id="gardrobe_title" placeholder="Gardrobe Adı Giriniz"></span>' +
-                                        '<button id="add_new_gardrobe_button">Oluştur</button>' +
+                                        '<div id="add_new_gardrobe_button">Oluştur</div>' +
                                     '</div>'+
                                 '</div>' +
                             '</td>' +
@@ -209,13 +209,11 @@ openAddAskiPopup = function(){
 
 
 
-        $('#file_browse').live('change', function(){
-        //    $("#preview").html('');
-          //  $("#preview").html('<img src="loader.gif" alt="Uploading...."/>');
-            $("#image_upload_form").ajaxForm({
-                target: '#aski_uploaded_picture_holder'
-            }).submit();
-        });
+    $('#file_browse').live('change', function(){
+        $("#image_upload_form").ajaxForm({
+            target: '#aski_uploaded_picture_holder'
+        }).submit();
+    });
 
 /*
     $("#file_browse").live('change',function(e) {

@@ -959,7 +959,7 @@ input:focus{
     display: inline-block;
     height: 100%;
     line-height: 39px;
-    margin: 0px 4px;
+    margin: 0px 7px;
     -webkit-transition: all 250ms ease;
     -moz-transition: all 250ms ease;
     -ms-transition: all 250ms ease;
@@ -2086,7 +2086,7 @@ input:focus{
     top: 15px;
 }
 
-#profile_pic_browse_wrapper{
+#profile_pic_browse_wrapper, #cropping_done_button{
     overflow:hidden;
     background: transparent;
     color: #fff;
@@ -2106,6 +2106,15 @@ input:focus{
     cursor: pointer;
     left: 50%;
     margin: -14px 0px 0px -62px;
+}
+
+#cropping_done_button{
+    margin: -17px 0px 0px -38px;
+
+}
+
+.cropper-preview #cropping_done_button{
+    display: none !important;
 }
 
 #profile_pic_browse_wrapper:hover{
@@ -2174,7 +2183,7 @@ input:focus{
     height: 50px;
 }
 
-#add_new_aski_left_side button{
+#add_new_aski_left_side button, #add_new_gardrobe_button{
     right: 20px;
     left: 20px;
     width: 400px;
@@ -2187,7 +2196,23 @@ input:focus{
     bottom: 20px;
 }
 
-#add_new_aski_left_side button:hover{
+#add_new_gardrobe_button{
+    display: block;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: 300;
+    padding: 10px 16px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    left: 10px !important;
+    right: 10px !important;
+    width: 380px;
+    text-align: center;
+}
+
+#add_new_aski_left_side button:hover, #add_new_gardrobe_button:hover{
     bottom: 14px;
     box-shadow: none;
 }

@@ -64,7 +64,7 @@
         $(document).ready(function(){
             $(".cropper").cropper({
                 preview: "#psp_profile_picture_holder",
-                aspectRatio: 1.1,
+                aspectRatio: 1,
                 done: function(data) {
                     console.log(data);
                 }
@@ -74,8 +74,6 @@
 </head>
 
 <body>
-
-<img class="cropper" src="images/dummy_images/profil.jpg">
     <div id="main_navigation_bar">
         <div id="navigation_bar_contents">
             <div id="main_logo"></div>
@@ -138,7 +136,9 @@
         <span id="personal_settings_page_header">
             Ayarlarım
         </span>
-
+        <div id="img_container">
+            <img class="cropper" src="images/dummy_images/profil.jpg">
+        </div>
         <div id="psp_profile_picture_holder">
    <!--         <img src="images/dummy_images/profil.jpg"/>-->
 <!--            <div id="profile_pic_browse_wrapper">Fotoğraf Yükle

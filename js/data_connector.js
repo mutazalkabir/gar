@@ -260,6 +260,7 @@ function getCategories(){
 
 /* Gardrobe Ekle */
 function addGardrobe(_userId, _title, _about){
+    debugger
     $.ajax({
         url: "main.php",
         type: "GET",
