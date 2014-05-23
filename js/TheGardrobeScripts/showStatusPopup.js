@@ -17,7 +17,7 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
         nodeType:"div",
         classNames:"status_popup animated bounceInDown",
         htmlContent:'<div class="popup_top_bar" type="'+ _popupType +'">' +
-                        '<i id="close_popup" class="fa fa-times fa-2"></i>' +
+                        '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
                     '</div>' +
                     '<div class="popup_body">'+ _popupMessage +'</div>'
     }));
@@ -29,7 +29,7 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
         $(".status_popup").removeClass("animated bounceInDown");
     },550);
 
-    $("#close_popup").on("click",function(){
+    $("#close_info_popup").on("click",function(){
        closeStatusPopup(_closeFunction);
     });
 }

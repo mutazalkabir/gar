@@ -51,7 +51,7 @@ openAddAskiPopup = function(){
                         '</tr>' +
                         '<tr style="position: relative">' +
                             '<td>Gardrobe</td>' +
-                            '<td><select id="my_gardrobes"><option selected>Gardrobe Seçiniz</option><option>TheGardrobe</option></select></td>' +
+                            '<td><select id="my_gardrobes"></select></td>' +
                             '<td style="position: relative">' +
                                 '<div id="add_new_gardrobe">' +
                                     '<i class="fa fa-plus-square"></i>' +
@@ -75,15 +75,18 @@ openAddAskiPopup = function(){
                         '<td>Askı Açıklaması</td>' +
                             '<td><textarea rows="5" placeholder="Askınız hakkında kısa bir açıklama girin..."></textarea></td>' +
                         '</tr>' +
-                    '</table>' +
-                    '<button id="add_new_aski_button">Kaydet</button>'
+                    '</table>'
     })) ;
 
     $("#add_new_aski_left_side").append(newAskiForm);
+    $("#add_new_aski_left_side").append('<button id="add_new_aski_button">Kaydet</button>');
 
     $("#add_new_gardrobe_button").on("click",function(){
         if($.trim($("#gardrobe_title").val()) != ""){
             addGardrobe(window.user[0].user_id, $("#gardrobe_title").val()  , "dummy");
+            $("#my_gardrobes  option").remove();
+            showStatusPopup("Gardrobe Başarıyla Oluşturuldu!", "success", "");
+            //getGardrobes(window.user[0].user_id);
         }
         else{
             showStatusPopup("Lütfen Gardrobe Adı Giriniz!", "error", "");

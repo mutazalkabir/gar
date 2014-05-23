@@ -1346,7 +1346,7 @@ input:focus{
     margin: 0px 2px;
 }
 
-#close_popup{
+#close_popup, #close_info_popup{
     position: absolute;
     width: 20px;
     height: 20px;
