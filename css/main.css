@@ -957,10 +957,9 @@ input:focus{
 
 .like_count, .comment_count, .share_count{
     display: inline-block;
-    width: 87px;
     height: 100%;
     line-height: 39px;
-    margin: 0px 2px;
+    margin: 0px 4px;
     -webkit-transition: all 250ms ease;
     -moz-transition: all 250ms ease;
     -ms-transition: all 250ms ease;
@@ -2683,21 +2682,13 @@ input:focus{
     position: absolute;
     left: 0;
     margin-top: 20px;
+    -webkit-border-radius: 200px !important;
+    -moz-border-radius: 200px !important;
+    border-radius: 200px !important;
 }
 
 #psp_profile_picture_holder img{
-    -webkit-border-radius: 200px;
-    -moz-border-radius: 200px;
-    border-radius: 200px;
-    height: 200px;
-    width: 200px;
-    border: 5px solid #ffffff;
-    overflow: hidden;
-    -webkit-transition: all 250ms ease;
-    -moz-transition: all 250ms ease;
-    -ms-transition: all 250ms ease;
-    -o-transition: all 250ms ease;
-    transition: all 250ms ease;
+    overflow: hidden !important;
 }
 
 #personal_settings_page_header{

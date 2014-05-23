@@ -91,7 +91,6 @@ createMainPageFeed = function(mainPageFeedData){
                     opacity:"0.8",
                     cursor:"default"
                 });
-                $(this).find(".like_button").attr('onclick','').unbind('click');
                 addLike($(this).attr("hanger_id"),window.user[0].user_id,"3",$(this).attr("hanger_owner_id"));
             }
             else if(e.target.className == "buttons share_button"){
@@ -121,7 +120,7 @@ createMainPageFeed = function(mainPageFeedData){
 
         setNewLike = function(data){
             if(data == true){
-                updateLikeCount();
+
             }
         }
 
@@ -131,9 +130,6 @@ createMainPageFeed = function(mainPageFeedData){
             }
         }
 
-        updateLikeCount = function(){
-
-        }
     }
 }
 
