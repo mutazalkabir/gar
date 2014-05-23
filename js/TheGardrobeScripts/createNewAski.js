@@ -69,11 +69,11 @@ openAddAskiPopup = function(){
                         '</tr>' +
                         '<tr>' +
                             '<td>Mekan Adı</td>' +
-                            '<td><input type="text" placeholder="Mekan Adı Giriniz"></td>' +
+                            '<td><input type="text" id="new_aski_place" placeholder="Mekan Adı Giriniz"></td>' +
                         '</tr>' +
                         '<tr>' +
                         '<td>Askı Açıklaması</td>' +
-                            '<td><textarea rows="5" placeholder="Askınız hakkında kısa bir açıklama girin..."></textarea></td>' +
+                            '<td><textarea rows="5" id="new_aski_description" placeholder="Askınız hakkında kısa bir açıklama girin..."></textarea></td>' +
                         '</tr>' +
                     '</table>'
     })) ;
@@ -107,7 +107,7 @@ openAddAskiPopup = function(){
         var categories = $("#categories_combo");
         var citiesOfTurkey = $("#cities");
         for(var i=0; i<data.length; i++){
-            categories.append('<option id="'+ data[i].category_id +'">'+ data[i].category_name +'</option>')
+            categories.append('<option value="'+ data[i].category_id +'" id="'+ data[i].category_id +'">'+ data[i].category_name +'</option>')
         }
 
         for(var j=0; j<cities.length; j++){
@@ -124,17 +124,24 @@ openAddAskiPopup = function(){
         }
     }
 
+    $("#categories_combo").on("change",function(){
+        window.selectedCategoryId = $(this).find("option:selected").attr("id");
+    });
+
+    $("#my_gardrobes").on("change",function(){
+        window.selectedGardrobeId = $(this).find("option:selected").attr("id");
+    });
+
     $("#add_new_aski_button").on("click",function(){
-        addNewHanger(window.user[0].user_id, "1", "32" ,"deneme", "Ankara", "Starbucks", "asdf.png");
+        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), "asdf.png");
     });
 
     hangerSuccessfullyAdded = function(data){
         if(data == true){
-            showStatusPopup("Askı Başarıyla Oluşturuldu!", "success", "");
-            showPreloader();
-
+            showStatusPopup("Askı Başarıyla Oluşturuldu :)", "success", "");
             $(".feed_item").remove();
             getMainPageFeed();
+            showPreloader();
         }
         else{
             showStatusPopup("Askı Oluşturulamadı :(", "error", "");
