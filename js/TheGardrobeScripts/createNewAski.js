@@ -134,12 +134,16 @@ openAddAskiPopup = function(){
 
     $('#file_browse').live('change', function(){
         $("#image_upload_form").ajaxForm({
-            target: '#aski_uploaded_picture_holder'
+            target: '#aski_uploaded_picture_holder',
+            success: function(){
+                $(".photoTag").photoTag();
+            }
         }).submit();
     });
 
     $("#add_new_aski_button").on("click",function(){
-        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $("#aski_uploaded_picture_holder img").attr("src"));
+        //addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $("#aski_uploaded_picture_holder img").attr("src"));
+        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("src"));
     });
 
     hangerSuccessfullyAdded = function(data){
@@ -222,7 +226,6 @@ openAddAskiPopup = function(){
 
 
 
-    $('.photoTag').photoTag();
     $("#close_popup").on("click",function(){
         $("#glass_inner").removeClass("bounceInLeft animated");
         $("#glass_inner").addClass("bounceOutRight animated");

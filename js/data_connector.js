@@ -304,6 +304,7 @@ function getGardrobes(_userId){
 
 /* Aski Ekle */
 function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName){
+    debugger
     $.ajax({
         url: "main.php",
         type: "GET",

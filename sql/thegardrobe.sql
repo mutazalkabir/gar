@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 22, 2014 at 06:20 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.3.13
+-- Generation Time: May 23, 2014 at 07:46 PM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `gardrobe` (
   `create_date` int(11) NOT NULL,
   PRIMARY KEY (`gardrobe_id`),
   UNIQUE KEY `gardrobe_id` (`gardrobe_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `gardrobe`
@@ -384,7 +384,16 @@ INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `cre
 (9, 38, 'Başka Gardrobe', 'Çok güzel bir yer burası', 0),
 (10, 39, 'Benim gardrobe''um en güzel', 'Çok güzel gerçekten', 0),
 (11, 40, 'Son gardrobe', 'Hadi bakalım', 0),
-(12, 41, 'Bence bitti', 'Bence de bitti', 0);
+(12, 41, 'Bence bitti', 'Bence de bitti', 0),
+(13, 0, 'Oldu Mu?', '', 1400790645),
+(14, 0, '"Deneme"', '"asdf"', 1400791992),
+(15, 0, 'Deneme', 'Deneme', 1400792020),
+(16, 1, 'Deneme', 'Deneme', 1400792160),
+(17, 1, 'dee', '', 1400792386),
+(18, 1, 'deneme', 'dummy', 1400792428),
+(19, 1, 'olur', 'dummy', 1400793010),
+(20, 1, 'oldu', 'dummy', 1400793306),
+(21, 1, 'lkjpğğpğpğpğ', 'dummy', 1400861702);
 
 -- --------------------------------------------------------
 
@@ -403,7 +412,7 @@ CREATE TABLE IF NOT EXISTS `hanger` (
   `pic_id` varchar(20) NOT NULL,
   `create_date` int(11) NOT NULL,
   UNIQUE KEY `hanger_id` (`hanger_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
 
 --
 -- Dumping data for table `hanger`
@@ -423,7 +432,30 @@ INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `abo
 (18, 41, 2, 12, '', '', '', '0.png', 0),
 (19, 4, 1, 5, 'nothing', 'ankara', 'starbucks', 'rxsgo85513kahxg1.png', 1400739084),
 (20, 4, 1, 5, 'nothing', 'ankara', 'starbucks', '477efq8xhrfaeerp.png', 1400739107),
-(21, 75, 1, 5, 'nothing', 'ankara', 'starbucks', '5g2kibok1kw8v3w6.htm', 1400739397);
+(21, 75, 1, 5, 'nothing', 'ankara', 'starbucks', '5g2kibok1kw8v3w6.htm', 1400739397),
+(22, 1, 1, 0, 'deneme', 'Ankara', 'Starbucks', '', 1400793675),
+(23, 1, 1, 0, 'Selams beyler', 'AMASYA', 'Ev :)', 'storage/user_images/', 1400861377),
+(24, 1, 1, 0, 'Selams beyler', 'AMASYA', 'Ev :)', 'storage/user_images/', 1400861379),
+(25, 1, 1, 0, 'Selams beyler', 'AMASYA', 'Ev :)', 'storage/user_images/', 1400861379),
+(26, 1, 1, 0, 'Selams beyler', 'AMASYA', 'Ev :)', 'storage/user_images/', 1400861380),
+(27, 1, 1, 0, 'Selams beyler', 'AMASYA', 'Ev :)', 'storage/user_images/', 1400861380),
+(28, 1, 1, 0, 'Selams beyler', 'AMASYA', 'Ev :)', 'storage/user_images/', 1400861380),
+(29, 1, 1, 18, 'Evet bence bu çok iyi oldu', 'AFYONKARAHİSAR', 'Deneme', '', 1400861416),
+(30, 1, 1, 18, 'Evet bence bu çok iyi oldu', 'AFYONKARAHİSAR', 'Deneme', '', 1400861425),
+(31, 1, 1, 17, 'Olur bence :)', 'AFYONKARAHİSAR', 'Deneme', '123.png', 1400861513),
+(32, 1, 1, 21, 'Mahsuuuun', 'AMASYA', 'Lo', '123.png', 1400861719),
+(33, 1, 0, 0, '', 'Şehir Seçiniz', '', '123.png', 1400861789),
+(34, 1, 0, 0, '', 'Şehir Seçiniz', '', '123.png', 1400861791),
+(35, 1, 0, 0, '', 'Şehir Seçiniz', '', '123.png', 1400861792),
+(36, 1, 0, 0, '', 'Şehir Seçiniz', '', '123.png', 1400861792),
+(37, 1, 0, 0, '', 'Şehir Seçiniz', '', '123.png', 1400861792),
+(38, 1, 0, 22, '', 'Şehir Seçiniz', '', '123.png', 1400862480),
+(39, 1, 1, 22, 'asdfsafasdf', 'ADIYAMAN', 'asdfasdfasdf', '123.png', 1400862488),
+(40, 1, 1, 20, 'Evdeki askı bu işte!', 'ADIYAMAN', 'Ev', '123.png', 1400865897),
+(41, 1, 0, 0, '', 'Şehir Seçiniz', '', '123.png', 1400866073),
+(42, 1, 1, 18, 'Deneme', 'AĞRI', 'Ev', 'storage/user_images/', 1400866110),
+(43, 1, 1, 18, 'Abuzittin', 'ADANA', 'abuzer', 'storage/user_images/', 1400866380),
+(44, 1, 1, 17, 'asdf', 'ADIYAMAN', 'adf', 'storage/user_images/', 1400866440);
 
 -- --------------------------------------------------------
 
@@ -439,7 +471,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `like_date` int(11) NOT NULL,
   `liked_user_id` int(11) NOT NULL,
   UNIQUE KEY `like_id` (`like_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Dumping data for table `likes`
@@ -481,7 +513,23 @@ INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_da
 (33, 8, 4, 3, 1400587778, 32),
 (34, 8, 4, 3, 1400587898, 32),
 (35, 8, 4, 3, 1400592079, 32),
-(36, 9, 4, 3, 1400592082, 33);
+(36, 9, 4, 3, 1400592082, 33),
+(37, 8, 4, 3, 1400787926, 32),
+(38, 8, 4, 3, 1400787927, 32),
+(39, 29, 1, 3, 1400861675, 1),
+(40, 29, 1, 3, 1400861675, 1),
+(41, 29, 1, 3, 1400861675, 1),
+(42, 29, 1, 3, 1400861675, 1),
+(43, 30, 1, 3, 1400861683, 1),
+(44, 30, 1, 3, 1400861683, 1),
+(45, 30, 1, 3, 1400861683, 1),
+(46, 30, 1, 3, 1400861683, 1),
+(47, 20, 1, 3, 1400861893, 4),
+(48, 20, 1, 3, 1400861893, 4),
+(49, 20, 1, 3, 1400861893, 4),
+(50, 20, 1, 3, 1400861894, 4),
+(51, 20, 1, 3, 1400861894, 4),
+(52, 20, 1, 3, 1400861894, 4);
 
 -- --------------------------------------------------------
 
@@ -497,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificated_item_id` int(11) NOT NULL,
   `notification_date` int(11) NOT NULL,
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=214 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=246 ;
 
 --
 -- Dumping data for table `notifications`
@@ -712,7 +760,39 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 (210, 4, 34, 3, 10, 1400593481),
 (211, 4, 35, 3, 11, 1400593490),
 (212, 4, 34, 3, 10, 1400660389),
-(213, 4, 34, 3, 10, 1400660391);
+(213, 4, 34, 3, 10, 1400660391),
+(214, 4, 0, 2, 0, 1400787915),
+(215, 4, 32, 1, 8, 1400787926),
+(216, 4, 32, 1, 8, 1400787927),
+(217, 4, 0, 2, 0, 1400787928),
+(218, 4, 0, 2, 0, 1400787928),
+(219, 1, 1, 1, 29, 1400861675),
+(220, 1, 1, 1, 29, 1400861675),
+(221, 1, 1, 1, 29, 1400861675),
+(222, 1, 1, 1, 29, 1400861675),
+(223, 1, 0, 2, 0, 1400861676),
+(224, 1, 0, 2, 0, 1400861680),
+(225, 1, 0, 2, 0, 1400861680),
+(226, 1, 0, 2, 0, 1400861680),
+(227, 1, 0, 2, 0, 1400861681),
+(228, 1, 0, 2, 0, 1400861681),
+(229, 1, 0, 2, 0, 1400861681),
+(230, 1, 0, 2, 0, 1400861682),
+(231, 1, 0, 2, 0, 1400861682),
+(232, 1, 0, 2, 0, 1400861682),
+(233, 1, 1, 1, 30, 1400861683),
+(234, 1, 1, 1, 30, 1400861683),
+(235, 1, 1, 1, 30, 1400861683),
+(236, 1, 1, 1, 30, 1400861683),
+(237, 1, 0, 2, 0, 1400861892),
+(238, 1, 4, 1, 20, 1400861893),
+(239, 1, 4, 1, 20, 1400861893),
+(240, 1, 4, 1, 20, 1400861893),
+(241, 1, 4, 1, 20, 1400861894),
+(242, 1, 4, 1, 20, 1400861894),
+(243, 1, 4, 1, 20, 1400861894),
+(244, 1, 0, 2, 0, 1400861895),
+(245, 1, 0, 2, 0, 1400861895);
 
 -- --------------------------------------------------------
 
@@ -724,7 +804,7 @@ CREATE TABLE IF NOT EXISTS `notification_types` (
   `notification_type_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `notification_type` varchar(20) NOT NULL,
   UNIQUE KEY `notification_type_id` (`notification_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `notification_types`
@@ -791,7 +871,7 @@ CREATE TABLE IF NOT EXISTS `share` (
   `share_date` int(11) NOT NULL,
   `shared_user_id` int(11) NOT NULL,
   UNIQUE KEY `share_id` (`share_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `share`
@@ -802,7 +882,23 @@ INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_u
 (2, 1, 5, 1400101125, 0),
 (3, 2, 4, 1400101125, 0),
 (4, 6, 5, 1400101125, 0),
-(5, 4, 4, 1400101125, 0);
+(5, 4, 4, 1400101125, 0),
+(6, 11, 4, 1400787915, 35),
+(7, 8, 4, 1400787928, 32),
+(8, 8, 4, 1400787928, 32),
+(9, 29, 1, 1400861676, 1),
+(10, 29, 1, 1400861680, 1),
+(11, 29, 1, 1400861680, 1),
+(12, 29, 1, 1400861680, 1),
+(13, 29, 1, 1400861681, 1),
+(14, 29, 1, 1400861681, 1),
+(15, 29, 1, 1400861681, 1),
+(16, 30, 1, 1400861682, 1),
+(17, 30, 1, 1400861682, 1),
+(18, 30, 1, 1400861682, 1),
+(19, 20, 1, 1400861892, 4),
+(20, 20, 1, 1400861895, 4),
+(21, 20, 1, 1400861895, 4);
 
 -- --------------------------------------------------------
 
