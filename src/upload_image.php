@@ -17,7 +17,9 @@
 
 include "includes.php";
 
-$_SESSION['userid']=75;
+$_SESSION['userid']=1;
+
+$user_id=$_SESSION['userid'];
 /*
 $data = array();
 $user_id = $_SESSION['userid'];
@@ -65,7 +67,7 @@ if($insert==false)
 //header('Content-Type: application/json');
 //echo json_encode('<img src=\"/storage/user_image/.$user_id/.$newfilename\">');
 
-echo "<img id='$newfilename' src='storage/user_images/75/".$newfilename."'  class='aski_uploaded_picture_holder photoTag'>";
+echo "<img id='$newfilename' src='storage/user_images/".$user_id. "/".$newfilename."'  class='aski_uploaded_picture_holder photoTag'>";
 
 // }
 //else
