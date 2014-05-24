@@ -114,7 +114,6 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         }));
     }
 
-
     var askiSendCommentItems = $(GenerateDomElement({
         nodeType:"div",
         attributes:{"id":"send_comment"},
@@ -130,6 +129,37 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
     askiContentsHolder.append(askiPictureHolder);
     askiContentsHolder.append(askiProfileItems);
     $("#popup_profile_holder").append(askiSendCommentItems);
+
+    createTags(askiDetayData.tags);
+
+    function createTags(tagData){
+        if(tagData != ""){
+            var tagsContainer = $("#aski_picture");
+            var tags = JSON.parse(tagData);
+            for(var i=0; i<tags.length; i++){
+                var containerWidth = parseInt($("#aski_picture").width());
+                var pictureWidth = parseInt($("#aski_picture img").width());
+                var difference = parseInt(((containerWidth - pictureWidth) / 2) + parseInt(tags[i].left));
+                var clothTag = $(GenerateDomElement({
+                    nodeType:"div",
+                    classNames: "photoTag-tag",
+                    attributes:{"id": "photoTag-tag_" + tags[i].id, "style":"position: absolute; width:25px; height:25px; left:"+ difference +"px; top:"+ tags[i].top +"px;"},
+                    htmlContent:'<div class="innerTag">'+ tags[i].brand +" "+ tags[i].text +'</div>'
+                }));
+                $("<div />").css({
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    left: 0,
+                    top: 0,
+                    zIndex: 1000000
+                }).appendTo(tagsContainer.css("position", "relative"));
+
+                tagsContainer.append(clothTag);
+            }
+        }
+    }
+
 
     $("#send_comment_button").on("click",function(){
         if($.trim($("#aski_comment_textarea").val()) != ""){

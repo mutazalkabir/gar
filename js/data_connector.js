@@ -303,12 +303,12 @@ function getGardrobes(_userId){
 /* Gardrobe Ekle */
 
 /* Aski Ekle */
-function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName){
+function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName, _myTags){
     debugger
     $.ajax({
         url: "main.php",
         type: "GET",
-        data:{operation: "addhanger", user_id: _userId, category_id: _categoryId, gardrobe_id: _gardrobeId, about: _about, city: _city, place: _place, newfilename: _newFileName},
+        data:{operation: "addhanger", user_id: _userId, category_id: _categoryId, gardrobe_id: _gardrobeId, about: _about, city: _city, place: _place, newfilename: _newFileName, tags: _myTags},
         dataType:"json",
         cache: false,
         xhrFields: {
@@ -325,3 +325,27 @@ function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, 
         });
 }
 /* Aski Ekle */
+
+
+/* Tag'leri al */
+function getTags(){
+    $.ajax({
+        url: "photo_tag_phps/photo-tags.php",
+        type: "GET",
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            debugger
+            hangerSuccessfullyAdded(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Tag'leri al */

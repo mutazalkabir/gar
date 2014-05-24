@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         if($state=="all")
         {
 
-            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date FROM users u, hanger h, gardrobe g,category c WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
+            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags FROM users u, hanger h, gardrobe g,category c WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
 	
         }
         else
@@ -183,11 +183,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         $place = (string)$_GET['place'];
         $about = (string)$_GET['about'];
         $newfilename = (string)$_GET['newfilename'];
+        $tags = (string)$_GET['tags'];
         $date = new DateTime();
         $date = $date->getTimestamp();
         
 
-		$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$date')");
+		$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$tags','$date')");
         
 
      

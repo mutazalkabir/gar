@@ -13,7 +13,7 @@
 (function($) {
 
 	$.fn.photoTag = function( options ){
-
+        window.TAGS = [];
 		var defaultOptions = {
 			requestTagsUrl: 'photo_tag_phps/photo-tags.php',
 			deleteTagsUrl: 'photo_tag_phps/delete.php',
@@ -282,6 +282,7 @@
 		};
 
 		var createTagBoxFromJSON = function( tagJSON, image ){
+            debugger
 			if( !(tagJSON.height && tagJSON.width) ){
 				tagJSON.height = options.tag.defaultHeight;
 				tagJSON.width = options.tag.defaultWidth;
@@ -293,6 +294,9 @@
 			var innerElement = $("<div class='innerTag'></div>");
 			innerElement.append(tagJSON.brand + " " + tagJSON.text);
 			tagBox.append(innerElement);
+
+            window.TAGS.push(tagJSON);
+
 			if(options.isEnabledToEditTags && tagJSON.isDeleteEnable && options.tag.showDeleteLinkOnTag){
 				var deleteLink = $('<a id="'+ options.tag.deleteLinkIdPrefix + tagJSON.id +'" class="'+ options.tag.deleteLinkCssClass +'" href="#'+ tagJSON.id +'"></a>');
 				registerEventsForDeleteLink(deleteLink,image);
@@ -352,8 +356,8 @@
 		var wrapImage = function( image, image_id ){
 			var imageHeight = image.height();
 			var imageWidth = image.width();
-			var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:100%"></div>');
-			var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;top:20px;left:50%;height:'+ imageHeight +'px;width:'+ imageWidth +'px;margin-left:'+ (-1 * (imageWidth / 2)) +'px;"></div>');
+			var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:100%; max-height:625px;"></div>');
+			var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;max-height:590px;top:20px;left:50%;height:'+ imageHeight +'px;width:'+ imageWidth +'px;margin-left:'+ (-1 * (imageWidth / 2)) +'px;"></div>');
 			canvas.append(wrapper);
 			var controlPane = $('<div id="'+ options.imageWrapBox.controlPaneIdPrefix + image_id +'"></div>');
 			canvas.append(controlPane);

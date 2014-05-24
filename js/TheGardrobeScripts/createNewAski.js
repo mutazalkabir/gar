@@ -142,8 +142,9 @@ openAddAskiPopup = function(){
     });
 
     $("#add_new_aski_button").on("click",function(){
+        var myTags = JSON.stringify(window.TAGS);
         //addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $("#aski_uploaded_picture_holder img").attr("src"));
-        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"));
+        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
     });
 
     hangerSuccessfullyAdded = function(data){
