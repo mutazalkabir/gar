@@ -500,6 +500,7 @@ input:focus{
     }
 }
 
+
 #reveal_right_block_button{
     width: 60px;
     height: 60px;
@@ -1178,10 +1179,8 @@ input:focus{
     position: relative;
 }
 
-#aski_picture:before{
-    content: "";
+#aski_picture{
     height: 100%;
-    vertical-align: middle;
 }
 
 .fa-angle-left, .fa-angle-right{
