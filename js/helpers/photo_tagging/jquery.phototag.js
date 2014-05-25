@@ -170,6 +170,7 @@
 		}
 
 		var prepareTempTagBox = function( tempTagBox, image, image_id ){
+            debugger
 			tempTagBox.draggable({
 				containment: image,
 				cursor: 'move',
@@ -179,6 +180,7 @@
 		};
 
 		var createNewTagForm = function( tempTagBox, image, image_id ){
+            debugger
 			var form = $('<form id="tempNewTagForm" action="'+options.addTagUrl+'"></form>');
 			var newTagFormBox = $('<div id="tempTagBoxForm" class="photoTagForm"></div>');
 			var tempTagBoxPosition = $(tempTagBox).position();
@@ -282,48 +284,52 @@
 		};
 
 		var createTagBoxFromJSON = function( tagJSON, image ){
-            debugger
-			if( !(tagJSON.height && tagJSON.width) ){
-				tagJSON.height = options.tag.defaultHeight;
-				tagJSON.width = options.tag.defaultWidth;
-			};
-			var dimension = {width: tagJSON.width,height: tagJSON.height};
-			var position = {top: tagJSON.top,left: tagJSON.left};
-			var tagBox = createTagBox(tagJSON.id,dimension,position,0);
-			registerEventsForTagBox(tagBox);
-			var innerElement = $("<div class='innerTag'></div>");
-			innerElement.append(tagJSON.brand + " " + tagJSON.text);
-			tagBox.append(innerElement);
+            if(tagJSON.id != 200){
+                if( !(tagJSON.height && tagJSON.width) ){
+                    tagJSON.height = options.tag.defaultHeight;
+                    tagJSON.width = options.tag.defaultWidth;
+                };
+                var dimension = {width: tagJSON.width,height: tagJSON.height};
+                var position = {top: tagJSON.top,left: tagJSON.left};
+                var tagBox = createTagBox(tagJSON.id,dimension,position,0);
+                registerEventsForTagBox(tagBox);
+                var innerElement = $("<div class='innerTag'></div>");
+                innerElement.append(tagJSON.brand + " " + tagJSON.text);
+                tagBox.append(innerElement);
 
-            window.TAGS.push(tagJSON);
+                window.TAGS.push(tagJSON);
 
-			if(options.isEnabledToEditTags && tagJSON.isDeleteEnable && options.tag.showDeleteLinkOnTag){
-				var deleteLink = $('<a id="'+ options.tag.deleteLinkIdPrefix + tagJSON.id +'" class="'+ options.tag.deleteLinkCssClass +'" href="#'+ tagJSON.id +'"></a>');
-				registerEventsForDeleteLink(deleteLink,image);
-				tagBox.append(deleteLink);
-			};
-			return tagBox;
+                if(options.isEnabledToEditTags && tagJSON.isDeleteEnable && options.tag.showDeleteLinkOnTag){
+                    var deleteLink = $('<a id="'+ options.tag.deleteLinkIdPrefix + tagJSON.id +'" class="'+ options.tag.deleteLinkCssClass +'" href="#'+ tagJSON.id +'"></a>');
+                    registerEventsForDeleteLink(deleteLink,image);
+                    tagBox.append(deleteLink);
+                };
+                return tagBox;
+            }
 		}
 
 		var createTagItemForList = function( tagJSON, image ){
-			var item = $('<li></li>');
-			if(tagJSON.url){
-				var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.brand + " "+ tagJSON.text +'</a>');
-				item.append(link);
-			}else{
-				item.append(tagJSON.brand + " " + tagJSON.text);
-			}
-			if(tagJSON.isDeleteEnable){
-				var deleteLink = $('<a id="'+ options.imageWrapBox.tagListRemoveItemIdPrefix + tagJSON.id +'" class="'+ options.tag.deleteLinkCssClass +'" href="#'+ tagJSON.id +'">'+ options.literals.removeTag +'</a>');
-				registerEventsForDeleteLink(deleteLink,image);
-				item.append(' (');
-				item.append(deleteLink);
-				item.append(')');
-			}
-			return item;
+            if(tagJSON.id != 200){
+                var item = $('<li></li>');
+                if(tagJSON.url){
+                    var link = $('<a href="'+ tagJSON.url +'">'+ tagJSON.brand + " "+ tagJSON.text +'</a>');
+                    item.append(link);
+                }else{
+                    item.append(tagJSON.brand + " " + tagJSON.text);
+                }
+                if(tagJSON.isDeleteEnable){
+                    var deleteLink = $('<a id="'+ options.imageWrapBox.tagListRemoveItemIdPrefix + tagJSON.id +'" class="'+ options.tag.deleteLinkCssClass +'" href="#'+ tagJSON.id +'">'+ options.literals.removeTag +'</a>');
+                    registerEventsForDeleteLink(deleteLink,image);
+                    item.append(' (');
+                    item.append(deleteLink);
+                    item.append(')');
+                }
+                return item;
+            }
 		}
 
 		var createTempTag = function( image, image_id ){
+            debugger
 			var dimension = {width: options.tag.defaultWidth,height: options.tag.defaultHeight};
 			var position = {
 				top: (image.height()/2-dimension.height/2),
