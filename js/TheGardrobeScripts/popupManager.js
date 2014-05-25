@@ -134,28 +134,38 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
     function createTags(tagData){
         if(tagData != ""){
-            var tagsContainer = $("#aski_picture");
+            $(".tagsContainer").remove();
             var tags = JSON.parse(tagData);
-            for(var i=0; i<tags.length; i++){
-                var containerWidth = parseInt($("#aski_picture").width());
-                var pictureWidth = parseInt($("#aski_picture img").width());
-                var difference = parseInt(((containerWidth - pictureWidth) / 2) + parseInt(tags[i].left));
-                var clothTag = $(GenerateDomElement({
-                    nodeType:"div",
-                    classNames: "photoTag-tag",
-                    attributes:{"id": "photoTag-tag_" + tags[i].id, "style":"position: absolute; width:25px; height:25px; left:"+ difference +"px; top:"+ tags[i].top +"px;"},
-                    htmlContent:'<div class="innerTag">'+ tags[i].brand +" "+ tags[i].text +'</div>'
-                }));
-                $("<div />").css({
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    left: 0,
-                    top: 0,
-                    zIndex: 1000000
-                }).appendTo(tagsContainer.css("position", "relative"));
 
-                tagsContainer.append(clothTag);
+            var tagsContainerHeight = parseInt($("#aski_picture img").height());
+            var tagsContainerWidth = parseInt($("#aski_picture img").width());
+            var tagsContainerMarginLeft = -1 * (parseInt($("#aski_picture img").width()) / 2);
+            var tagsContainerMarginTop = -1 * (parseInt($("#aski_picture img").height()) / 2);
+
+            if(tagsContainerHeight == 0 || tagsContainerWidth == 0 || tagsContainerMarginLeft == 0 || tagsContainerMarginTop == 0){
+                showPreloader();
+                setInterval(function(){
+                    removePreloader();
+                }, 500);
+            }
+
+            var tagsContainer = $(GenerateDomElement({
+                nodeType:"div",
+                classNames: "tagsContainer",
+                attributes:{"style":"position: absolute; left:50%; top:50%; width:"+ tagsContainerWidth +"px; height:"+ tagsContainerHeight  +"px; margin-left:" + tagsContainerMarginLeft + "px; margin-top:"+ tagsContainerMarginTop +"px;"}
+            }));
+
+            $("#aski_picture").append(tagsContainer);
+            for(var i=0; i<tags.length; i++){
+                if(tags[i].id != 200){
+                    var clothTag = $(GenerateDomElement({
+                        nodeType:"div",
+                        classNames: "photoTag-tag",
+                        attributes:{"id": "photoTag-tag_" + tags[i].id, "style":"position: absolute; width:25px; height:25px; left:"+ tags[i].left +"px; top:"+ tags[i].top +"px;"},
+                        htmlContent:'<div class="innerTag">'+ tags[i].brand +" "+ tags[i].text +'</div>'
+                    }));
+                    tagsContainer.append(clothTag);
+                }
             }
         }
     }
