@@ -814,7 +814,7 @@ input:focus{
     position: absolute;
     color: #fff;
     z-index: 99;
-    height: 18px;
+    height: auto;
     line-height: 18px;
     width: 200px;
     text-overflow: ellipsis;
