@@ -83,27 +83,36 @@ createMainPageFeed = function(mainPageFeedData){
             if(e.target.className == "buttons like_button"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
-
-                var likeCount = parseInt($(this).find(".main_page_feed_like_count").text());
-                $(this).find(".main_page_feed_like_count").text(likeCount + 1);
-                $(this).find(".like_button").text("Beğendin");
-                $(this).find(".like_button").css({
-                    opacity:"0.8",
-                    cursor:"default"
-                });
-                addLike($(this).attr("hanger_id"),window.user[0].user_id,"3",$(this).attr("hanger_owner_id"));
+                if($(this).find(".like_button").text() != "Beğendin"){
+                    var likeCount = parseInt($(this).find(".main_page_feed_like_count").text());
+                    $(this).find(".main_page_feed_like_count").text(likeCount + 1);
+                    $(this).find(".like_button").text("Beğendin");
+                    $(this).find(".like_button").css({
+                        opacity:"0.8",
+                        cursor:"default"
+                    });
+                    addLike($(this).attr("hanger_id"),window.user[0].user_id,"3",$(this).attr("hanger_owner_id"));
+                }
+                else{
+                    showStatusPopup("Bu gönderiyi zaten beğenmişsin:(","error","");
+                }
             }
             else if(e.target.className == "buttons share_button"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                var shareCount = parseInt($(this).find(".main_page_feed_share_count").text());
-                $(this).find(".main_page_feed_share_count").text(shareCount + 1);
-                $(this).find(".share_button").text("Paylaştın");
-                $(this).find(".share_button").css({
-                    opacity:"0.8",
-                    cursor:"default"
-                });
-                addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
+                if($(this).find(".share_button").text() != "Paylaştın"){
+                    var shareCount = parseInt($(this).find(".main_page_feed_share_count").text());
+                    $(this).find(".main_page_feed_share_count").text(shareCount + 1);
+                    $(this).find(".share_button").text("Paylaştın");
+                    $(this).find(".share_button").css({
+                        opacity:"0.8",
+                        cursor:"default"
+                    });
+                    addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
+                }
+                else{
+                    showStatusPopup("Bu gönderiyi zaten paylaşmışsın:(","error","");
+                }
             }
             else if(e.target.className == "main_page_feed_profile_image"){
                 e.preventDefault();
