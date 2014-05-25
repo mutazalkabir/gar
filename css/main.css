@@ -410,7 +410,7 @@ input:focus{
 }
 
 #messages_notifications_etc_holder{
-    float: right;
+    float: left;
     width: 310px;
     height: 100%;
 }
@@ -497,6 +497,17 @@ input:focus{
         -o-transform: translateX(0px) !important;
         -ms-transform: translateX(0px) !important;
         transform: translateX(0px) !important;
+    }
+}
+
+@media all and (max-width: 1015px){
+    #reveal_right_block_button{
+        position: relative !important;
+        float: right !important;
+    }
+
+    #search_input{
+        width: 470px !important;
     }
 }
 
@@ -3314,5 +3325,6 @@ input:focus{
     text-align: center;
     left: 0;
     right: 0;
+    padding: 0px 10px;
 }
 /* General Popups */

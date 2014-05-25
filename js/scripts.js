@@ -138,16 +138,5 @@ $(document).ready(function(){
     $(".settings_submenu_items:last-child").on("click",function(){
         window.location = "login_register.html";
     });
-
-    $(window).resize(function() {
-        var windowWidth = $(window).width();
-        var searchBar = $("#search_input");
-        var searchBarWidth = $("#search_input").width();
-        if(windowWidth < 1065){
-
-            searchBar.css("width", searchBarWidth - 1 + "px;");
-            console.log(searchBar.width());
-        }
-    });
     /*================================================== */
 });

@@ -9,6 +9,7 @@
 /* Login - Register */
 function register(_email,_name,_surname,_pass,_gender,_bDate)
 {
+    debugger
 
     $.ajax({
         url: "register.php",
@@ -20,10 +21,9 @@ function register(_email,_name,_surname,_pass,_gender,_bDate)
             withCredentials: true
         }
     }).done(function(data) {
-
-            // alert( "success" +data );
+debugger
         }).fail(function(data) {
-
+                                     debugger
             // alert( "error" +data );
         }).always(function(data) {
 
