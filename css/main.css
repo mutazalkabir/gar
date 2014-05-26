@@ -1023,7 +1023,7 @@ input:focus{
     box-shadow:         0px 0px 15px 0px #60d1fb;
 }
 
-.my_feed_items{
+.my_feed_items, .show_all_items{
     display: block;
     width: 100%;
     height: auto;
@@ -1035,7 +1035,7 @@ input:focus{
     transition: all 250ms ease;
 }
 
-.my_feed_item_content{
+.my_feed_item_content, .show_all_item_content{
     border-bottom: 1px solid #D6D7DA;
     display: block;
     font-size: 13px;
@@ -1046,16 +1046,21 @@ input:focus{
     width: 100%;
 }
 
-.my_feed_items:hover{
+.show_all_user{
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.my_feed_items:hover, .show_all_items:hover {
     cursor: pointer;
     background-color: #efefef;
 }
 
-.my_feed_items:hover .my_feed_profile_picture{
+.my_feed_items:hover .my_feed_profile_picture, .show_all_items:hover .show_all_items_profile_picture{
     border: 5px solid #ffffff;
 }
 
-.my_feed_profile_picture{
+.my_feed_profile_picture, .show_all_items_profile_picture{
     position: absolute;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;

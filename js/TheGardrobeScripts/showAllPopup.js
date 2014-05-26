@@ -22,9 +22,24 @@ showAllPopup = function(_popupBodyArray, _popupType, _closeFunction){
                     '</div>' +
                     '<div class="popup_body"></div>'
     }));
-
     popupGlass.find(".popup_glass_inner").append(popup);
     $("body").append(popupGlass);
+
+    for(var i=0; i<50; i++){
+        var showAllItem = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"show_all_items",
+            attributes:{"popup_type":_popupType},
+            htmlContent:'<div class="show_all_item_content">'+
+                            '<img class="show_all_items_profile_picture" src="images/dummy_images/profil.jpg">'+
+                            '<span class="show_all_user">Mutaz Alkabir</span>'+
+                        '</div>'
+        }));
+
+        $(".popup_body").append(showAllItem)
+    }
+
+    $(".popup_body").mCustomScrollbar();
 
     setTimeout(function(){
         $(".status_popup").removeClass("animated bounceInDown");
