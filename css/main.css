@@ -3313,8 +3313,23 @@ input:focus{
     background-color: #ff3030;
 }
 
+.popup_top_bar[type="showall"]{
+    background-color: #00aced;
+}
+
 .popup_top_bar i{
     color: #ffffff;
+}
+
+.status_popup[popup_type="showall"] .popup_body{
+    font-size: 22px;
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    text-align: left;
+    left: 0;
+    right: 0;
+    padding: 0px 10px;
 }
 
 .popup_body{
@@ -3327,4 +3342,6 @@ input:focus{
     right: 0;
     padding: 0px 10px;
 }
+
+
 /* General Popups */
