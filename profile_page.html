@@ -12,6 +12,8 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <link href="css/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="css/flaticon_gardrobe.css" rel="stylesheet" type="text/css" />
+    <link href="css/datePicker.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/helpers/browser_selector.js"></script>
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery.dev.1.7.1.js"></script>
@@ -19,9 +21,14 @@
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+    <script type="text/javascript" src="js/data_connector.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/popupManager.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/showStatusPopup.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMainPageFeed.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMyFeed.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/createProfilePage.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/newsletter.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/login_register.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createNewAski.js"></script>
@@ -29,7 +36,11 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/createNotifications.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/messaging.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/gardrobeKaristir.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/createMessagingDetail.js"></script>
     <script type="text/javascript" src="js/helpers/domGenerator.js"></script>
+    <script type="text/javascript" src="js/helpers/dataPicker.js"></script>
+    <script type="text/javascript" src="js/helpers/date.js"></script>
+    <script type="text/javascript" src="js/helpers/ajaxform.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
@@ -37,6 +48,7 @@
     <link media="screen" type="text/css" href="css/photo_tagging/styles2.css" rel="stylesheet">
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery-ui-1.8.17.custom.min.js"></script>
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery.phototag.js"></script>
+
 
     <style type="text/css">
         .feed_item{
@@ -227,7 +239,7 @@
             </div>
         </div>
         <div id="profile_page_gardrobes">
-            <div class="feed_item profile_feed_item">
+<!--            <div class="feed_item profile_feed_item">
                 <span class="cloth_cover gardrobe">
 
                 </span>
@@ -331,7 +343,7 @@
                 <div class="like_comment_share_holder">
                     <div class="gardrobe_item_aski_count"><i class="flaticon-clothing1"></i>45 Askı</div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </body>

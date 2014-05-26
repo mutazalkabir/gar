@@ -300,11 +300,31 @@ function getGardrobes(_userId){
             // alert( "finished" + data);
         });
 }
+
+function getGardrobesForProfilePage(_userId){
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "listgardrobe", user_id: _userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            setGardrobesForProfilePage(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
 /* Gardrobe Ekle */
 
 /* Aski Ekle */
 function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName, _myTags){
-    debugger
     $.ajax({
         url: "main.php",
         type: "GET",
@@ -349,3 +369,27 @@ function getTags(){
         });
 }
 /* Tag'leri al */
+
+/* Takipçiler ve Takip Edilenler */
+function getFollowers(_userId, _successFunction){
+    debugger
+    $.ajax({
+        url: "main.php",
+        type: "GET",
+        data:{operation: "getfellowers", fellowed_id: _userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Takipçiler ve Takip Edilenler */

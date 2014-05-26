@@ -55,23 +55,17 @@ $(document).ready(function(){
 
     /* Profil Sayfası
      ================================================== */
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
 
-    $("#following_mcustomscrollbar").mCustomScrollbar();
-    $("#followers_mcustomscrollbar").mCustomScrollbar();
-
-    $("#following_followers_bar").on("mouseenter",function(){
-        setTimeout(function(){
-            $("#followers_mcustomscrollbar").mCustomScrollbar("update");
-            $("#following_mcustomscrollbar").mCustomScrollbar("update");
-        },300);
-    });
-
-    $("#following_followers_bar").on("mouseleave",function(){
-        setTimeout(function(){
-            $("#followers_mcustomscrollbar").mCustomScrollbar("update");
-            $("#following_mcustomscrollbar").mCustomScrollbar("update");
-        },300);
-    });
+    getGardrobesForProfilePage(decodeURIComponent($.urlParam('user_id')));
     /*================================================== */
 
     /* Mesaj Detay

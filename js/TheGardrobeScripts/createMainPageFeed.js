@@ -59,12 +59,12 @@ createMainPageFeed = function(mainPageFeedData){
                             '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>' +
                         '</span>' +
                         '<div class="cloth_photo">' +
-                            '<span class="aski_owner_name">'+ mainPageFeedData[i].name + " " + mainPageFeedData[i].surname +'</span>'+
+                            '<span user_id="'+mainPageFeedData[i].user_id+'" class="aski_owner_name">'+ mainPageFeedData[i].name + " " + mainPageFeedData[i].surname +'</span>'+
                             '<img src="'+ askiPicturePath + mainPageFeedData[i].user_id + "/" + mainPageFeedData[i].pic_id +'">' +
                         '</div>' +
 
                         '<div class="profile_photo">'+
-                            '<img class="main_page_feed_profile_image" src="images/dummy_images/profil.jpg">'+
+                            '<img user_id="'+mainPageFeedData[i].user_id+'" class="main_page_feed_profile_image" src="images/dummy_images/profil.jpg">'+
                         ' </div>'+
 
                         '<span class="tag_name feed_item_span">'+ mainPageFeedData[i].category_name +'</span>'+
@@ -117,6 +117,12 @@ createMainPageFeed = function(mainPageFeedData){
             else if(e.target.className == "main_page_feed_profile_image"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
+                window.location = "profile_page.html?user_id="+$(this).find(".main_page_feed_profile_image").attr("user_id");
+            }
+            else if(e.target.className == "aski_owner_name"){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                window.location = "profile_page.html?user_id="+$(this).find(".main_page_feed_profile_image").attr("user_id");
             }
             else if(e.target.className == "tag_name feed_item_span"){
                 e.preventDefault();
