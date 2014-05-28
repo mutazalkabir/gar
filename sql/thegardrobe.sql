@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.12
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 24, 2014 at 09:47 PM
+-- Generation Time: May 29, 2014 at 01:21 AM
 -- Server version: 5.6.16
--- PHP Version: 5.5.11
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(400) NOT NULL,
   `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=172 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=175 ;
 
 --
 -- Dumping data for table `comment`
@@ -259,7 +259,10 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 (168, 4, 1400593481, 10, 'sadf', 34),
 (169, 4, 1400593490, 11, 'de', 35),
 (170, 4, 1400660389, 10, 'chjgfjghj', 34),
-(171, 4, 1400660391, 10, 'fghjgjf', 34);
+(171, 4, 1400660391, 10, 'fghjgjf', 34),
+(172, 4, 1401315524, 14, 'kahver', 37),
+(173, 4, 1401315727, 78, 'dfsadasasdd', 4),
+(174, 4, 1401316828, 17, 'denme', 40);
 
 -- --------------------------------------------------------
 
@@ -366,7 +369,7 @@ CREATE TABLE IF NOT EXISTS `gardrobe` (
   `create_date` int(11) NOT NULL,
   PRIMARY KEY (`gardrobe_id`),
   UNIQUE KEY `gardrobe_id` (`gardrobe_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `gardrobe`
@@ -394,7 +397,11 @@ INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `cre
 (19, 1, 'olur', 'dummy', 1400793010),
 (20, 1, 'oldu', 'dummy', 1400793306),
 (21, 1, 'lkjpğğpğpğpğ', 'dummy', 1400861702),
-(23, 1, 'Günlük Kıyafetler', 'dummy', 1400868614);
+(23, 1, 'Günlük Kıyafetler', 'dummy', 1400868614),
+(24, 4, 'asdasd', 'dummy', 1401226773),
+(25, 4, 'dadad', 'dummy', 1401226780),
+(26, 4, 'yeni', 'dummy', 1401227022),
+(27, 4, 'dhdh', 'dummy', 1401315662);
 
 -- --------------------------------------------------------
 
@@ -414,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `hanger` (
   `tags` varchar(8000) NOT NULL,
   `create_date` int(11) NOT NULL,
   UNIQUE KEY `hanger_id` (`hanger_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=80 ;
 
 --
 -- Dumping data for table `hanger`
@@ -455,7 +462,14 @@ INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `abo
 (69, 1, 2, 0, 'asdf', 'ADIYAMAN', 'asdf', 'k80vrwkzo6h9h9w1.jpg', '[{"id":200,"text":"Pantalon","brand":"Armani","left":150,"top":150,"url":"","isDeleteEnable":true,"height":30,"width":30},{"id":35,"text":"T-Shirt","brand":"Lacoste","left":232,"top":264,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true},{"id":25,"text":"Kot Pantalon","brand":"Lacoste","left":104,"top":324,"width":24,"height":24,"url":"names.php?id=25","isDeleteEnable":true}]', 1400958525),
 (70, 1, 2, 0, 'asdf', 'ADIYAMAN', 'asdf', 'k80vrwkzo6h9h9w1.jpg', '[{"id":200,"text":"Pantalon","brand":"Armani","left":150,"top":150,"url":"","isDeleteEnable":true,"height":30,"width":30},{"id":35,"text":"T-Shirt","brand":"Lacoste","left":232,"top":264,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true},{"id":25,"text":"Kot Pantalon","brand":"Lacoste","left":104,"top":324,"width":24,"height":24,"url":"names.php?id=25","isDeleteEnable":true}]', 1400958525),
 (71, 1, 2, 17, 'asdf', 'AMASYA', 'asdf', 'k80vrwkzo6h9h9w1.jpg', '[{"id":200,"text":"Pantalon","brand":"Armani","left":150,"top":150,"url":"","isDeleteEnable":true,"height":30,"width":30},{"id":35,"text":"T-Shirt","brand":"Lacoste","left":232,"top":264,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true},{"id":25,"text":"Kot Pantalon","brand":"Lacoste","left":104,"top":324,"width":24,"height":24,"url":"names.php?id=25","isDeleteEnable":true}]', 1400958529),
-(72, 1, 1, 17, 'asdf', 'AFYONKARAHİSAR', 'asdf', 'dvakxru1rnm4hjqg.jpg', '[{"id":200,"text":"Pantalon","brand":"Armani","left":150,"top":150,"url":"","isDeleteEnable":true,"height":30,"width":30},{"id":35,"text":"T-Shirt","brand":"Fred Perry","left":230,"top":306,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true},{"id":35,"text":"T-Shirt","brand":"Lacoste","left":179,"top":261,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true}]', 1400959637);
+(72, 1, 1, 17, 'asdf', 'AFYONKARAHİSAR', 'asdf', 'dvakxru1rnm4hjqg.jpg', '[{"id":200,"text":"Pantalon","brand":"Armani","left":150,"top":150,"url":"","isDeleteEnable":true,"height":30,"width":30},{"id":35,"text":"T-Shirt","brand":"Fred Perry","left":230,"top":306,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true},{"id":35,"text":"T-Shirt","brand":"Lacoste","left":179,"top":261,"width":24,"height":24,"url":"names.php?id=35","isDeleteEnable":true}]', 1400959637),
+(73, 4, 1, 0, 'dasdaddas', 'ADANA', 'asda', 'h78ocitwnp3m0513.png', '[]', 1401226852),
+(74, 4, 1, 0, 'dasdaddas', 'ADANA', 'asda', 'h78ocitwnp3m0513.png', '[]', 1401226867),
+(75, 4, 1, 25, 'sdasd', 'ADANA', 'asda', 'l276v1q0dlmtt7dc.png', '[]', 1401226980),
+(76, 4, 1, 26, 'aaaaa', 'ADANA', 'burası', 'zqx5sewj9bqwh3rd.png', '[]', 1401227034),
+(77, 4, 1, 26, 'aaaaa', 'ADANA', 'burası', 'iwo8guhbduabz6hp.png', '[]', 1401227064),
+(78, 4, 2, 26, 'oo ne güzel', 'ANTALYA', 'starbuck', 'rk3zhi2vxdfd61x8.png', '[]', 1401315712),
+(79, 4, 0, 0, '', 'Şehir Seçiniz', '', 'm3otawgrqgkrgu9j.png', '[]', 1401316809);
 
 -- --------------------------------------------------------
 
@@ -471,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
   `like_date` int(11) NOT NULL,
   `liked_user_id` int(11) NOT NULL,
   UNIQUE KEY `like_id` (`like_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=90 ;
 
 --
 -- Dumping data for table `likes`
@@ -565,7 +579,8 @@ INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_da
 (85, 67, 1, 3, 1400960774, 1),
 (86, 67, 1, 3, 1400960774, 1),
 (87, 67, 1, 3, 1400960775, 1),
-(88, 67, 1, 3, 1400960775, 1);
+(88, 67, 1, 3, 1400960775, 1),
+(89, 61, 4, 3, 1401315534, 1);
 
 -- --------------------------------------------------------
 
@@ -581,7 +596,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notificated_item_id` int(11) NOT NULL,
   `notification_date` int(11) NOT NULL,
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=286 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=291 ;
 
 --
 -- Dumping data for table `notifications`
@@ -868,7 +883,12 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 (282, 1, 0, 2, 0, 1400960776),
 (283, 1, 0, 2, 0, 1400960776),
 (284, 1, 0, 2, 0, 1400960776),
-(285, 1, 0, 2, 0, 1400960776);
+(285, 1, 0, 2, 0, 1400960776),
+(286, 4, 37, 3, 14, 1401315524),
+(287, 4, 1, 1, 61, 1401315534),
+(288, 4, 4, 3, 78, 1401315727),
+(289, 4, 40, 3, 17, 1401316828),
+(290, 4, 0, 2, 0, 1401316837);
 
 -- --------------------------------------------------------
 
@@ -947,7 +967,7 @@ CREATE TABLE IF NOT EXISTS `share` (
   `share_date` int(11) NOT NULL,
   `shared_user_id` int(11) NOT NULL,
   UNIQUE KEY `share_id` (`share_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `share`
@@ -978,7 +998,8 @@ INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_u
 (22, 67, 1, 1400960776, 1),
 (23, 67, 1, 1400960776, 1),
 (24, 67, 1, 1400960776, 1),
-(25, 67, 1, 1400960776, 1);
+(25, 67, 1, 1400960776, 1),
+(26, 17, 4, 1401316837, 40);
 
 -- --------------------------------------------------------
 
@@ -1037,6 +1058,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `about` text NOT NULL,
   `profession` text NOT NULL,
   `pic_id` varchar(20) NOT NULL,
+  `confirmation_code` varchar(16) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `mail` (`mail`)
@@ -1046,32 +1068,32 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`) VALUES
-(1, 'Tunç', 'Akın', 392508000, 1399810339, 'tuncak30@hotmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(20, 'mehmet', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir20@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(21, 'ali', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir31@hotmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(22, 'berk', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir4@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(24, 'rumeysa', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir6@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(25, 'emine', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir7@hotmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(26, 'sezin', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir8@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(27, 'savas', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir9@hotmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(28, 'murat', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir10@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(29, 'esra', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir11@hotmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(30, 'didem', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir12@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(32, 'Selen', 'Bayramin', 0, 0, 'selenbayramin@gmail.com', 0, 1, '123456', 'sadas', 'dsa', 'avatar.png'),
-(33, 'Berre', 'Tekeoğlu', 0, 0, 'berretekeoglu@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(34, 'Günsu Dilek', 'Kobya', 0, 0, 'gunsukobya@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(35, 'Meral', 'Görgülü', 0, 0, 'meralgorgulu@gmail.com', 0, 0, '123456', '1', '1', 'avatar.png'),
-(36, 'Sezgincan', 'Mailmail', 0, 0, 'sezgincan@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
-(37, 'Esma', 'Yemeztaşlıca', 0, 0, 'esma@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
-(38, 'Elif', 'Oran', 0, 0, 'eliforan@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
-(39, 'Gözde', 'Asena Olcay', 0, 0, 'gozde@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
-(40, 'Batuhan', 'Sezgin', 0, 0, 'batuhansezgin@gmail.com', 0, 0, '123456', '', '', 'avatar.png'),
-(41, 'Ecem', 'Yalız', 0, 0, 'ecemyaliz@gmail.com', 0, 0, '123456', '', '', 'avatar.png');
+INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`, `confirmation_code`) VALUES
+(1, 'Tunç', 'Akın', 392508000, 1399810339, 'tuncak30@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(20, 'mehmet', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir20@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(21, 'ali', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir31@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(22, 'berk', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir4@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(24, 'rumeysa', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir6@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(25, 'emine', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir7@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(26, 'sezin', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir8@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(27, 'savas', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir9@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(28, 'murat', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir10@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(29, 'esra', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir11@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(30, 'didem', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir12@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(32, 'Selen', 'Bayramin', 392508000, 1399810995, 'selenbayramin@gmail.com', 1, 1, '123456', 'sadas', 'dsa', 'avatar.png', '123456789qwertyu'),
+(33, 'Berre', 'Tekeoğlu', 392508000, 1399810995, 'berretekeoglu@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(34, 'Günsu Dilek', 'Kobya', 392508000, 1399810995, 'gunsukobya@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(35, 'Meral', 'Görgülü', 392508000, 1399810995, 'meralgorgulu@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu'),
+(36, 'Sezgincan', 'Mailmail', 392508000, 1399810995, 'sezgincan@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu'),
+(37, 'Esma', 'Yemeztaşlıca', 392508000, 1399810995, 'esma@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu'),
+(38, 'Elif', 'Oran', 392508000, 1399810995, 'eliforan@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu'),
+(39, 'Gözde', 'Asena Olcay', 392508000, 1399810995, 'gozde@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu'),
+(40, 'Batuhan', 'Sezgin', 392508000, 1399810995, 'batuhansezgin@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu'),
+(41, 'Ecem', 'Yalız', 392508000, 1399810995, 'ecemyaliz@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
