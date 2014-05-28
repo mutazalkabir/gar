@@ -13,6 +13,14 @@ $password = "";
 $hostname = "localhost";
 $dbname = "thegardrobe";
 
+$BY_CATEGORY = "category";
+$BY_CITY = "city";
+$BY_DATE = "date";
+$BY_BRAND = "brand";
+$BY_FRIENDS = "friends";
+
+
+
 $UPLOADED_IMAGE_FOLDER_PATH="../storage/user_images/";
 
 /*

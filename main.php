@@ -84,20 +84,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     if ($operation == "gethanger") {
         $data = array();
-        $state = (string)$_GET['state'];
+        $state= "";
+        $type= "";
+
+        if(isset($_GET['state']))
+        {
+            $state = (string)$_GET['state'];
+        }
+
+        if(isset($_GET['type']))
+        {
+            $type = (string)$_GET['type'];
+        }
+        if(isset($_GET['type_id']))
+        {
+            $type_id = (string)$_GET['type_id'];
+        }
+        if(isset($_GET['start_date']))
+        {
+            $start_date = (int)$_GET['start_date'];
+        }
+        if(isset($_GET['end_date']))
+        {
+            $end_date = (int)$_GET['end_date'];
+        }
+
+
+
         $user_id = 4;//$_SESSION['userid'];
         $result ="";
         if($state=="all")
         {
 
-            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags FROM users u, hanger h, gardrobe g,category c WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
+            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
 	
         }
-        else
+        else if($state=="fellowed")
         {
-            $result = mysql_query("SELECT * FROM users");
+            $result = mysql_query("SELECT DISTINCT f.fellower_id, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c,fellowship f
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellower_id = $user_id");
 
         }
+        else if($type==$BY_CATEGORY){
+            $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND c.category_id = $type_id  ORDER BY  h.create_date ASC");
+        }
+        else if($type==$BY_BRAND){
+            $result = mysql_query("SELECT DISTINCT b.brand_id, b.brand_name, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c,brands b
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND b.brand_id = $type_id  ORDER BY h.create_date ASC");
+        }
+        else if($type==$BY_DATE){
+            $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.create_date BETWEEN $start_date AND $end_date  ORDER BY  h.create_date ASC");
+        }
+        else if($type==$BY_CITY){
+            $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.city = '$type_id'  ORDER BY  h.create_date ASC");
+        }
+
+
+
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
