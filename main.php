@@ -7,8 +7,16 @@
  */
 
 error_reporting(E_ALL ^ E_DEPRECATED);
+include 'src/authtest.php';
 include 'src/constants.php';
 include 'src/dbconnect.php';
+
+
+session_name('gardrobeLogin');
+// Starting the session
+
+session_set_cookie_params(2*7*24*60*60);
+// Making the cookie live for 2 weeks
 
 session_start();
 
@@ -264,7 +272,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
-        $field_names = array_keys($data[0]);
+        //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
         echo json_encode($data);

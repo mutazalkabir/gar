@@ -35,7 +35,7 @@ function login(_email,_pass){
     $.ajax({
         url: "login.php",
         type: "POST",
-        data:{ mail: _email,pass:_pass},
+        data:{ operation:"login", mail: _email,pass:_pass},
         dataType:"json",
         cache: false,
         xhrFields: {
