@@ -7,5 +7,5 @@
  */
 
 error_reporting(E_ALL ^ E_DEPRECATED);
-include 'src/constants.php';
-include 'src/dbconnect.php';
+include 'constants.php';
+include 'dbconnect.php';

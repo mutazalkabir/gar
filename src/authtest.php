@@ -8,9 +8,9 @@
 
 include 'constants.php';
 include 'dbconnect.php';
-error_reporting(E_ALL ^ E_DEPRECATED);
+//error_reporting(E_ALL ^ E_DEPRECATED);
 
-session_name('thegardrobeLogin');
+//session_name('thegardrobeLogin');
 // Starting the session
 
 //session_set_cookie_params(2*7*24*60*60);
@@ -18,26 +18,26 @@ session_name('thegardrobeLogin');
 
 //session_start();
 
-if(isset($_SESSION['userid']) && $_SESSION['userid']) //&& !isset($_COOKIE['thegardrobeRemember']) && !$_SESSION['rememberMe'])
+if(isset($_SESSION['user_id']) && $_SESSION['user_id']) //&& !isset($_COOKIE['thegardrobeRemember']) && !$_SESSION['rememberMe'])
 {
     // If you are logged in, but you don't have the tzRemember cookie (browser restart)
     // and you have not checked the rememberMe checkbox:
 
-    $_SESSION = array();
-    session_destroy();
-    header("Location: ../login_register.html");
+   // $_SESSION = array();
+  //  session_destroy();
+  //  header("Location: ../login_register.php");
     // Destroy the session
 }
 /*
 else{
-    header("Location: login_register.html");
+    header("Location: login_register.php");
 }
 
 if(isset($_GET['logoff']))
 {
     $_SESSION = array();
     session_destroy();
-    header("Location: ../login_register.html");
+    header("Location: ../login_register.php");
     exit;
 }
 /*

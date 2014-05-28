@@ -16,10 +16,9 @@
 }*/
 
 include "includes.php";
+session_start();
 
-$_SESSION['userid']=1;
-
-$user_id=$_SESSION['userid'];
+$user_id=$_SESSION['user_id'];
 /*
 $data = array();
 $user_id = $_SESSION['userid'];
@@ -33,6 +32,7 @@ $date = $date->getTimestamp();
 $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$date')");
 */
 
+
 if ($_FILES["file"]["error"] > 0)
 {
 
@@ -41,7 +41,7 @@ if ($_FILES["file"]["error"] > 0)
 else
 {
 
-    $save_path=$UPLOADED_IMAGE_FOLDER_PATH.$_SESSION['userid']."/"; // Folder where you wanna move the file.
+    $save_path=$UPLOADED_IMAGE_FOLDER_PATH.$_SESSION['user_id']."/"; // Folder where you wanna move the file.
     //chmod($save_path, 0777);
     if (!file_exists($save_path)) {
         mkdir($save_path, 0777, true);

@@ -11,16 +11,16 @@
 function genarateID() {
     $allowed_chars = 'abcdefghijklmnopqrstuvwxz0123456789';
     $allowed_count = strlen($allowed_chars);
-    $password = null;
-    $password_length = 16;
+    $code = null;
+    $code_length = 16;
 
-    while($password === null) {
-        $password = '';
-        for($i = 0; $i < $password_length; ++$i) {
-            $password .= $allowed_chars{mt_rand(0, $allowed_count - 1)};
+    while($code === null) {
+        $code = '';
+        for($i = 0; $i < $code_length; ++$i) {
+            $code .= $allowed_chars{mt_rand(0, $allowed_count - 1)};
         }
     }
-    return $password;
+    return $code;
 }
 
 

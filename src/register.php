@@ -6,8 +6,9 @@
  * Time: 11:56
  */
 
-include 'src/constants.php';
-include 'src/dbconnect.php';
+include 'constants.php';
+include 'dbconnect.php';
+include 'utils.php';
 error_reporting(E_ALL ^ E_DEPRECATED);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
@@ -22,12 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $bdateTS = $bdate->getTimestamp();
     $date = new DateTime();
     $date=$date->getTimestamp();
-    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdateTS','$date','$mail','0','$gender','$pass','','','')");
+    $confirmation_code = genarateID();
+    //TODO Generate Confirmation Code
+
+    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdateTS','$date','$mail','0','$gender','$pass','','','','$confirmation_code')");
     //execute the SQL query and return records
     header('Content-Type: application/json');
     echo json_encode($insert);
  /*   var_dump($insert);
     header('Location: ', true, 200);*/
+    //TODO Send mail
+
     exit();
 }
 else

@@ -6,12 +6,12 @@
  * Time: 11:56
  */
 error_reporting(E_ALL ^ E_DEPRECATED);
-include 'src/constants.php';
-include 'src/dbconnect.php';
+include 'constants.php';
+include 'dbconnect.php';
 
 error_reporting(E_ALL ^ E_DEPRECATED);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $data = array();
     $mail=(string)$_POST['mail'];
@@ -24,11 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $data[] = $row;
     }
 
+  //  session_name('gardrobeLogin');
     session_start();
-    $_SESSION['userid'] =$data[0]["user_id"];
+    $_SESSION['user_id'] =$data[0]["user_id"];
      header('Content-Type: application/json; charset=utf-8');
      echo json_encode($data);
-     exit();
+   //  exit();
 }
 else
 {

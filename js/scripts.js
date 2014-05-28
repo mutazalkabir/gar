@@ -122,7 +122,7 @@ $(document).ready(function(){
     });
 
     $("#main_logo").on("click",function(){
-        window.location = "index.html";
+        window.location = "index.php";
     });
 
     $(".settings_submenu_items:first-child").on("click",function(){
@@ -130,7 +130,8 @@ $(document).ready(function(){
     });
 
     $(".settings_submenu_items:last-child").on("click",function(){
-        window.location = "login_register.html";
+        logoff()
+        window.location = "login_register.php";
     });
     /*================================================== */
 });

@@ -6,19 +6,18 @@
  * Time: 16:26
  */
 
-error_reporting(E_ALL ^ E_DEPRECATED);
-include 'src/authtest.php';
-include 'src/constants.php';
-include 'src/dbconnect.php';
+//error_reporting(E_ALL ^ E_DEPRECATED);
+//include 'src/authtest.php';
+include 'constants.php';
+include 'dbconnect.php';
 
 
-session_name('gardrobeLogin');
 // Starting the session
 
-session_set_cookie_params(2*7*24*60*60);
 // Making the cookie live for 2 weeks
 
 session_start();
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET') {
 
@@ -119,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 
 
-        $user_id = 4;//$_SESSION['userid'];
+        $user_id =$_SESSION['user_id'];
         $result ="";
         if($state=="all")
         {
@@ -176,6 +175,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
             $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id");
 
             while ($row2 = mysql_fetch_assoc($result2)) {
+                if($row2["user_id"]==$user_id)
+                {
+                    $data[$i]["hadliked"]="true";
+                }
                 array_push($likes,$row2);
             }
             if($likes!=null)
@@ -194,6 +197,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 
             while ($row2 = mysql_fetch_assoc($result2)) {
+                if($row2["user_id"]==$user_id)
+                {
+                    $data[$i]["hadshared"]="true";
+                }
                 array_push($shares,$row2);
             }
 
@@ -348,7 +355,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "addtag") {
         $data = array();
 
-        $user_id = $_SESSION['userid'];
+        $user_id = $_SESSION['user_id'];
 
 
 
@@ -429,7 +436,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     /////////////////////////////////////followers/////////////////////////////////////
     if ($operation == "getfellowers") {
 
-        $fellowed_id =(string)$_GET['fellowed_id'];//$_SESSION['userid'];
+        $fellowed_id =(string)$_GET['fellowed_id'];
 
         $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellowed_id=$fellowed_id AND u.user_id =f.fellower_id;");
 
@@ -905,6 +912,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         header('Content-Type: application/json');
         echo json_encode($update);
+
+    }
+
+
+    /////////////////////////////////////share/////////////////////////////////////
+    if ($operation == "getnotifications") {
+
+        $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
+
+        $result = mysql_query("SELECT n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id,n.notification_date, nt.* FROM notifications n, notification_types nt WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data,JSON_UNESCAPED_UNICODE);
 
     }
 
