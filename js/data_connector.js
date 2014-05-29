@@ -96,6 +96,27 @@ function getMainPageFeed(_state, _successFunction){
         });
 }
 
+
+function searchResult(_type, _typeId, _successFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "gethanger", type: _type, type_id: _typeId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(mainPageFeedData) {
+            _successFunction(mainPageFeedData)
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            return data;
+            // alert( "finished" + data);
+        });
+}
+
 function updateComments(){
     $.ajax({
         url: "src/main.php",

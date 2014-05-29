@@ -7,12 +7,12 @@
  */
 
 createMainPageFeed = function(mainPageFeedData){
+    $(".feed_item").remove();
     removePreloader();
     $("#all_or_followers_only_selector span").off("click");
 
     $("#all_or_followers_only_selector span").on("click",function(){
         showPreloader();
-        $(".feed_item").remove();
         $("#all_or_followers_only_selector span").removeClass("active_selector_span");
 
         if($(this).html() == "Herkes"){

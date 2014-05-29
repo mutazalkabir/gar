@@ -36,7 +36,15 @@ gardrobeKaristir = function(){
             $('#date1').val(selectedDate.asString());
         }
     );
+    $("#show_all_cities").off("click");
+    $("#show_all_cities").on("click",function(){
+       showAllPopup(cities, "showall",removeGardrobeKaristir);
+    });
 
+    $("#place span").not("#show_all_cities").on("click",function(){
+        removeGardrobeKaristir()
+        searchResult("city",$(this).text(),createMainPageFeed);
+    });
 }
 
 removeGardrobeKaristir = function(){

@@ -25,16 +25,40 @@ showAllPopup = function(_popupBodyArray, _popupType, _closeFunction){
     popupGlass.find(".popup_glass_inner").append(popup);
     $("body").append(popupGlass);
 
-    for(var i=0; i<50; i++){
-        var showAllItem = $(GenerateDomElement({
-            nodeType:"div",
-            classNames:"show_all_items",
-            attributes:{"popup_type":_popupType},
-            htmlContent:'<div class="show_all_item_content">'+
-                            '<img class="show_all_items_profile_picture" src="images/dummy_images/profil.jpg">'+
-                            '<span class="show_all_user">Mutaz Alkabir</span>'+
-                        '</div>'
-        }));
+    for(var i=0; i<_popupBodyArray.length; i++){
+        if(_popupBodyArray[i].imgSrc == undefined){
+            var showAllItem = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"show_all_items",
+                attributes:{"popup_type":_popupType},
+                htmlContent:'<div class="show_all_item_content" style="padding-left: 25px;">'+
+                                '<span class="show_all_user">'+ _popupBodyArray[i] +'</span>'+
+                            '</div>'
+            }));
+        }
+        else{
+            var showAllItem = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"show_all_items",
+                attributes:{"popup_type":_popupType},
+                htmlContent:'<div class="show_all_item_content" style="padding-left: 55px;">'+
+                                '<img class="show_all_items_profile_picture" src="images/dummy_images/profil.jpg">'+
+                                '<span class="show_all_user">'+ _popupBodyArray[i] +'</span>'+
+                            '</div>'
+            }));
+        }
+
+        showAllItem.on("click",function(){
+            $(".status_popup").addClass("animated bounceOutUp");
+            setTimeout(function(){
+                $(".popup_glass").remove();
+                $(".status_popup").removeClass("animated bounceOutUp");
+            },550);
+            removeGardrobeKaristir();
+            searchResult("city",$(this).find(".show_all_item_content").text(),createMainPageFeed);
+
+        });
+
 
         $(".popup_body").append(showAllItem)
     }
