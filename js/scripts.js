@@ -118,7 +118,7 @@ $(document).ready(function(){
     });
 
     $("#topbar_profile_picture_and_name").find("span:first-of-type").on("click",function(){
-        window.location = "profile_page.html";
+        window.location = "profile_page.php";
     });
 
     $("#main_logo").on("click",function(){
@@ -126,7 +126,7 @@ $(document).ready(function(){
     });
 
     $(".settings_submenu_items:first-child").on("click",function(){
-        window.location = "personal_settings.html";
+        window.location = "personal_settings.php";
     });
 
     $(".settings_submenu_items:last-child").on("click",function(){

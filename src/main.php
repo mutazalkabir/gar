@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
-        $field_names = array_keys($data[0]);
+        //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
-        $field_names = array_keys($data[0]);
+        //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
-        $field_names = array_keys($data[0]);
+        //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -230,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         }
 
         //prepare array field names
-        $field_names = array_keys($data[0]);
+       // $field_names = array_keys($data[0]);
 
 
         //return data
@@ -298,7 +298,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
-        $field_names = array_keys($data[0]);
+        //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
         echo json_encode($data);
@@ -342,7 +342,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
-        $field_names = array_keys($data[0]);
+        //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
         echo json_encode($data);

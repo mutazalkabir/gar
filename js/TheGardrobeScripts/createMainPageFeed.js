@@ -134,12 +134,12 @@ createMainPageFeed = function(mainPageFeedData){
             else if(e.target.className == "main_page_feed_profile_image"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                window.location = "profile_page.html?user_id="+$(this).find(".main_page_feed_profile_image").attr("user_id");
+                window.location = "profile_page.php?user_id="+$(this).find(".main_page_feed_profile_image").attr("user_id");
             }
             else if(e.target.className == "aski_owner_name"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                window.location = "profile_page.html?user_id="+$(this).find(".main_page_feed_profile_image").attr("user_id");
+                window.location = "profile_page.php?user_id="+$(this).find(".main_page_feed_profile_image").attr("user_id");
             }
             else if(e.target.className == "tag_name feed_item_span"){
                 e.preventDefault();

@@ -132,7 +132,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                                     <span class="follower_profile_name_holder">Tunç</span>
                                 </div>
 
-                                <input type="text" placeholder="Üye İsmi Giriniz">
+                                <input id="gardrobe_karistir_user_search" type="text" placeholder="Üye İsmi Giriniz">
                                 <button>Üye Ara</button>
                             </div>
                         </div>

@@ -117,6 +117,27 @@ function searchResult(_type, _typeId, _successFunction){
         });
 }
 
+function searchResultbyDate(_type, _startDate, _endDate, _successFunction){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "gethanger", type: _type, start_date: _startDate, end_date: _endDate},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(mainPageFeedData) {
+            _successFunction(mainPageFeedData)
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            return data;
+            // alert( "finished" + data);
+        });
+}
+
 function updateComments(){
     $.ajax({
         url: "src/main.php",
@@ -352,7 +373,7 @@ function getGardrobesForProfilePage(_userId){
             withCredentials: true
         }
     }).done(function(data) {
-            //setGardrobesForProfilePage(data);
+            setGardrobesForProfilePage(data);
             // alert( "success" +data );
         }).fail(function(data) {
             debugger

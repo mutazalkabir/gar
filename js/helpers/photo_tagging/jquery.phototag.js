@@ -213,6 +213,7 @@
                                 url: properties.autocompleteUrl,
                                 dataType: "json",
                                 success: function( data ) {
+                                    debugger
                                     var re = $.ui.autocomplete.escapeRegex(req.term);
                                     var matcher = new RegExp( "^" + re, "i" );
                                     response($.grep(data, function(item){return matcher.test(item.value);}) );
