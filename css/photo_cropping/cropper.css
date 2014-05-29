@@ -17,6 +17,9 @@
     width: 500px;
     height: auto;
     left: 250px;
+/*    position: absolute;
+    left: 0;
+    margin-top: 10px;*/
 }
 
 .cropper-container .cropper-modal {

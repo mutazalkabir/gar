@@ -64,7 +64,6 @@ $(document).ready(function(){
     });
 
     loginAndCreateCookie = function(userData){
-        debugger
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
         setTimeout(function(){
             $("#successfully_logged_in").css("display","block");

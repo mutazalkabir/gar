@@ -453,4 +453,47 @@ function getFollowers(_userId, _successFunction){
             // alert( "finished" + data);
         });
 }
+
+function getFollowing(_userId, _successFunction){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "getfellows", fellower_id: _userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
 /* Takipçiler ve Takip Edilenler */
+
+function updateUserInformation(_userId,_name, _surname, _password, _phoneNumber, _city, _about, _pictureId,  _successFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "updateuser", user_id: _userId, name: _name, surname: _surname, pass: _password, phone: _phoneNumber, city: _city, about: _about, pic_id: _pictureId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}

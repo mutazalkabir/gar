@@ -7,6 +7,13 @@
  */
 
 createMainPageFeed = function(mainPageFeedData){
+    if(mainPageFeedData.length == 0){
+        $("body").append('<span id="no_search_result">Arama Kriterlerinize Uyan Askı Bulunamadı</span>');
+    }
+    else{
+        $("#no_search_result").remove();
+    }
+
     $(".feed_item").remove();
     removePreloader();
     $("#all_or_followers_only_selector span").off("click");
@@ -19,7 +26,7 @@ createMainPageFeed = function(mainPageFeedData){
             getMainPageFeed("all", createMainPageFeed);
         }
         else{
-            getMainPageFeed("all", createMainPageFeed);
+            getMainPageFeed("fellowed", createMainPageFeed);
         }
 
         if(!$(this).hasClass("active_selector_span")){
@@ -149,7 +156,6 @@ createMainPageFeed = function(mainPageFeedData){
                 showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
             }
         });
-
     }
 }
 

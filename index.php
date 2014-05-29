@@ -48,6 +48,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+     <script type="text/javascript" src="js/TheGardrobeScripts/thegardrobe.js"></script>
     <script type="text/javascript" src="js/data_connector.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
@@ -292,7 +293,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
             <div id="messages_notifications_etc_holder">
                 <div id="topbar_profile_picture_and_name">
                     <img src="images/dummy_images/profil.jpg"/>
-                    <span></span>
+                    <span id="logged_in_user_name"></span>
 
                     <span id="new_aski_button"><i class="flaticon-clothing1"></i>Askı Ekle</span>
                 </div>

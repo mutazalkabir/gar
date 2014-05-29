@@ -21,12 +21,12 @@ if ($_FILES["file"]["error"] > 0)
 else
 {
 
-    $save_path=$UPLOADED_IMAGE_FOLDER_PATH.$_SESSION['user_id']."/"; // Folder where you wanna move the file.
+    $save_path=$UPLOADED_IMAGE_FOLDER_PATH."avatars/"; // Folder where you wanna move the file.
 
     if (!file_exists($save_path)) {
         mkdir($save_path, 0777, true);
     }
-    $newfilename="avatar".".".end(explode(".",$_FILES["file"]["name"]));
+    $newfilename=$user_id.".".end(explode(".",$_FILES["file"]["name"]));
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
 
     $dir = 'photos/';
@@ -37,6 +37,6 @@ else
 
 
 
-echo "<img id='$newfilename' src='storage/user_images/".$user_id. "/".$newfilename."'  class='aski_uploaded_picture_holder photoTag'>";
+echo "<img id='$newfilename' src='storage/user_images/avatars/".$newfilename."'  class='cropper'>";
 
 ?>

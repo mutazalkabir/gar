@@ -35,9 +35,11 @@ setGardrobesForProfilePage = function(gardrobeData){
     gardrobesContainer.append(gardrobes);
     }
 
-    getFollowers(decodeURIComponent($.urlParam('user_id')));
+    getFollowers(decodeURIComponent($.urlParam('user_id')), setFellowers);
+    getFollowing(window.user[0].user_id, setFollowing);
 
-    $("#following_mcustomscrollbar").mCustomScrollbar();
+
+/*    $("#following_mcustomscrollbar").mCustomScrollbar();
     $("#followers_mcustomscrollbar").mCustomScrollbar();
 
     $("#following_followers_bar").on("mouseenter",function(){
@@ -52,5 +54,36 @@ setGardrobesForProfilePage = function(gardrobeData){
             $("#followers_mcustomscrollbar").mCustomScrollbar("update");
             $("#following_mcustomscrollbar").mCustomScrollbar("update");
         },300);
-    });
+    });*/
+}
+
+setFellowers = function(data){
+    for(var i=0; i<data.length; i++){
+        var followersContainer = $("#following_mcustomscrollbar");
+        var follower = $(GenerateDomElement({
+            nodeType:"div",
+            classNames: "feed_item follower_profile_holder",
+            htmlContent:'<div class="follower_profile_picture_holder"> '+
+                                '<img src="images/dummy_images/profil.jpg" />'+
+                            '</div>'+
+                        '<span class="follower_profile_name_holder">Tunç</span>'
+        }));
+        followersContainer.append(follower);
+    }
+}
+
+setFollowing = function(data){
+    debugger
+    for(var i=0; i<data.length; i++){
+        var followersContainer = $("#following_mcustomscrollbar");
+        var follower = $(GenerateDomElement({
+            nodeType:"div",
+            classNames: "feed_item follower_profile_holder",
+            htmlContent:'<div class="follower_profile_picture_holder"> '+
+                '<img src="images/dummy_images/profil.jpg" />'+
+                '</div>'+
+                '<span class="follower_profile_name_holder">Tunç</span>'
+        }));
+        followersContainer.append(follower);
+    }
 }

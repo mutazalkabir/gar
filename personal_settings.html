@@ -41,7 +41,7 @@
     <script type="text/javascript" src="js/helpers/dataPicker.js"></script>
     <script type="text/javascript" src="js/helpers/date.js"></script>
     <script type="text/javascript" src="js/helpers/ajaxform.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/personal_settings.js"></script>
     <script type="text/javascript" src="js/helpers/photo_cropping/cropper.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
@@ -61,13 +61,27 @@
     </style>
 
     <script type="text/javascript">
+
+
+        window.thegardrobe= new Thegardrobe();
         $(document).ready(function(){
-            $(".cropper").cropper({
-                preview: "#psp_profile_picture_holder",
-                aspectRatio: 1,
-                done: function(data) {
-                    console.log(data);
-                }
+
+
+            thegardrobe.init();
+
+            $('#profile_pic_browse').live('change', function(){
+                $("#upload_new_profile_image").ajaxForm({
+                    target: '#img_container',
+                    success: function(){
+                        $(".cropper").cropper({
+                            preview: "#psp_profile_picture_holder",
+                            aspectRatio: 1,
+                            done: function(data) {
+                                console.log(data);
+                            }
+                        });
+                    }
+                }).submit();
             });
         })
     </script>
@@ -133,63 +147,64 @@
     </div>
 
     <div id="page_contents" class="clearfix">
+
         <span id="personal_settings_page_header">
             Ayarlarım
         </span>
         <div id="img_container">
-            <img class="cropper" src="images/dummy_images/profil.jpg">
+<!--            <img class="cropper" src="images/dummy_images/profil.jpg">-->
         </div>
-        <div id="psp_profile_picture_holder">
-   <!--         <img src="images/dummy_images/profil.jpg"/>-->
-<!--            <div id="profile_pic_browse_wrapper">Fotoğraf Yükle
-                <input type="file" id="profile_pic_browse">
-            </div>-->
-        </div>
+
+        <form id="upload_new_profile_image" method="post" enctype="multipart/form-data" name="image_upload_form" id="image_upload_form" action="src/upload_avatar.php">
+
+
+            <div id="psp_profile_picture_holder">
+                <!--img src="images/dummy_images/profil.jpg"/-->
+                <div id="profile_pic_browse_wrapper">Fotoğraf Yükle
+                    <input type="file" name="file" id="profile_pic_browse">
+                </div>
+            </div>
+        </form>
+
 
         <table id="edit_personal_settings">
             <tr>
                 <td>Ad</td>
-                <td><input placeholder="Ad" type="text"></td>
+                <td><input id="settings_page_name" placeholder="Ad" type="text"></td>
             </tr>
             <tr>
                 <td>Soyad</td>
-                <td><input placeholder="Soyad" type="text"></td>
+                <td><input id="settings_page_surname"  placeholder="Soyad" type="text"></td>
             </tr>
             <tr>
                 <td>E-Posta</td>
-                <td><input placeholder="E-Posta" type="text"></td>
+                <td><input id="settings_page_mail"  disabled type="text"></td>
             </tr>
             <tr>
                 <td>Telefon Numarası</td>
-                <td><input placeholder="Telefon Numarası" type="text"></td>
-            </tr>
-            <tr>
-                <td>Eski Şifre</td>
-                <td><input placeholder="Eski Şifre" type="password"></td>
+                <td><input id="settings_page_phone"  placeholder="Telefon Numarası" type="text"></td>
             </tr>
             <tr>
                 <td>Yeni Şifre</td>
-                <td><input placeholder="Yeni Şifre" type="password"></td>
+                <td><input id="settings_page_pass1"  placeholder="Yeni Şifre" type="password"></td>
             </tr>
             <tr>
                 <td>Yeni Şifre Tekrar</td>
-                <td><input placeholder="Yeni Şifre Tekrar" type="password"></td>
+                <td><input id="settings_page_pass2" placeholder="Yeni Şifre Tekrar" type="password"></td>
             </tr>
             <tr>
                 <td>Kendini Tanıt</td>
-                <td><textarea placeholder="Kendini Tanıt"></textarea></td>
+                <td><textarea id="settings_page_about" placeholder="Kendini Tanıt"></textarea></td>
             </tr>
             <tr>
                 <td>Şehir</td>
                 <td>
-                    <select>
-                        <option selected>Şehir Seçiniz</option>
-                    </select>
+                    <input id="settings_page_city" placeholder="Şehir Seçiniz">
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <button>Değişiklikleri Kaydet</button>
+                    <button id="save_personal_settings">Değişiklikleri Kaydet</button>
                 </td>
             </tr>
         </table>

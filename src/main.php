@@ -60,17 +60,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     /////////////////////////////////////updateuser/////////////////////////////////////
     if ($operation == "updateuser") {
 
+$data = array();
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
-        $name=(string)$_POST['name'];
-        $surname=(string)$_POST['surname'];
-        $pass=(string)$_POST['pass'];
-        $phone=(string)$_POST['phone'];
-        $city=(string)$_POST['city'];
-        $about=(string)$_POST['about'];
+        $name=(string)$_GET['name'];
+        $surname=(string)$_GET['surname'];
+        $pass=(string)$_GET['pass'];
+        $phone=(string)$_GET['phone'];
+        $city=(string)$_GET['city'];
+        $about=(string)$_GET['about'];
+        $pic_id=(string)$_GET['pic_id'];
 
 
-        $update = mysql_query("UPDATE users SET name=$name, surname=$surname, pass=$pass, about=$about, phone=$phone ,city=$city WHERE user_id=$user_id");
+        $update = mysql_query("UPDATE users SET name='$name', surname='$surname', pass='$pass', about='$about', phone='$phone' ,city='$city', pic_id='$pic_id' WHERE user_id='$user_id'");
 
+
+        if($update)
+        {
+                $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id ");
+
+                while ($row = mysql_fetch_assoc($result)) {
+                    $data[] = $row;
+                }
+                //$field_names = array_keys($data[0]);
+
+                header('Content-Type: application/json');
+                echo json_encode($data);
+        }
+        else
+        {
+                header('Content-Type: application/json');
+                echo json_encode($update);
+        }
 
 
         //prepare array field names
@@ -78,8 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 
         //return data
-        header('Content-Type: application/json');
-        echo json_encode($update);
+
 
     }
 
@@ -462,7 +481,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 */
     /////////////////////////////////////followers/////////////////////////////////////
     if ($operation == "getfellowers") {
-
+$data= array();
         $fellowed_id =(string)$_GET['fellowed_id'];
 
         $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellowed_id=$fellowed_id AND u.user_id =f.fellower_id;");
@@ -479,12 +498,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         //return data
         header('Content-Type: application/json');
-        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        echo json_encode($data);
 
     }
 
     if ($operation == "getfellows") {
-
+$data= array();
         $fellower_id =(string)$_GET['fellower_id'];//$_SESSION['userid'];
 
         $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellower_id=$fellower_id AND u.user_id =f.fellowed_id;");
@@ -501,7 +520,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         //return data
         header('Content-Type: application/json');
-        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        echo json_encode($data);
 
     }
 

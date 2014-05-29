@@ -21,6 +21,7 @@
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+    <script type="text/javascript" src="js/TheGardrobeScripts/profile_page.js"></script>
     <script type="text/javascript" src="js/data_connector.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
@@ -42,7 +43,6 @@
     <script type="text/javascript" src="js/helpers/dataPicker.js"></script>
     <script type="text/javascript" src="js/helpers/date.js"></script>
     <script type="text/javascript" src="js/helpers/ajaxform.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
     <link media="screen" type="text/css" href="css/photo_tagging/jquery-ui-1.8.17.custom.css" rel="stylesheet">
@@ -60,6 +60,15 @@
             display: inline-block;
         }
     </style>
+
+    <script type="text/javascript">
+
+
+        window.thegardrobe= new Thegardrobe();
+        $(document).ready(function(){
+            thegardrobe.init();
+        })
+    </script>
 </head>
 
 <body>
@@ -170,72 +179,7 @@
             <div id="following">
                 <span id="following_bar">Takip Ettiklerim <span id="following_count">70</span></span>
                 <div id="following_mcustomscrollbar">
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
-                    <div class="follower_profile_holder">
-                        <div class="follower_profile_picture_holder">
-                            <img src="images/dummy_images/profil.jpg" />
-                        </div>
-                        <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
+
                 </div>
             </div>
         </div>
