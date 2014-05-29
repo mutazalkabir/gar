@@ -57,6 +57,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         //exit();
     }
+    /////////////////////////////////////updateuser/////////////////////////////////////
+    if ($operation == "updateuser") {
+
+        $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
+        $name=(string)$_POST['name'];
+        $surname=(string)$_POST['surname'];
+        $pass=(string)$_POST['pass'];
+        $phone=(string)$_POST['phone'];
+        $city=(string)$_POST['city'];
+        $about=(string)$_POST['about'];
+
+
+        $update = mysql_query("UPDATE users SET name=$name, surname=$surname, pass=$pass, about=$about, phone=$phone ,city=$city WHERE user_id=$user_id");
+
+
+
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($update);
+
+    }
+
+
 
     /////////////////////////////////////CATEGORY/////////////////////////////////////
     if ($operation == "getcategory") {
@@ -916,7 +943,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     }
 
 
-    /////////////////////////////////////share/////////////////////////////////////
+    /////////////////////////////////////notifications/////////////////////////////////////
     if ($operation == "getnotifications") {
 
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
@@ -936,7 +963,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         echo json_encode($data,JSON_UNESCAPED_UNICODE);
 
     }
-
 
 
 
