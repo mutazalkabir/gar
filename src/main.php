@@ -42,6 +42,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         //exit();
     }
+    if ($operation == "getuserdata") {
+        $data = array();
+        $user_id = (string)$_GET['user_id'];
+        $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id ");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+        //$field_names = array_keys($data[0]);
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+        //exit();
+    }
+
 
     if ($operation == "getallusers") {
         $data = array();
@@ -321,10 +337,36 @@ $data = array();
         $data = array();
         $user_id = (string)$_GET['user_id'];
         $result = mysql_query("SELECT * FROM gardrobe WHERE user_id=$user_id ");
-
+        $total_hanger_count=0;
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
         }
+
+
+        //get Likes
+        $max = sizeof($data);
+
+
+
+        for($i=0;$i<$max;$i++){
+            $gardrobe_id= $data[$i]['gardrobe_id'];
+            $hangers= array();
+
+            $result2 = mysql_query("SELECT * FROM hanger WHERE gardrobe_id= $gardrobe_id");
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                $total_hanger_count++;
+                array_push($hangers,$row2);
+            }
+            if($hangers!=null)
+            {
+                $data[$i]["hangers"]=$hangers;
+            }
+            unset($hangers);
+        }
+
+
+        $data[0]["hanger_count"]=$total_hanger_count;
         //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
@@ -920,12 +962,22 @@ $data= array();
 
         $data = array();
 
-        $conversation_id= (string)$_GET['conversation_id'];
         $message= (string)$_GET['message'];
         $sender_id = (string)$_GET['sender_id'];
         $receiver_id= (string)$_GET['receiver_id'];
         $date = new DateTime();
         $date = $date->getTimestamp();
+
+
+        if(isset($_GET['conversation_id']))
+        {
+            $conversation_id= (string)$_GET['conversation_id'];
+        }
+        else{
+            $insert = mysql_query("INSERT INTO conversation VALUES ('','$sender_id','$receiver_id','','$date','0')");
+            $conversation_id = mysql_insert_id();
+        }
+
 
 
         $insert = mysql_query("INSERT INTO pm VALUES ('','$sender_id','$receiver_id','$message','$date','$conversation_id')");
