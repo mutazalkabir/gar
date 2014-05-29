@@ -6,7 +6,7 @@
  * Time: 16:26
  */
 
-//error_reporting(E_ALL ^ E_DEPRECATED);
+error_reporting(E_ALL ^ E_DEPRECATED);
 //include 'src/authtest.php';
 include 'constants.php';
 include 'dbconnect.php';
@@ -131,8 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
         else if($state=="fellowed")
         {
             $result = mysql_query("SELECT DISTINCT f.fellower_id, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
-             FROM users u, hanger h, gardrobe g,category c,fellowship f
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellower_id = $user_id");
+            FROM users u, hanger h, gardrobe g,category c,fellowship f
+            WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellowed_id = h.user_id AND  f.fellower_id=$user_id");
 
         }
         else if($type==$BY_CATEGORY){
