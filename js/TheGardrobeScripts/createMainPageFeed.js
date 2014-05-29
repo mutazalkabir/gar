@@ -7,19 +7,22 @@
  */
 
 createMainPageFeed = function(mainPageFeedData){
+    removePreloader();
+    $("#all_or_followers_only_selector span").off("click");
+
     $("#all_or_followers_only_selector span").on("click",function(){
+        showPreloader();
+        $(".feed_item").remove();
+        $("#all_or_followers_only_selector span").removeClass("active_selector_span");
+
         if($(this).html() == "Herkes"){
-            $("#page_contents").addClass("show_everybody");
+            getMainPageFeed("all", createMainPageFeed);
         }
         else{
-            $("#page_contents").removeClass("show_everybody");
+            getMainPageFeed("all", createMainPageFeed);
         }
 
-        if($(this).hasClass("active_selector_span")){
-            $(".feed_item[following='true']").css("display","inline-block");
-        }
-        else{
-            $("#all_or_followers_only_selector span").removeClass("active_selector_span");
+        if(!$(this).hasClass("active_selector_span")){
             $(this).addClass("active_selector_span");
         }
     });
@@ -49,14 +52,28 @@ createMainPageFeed = function(mainPageFeedData){
             var likeCount = 0;
         }
 
+        if(mainPageFeedData[i].hadliked == "true"){
+            var likeHTML = '<div style="opacity:0.8; cursor:default" class="buttons like_button" hanger_owner_id="'+ mainPageFeedData[i].user_id +'" hanger_id="'+ mainPageFeedData[i].hanger_id +'">Beğendin</div>'
+        }
+        else{
+            var likeHTML = '<div class="buttons like_button" hanger_owner_id="'+ mainPageFeedData[i].user_id +'" hanger_id="'+ mainPageFeedData[i].hanger_id +'"><i class="fa fa-heart-o"></i>Beğen</div>'
+        }
+
+        if(mainPageFeedData[i].hadshared == "true"){
+            var shareHTML = '<div style="opacity:0.8; cursor:default" class="buttons share_button">Paylaştın</div>'
+        }
+        else{
+            var shareHTML = '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>'
+        }
+
         var mainPageFeedItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"feed_item",
             attributes:{"following":"true", "order_number":i, "hanger_id": mainPageFeedData[i].hanger_id, "hanger_owner_id": mainPageFeedData[i].user_id},
             htmlContent:'<span class="cloth_cover">' +
-                            '<div class="buttons like_button" hanger_owner_id="'+ mainPageFeedData[i].user_id +'" hanger_id="'+ mainPageFeedData[i].hanger_id +'"><i class="fa fa-heart-o"></i>Beğen</div>' +
+                            likeHTML +
                             '<div class="buttons comment_button"><i class="fa fa-comment-o"></i>Yorum Yap</div>' +
-                            '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>' +
+                            shareHTML +
                         '</span>' +
                         '<div class="cloth_photo">' +
                             '<span user_id="'+mainPageFeedData[i].user_id+'" class="aski_owner_name">'+ mainPageFeedData[i].name + " " + mainPageFeedData[i].surname +'</span>'+
@@ -132,18 +149,6 @@ createMainPageFeed = function(mainPageFeedData){
                 showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
             }
         });
-
-        setNewLike = function(data){
-            if(data == true){
-
-            }
-        }
-
-        setNewShare = function(data){
-            if(data == true){
-
-            }
-        }
 
     }
 }

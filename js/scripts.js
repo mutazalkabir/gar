@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     /* Ana Sayfa Main Feed
      ================================================== */
-        getMainPageFeed();
+        getMainPageFeed("all", createMainPageFeed);
     /*================================================== */
 
     /* Personal Messages

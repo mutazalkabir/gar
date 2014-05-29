@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     //TODO Generate Confirmation Code
 
     $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdateTS','$date','$mail','0','$gender','$pass','','','','$confirmation_code')");
+    $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
     //execute the SQL query and return records
     header('Content-Type: application/json');
     echo json_encode($insert);

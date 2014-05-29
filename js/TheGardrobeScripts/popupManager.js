@@ -289,7 +289,12 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         showPreloader();
 
         $(".feed_item").remove();
-        getMainPageFeed();
+
+        if($(".active_selector_span").html() == "Takip Ettiklerim")
+            getMainPageFeed("fellowed",createMainPageFeed);
+        else{
+            getMainPageFeed("all",createMainPageFeed);
+        }
     });
 
     updateFeed = function(feedData){

@@ -349,7 +349,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
 </body>
 </html>
 
-<?
+<?php
 }
 
 else{
@@ -358,8 +358,4 @@ else{
     header("Location: login_register.php");
     // Destroy the session
 }
-
-
-
-
 ?>

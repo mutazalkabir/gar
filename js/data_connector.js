@@ -76,20 +76,18 @@ function logoff(){
 /* Login - Register */
 
 /* Main Page Feed */
-function getMainPageFeed(){
+function getMainPageFeed(_state, _successFunction){
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "gethanger", state: "all"},
+        data:{operation: "gethanger", state: _state},
         dataType:"json",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
     }).done(function(mainPageFeedData) {
-        removePreloader();
-        eval("createMainPageFeed(mainPageFeedData)");
-        // alert( "success" +data );
+        _successFunction(mainPageFeedData)
         }).fail(function(data) {
         // alert( "error" +data );
         }).always(function(data) {
@@ -333,7 +331,7 @@ function getGardrobesForProfilePage(_userId){
             withCredentials: true
         }
     }).done(function(data) {
-            setGardrobesForProfilePage(data);
+            //setGardrobesForProfilePage(data);
             // alert( "success" +data );
         }).fail(function(data) {
             debugger
