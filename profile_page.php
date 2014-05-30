@@ -165,19 +165,19 @@
         </div>
         <div id="following_followers_bar">
             <div id="followers">
-                <span id="followers_bar">Takipçilerim <span id="follower_count">270</span></span>
+                <span id="followers_bar">Takipçilerim <span id="follower_count"></span></span>
                 <div id="followers_mcustomscrollbar">
-                    <div class="uye_ara_uye_holder">
+                    <!--div class="uye_ara_uye_holder">
                         <div class="uye_ara_picture_holder">
                             <img src="images/dummy_images/profil.jpg" />
                         </div>
                         <span class="follower_profile_name_holder">Tunç</span>
-                    </div>
+                    </div-->
 
                 </div>
             </div>
             <div id="following">
-                <span id="following_bar">Takip Ettiklerim <span id="following_count">70</span></span>
+                <span id="following_bar">Takip Ettiklerim <span id="following_count"></span></span>
                 <div id="following_mcustomscrollbar">
 
                 </div>

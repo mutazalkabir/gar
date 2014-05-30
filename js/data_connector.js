@@ -497,3 +497,26 @@ function updateUserInformation(_userId,_name, _surname, _password, _phoneNumber,
             // alert( "finished" + data);
         });
 }
+
+
+function getUser(_userId, _successFunction){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "getuser"},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}

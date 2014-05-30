@@ -795,10 +795,35 @@ input:focus{
     transform: scale(0.95,0.95) !important;
 }
 
-.gardrobe img{
+.gardrobe_preview_container{
     display: inline;
     width: 173px !important;
     height: 140px !important;
+    min-height: 140px !important;
+    position: absolute;
+}
+
+.gardrobe_preview_container:nth-child(1){
+    left: 0;
+}
+
+.gardrobe_preview_container:nth-child(2){
+    left: 172px;
+}
+
+.gardrobe_preview_container:nth-child(3){
+    left: 0;
+    top:140px;
+}
+
+.gardrobe_preview_container:nth-child(4){
+    left: 172px;
+    top:140px;
+}
+
+.gardrobe_preview_container img{
+    max-width: 100%;
+    height: auto;
     min-height: 140px !important;
 }
 
@@ -1612,11 +1637,23 @@ input:focus{
     width: 100%;
     float: left;
     height: 200px;
+    position: relative;
 }
 
 #follower_count, #following_count{
     font-weight: 100;
     font-size: 14px;
+}
+
+.no_follower_or_following_text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-weight: 100;
+    margin: -22px 0px 0px -67px;
+    width: 135px;
+    line-height: 22px;
+    text-align: center;
 }
 
 .follower_profile_picture_holder{
@@ -1649,22 +1686,25 @@ input:focus{
 }
 
 .follower_profile_holder{
-    display: inline-block;
-    margin: 7px 6px;
-    float: left;
+    display: inline-block !important;
+    margin: 7px 6px !important;
+    float: left !important;
     -webkit-transition: all 250ms ease;
     -moz-transition: all 250ms ease;
     -ms-transition: all 250ms ease;
     -o-transition: all 250ms ease;
     transition: all 250ms ease;
+    box-shadow: none !important;
+    width: 70px!important;
+    height: 88px !important;
 }
 
 .follower_profile_name_holder{
-    font-weight: 200;
-    text-align: center;
-    width: 100%;
-    display: block;
-    line-height: 18px;
+    font-weight: 200 !important;
+    text-align: center !important;
+    width: 100% !important;
+    display: block !important;
+    line-height: 18px !important;
 }
 
 #followers_bar, #following_bar{

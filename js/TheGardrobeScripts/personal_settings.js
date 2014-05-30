@@ -143,26 +143,54 @@ var Thegardrobe = function(){
         $("#settings_page_surname").val(window.user[0].surname);
         $("#settings_page_mail").val(window.user[0].mail);
         $("#settings_page_phone").val(window.user[0].phone);
-        $("#settings_page_about").text(window.user[0].about);
+        $("#settings_page_about").val(window.user[0].about);
         $("#settings_page_city").text(window.user[0].city);
 
-        $("#save_personal_settings").on("click",function(){
-            var picId = $(".cropper ").attr("id");
-            if(picId == undefined){
-                picId = "dummy.jpg";
-            }
-            updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  $("#settings_page_city").val(), $("#settings_page_about").val(), picId, userUpdated);
+        $("#settings_page_phone").mask("(999) 999-99-99");
+
+        for(var j=0; j<cities.length; j++){
+            $("#settings_page_city").append('<option>'+ cities[j] +'</option>')
+        }
+
+        window.newCity = $($("#settings_page_city option")[0]).text();
+        $("#settings_page_city").on("change",function(){
+            window.newCity = $(this).find("option:selected").text();
         });
 
-        function userUpdated(data)
-        {debugger
-            if(data!=false)
-            {
+        $("#save_personal_settings").on("click",function(){
+            if($.trim($("#settings_page_pass1").val()) != ""){
+                if($.trim($("#settings_page_pass1").val()).length < 6){
+                    showStatusPopup("Şifre en az 6 haneli olmalı", "error", "")
+                }
+                else{
+                    if($.trim($("#settings_page_pass1").val()) != $.trim($("#settings_page_pass2").val())){
+                        showStatusPopup("Şifre değerleri aynı olmalıdır", "error", "")
+                    }
+                    else{
+                        var picId = $(".cropper ").attr("id");
+                        if(picId == undefined){
+                            picId = "dummy.jpg";
+                        }
+                        updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId, userUpdated);
+                    }
+                }
+            }
+            else{
+                var picId = $(".cropper ").attr("id");
+                if(picId == undefined){
+                    picId = "dummy.jpg";
+                }
+                updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId, userUpdated);
+            }
+
+        });
+
+        function userUpdated(data){
+            if(data!=false){
                 showStatusPopup("Bilgiler başarıyla güncellendi!", "success", "")
                 window.user = data;
             }
-            else
-            {
+            else{
                 showStatusPopup("Bilgilerinizi kontrol edip tekrar deneyin", "error", "")
             }
         }

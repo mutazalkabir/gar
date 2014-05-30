@@ -23,6 +23,7 @@
 
     <!-- TheGardrobe Component Scripts -->
     <script type="text/javascript" src="js/data_connector.js"></script>
+    <script type="text/javascript" src="js/helpers/mask_input.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/popupManager.js"></script>
@@ -199,7 +200,9 @@
             <tr>
                 <td>Şehir</td>
                 <td>
-                    <input id="settings_page_city" placeholder="Şehir Seçiniz">
+                    <select id="settings_page_city">
+                        <option selected>Şehir Adı Giriniz</option>
+                    </select>
                 </td>
             </tr>
             <tr>
