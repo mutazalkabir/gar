@@ -27,3 +27,24 @@ createDate = function(){
     var now = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours()+":"+date.getMinutes();
     return now;
 }
+
+convertToMiliseconds = function(day, month, year){
+    var date = new Date(""+ day +"-"+monthsArray[month]+"-"+year +" 16:00:00");
+    var milliseconds = date.getTime();
+    return milliseconds;
+}
+
+monthsArray = {
+    "Ocak":"01",
+    "Şubat":"02",
+    "Mart":"03",
+    "Nisan":"04",
+    "Mayıs":"05",
+    "Haziran":"06",
+    "Temmuz":"07",
+    "Ağustos":"08",
+    "Eylül":"09",
+    "Ekim":"10",
+    "Kasım":"11",
+    "Aralık":"12"
+}

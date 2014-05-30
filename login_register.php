@@ -20,6 +20,7 @@
 
     <!-- TheGardrobe Component Scripts -->
     <script type="text/javascript" src="js/data_connector.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/popupManager.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMainPageFeed.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMyFeed.js"></script>
@@ -75,13 +76,10 @@
         <input name="register_password" id="register_password" placeholder="Şifreniz" type="password">
         <input name="register_password_repeat" id="register_password_repeat" placeholder="Şifre Tekrar" type="password">
 
-        <input type="radio" name="gender">
-        <span class="label">Kadın</span>
+        <input type="radio"  gender="women"  name="gender" id="g1"/><label class="label" for="g1">Kadın</label>
+        <input type="radio"  gender="male"  name="gender" id="g2"/><label class="label" for="g2">Erkek</label>
 
-        <input type="radio" name="gender">
-        <span class="label">Erkek</span>
-
-        <select>
+        <select id="birth_day">
             <option selected>Gün</option>
             <option>1</option>
             <option>2</option>

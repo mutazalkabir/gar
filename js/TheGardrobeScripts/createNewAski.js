@@ -125,7 +125,6 @@ openAddAskiPopup = function(){
     }
 
     $("#categories_combo").on("change",function(){
-        debugger
         window.selectedCategoryId = $(this).find("option:selected").attr("id");
     });
 
@@ -143,6 +142,7 @@ openAddAskiPopup = function(){
     });
 
     $("#add_new_aski_button").on("click",function(){
+        debugger
         var myTags = JSON.stringify(window.TAGS);
         addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
     });

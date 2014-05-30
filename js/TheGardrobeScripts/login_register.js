@@ -134,8 +134,11 @@ $(document).ready(function(){
         },1500);
     });
 
+    $("input:radio[name=gender]").click(function() {
+        window.gender= $(this).attr("gender");
+    });
+
     $("#register_button").on("click",function(){
-        register("mmm@gmail.com","içö","IÖçüğĞÜ","ddd","m","06/10/1982");
         var eMail = $("#register_e_mail").val();
         var atpos=eMail.indexOf("@");
         var dotpos=eMail.lastIndexOf(".");
@@ -174,6 +177,7 @@ $(document).ready(function(){
                 return false;
             }
             else{
+                register($("#register_e_mail").val(), $("#register_name").val(), $("#register_surname").val(), $("#register_password").val(), window.gender , convertToMiliseconds($("#birth_day").val(), $("#birth_month").val(), $("#birth_year").val()))
                 $("#register_form_container").addClass("fadeOutLeft animatedSlow");
                 setTimeout(function(){
                     $("#successfully_registered_container").css("display","block");
