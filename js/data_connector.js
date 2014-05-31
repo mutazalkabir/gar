@@ -15,18 +15,19 @@ function register(_email,_name,_surname,_pass,_gender,_bDate)
         url: "src/register.php",
         type: "POST",
         data:{ mail: _email, name:_name, surname:_surname,pass:_pass,gender:_gender,bdate:_bDate },
-        dataType:"json",
+        dataType:"text",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
     }).done(function(data) {
-
+        window.location=data;
+            debugger
         }).fail(function(data) {
-                                     debugger
+              debugger
             // alert( "error" +data );
         }).always(function(data) {
-
+            debugger
             // alert( "finished" + data);
         });
 }

@@ -19,20 +19,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $surname=(string)$_POST['surname'];
     $pass=(string)$_POST['pass'];
     $gender=(string)$_POST['gender'];
-    $bdate = new DateTime((string)$_POST['bdate']);
-    $bdateTS = $bdate->getTimestamp();
+
+    $bdate =intval((string)$_POST['bdate'])/1000;
     $date = new DateTime();
     $date=$date->getTimestamp();
     $confirmation_code = genarateID();
     //TODO Generate Confirmation Code
 
-    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdateTS','$date','$mail','0','$gender','$pass','','','','$confirmation_code','','')");
-    $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
+    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','','$confirmation_code','','')");
+    //$update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
     //execute the SQL query and return records
-    header('Content-Type: application/json');
-    echo json_encode($insert);
- /*   var_dump($insert);
-    header('Location: ', true, 200);*/
+
+    //header('Content-Type: application/json');
+    //echo json_encode($insert);
+
+
+    header('Content-Type: text/plain; charset=utf-8');
+    echo ("confirm_mail.html?".$confirmation_code);
+die();
     //TODO Send mail
 
     exit();

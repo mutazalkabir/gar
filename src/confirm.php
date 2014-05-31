@@ -11,17 +11,16 @@ include 'dbconnect.php';
 include 'utils.php';
 error_reporting(E_ALL ^ E_DEPRECATED);
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET')
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 
-    $confirmation_code=(string)$_POST['$confirmation_code'];
-
+    $confirmation_code=(string)$_POST['confirmation_code'];
     //TODO Generate Confirmation Code
 
-    $update = mysql_query("UPDATE users SET confirm = 2 WHERE confirmation_code = '$confirmation_code'");
+    $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
     //execute the SQL query and return records
 
-    header("Location: login_register.php");
+    header("Location: ../login_register.php");
 
     exit();
 }

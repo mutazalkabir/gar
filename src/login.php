@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     $pass=(string)$_POST['pass'];
 
-    $result = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND pass='$pass' limit 1");
+    $result = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND pass='$pass' AND confirm=1 limit 1");
 
     while($row = mysql_fetch_assoc($result)) {
         $data[] = $row;
