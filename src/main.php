@@ -336,7 +336,7 @@ $data = array();
     if ($operation == "listgardrobe") {
         $data = array();
         $user_id = (string)$_GET['user_id'];
-        $result = mysql_query("SELECT * FROM gardrobe WHERE user_id=$user_id ");
+        $result = mysql_query("SELECT g.*, u.pic_id as avatar FROM gardrobe g, users u WHERE g.user_id=$user_id AND u.user_id= g.user_id");
         $total_hanger_count=0;
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -365,8 +365,12 @@ $data = array();
             unset($hangers);
         }
 
+        if($total_hanger_count>0)
+        {
+            $data[0]["hanger_count"]=$total_hanger_count;
+        }
 
-        $data[0]["hanger_count"]=$total_hanger_count;
+
         //$field_names = array_keys($data[0]);
 
         header('Content-Type: application/json');
@@ -381,7 +385,7 @@ $data = array();
         $data = array();
         $gardrobe_id = (string)$_GET['gardrobe_id'];
 
-        $result = mysql_query("SELECT * FROM gardrobe WHERE gardrobe_id='$gardrobe_id'");
+        $result = mysql_query("SELECT g.*, u.pic_id FROM gardrobe g, users u WHERE u._user_id = g.user_id AND g.gardrobe_id='$gardrobe_id'");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;

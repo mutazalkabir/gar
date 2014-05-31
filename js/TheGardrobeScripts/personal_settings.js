@@ -16,6 +16,7 @@ var Thegardrobe = function(){
         window.gardrobeKaristirOpened = false;
 
         $("#topbar_profile_picture_and_name span:first-of-type").text(window.user[0].name);
+        $("#avatar").attr("src", "storage/user_images/avatars/"+window.user[0].pic_id);
 
         /* Ana Sayfa Main Feed
          ================================================== */

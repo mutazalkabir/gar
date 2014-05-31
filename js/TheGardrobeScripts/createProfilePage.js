@@ -13,7 +13,8 @@ setGardrobesForProfilePage = function(gardrobeData){
 
     var gardrobesContainer = $("#profile_page_gardrobes");
     var askiPicturePath = "storage/user_images/";
-
+    debugger
+if(gardrobeData.length>0){
     for(var i=0; i<gardrobeData.length; i++){
         if(gardrobeData[i].hangers[0] == undefined){
             var userId = decodeURIComponent($.urlParam('user_id'));
@@ -63,6 +64,7 @@ setGardrobesForProfilePage = function(gardrobeData){
                             '<div class="gardrobe_preview_container"><img src="'+ askiPicturePath + userId + "/" + picId3 +'" /></div>'+
                         ' </div>'+
                         '<div class="profile_photo">'+
+                            '<img user_id="'+gardrobeData[i].user_id+'" class="main_page_feed_profile_image" src="storage/user_images/avatars/'+ gardrobeData[i].avatar+'">'+
                             '<img src="images/dummy_images/profil.jpg">'+
                         '</div>'+
                         '<span class="gardrobe_name feed_item_span">'+ gardrobeData[i].gardrobe_name +'</span>'+
@@ -72,6 +74,7 @@ setGardrobesForProfilePage = function(gardrobeData){
         }));
     gardrobesContainer.append(gardrobes);
     }
+}
 
     getFollowers(decodeURIComponent($.urlParam('user_id')), setFellowers);
     getFollowing(window.user[0].user_id, setFollowing);
