@@ -505,7 +505,7 @@ function getUser(_userId, _successFunction){
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "getuser"},
+        data:{operation: "getuser",user_id:_userId},
         dataType:"json",
         cache: false,
         xhrFields: {

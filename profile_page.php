@@ -80,7 +80,7 @@
 
             </div>
             <div id="messages_notifications_etc_holder">
-                <div id="topbar_profile_picture_and_name">
+                <div id="avatar" id="topbar_profile_picture_and_name">
                     <img src="images/dummy_images/profil.jpg"/>
                     <span>Tunç</span>
 

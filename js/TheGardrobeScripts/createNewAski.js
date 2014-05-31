@@ -144,14 +144,18 @@ openAddAskiPopup = function(){
     $("#add_new_aski_button").on("click",function(){
         debugger
         var myTags = JSON.stringify(window.TAGS);
-        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
+        debugger
+        //addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
+        //MUTAZ değiştirdim çünkü alamıyordu selected gardroubu
+        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  $("#my_gardrobes").find(":selected").attr("id"), $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
     });
 
     hangerSuccessfullyAdded = function(data){
         if(data == true){
             showStatusPopup("Askı Başarıyla Oluşturuldu :)", "success", "");
             $(".feed_item").remove();
-            getMainPageFeed();
+            //MUTAZ
+            getMainPageFeed("fellowed",createMainPageFeed);
             showPreloader();
         }
         else{

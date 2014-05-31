@@ -114,7 +114,6 @@ $(document).ready(function(){
         }
         return null;
     }
-
     window.user = JSON.parse(window.readCookie("user"));
     if(window.user == undefined){
         showStatusPopup("Bu sayfayı görebilmek için giriş yapmanız gerekiyor","error",setTimeout(function(){window.location="login_register.php"},3000))

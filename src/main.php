@@ -185,35 +185,35 @@ $data = array();
         if($state=="all")
         {
 
-            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+            $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
              WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id");
 	
         }
         else if($state=="fellowed")
         {
-            $result = mysql_query("SELECT DISTINCT f.fellower_id, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+            $result = mysql_query("SELECT DISTINCT f.fellower_id, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
             FROM users u, hanger h, gardrobe g,category c,fellowship f
             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellowed_id = h.user_id AND  f.fellower_id=$user_id");
 
         }
         else if($type==$BY_CATEGORY){
-            $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+            $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
              WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND c.category_id = $type_id  ORDER BY  h.create_date ASC");
         }
         else if($type==$BY_BRAND){
-            $result = mysql_query("SELECT DISTINCT b.brand_id, b.brand_name, h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+            $result = mysql_query("SELECT DISTINCT b.brand_id, b.brand_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c,brands b
              WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND b.brand_id = $type_id  ORDER BY h.create_date ASC");
         }
         else if($type==$BY_DATE){
-            $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+            $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
              WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.create_date BETWEEN $start_date AND $end_date  ORDER BY  h.create_date ASC");
         }
         else if($type==$BY_CITY){
-            $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+            $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
              WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.city = '$type_id'  ORDER BY  h.create_date ASC");
         }

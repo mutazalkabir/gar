@@ -27,6 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     //TODO Generate Confirmation Code
 
     $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','','$confirmation_code','','')");
+    $user_id = mysql_insert_id();
+    $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
+
     //$update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
     //execute the SQL query and return records
 

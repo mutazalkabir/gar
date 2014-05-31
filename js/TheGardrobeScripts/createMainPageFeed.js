@@ -72,7 +72,7 @@ createMainPageFeed = function(mainPageFeedData){
         else{
             var shareHTML = '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>'
         }
-
+debugger
         var mainPageFeedItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"feed_item",
@@ -88,7 +88,7 @@ createMainPageFeed = function(mainPageFeedData){
                         '</div>' +
 
                         '<div class="profile_photo">'+
-                            '<img user_id="'+mainPageFeedData[i].user_id+'" class="main_page_feed_profile_image" src="images/dummy_images/profil.jpg">'+
+                            '<img user_id="'+mainPageFeedData[i].user_id+'" class="main_page_feed_profile_image" src="storage/user_images/avatars/'+ mainPageFeedData[i].avatar+'">'+
                         ' </div>'+
 
                         '<span class="tag_name feed_item_span">'+ mainPageFeedData[i].category_name +'</span>'+
