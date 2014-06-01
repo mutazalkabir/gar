@@ -162,18 +162,20 @@ function updateComments(){
 /* Main Page Feed */
 
 /* My Feed Data */
-function createMyFeed(){
+function createMyFeed(_userId, _successFunction){
+    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "getfellowshipfeed"},
+        data:{operation: "getfellowshipfeed", user_id: _userId},
         dataType:"json",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
     }).done(function(mainPageFeedData) {
-            eval("setMyFeed(mainPageFeedData)");
+            _successFunction(mainPageFeedData);
+            //eval("setMyFeed(mainPageFeedData)");
             // alert( "success" +data );
         }).fail(function(data) {
             // alert( "error" +data );

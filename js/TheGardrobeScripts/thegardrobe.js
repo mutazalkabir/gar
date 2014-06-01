@@ -50,7 +50,7 @@ var Thegardrobe = function(){
 
         /* Ana Sayfa My Feed
          ================================================== */
-        createMyFeed();
+        createMyFeed(window.user[0].user_id, setMyFeed);
         /*================================================== */
 
         /* Ana Sayfa My Feed
