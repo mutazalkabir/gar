@@ -163,11 +163,10 @@ function updateComments(){
 
 /* My Feed Data */
 function createMyFeed(_userId, _successFunction){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "getfellowshipfeed", user_id: _userId},
+        data:{operation: "getfeeddata", user_id: _userId},
         dataType:"json",
         cache: false,
         xhrFields: {
@@ -436,7 +435,6 @@ function getTags(){
 
 /* Takipçiler ve Takip Edilenler */
 function getFollowers(_userId, _successFunction){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -458,7 +456,6 @@ function getFollowers(_userId, _successFunction){
 }
 
 function getFollowing(_userId, _successFunction){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -503,11 +500,31 @@ function updateUserInformation(_userId,_name, _surname, _password, _phoneNumber,
 
 
 function getUser(_userId, _successFunction){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
         data:{operation: "getuser",user_id:_userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+
+function getPromotedUsers(_successFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "getallusers"},
         dataType:"json",
         cache: false,
         xhrFields: {

@@ -21,6 +21,7 @@
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+    <script type="text/javascript" src="js/TheGardrobeScripts/cookieUtils.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/profile_page.js"></script>
     <script type="text/javascript" src="js/data_connector.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
@@ -32,7 +33,6 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/createMyFeed.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createProfilePage.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/newsletter.js"></script>
-    <script type="text/javascript" src="js/TheGardrobeScripts/login_register.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createNewAski.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createPersonalMessages.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createNotifications.js"></script>
@@ -135,7 +135,7 @@
             <div id="profile_page_profile_picture">
                 <img src="images/dummy_images/profil.jpg"/>
             </div>
-            <span id="profile_page_profile_name">Tunç Akın</span>
+            <span id="profile_page_profile_name"></span>
 
             <div id="send_message_to_user" class="profile_buttons">
                 <i class="fa fa-envelope-o"></i>
@@ -147,19 +147,19 @@
             </div>
         </div>
         <div id="profile_page_profile_information_bar">
-            <span id="profile_description">En iyi TheGardrobe kullanıcısı benim! Bu da benim profilimi anlatan ufak bir yazı. Kıyafetler çok güzel falan filan. Maksimum bu kadar!</span>
+            <span id="profile_description"></span>
             <div id="profile_info_holder">
                 <div class="profile_info_item">
                     <span><i class="flaticon-wardrobe"></i></span>
-                    <span>2 Gardrobe</span>
+                    <span id="total_gardrobe_count"></span>
                 </div>
                 <div class="profile_info_item">
                     <span><i class="flaticon-clothing1"></i></span>
-                    <span>5 Askı</span>
+                    <span id="total_hanger_count"></span>
                 </div>
                 <div class="profile_info_item">
-                    <span><i class="fa fa-heart-o"></i></span>
-                    <span>13 Beğeni</span>
+                    <span><i class="fa fa-question"></i></span>
+                    <span>Yakında</span>
                 </div>
             </div>
         </div>

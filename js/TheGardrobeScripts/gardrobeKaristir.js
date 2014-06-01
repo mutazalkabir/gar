@@ -38,86 +38,8 @@ gardrobeKaristir = function(){
             $('#date1').val(selectedDate.asString());
         }
     );
-    window.userArray = []
-    $.ajax({
-        url: "src/main.php",
-        type: "get",
-        dataType: "json",
-        data:{operation:"getallusers"},
-        success: function( data ) {
-            for(var i=0; i<data.length;i++){
-                var userObject = {
-                    label:data[i].name + " " + data[i].surname,
-                    value:data[i].name + " " + data[i].surname,
-                    id:data[i].user_id
-                }
-                window.userArray.push(userObject);
-            }
-        }
-    });
 
-    $( "#gardrobe_karistir_user_search" ).autocomplete({
-        source: window.userArray
-    });
-
-
-/*    $("#gardrobe_karistir_user_search").autocomplete({
-        source: function( request, response ) {
-            $.ajax({
-                dataType: "json",
-                type : 'Get',
-                url: "src/main.php",
-                data:{operation: "getallusers"},
-                dataType:"json",
-                success: function(data) {
-                    var myArray = [];
-                    for(var i=0; i<data.length; i++){
-                        var obj = {
-                            label:"asdfasdf",
-                            value:"asdfasdf"
-                        }
-                        myArray.push(obj);
-                    }
-                    $('#gardrobe_karistir_user_search').removeClass('ui-autocomplete-loading');
-                    response( $.map( myArray, function(item) {
-                        console.log(myArray)
-                    }));
-                },
-                error: function(data) {
-                    $('#gardrobe_karistir_user_search').removeClass('ui-autocomplete-loading');
-                }
-            });
-        },
-        minLength: 0,
-        open: function() {
-
-        },
-        close: function() {
-
-        },
-        focus:function(event,ui) {
-
-        },
-        select: function( event, ui ) {
-
-        }
-    });*/
-
-/*    $('#gardrobe_karistir_user_search').autocomplete({
-        source: function(req, response) {
-            $.ajax({
-                url: "src/main.php",
-                type: "GET",
-                data:{operation: "getallusers"},
-                dataType:"json",
-                success:function( data ) {
-                    var re = $.ui.autocomplete.escapeRegex(req.term);
-                    var matcher = new RegExp( "^" + re, "i" );
-                    response($.grep(data, function(item){return matcher.test(item.value);}) );
-                }
-            });
-        }
-    });*/
+    getPromotedUsers(setPromotedUsers);
 
     $("#show_all_cities").off("click");
     $("#show_all_cities").on("click",function(){
@@ -128,6 +50,33 @@ gardrobeKaristir = function(){
         removeGardrobeKaristir()
         searchResult("city",$(this).text(),createMainPageFeed);
     });
+}
+
+setPromotedUsers = function(data){
+    var container = $("#search_user").find(".gardrobe_karistir_sub_items_content_holder");
+    $(".uye_ara_uye_holder").remove();
+    randomUsers = [];
+    for(var i=0; i<6; i++){
+        var randomUser = data[Math.floor(Math.random()*data.length)];
+        randomUsers.push(randomUser);
+    }
+    for(var j=0; j<randomUsers.length; j++){
+        var randomUser = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"uye_ara_uye_holder",
+            attributes: {user_id: randomUsers[j].user_id},
+            htmlContent:'<div class="uye_ara_picture_holder">'+
+                            '<img src="storage/user_images/avatars/'+ randomUsers[j].pic_id +'" />'+
+                        '</div>'+
+                        '<span class="follower_profile_name_holder">'+ randomUsers[j].name +'</span>'
+        }));
+        container.prepend(randomUser);
+
+        randomUser.on("click",function(){
+            debugger
+            window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
+        });
+    }
 }
 
 removeGardrobeKaristir = function(){

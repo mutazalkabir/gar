@@ -460,10 +460,21 @@ input:focus{
 
 #my_feed{
     width: 100%;
-    top: 60px;
     height: 50%;
     border-bottom: 1px solid #cccccc;
     overflow: auto;
+    position: relative;
+}
+
+#my_feed_no_followers{
+    font-size: 16px;
+    font-weight: 100;
+    top: 50%;
+    position: absolute;
+    width: 100%;
+    padding: 0px 10px;
+    text-align: center;
+    margin-top: -22px;
 }
 
 #ads{
@@ -1705,6 +1716,8 @@ input:focus{
     width: 100% !important;
     display: block !important;
     line-height: 18px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #followers_bar, #following_bar{
@@ -1763,7 +1776,7 @@ input:focus{
 }
 
 .profile_info_item:last-child i{
-    color: #FF3B30;
+    color: #000;
 }
 /* Profile Page Styles */
 
@@ -3070,6 +3083,12 @@ input:focus{
     -ms-transition: all 250ms ease;
     -o-transition: all 250ms ease;
     transition: all 250ms ease;
+}
+
+.uye_ara_uye_holder .follower_profile_name_holder{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65px;
 }
 
 .uye_ara_picture_holder:hover{

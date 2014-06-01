@@ -72,7 +72,7 @@ createMainPageFeed = function(mainPageFeedData){
         else{
             var shareHTML = '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>'
         }
-debugger
+
         var mainPageFeedItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"feed_item",

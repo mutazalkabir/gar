@@ -98,7 +98,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                             <span>Üye Ara</span>
                             <div class="gardrobe_karistir_sub_items_content_holder">
 
-                                <div class="uye_ara_uye_holder">
+                                <!--div class="uye_ara_uye_holder">
                                     <div class="uye_ara_picture_holder">
                                         <img src="images/dummy_images/profil.jpg" />
                                     </div>
@@ -133,7 +133,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                                         <img src="images/dummy_images/profil.jpg" />
                                     </div>
                                     <span class="follower_profile_name_holder">Tunç</span>
-                                </div>
+                                </div-->
 
                                 <input id="gardrobe_karistir_user_search" type="text" placeholder="Üye İsmi Giriniz">
                                 <button>Üye Ara</button>
