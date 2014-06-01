@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     //execute the SQL query and return records
     if($update)
     {
-        sleep(20);
+        sleep(3);
         header("Location: ../login_register.php");
     }
     else{
