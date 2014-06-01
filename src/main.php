@@ -358,10 +358,10 @@ $data = array();
                 $total_hanger_count++;
                 array_push($hangers,$row2);
             }
-            if($hangers!=null)
-            {
+          //  if($hangers!=null)
+           // {
                 $data[$i]["hangers"]=$hangers;
-            }
+           // }
             unset($hangers);
         }
 
