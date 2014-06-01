@@ -601,11 +601,27 @@ $data= array();
         //   exit();
     }
 
+    if ($operation == "removefellower") {
+        $data = array();
+
+        $fellower_id = (string)$_GET['fellower_id'];
+        $fellowed_id = (string)$_GET['fellowed_id'];
+
+        $insert = mysql_query("DELETE FROM fellowship WHERE fellower_id=$fellower_id AND fellowed_id = $fellowed_id");
+        if($insert==false)
+            echo mysql_error();
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
+
+        //   exit();
+    }
 
 
 
 
-   // SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name FROM users u, users u2, users u3,fellowship f, likes l,type t WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id
+
+    // SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name FROM users u, users u2, users u3,fellowship f, likes l,type t WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id
 
     /////////////////////////////////////feed/////////////////////////////////////
 
