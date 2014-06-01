@@ -3138,6 +3138,10 @@ input:focus{
 #search_user input{
     width: 100%;
     margin: 10px 0px 10px 0px;
+    position: absolute;
+    z-index: 99999;
+    bottom: 10px;
+    left: 0;
 }
 
 #search_user button{

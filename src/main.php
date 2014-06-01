@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     if ($operation == "getallusers") {
         $data = array();
-        $result = mysql_query("SELECT * FROM users ");
+        $result = mysql_query("SELECT *, CONCAT(u.name,' ',u.surname) as label, CONCAT(u.name,' ',u.surname) as value, u.user_id as id FROM users u ");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -332,15 +332,28 @@ $data = array();
         $place = (string)$_GET['place'];
         $about = (string)$_GET['about'];
         $newfilename = (string)$_GET['newfilename'];
+        $brands = (string)$_GET['brands'];
         $tags = (string)$_GET['tags'];
         $date = new DateTime();
         $date = $date->getTimestamp();
         
 
 		$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$tags','$date')");
-        
+        $hanger_id = mysql_insert_id();
+        $brandArray = explode(',', $brands);
 
-     
+
+
+
+        $max = sizeof($brandArray);
+
+        for($i=0;$i<$max;$i++)
+        {
+
+            $insert = mysql_query("INSERT INTO hanger_brands VALUES ('','$brandArray[$i]','$hanger_id')");
+        }
+
+
 
         if($insert==false)
             echo mysql_error();
@@ -496,7 +509,7 @@ $data = array();
     if ($operation == "listbrands") {
         $data = array();
 
-        $result = mysql_query("SELECT * FROM brands ");
+        $result = mysql_query("SELECT *, b.brand_name as label, b.brand_name as value, b.brand_id as id FROM brands b ");
 
         while ($row = mysql_fetch_assoc($result)) {
 

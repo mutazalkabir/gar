@@ -70,6 +70,26 @@ gardrobeKaristir = function(){
 
 
     getCategories(setCategoriesForGardrobeKaristir);
+
+    $("#gardrobe_karistir_user_search").autocomplete({
+        source: function(req, response) {
+            $.ajax({
+                url: "src/main.php",
+                type: "GET",
+                data:{operation: "getallusers"},
+                dataType: "json",
+                success: function( data ) {
+                    var re = $.ui.autocomplete.escapeRegex(req.term);
+                    var matcher = new RegExp( "^" + re, "i" );
+                    response($.grep(data, function(item){return matcher.test(item.value);}) );
+                }
+            });
+        },
+        minLength: 0,
+        select: function(event, ui) {
+            debugger
+        }
+    });
 }
 
 setCategoriesForGardrobeKaristir = function(data){

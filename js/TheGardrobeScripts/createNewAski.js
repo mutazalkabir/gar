@@ -144,10 +144,14 @@ openAddAskiPopup = function(){
     $("#add_new_aski_button").on("click",function(){
         debugger
         var myTags = JSON.stringify(window.TAGS);
-        debugger
+        var tagArray="";
+for(var x=0;x<window.TAGS.length;x++)
+{
+tagArray = tagArray+","+window.TAGS[x].brand;
+}
         //addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
         //MUTAZ değiştirdim çünkü alamıyordu selected gardroubu
-        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  $("#my_gardrobes").find(":selected").attr("id"), $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
+        addNewHanger(window.user[0].user_id, window.selectedCategoryId,  $("#my_gardrobes").find(":selected").attr("id"), $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags,tagArray);
     });
 
     hangerSuccessfullyAdded = function(data){

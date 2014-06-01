@@ -42,7 +42,7 @@ var Thegardrobe = function(){
 
         /* Personal Notifications
          ================================================== */
-        createNotifications();
+        getNotifications(window.user[0].user_id ,createNotifications);
         /*================================================== */
 
         /* Ana Sayfa My Feed

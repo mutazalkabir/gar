@@ -136,7 +136,6 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                                 </div-->
 
                                 <input id="gardrobe_karistir_user_search" type="text" placeholder="Üye İsmi Giriniz">
-                                <button>Üye Ara</button>
                             </div>
                         </div>
                         <div class="gardrobe_karistir_sub_items_holder" id="gardrobe_categories">

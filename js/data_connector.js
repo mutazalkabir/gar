@@ -407,11 +407,11 @@ function getGardrobesForProfilePage(_userId){
 /* Gardrobe Ekle */
 
 /* Aski Ekle */
-function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName, _myTags){
+function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, _newFileName, _myTags,_tagArray){
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "addhanger", user_id: _userId, category_id: _categoryId, gardrobe_id: _gardrobeId, about: _about, city: _city, place: _place, newfilename: _newFileName, tags: _myTags},
+        data:{operation: "addhanger", user_id: _userId, category_id: _categoryId, gardrobe_id: _gardrobeId, about: _about, city: _city, place: _place, newfilename: _newFileName, tags: _myTags,brands:_tagArray},
         dataType:"json",
         cache: false,
         xhrFields: {
