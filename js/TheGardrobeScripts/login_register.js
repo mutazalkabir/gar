@@ -63,8 +63,25 @@ $(document).ready(function(){
         }
     });
 
+    $("#submit_confirmation_code").on("click",function(){
+        if($.trim($("#confirmation_code").val()).length < 16 || $.trim($("#confirmation_code").val()) == ""){
+            $("#confirmation_code").addClass("wrong_email");
+            $("#confirmation_form_container").addClass("shake animatedSlow");
+            setTimeout(function(){
+                $("#confirmation_code").removeClass("wrong_email");
+            },2000);
+            setTimeout(function(){
+                $("#confirmation_form_container").removeClass("shake animatedSlow");
+            },1000);
+            return false;
+        }
+        else{
+            return true;
+            //login($("#login_e_mail").val(),$("#login_password").val());
+        }
+    });
+
     loginAndCreateCookie = function(userData){
-        debugger
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
         setTimeout(function(){
             $("#successfully_logged_in").css("display","block");

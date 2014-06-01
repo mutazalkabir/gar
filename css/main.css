@@ -1768,6 +1768,19 @@ input:focus{
 /* Profile Page Styles */
 
 /* Login Page Styles */
+#confirmation_form{
+    top: 50%;
+    position: absolute;
+    margin-top: -91px;
+    right: 20px;
+    left: 20px;
+}
+
+#confirmation_form_container{
+    right: 50% !important;
+    margin-right: -200px;
+}
+
 #login_contents{
     width: 1050px;
     height: 400px;
@@ -1777,7 +1790,7 @@ input:focus{
     margin: -200px 0px 0px -525px;
 }
 
-#login_form_container, #successfully_registered_container, #successfully_reset_container, #register_form_container, #successfully_logged_in, #wrong_username_password, #forgot_password{
+#login_form_container, #confirmation_form_container, #successfully_registered_container, #successfully_reset_container, #register_form_container, #successfully_logged_in, #wrong_username_password, #forgot_password{
     top: 50%;
     right: 0;
     position: absolute;
@@ -1818,7 +1831,7 @@ input:focus{
     display: none;
 }
 
-#login_form_container button, #register_form_container button, #forgot_password button{
+#login_form_container button, #confirmation_form_container button, #register_form_container button, #forgot_password button{
     width: 100%;
     background: #ee2c2c;
     color: #fff;
@@ -1827,16 +1840,16 @@ input:focus{
     box-shadow:         0 6px #b00c0c;
 }
 
-#login_form_container button:hover, #register_form_container button:hover, #forgot_password button:hover{
+#login_form_container button:hover, #confirmation_form_container button:hover, #register_form_container button:hover, #forgot_password button:hover{
     box-shadow: none;
     margin-top: 6px;
 }
 
-#login_form_container input:first-of-type, #register_form_container input:first-of-type, #forgot_password input:first-of-type{
+#login_form_container input:first-of-type, #confirmation_form_container input:first-of-type, #register_form_container input:first-of-type, #forgot_password input:first-of-type{
     margin-top: 15px;
 }
 
-#login_form_container input, #register_form_container input, #forgot_password input{
+#login_form_container input, #confirmation_form_container input, #register_form_container input, #forgot_password input{
     width: 100%;
     margin: 0px 0px 10px 0px;
 }
