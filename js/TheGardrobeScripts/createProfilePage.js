@@ -9,6 +9,10 @@
 
 
 setGardrobesForProfilePage = function(gardrobeData){
+    if(decodeURIComponent($.urlParam('user_id')) == window.user[0].user_id){
+        $(".profile_buttons").remove();
+    }
+
     $("#total_gardrobe_count").text(gardrobeData.length + " Gardrobe");
     $("#total_hanger_count").text(gardrobeData[0].hanger_count + " Askı");
 
@@ -83,15 +87,21 @@ setGardrobesForProfilePage = function(gardrobeData){
     getFollowing(decodeURIComponent($.urlParam('user_id')), setFollowing);
 
     $("#follow_user").on("click",function(){
-        followUser(window.user[0].user_id, decodeURIComponent($.urlParam('user_id')), changeButtonType);
+        if($(this).attr("following") != "true"){
+            followUser(window.user[0].user_id, decodeURIComponent($.urlParam('user_id')), changeButtonType);
+        }
+        else{
+            unfollowUser(window.user[0].user_id, decodeURIComponent($.urlParam('user_id')), changeButtonType);
+        }
     });
 }
 
 changeButtonType = function(){
-    debugger
+    location.reload();
 }
 
 setFellowers = function(data){
+    var isFollowing=false;
     $("#follower_count").text(data.length);
     var followersContainer = $("#followers_mcustomscrollbar");
     if(data.length == 0){
@@ -99,6 +109,10 @@ setFellowers = function(data){
     }
     else{
         for(var i=0; i<data.length; i++){
+            if(window.user[0].user_id== data[i].user_id)
+            {
+                isFollowing=true;
+            }
             var follower = $(GenerateDomElement({
                 nodeType:"div",
                 classNames: "feed_item follower_profile_holder",
@@ -130,6 +144,10 @@ setFellowers = function(data){
             },300);
         });
     }
+
+   if(isFollowing){
+       $("#follow_user").attr("following","true");
+   }
 }
 
 setFollowing = function(data){

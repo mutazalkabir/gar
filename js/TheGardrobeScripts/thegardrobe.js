@@ -32,7 +32,7 @@ var Thegardrobe = function(){
 
         /* Personal Messages
          ================================================== */
-        $(".gardrobe_categories_scrollbar").mCustomScrollbar();
+/*        $(".gardrobe_categories_scrollbar").mCustomScrollbar();*/
         $("#search_input").on("click",function(){
             if(window.gardrobeKaristirOpened == false){
                 gardrobeKaristir();

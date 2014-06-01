@@ -101,7 +101,7 @@ openAddAskiPopup = function(){
         }
     }
 
-    getCategories();
+
 
     setCategories = function(data){
         var categories = $("#categories_combo");
@@ -114,8 +114,8 @@ openAddAskiPopup = function(){
             citiesOfTurkey.append('<option>'+ cities[j]+'</option>')
         }
     }
+    getCategories(setCategories);
 
-    getGardrobes(window.user[0].user_id);
 
     setGardrobes = function(data){
         var myGardrobes = $("#my_gardrobes");
@@ -123,7 +123,7 @@ openAddAskiPopup = function(){
             myGardrobes.append('<option id="'+ data[i].gardrobe_id +'">'+ data[i].gardrobe_name +'</option>')
         }
     }
-
+    getGardrobes(window.user[0].user_id);
     $("#categories_combo").on("change",function(){
         window.selectedCategoryId = $(this).find("option:selected").attr("id");
     });

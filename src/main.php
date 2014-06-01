@@ -187,11 +187,11 @@ $data = array();
         }
         if(isset($_GET['start_date']))
         {
-            $start_date = (int)$_GET['start_date'];
+            $start_date = ((int)$_GET['start_date']/1000)-10000;
         }
         if(isset($_GET['end_date']))
         {
-            $end_date = (int)$_GET['end_date'];
+            $end_date = ((int)$_GET['end_date']/1000)+10000;
         }
 
 

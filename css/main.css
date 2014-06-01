@@ -2271,6 +2271,7 @@ input:focus{
 
 #add_new_aski_left_side select{
     min-width: 250px;
+    max-width: 250px;
 }
 
 #add_new_aski_left_side table tr:last-of-type td:last-of-type{

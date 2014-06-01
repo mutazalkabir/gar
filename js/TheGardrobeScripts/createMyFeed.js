@@ -7,7 +7,6 @@
  */
 
 setMyFeed = function(myFeedData){
-    debugger
     if(myFeedData.length == 0){
         $("#my_feed").append('<span id="my_feed_no_followers">Henüz Takip Ettiğin Kimse yok :(</span>')
     }

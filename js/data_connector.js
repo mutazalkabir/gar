@@ -299,7 +299,7 @@ function sendMessage(_conversationId, _messageBody, _senderId, _receiverId, _suc
 /* Send Message */
 
 /* Aski Yükle */
-function getCategories(){
+function getCategories(_successFunction){
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -310,7 +310,7 @@ function getCategories(){
             withCredentials: true
         }
     }).done(function(data) {
-            setCategories(data);
+            _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
             debugger
@@ -564,7 +564,7 @@ function followUser(_userId, _followedId, _successFunction){
         });
 }
 
-function ufollowUser(_userId, _followedId){
+function unfollowUser(_userId, _followedId, _successFunction){
     $.ajax({
         url: "src/main.php",
         type: "GET",

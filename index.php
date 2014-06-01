@@ -145,7 +145,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
 
                             <div class="gardrobe_karistir_sub_items_content_holder gardrobe_categories_scrollbar">
 
-                                <div class="gardrobe_karistir_category_items">
+                                <!--div class="gardrobe_karistir_category_items">
                                     <div class="category_holder"><i class="flaticon-gardrobe-bikini4"></i></div>
                                     <span class="category_name">Şık</span>
                                 </div>
@@ -223,7 +223,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                                 <div class="gardrobe_karistir_category_items">
                                     <div class="category_holder"><i class="flaticon-gardrobe-uniform"></i></div>
                                     <span class="category_name">Gece</span>
-                                </div>
+                                </div-->
 
                             </div>
 

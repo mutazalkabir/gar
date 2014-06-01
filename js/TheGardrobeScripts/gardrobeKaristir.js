@@ -33,8 +33,8 @@ gardrobeKaristir = function(){
         'dateSelected',
         function(e, selectedDate, $td)
         {
-            removeGardrobeKaristir()
-            searchResultbyDate("date", e.timeStamp, e.timeStamp,createMainPageFeed);
+            removeGardrobeKaristir();
+            searchResultbyDate("date", selectedDate.getTime(), selectedDate.getTime(),createMainPageFeed);
             $('#date1').val(selectedDate.asString());
         }
     );
@@ -50,7 +50,39 @@ gardrobeKaristir = function(){
         removeGardrobeKaristir()
         searchResult("city",$(this).text(),createMainPageFeed);
     });
+
+
+    getCategories(setCategoriesForGardrobeKaristir);
 }
+
+setCategoriesForGardrobeKaristir = function(data){
+    var container = $(".gardrobe_categories_scrollbar");
+    $(".gardrobe_karistir_category_items").remove();
+    for(var i=0; i<data.length; i++){
+        var gardrobeKaristirCategoryItem = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"gardrobe_karistir_category_items",
+            attributes: {category_id: data[i].category_id},
+            htmlContent:'<div class="category_holder">'+
+                            '<i class="flaticon-gardrobe-bikini4"></i>' +
+                        '</div>'+
+                        '<span class="category_name">'+ data[i].category_name +'</span>'
+        }));
+        container.prepend(gardrobeKaristirCategoryItem);
+    }
+    $(".gardrobe_categories_scrollbar").mCustomScrollbar();
+    $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+
+    $(".gardrobe_categories_scrollbar ").on("mouseenter",function(){
+        $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    });
+
+    $(".gardrobe_categories_scrollbar ").on("mouseleave",function(){
+        $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    });
+}
+
+
 
 setPromotedUsers = function(data){
     var container = $("#search_user").find(".gardrobe_karistir_sub_items_content_holder");
@@ -73,7 +105,6 @@ setPromotedUsers = function(data){
         container.prepend(randomUser);
 
         randomUser.on("click",function(){
-            debugger
             window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
         });
     }
