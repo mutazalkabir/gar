@@ -950,7 +950,7 @@ $data= array();
         if($insert==false)
             echo mysql_error();
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','shared_user_id','2','hanger_id','$date')");
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','$shared_user_id','2','$hanger_id','$date')");
         
         if($insert2==false)
             echo mysql_error();
@@ -1129,7 +1129,7 @@ $data= array();
 
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
 
-        $result = mysql_query("SELECT n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id,n.notification_date, nt.* FROM notifications n, notification_types nt WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id");
+        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id= u.user_id");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;
