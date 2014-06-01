@@ -19,8 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
     //execute the SQL query and return records
-
-    header("Location: ../login_register.php");
+    if($update)
+    {
+        sleep(20);
+        header("Location: ../login_register.php");
+    }
+    else{
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($update);
+    }
 
     exit();
 }
