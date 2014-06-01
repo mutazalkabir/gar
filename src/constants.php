@@ -5,7 +5,7 @@
  * Date: 11.05.2014
  * Time: 13:29
  */
-//error_reporting(E_ALL ^ E_DEPRECATED);
+error_reporting(E_ALL ^ E_DEPRECATED);
 //error_reporting(E_ALL & ~E_NOTICE);
 //error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $username = "root";
