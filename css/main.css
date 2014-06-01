@@ -1568,7 +1568,7 @@ input:focus{
 }
 
 #follow_user[following="true"] span:before{
-    content: "Takip Ediyorsun";
+    content: "Takibi Bırak";
 }
 
 #follow_user[following="true"] i{

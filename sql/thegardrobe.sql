@@ -999,8 +999,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `reporter_id` int(11) NOT NULL,
   `reported_id` int(11) NOT NULL,
   `report_date` int(11) NOT NULL,
-  `report_comment` text NOT NULL,
-  FULLTEXT KEY `report_comment` (`report_comment`)
+  `report_comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

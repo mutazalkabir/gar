@@ -81,6 +81,14 @@ setGardrobesForProfilePage = function(gardrobeData){
 
     getFollowers(decodeURIComponent($.urlParam('user_id')), setFellowers);
     getFollowing(decodeURIComponent($.urlParam('user_id')), setFollowing);
+
+    $("#follow_user").on("click",function(){
+        followUser(window.user[0].user_id, decodeURIComponent($.urlParam('user_id')), changeButtonType);
+    });
+}
+
+changeButtonType = function(){
+    debugger
 }
 
 setFellowers = function(data){

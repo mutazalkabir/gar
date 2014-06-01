@@ -540,3 +540,47 @@ function getPromotedUsers(_successFunction){
             // alert( "finished" + data);
         });
 }
+
+
+
+function followUser(_userId, _followedId, _successFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "addfellower", fellower_id: _userId, fellowed_id: _followedId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+
+function ufollowUser(_userId, _followedId){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "removefellower", fellower_id: _userId, fellowed_id: _followedId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}

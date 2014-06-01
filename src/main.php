@@ -599,13 +599,6 @@ $data= array();
         if($insert==false)
             echo mysql_error();
 
-
-
-
-
-        header('Content-Type: application/json');
-        echo json_encode($insert);
-
         $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$fellower_id','$fellowed_id','4','null','$date')");
         if($insert2==false)
             echo mysql_error();
@@ -613,7 +606,7 @@ $data= array();
 
 
         header('Content-Type: application/json');
-        echo json_encode($insert,$insert2);
+        echo json_encode($insert2);
         //   exit();
     }
 
