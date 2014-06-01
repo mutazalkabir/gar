@@ -499,7 +499,7 @@ $data = array();
         $brand_name = (string)$_GET['brand_name'];
 
 
-        $insert = mysql_query("INSERT INTO brands VALUES ('','$brand_name')");
+        $insert = mysql_query("INSERT INTO brands VALUES ('','$brand_name','')");
         if($insert==false)
             echo mysql_error();
 
