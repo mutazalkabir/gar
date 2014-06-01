@@ -34,7 +34,24 @@ gardrobeKaristir = function(){
         function(e, selectedDate, $td)
         {
             removeGardrobeKaristir();
-            searchResultbyDate("date", selectedDate.getTime(), selectedDate.getTime(),createMainPageFeed);
+
+            var startDate = new Date();
+            var endDate = new Date();
+            startDate.setDate(selectedDate.getDate());
+            startDate.setMonth(selectedDate.getMonth());
+            startDate.setFullYear(selectedDate.getFullYear());
+            startDate.setHours(0);
+            startDate.setMinutes(0);
+            startDate.setSeconds(0);
+            endDate.setDate(selectedDate.getDate());
+            endDate.setMonth(selectedDate.getMonth());
+            endDate.setFullYear(selectedDate.getFullYear());
+            endDate.setHours(23);
+            endDate.setMinutes(59);
+            endDate.setSeconds(59);
+            
+
+            searchResultbyDate("date", startDate.getTime()/1000, endDate.getTime()/1000,createMainPageFeed);
             $('#date1').val(selectedDate.asString());
         }
     );
