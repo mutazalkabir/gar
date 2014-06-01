@@ -6,45 +6,59 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$(document).ready(function(){   
-    createNewMessage = function(){
-        $("body").append('<div id="glass">' +
-                            '<div id="glass_inner" class="bounceInLeft animated new_message">' +
-                            '<i id="close_popup" class="fa fa-times fa-2"></i>' +
+createNewMessage = function(){
+    var receiverId = "";
+    $("body").append('<div id="glass">' +
+                        '<div id="glass_inner" class="bounceInLeft animated new_message">' +
+                        '<i id="close_popup" class="fa fa-times fa-2"></i>' +
+                            '<div id="new_message_holder">' +
+                                '<span>Yeni Mesaj Gönder</span>' +
+                                '<input id="message_receiver_input" type="text" placeholder="Alıcı ismi giriniz">'+
+                                '<textarea id="new_message_body" placeholder="Mesajınızı Girin"></textarea>'+
+                                '<button id="create_new_message" type="submit">Gönder</button>'+
+                            '</div>'+
 
-                                '<div id="new_message_holder">' +
-                                    '<span>Yeni Mesaj Gönder</span>' +
-                                    '<input id="message_receiver_input" type="text" placeholder="Alıcı ismi giriniz">'+
-/*                                    '<div id="popup_profile_holder">' +
-                                        '<div id="popup_profile_picture" class="popup_profile_items">' +
-                                            '<img src="images/dummy_images/profil.jpg" />' +
-                                        '</div>'+
-                                    '<div id="popup_profile_name" class="popup_profile_items">Tunç Akın</div>'+*/
-                                    '<textarea placeholder="Mesajınızı Girin"></textarea>'+
+                        '</div> '+
+                    '</div> ');
 
-                                    '<button type="submit">Gönder</button>'+
-                                '</div>'+
 
-                            '</div> '+
-                        '</div> ');
 
-          $.ajax({
-               url: 'photo_tag_phps/friend_names.php',
-               type: 'POST',
-               dataType: 'json',
-               success: function(data){
-                     $('#message_receiver_input').autocomplete({
-                           source: data
-                     });
-               }
-          });
 
-        $("#close_popup").on("click",function(){
-            $("#glass_inner").removeClass("bounceInLeft animated");
-            $("#glass_inner").addClass("bounceOutRight animated");
-            setTimeout(function(){
-                $("#glass, #glass_inner").remove();
-            },400);
-        });
-    }
-});
+
+    $("#message_receiver_input").autocomplete({
+        source: function(req, response) {
+            $.ajax({
+                url: "src/main.php",
+                type: "GET",
+                data:{operation: "getallusers"},
+                dataType: "json",
+                success: function( data ) {
+                    var re = $.ui.autocomplete.escapeRegex(req.term);
+                    var matcher = new RegExp( "^" + re, "i" );
+                    response($.grep(data, function(item){return matcher.test(item.value);}) );
+                }
+            });
+        },
+        minLength: 0,
+        select: function(event, ui) {
+            receiverId = ui.item.user_id;
+        }
+    });
+
+    $("#create_new_message").on("click",function(){
+        sendMessage("-1", $("#new_message_body").val(), window.user[0].user_id, receiverId, messageSent)
+    });
+
+    $("#close_popup").on("click",function(){
+        $("#glass_inner").removeClass("bounceInLeft animated");
+        $("#glass_inner").addClass("bounceOutRight animated");
+        setTimeout(function(){
+            $("#glass, #glass_inner").remove();
+        },400);
+    });
+}
+
+messageSent = function(data){
+    //TODO MESSAGE SUCCESSFULLY SENT
+    debugger
+}

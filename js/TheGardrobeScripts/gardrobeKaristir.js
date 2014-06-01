@@ -70,6 +70,7 @@ gardrobeKaristir = function(){
 
 
     getCategories(setCategoriesForGardrobeKaristir);
+    getBrands(setBrands);
 
     $("#gardrobe_karistir_user_search").autocomplete({
         source: function(req, response) {
@@ -89,6 +90,44 @@ gardrobeKaristir = function(){
         select: function(event, ui) {
             debugger
         }
+    });
+}
+
+setBrands = function(data){
+    debugger
+    var container = $("#brands_holder").find(".gardrobe_karistir_sub_items_content_holder");
+
+    $(".gardrobe_karistir_brands").remove();
+
+    for(var i=0; i<data.length; i++){
+        var gardrobeKaristirBrandItem = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"gardrobe_karistir_brands",
+            attributes: {},
+            htmlContent:'<div class="brands_holder">'+
+                        '<div class="brand_logo">'+
+                            '<img src="storage/brand_images/'+ data[i].brand_pic +'"/>'+
+                        '</div>'+
+                            '<span class="brand_name">'+ data[i].brand_name +'</span>'+
+                        '</div>'
+        }));
+
+        container.prepend(gardrobeKaristirBrandItem);
+
+        gardrobeKaristirBrandItem.on("click",function(){
+            searchResult("brand", $(this).find(".brand_name").text(), createMainPageFeed)
+        })
+    }
+
+    container.mCustomScrollbar();
+    container.mCustomScrollbar("update");
+
+    container.on("mouseenter",function(){
+        container.mCustomScrollbar("update");
+    });
+
+    container.on("mouseleave",function(){
+        container.mCustomScrollbar("update");
     });
 }
 

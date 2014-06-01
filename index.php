@@ -230,7 +230,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                         <div class="gardrobe_karistir_sub_items_holder" id="brands_holder">
                             <span>Markalar</span>
                             <div class="gardrobe_karistir_sub_items_content_holder">
-                                <div class="gardrobe_karistir_brands">
+                                <!--div class="gardrobe_karistir_brands">
                                     <div class="brands_holder">
                                         <div class="brand_logo">
                                             <img src="images/brand_images/koton_logo.png"/>
@@ -263,7 +263,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
                                     </div>
                                 </div>
 
-                                <span id="show_all_brands">Hepsini Göster</span>
+                                <span id="show_all_brands">Hepsini Göster</span-->
                             </div>
                         </div>
                         <div class="gardrobe_karistir_sub_items_holder" id="date_search">

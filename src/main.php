@@ -511,7 +511,7 @@ echo($brandArray);
     if ($operation == "listbrands") {
         $data = array();
 
-        $result = mysql_query("SELECT *, b.brand_name as label, b.brand_name as value, b.brand_id as id FROM brands b ");
+        $result = mysql_query("SELECT *, b.brand_name as label, b.brand_name as value, b.brand_id as id FROM brands b ORDER BY b.brand_id DESC ");
 
         while ($row = mysql_fetch_assoc($result)) {
 
@@ -1094,10 +1094,11 @@ $data= array();
         $sender_id = (string)$_GET['sender_id'];
         $receiver_id= (string)$_GET['receiver_id'];
         $date = new DateTime();
+        $conversation_id= (string)$_GET['conversation_id'];
         $date = $date->getTimestamp();
 
 
-        if(isset($_GET['conversation_id']))
+        if($conversation_id!="-1")
         {
             $conversation_id= (string)$_GET['conversation_id'];
         }
