@@ -49,7 +49,7 @@ gardrobeKaristir = function(){
             endDate.setHours(23);
             endDate.setMinutes(59);
             endDate.setSeconds(59);
-            
+
 
             searchResultbyDate("date", startDate.getTime()/1000, endDate.getTime()/1000,createMainPageFeed);
             $('#date1').val(selectedDate.asString());
