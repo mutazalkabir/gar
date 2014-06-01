@@ -73,6 +73,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
         //exit();
     }
+
+
+    if ($operation == "reportuser") {
+        $data = array();
+        $reporter_id = (string)$_GET['reporter_id'];
+        $reported_id = (string)$_GET['reported_id'];
+        $date = new DateTime();
+        $date=$date->getTimestamp();
+
+        $insert = mysql_query("INSERT INTO reports VALUES ('','$reporter_id','$reported_id','$date','')");
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
+        //  exit();
+    }
+
     /////////////////////////////////////updateuser/////////////////////////////////////
     if ($operation == "updateuser") {
 
