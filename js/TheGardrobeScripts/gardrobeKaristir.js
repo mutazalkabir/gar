@@ -69,7 +69,12 @@ setCategoriesForGardrobeKaristir = function(data){
                         '<span class="category_name">'+ data[i].category_name +'</span>'
         }));
         container.prepend(gardrobeKaristirCategoryItem);
+
+        gardrobeKaristirCategoryItem.on("click",function(){
+            searchResult("category",$(this).attr("category_id"),createMainPageFeed);
+        });
     }
+
     $(".gardrobe_categories_scrollbar").mCustomScrollbar();
     $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
 

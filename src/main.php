@@ -1141,7 +1141,7 @@ $data= array();
 
         //return data
         header('Content-Type: application/json');
-        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        echo json_encode($data);
 
     }
 

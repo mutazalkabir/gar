@@ -6,24 +6,22 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$(document).ready(function(){
-    var  notificationsContainer = $("#notifications_content");
+var  notificationsContainer = $("#notifications_content");
 
-    createNotifications = function(){
-        var notification = '<div class="notifications">' +
-                            '<div class="notification_owner_picture">' +
-                                '<img src="images/dummy_images/profil.jpg"/>' +
-                            '</div>' +
-                            '<div class="notification_body">' +
-                                '<span class="notification_content">Tunç Akın seni takip etmeye başladı</span>' +
-                            '</div>' +
-                        '</div>'
+createNotifications = function(data){
+    debugger
+    var notification = '<div class="notifications">' +
+                        '<div class="notification_owner_picture">' +
+                            '<img src="images/dummy_images/profil.jpg"/>' +
+                        '</div>' +
+                        '<div class="notification_body">' +
+                            '<span class="notification_content">Tunç Akın seni takip etmeye başladı</span>' +
+                        '</div>' +
+                    '</div>'
 
-        for(i=0;i<100;i++){
-            notificationsContainer.append(notification);
-        }
-
-        notificationsContainer.mCustomScrollbar();
+    for(i=0;i<100;i++){
+        notificationsContainer.append(notification);
     }
-});
 
+    notificationsContainer.mCustomScrollbar();
+}
