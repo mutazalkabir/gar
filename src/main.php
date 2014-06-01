@@ -609,6 +609,70 @@ $data= array();
 
     /////////////////////////////////////feed/////////////////////////////////////
 
+
+    if ($operation == "getfeeddata") {
+        $data = array();
+        $user_id = (string)$_GET['user_id'];
+        $result = mysql_query("SELECT u.pic_id as fellower_pic, u.user_id as fellower_id, CONCAT(u.name, ' ', u.surname) as fellower, u2.pic_id as fellowed_pic, u2.user_id as fellowed_id, CONCAT(u2.name, ' ', u2.surname) as fellowed
+        FROM fellowship f, fellowship f2, users u, users u2
+        WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id
+        ORDER BY f.fellowship_date ASC");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        $result = mysql_query(" SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name
+       FROM users u, users u2, users u3,fellowship f,fellowship f2, likes l,type t
+       WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id
+       ORDER BY l.like_date ASC");
+
+        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        $result = mysql_query("SELECT u2.name as sharer_name, u2.surname as sharer_surname,u2.user_id as sharer_user_id, u3.name as shared_name, u3.surname as shared_surname,u3.user_id as shared_user_id, s.share_id, s.share_date
+        FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
+        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id
+        ORDER BY s.share_date ASC");
+
+        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+        $result = mysql_query("SELECT u2.name as commenter_name, u2.surname as commenter_surname,u2.user_id as commenter_user_id, u3.name as commented_name, u3.surname as commented_surname,u3.user_id as commented_user_id, c.comment_id, c.comment_date
+        FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
+        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id
+        ORDER BY c.comment_date ASC");
+
+        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+
+        
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+
+
+
+
+    }
+
+
+
     if ($operation == "getfellowshipfeed") {
    $data = array();
         $user_id = (string)$_GET['user_id'];
