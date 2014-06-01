@@ -223,8 +223,8 @@ $data = array();
         }
         else if($type==$BY_BRAND){
             $result = mysql_query("SELECT DISTINCT b.brand_id, b.brand_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
-             FROM users u, hanger h, gardrobe g,category c,brands b
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND b.brand_id = $type_id  ORDER BY h.create_date ASC");
+             FROM users u, hanger h, gardrobe g,category c, hanger_brands hb
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND hb.brand_id = $type_id AND hb.hanger_id = h.hanger_id ORDER BY h.create_date ASC");
         }
         else if($type==$BY_DATE){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
@@ -341,14 +341,16 @@ $data = array();
 		$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$tags','$date')");
         $hanger_id = mysql_insert_id();
         $brandArray = explode(',', $brands);
-
-
+        echo($brands);
+echo(" ");
+echo($brandArray);
 
 
         $max = sizeof($brandArray);
-
-        for($i=0;$i<$max;$i++)
+// because first char is comma
+        for($i=1;$i<$max;$i++)
         {
+
 
             $insert = mysql_query("INSERT INTO hanger_brands VALUES ('','$brandArray[$i]','$hanger_id')");
         }
