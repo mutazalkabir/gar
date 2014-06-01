@@ -7,6 +7,7 @@
  */
 
 setMyFeed = function(myFeedData){
+    debugger
     myFeedContainer = $("#my_feed");
 
     for(var i=0; i<myFeedData.length; i++){

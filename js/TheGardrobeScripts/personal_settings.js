@@ -170,16 +170,23 @@ var Thegardrobe = function(){
                     else{
                         var picId = $(".cropper ").attr("id");
                         if(picId == undefined){
-                            picId = "dummy.jpg";
+                            picId = window.user[0].pic_id;
                         }
+
                         updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId, userUpdated);
                     }
                 }
             }
             else{
                 var picId = $(".cropper ").attr("id");
+                var pass= $.trim($("#settings_page_pass1").val())
                 if(picId == undefined){
-                    picId = "dummy.jpg";
+
+                    picId = window.user[0].pic_id;
+                }
+
+                if(pass == ""){
+                    pass=window.user[0].pass;
                 }
                 updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId, userUpdated);
             }
@@ -188,7 +195,9 @@ var Thegardrobe = function(){
 
         function userUpdated(data){
             if(data!=false){
+                debugger
                 showStatusPopup("Bilgiler başarıyla güncellendi!", "success", "")
+                createCookie("user", JSON.stringify(data), 10);
                 window.user = data;
             }
             else{

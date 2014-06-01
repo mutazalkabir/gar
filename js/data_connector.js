@@ -21,7 +21,7 @@ function register(_email,_name,_surname,_pass,_gender,_bDate)
             withCredentials: true
         }
     }).done(function(data) {
-        window.location=data;
+       // window.location=data;
             debugger
         }).fail(function(data) {
               debugger

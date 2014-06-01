@@ -48,7 +48,9 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+         <script type="text/javascript" src="js/TheGardrobeScripts/cookieUtils.js"></script>
      <script type="text/javascript" src="js/TheGardrobeScripts/thegardrobe.js"></script>
+
     <script type="text/javascript" src="js/data_connector.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
@@ -58,7 +60,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     <script type="text/javascript" src="js/TheGardrobeScripts/createMainPageFeed.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMyFeed.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/newsletter.js"></script>
-    <script type="text/javascript" src="js/TheGardrobeScripts/login_register.js"></script>
+
     <script type="text/javascript" src="js/TheGardrobeScripts/createNewAski.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createPersonalMessages.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createNotifications.js"></script>

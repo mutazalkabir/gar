@@ -13,10 +13,10 @@ var Thegardrobe = function(){
     {
         cities = ["ADANA","ADIYAMAN","AFYONKARAHİSAR", "AĞRI","AMASYA","ANKARA","ANTALYA","ARTVİN","AYDIN", "BALIKESİR","BİLECİK","BİNGÖL","BİTLİS","BOLU", "BURDUR","BURSA","ÇANAKKALE","ÇANKIRI","ÇORUM", "DENİZLİ","DİYARBAKIR","EDİRNE","ELAZIĞ","ERZİNCAN", "ERZURUM","ESKİŞEHİR","GAZİANTEP","GİRESUN", "GÜMÜŞHANE","HAKKARİ","HATAY","ISPARTA","MERSİN", "İSTANBUL","İZMİR","KARS","KASTAMONU","KAYSERİ", "KIRKLARELİ","KIRŞEHİR","KOCAELİ","KONYA","KÜTAHYA", "MALATYA","MANİSA","KAHRAMANMARAŞ","MARDİN","MUĞLA", "MUŞ","NEVŞEHİR","NİĞDE","ORDU","RİZE","SAKARYA", "SAMSUN","SİİRT","SİNOP","SİVAS","TEKİRDAĞ","TOKAT", "TRABZON","TUNCELİ","ŞANLIURFA","UŞAK","VAN", "YOZGAT","ZONGULDAK","AKSARAY","BAYBURT","KARAMAN", "KIRIKKALE","BATMAN","ŞIRNAK","BARTIN","ARDAHAN","IĞDIR", "YALOVA","KARABÜK","KİLİS","OSMANİYE","DÜZCE"];
 
+        window.user = JSON.parse(window.readCookie("user"));
         window.gardrobeKaristirOpened = false;
 
         $("#topbar_profile_picture_and_name span:first-of-type").text(window.user[0].name);
-        debugger
         $("#avatar").attr("src", "storage/user_images/avatars/"+window.user[0].pic_id);
 
 
@@ -125,7 +125,7 @@ var Thegardrobe = function(){
         });
 
         $("#topbar_profile_picture_and_name").find("span:first-of-type").on("click",function(){
-            window.location = "profile_page.php";
+            window.location = "profile_page.php?user_id=" + window.user[0].user_id;
         });
 
         $("#main_logo").on("click",function(){

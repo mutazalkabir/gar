@@ -19,6 +19,7 @@
     <script type="text/javascript" src="js/helpers/jquery.mousewheel.js"></script>
 
     <!-- TheGardrobe Component Scripts -->
+         <script type="text/javascript" src="js/TheGardrobeScripts/cookieUtils.js"></script>
     <script type="text/javascript" src="js/data_connector.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/popupManager.js"></script>

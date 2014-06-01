@@ -64,13 +64,14 @@ $(document).ready(function(){
     });
 
     loginAndCreateCookie = function(userData){
+        debugger
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
         setTimeout(function(){
             $("#successfully_logged_in").css("display","block");
             $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
         },150);
-
-        createCookie("user", JSON.stringify(userData), 10);
+        window.user=userData;
+           createCookie("user", JSON.stringify(userData), 10);
 
         setTimeout(function(){
             window.location = "index.php";
@@ -90,7 +91,7 @@ $(document).ready(function(){
         },1000);
     }
 
-
+/*
     function createCookie(name, value, days) {
         var expires;
 
@@ -114,6 +115,9 @@ $(document).ready(function(){
         }
         return null;
     }
+
+    */
+
     window.user = JSON.parse(window.readCookie("user"));
     if(window.user == undefined){
         showStatusPopup("Bu sayfayı görebilmek için giriş yapmanız gerekiyor","error",setTimeout(function(){window.location="login_register.php"},3000))
