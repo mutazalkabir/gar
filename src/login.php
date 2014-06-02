@@ -22,14 +22,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
     while($row = mysql_fetch_assoc($result)) {
         $data[] = $row;
+
     }
 
-  //  session_name('gardrobeLogin');
-    session_start();
-    $_SESSION['user_id'] =$data[0]["user_id"];
-     header('Content-Type: application/json; charset=utf-8');
-     echo json_encode($data);
-   //  exit();
+
+
+    if(isset($data[0]["user_id"]))
+    {
+        session_start();
+        $update = mysql_query("UPDATE users SET active='1' WHERE mail='$mail'");
+        $_SESSION['user_id'] =$data[0]["user_id"];
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data);
+    }
+    else{
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($result);
+    }
+
 }
 else
 {

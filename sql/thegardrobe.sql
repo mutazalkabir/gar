@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Anamakine: localhost
--- Üretim Zamanı: 01 Haz 2014, 20:17:19
--- Sunucu sürümü: 5.5.24-log
--- PHP Sürümü: 5.3.13
+-- Host: localhost
+-- Generation Time: Jun 03, 2014 at 12:12 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.9
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Veritabanı: `thegardrobe`
+-- Database: `thegardrobe`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `brands`
+-- Table structure for table `brands`
 --
 
 CREATE TABLE IF NOT EXISTS `brands` (
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- Tablo döküm verisi `brands`
+-- Dumping data for table `brands`
 --
 
 INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_pic`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_pic`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
--- Tablo döküm verisi `category`
+-- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`category_id`, `category_name`) VALUES
@@ -83,7 +83,7 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE IF NOT EXISTS `comment` (
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
 
 --
--- Tablo döküm verisi `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `comment`, `commented_user_id`) VALUES
@@ -280,7 +280,7 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `conversation`
+-- Table structure for table `conversation`
 --
 
 CREATE TABLE IF NOT EXISTS `conversation` (
@@ -295,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `conversation` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Tablo döküm verisi `conversation`
+-- Dumping data for table `conversation`
 --
 
 INSERT INTO `conversation` (`c_id`, `user_one`, `user_two`, `ip`, `conversation_date`, `receiver_read`) VALUES
@@ -309,7 +309,7 @@ INSERT INTO `conversation` (`c_id`, `user_one`, `user_two`, `ip`, `conversation_
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `emails`
+-- Table structure for table `emails`
 --
 
 CREATE TABLE IF NOT EXISTS `emails` (
@@ -319,7 +319,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Tablo döküm verisi `emails`
+-- Dumping data for table `emails`
 --
 
 INSERT INTO `emails` (`id`, `mail`) VALUES
@@ -331,7 +331,7 @@ INSERT INTO `emails` (`id`, `mail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `fellowship`
+-- Table structure for table `fellowship`
 --
 
 CREATE TABLE IF NOT EXISTS `fellowship` (
@@ -344,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Tablo döküm verisi `fellowship`
+-- Dumping data for table `fellowship`
 --
 
 INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellowship_date`) VALUES
@@ -375,7 +375,7 @@ INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellow
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `gardrobe`
+-- Table structure for table `gardrobe`
 --
 
 CREATE TABLE IF NOT EXISTS `gardrobe` (
@@ -389,7 +389,7 @@ CREATE TABLE IF NOT EXISTS `gardrobe` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
--- Tablo döküm verisi `gardrobe`
+-- Dumping data for table `gardrobe`
 --
 
 INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `create_date`) VALUES
@@ -429,7 +429,7 @@ INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `cre
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `hanger`
+-- Table structure for table `hanger`
 --
 
 CREATE TABLE IF NOT EXISTS `hanger` (
@@ -447,7 +447,7 @@ CREATE TABLE IF NOT EXISTS `hanger` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=94 ;
 
 --
--- Tablo döküm verisi `hanger`
+-- Dumping data for table `hanger`
 --
 
 INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `about`, `city`, `place`, `pic_id`, `tags`, `create_date`) VALUES
@@ -511,7 +511,7 @@ INSERT INTO `hanger` (`hanger_id`, `user_id`, `category_id`, `gardrobe_id`, `abo
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `hanger_brands`
+-- Table structure for table `hanger_brands`
 --
 
 CREATE TABLE IF NOT EXISTS `hanger_brands` (
@@ -524,7 +524,7 @@ CREATE TABLE IF NOT EXISTS `hanger_brands` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Tablo döküm verisi `hanger_brands`
+-- Dumping data for table `hanger_brands`
 --
 
 INSERT INTO `hanger_brands` (`hb_id`, `brand_id`, `hanger_id`) VALUES
@@ -535,7 +535,7 @@ INSERT INTO `hanger_brands` (`hb_id`, `brand_id`, `hanger_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `likes`
+-- Table structure for table `likes`
 --
 
 CREATE TABLE IF NOT EXISTS `likes` (
@@ -549,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `likes` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=97 ;
 
 --
--- Tablo döküm verisi `likes`
+-- Dumping data for table `likes`
 --
 
 INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_date`, `liked_user_id`) VALUES
@@ -653,7 +653,7 @@ INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_da
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE IF NOT EXISTS `notifications` (
@@ -667,7 +667,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=313 ;
 
 --
--- Tablo döküm verisi `notifications`
+-- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `notification_type_id`, `notificated_item_id`, `notification_date`) VALUES
@@ -983,7 +983,7 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `notification_types`
+-- Table structure for table `notification_types`
 --
 
 CREATE TABLE IF NOT EXISTS `notification_types` (
@@ -993,7 +993,7 @@ CREATE TABLE IF NOT EXISTS `notification_types` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Tablo döküm verisi `notification_types`
+-- Dumping data for table `notification_types`
 --
 
 INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) VALUES
@@ -1005,7 +1005,7 @@ INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) V
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `pm`
+-- Table structure for table `pm`
 --
 
 CREATE TABLE IF NOT EXISTS `pm` (
@@ -1020,7 +1020,7 @@ CREATE TABLE IF NOT EXISTS `pm` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
--- Tablo döküm verisi `pm`
+-- Dumping data for table `pm`
 --
 
 INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date`, `conversation_id`) VALUES
@@ -1055,7 +1055,7 @@ INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `reports`
+-- Table structure for table `reports`
 --
 
 CREATE TABLE IF NOT EXISTS `reports` (
@@ -1069,7 +1069,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `share`
+-- Table structure for table `share`
 --
 
 CREATE TABLE IF NOT EXISTS `share` (
@@ -1082,7 +1082,7 @@ CREATE TABLE IF NOT EXISTS `share` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
--- Tablo döküm verisi `share`
+-- Dumping data for table `share`
 --
 
 INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_user_id`) VALUES
@@ -1119,7 +1119,7 @@ INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_u
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `tag`
+-- Table structure for table `tag`
 --
 
 CREATE TABLE IF NOT EXISTS `tag` (
@@ -1137,7 +1137,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `type`
+-- Table structure for table `type`
 --
 
 CREATE TABLE IF NOT EXISTS `type` (
@@ -1147,7 +1147,7 @@ CREATE TABLE IF NOT EXISTS `type` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Tablo döküm verisi `type`
+-- Dumping data for table `type`
 --
 
 INSERT INTO `type` (`type_id`, `type_name`) VALUES
@@ -1157,7 +1157,7 @@ INSERT INTO `type` (`type_id`, `type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -1176,52 +1176,53 @@ CREATE TABLE IF NOT EXISTS `users` (
   `confirmation_code` varchar(16) NOT NULL,
   `city` varchar(40) NOT NULL,
   `phone` int(20) NOT NULL,
+  `active` int(1) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `mail` (`mail`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
--- Tablo döküm verisi `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`, `confirmation_code`, `city`, `phone`) VALUES
-(1, 'Tunç', 'Akın', 392508000, 1399810339, 'tuncak30@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(20, 'mehmet', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir20@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(21, 'ali', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir31@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(22, 'berk', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir4@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(24, 'rumeysa', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir6@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(25, 'emine', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir7@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(26, 'sezin', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir8@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(27, 'savas', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir9@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(28, 'murat', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir10@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(29, 'esra', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir11@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(30, 'didem', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir12@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(32, 'Selen', 'Bayramin', 392508000, 1399810995, 'selenbayramin@gmail.com', 1, 1, '123456', 'sadas', 'dsa', 'avatar.png', '123456789qwertyu', '', 0),
-(33, 'Berre', 'Tekeoğlu', 392508000, 1399810995, 'berretekeoglu@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(34, 'Günsu Dilek', 'Kobya', 392508000, 1399810995, 'gunsukobya@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(35, 'Meral', 'Görgülü', 392508000, 1399810995, 'meralgorgulu@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0),
-(36, 'Sezgincan', 'Mailmail', 392508000, 1399810995, 'sezgincan@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0),
-(37, 'Esma', 'Yemeztaşlıca', 392508000, 1399810995, 'esma@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0),
-(38, 'Elif', 'Oran', 392508000, 1399810995, 'eliforan@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0),
-(39, 'Gözde', 'Asena Olcay', 392508000, 1399810995, 'gozde@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0),
-(40, 'Batuhan', 'Sezgin', 392508000, 1399810995, 'batuhansezgin@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0),
-(41, 'Ecem', 'Yalız', 392508000, 1399810995, 'ecemyaliz@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0),
-(42, 'deneme', 'deneme', 2147483647, 1401534904, 'mutaz@deneme.com', 0, 0, '123456', '', '', '', 'u091gkjq3zs2ftvh', '', 0),
-(44, 'deneme', 'deneme', 2147483647, 1401535141, 'mutaz@deneme2.com', 2, 0, '123456', '', '', '', 'mv0pltfvaaurps61', '', 0),
-(45, 'deneme', 'deneme', 2147483647, 1401535394, 'mutaz@deneme3.com', 0, 0, '123456', '', '', '', 'vizqt09cnoqixhua', '', 0),
-(46, 'das', 'dasd', 820504800, 1401536550, 'a@aaa.com', 0, 0, '123456', '', '', '', '24rrhzxwkibf14dz', '', 0),
-(47, 'sda', 'asdas', 0, 1401537267, 's@sa.com', 0, 0, '123456', '', '', '', '8wh0kvbhr3grtq7t', '', 0),
-(49, '123', '123', 0, 1401537423, 'a@qqqqq.com', 0, 0, '123456', '', '', '', '4b5ioplciv93covt', '', 0),
-(50, 'la', 'bebe', 820504800, 1401537827, 'b@b.com', 1, 0, '123456', '', '', '50.png', 'k69hxkupaja51ff0', 'ADANA', 0),
-(51, 'sezin', 'alkabir', 473781600, 1401548038, 'sezin@alkabir.com', 1, 0, '123456', '', '', '51.png', 'c9go9er1pd7gmnkz', 'ADANA', 0),
-(52, '123', '123', 0, 1401629065, 'a@dsada.com', 1, 0, '123456', '', '', 'avatar.png', 'urxqa5hfu1or673c', '', 0),
-(53, '123456', '123456', 0, 1401629261, 'urxqa5hfu1or673c@ss.com', 0, 0, '123456', '', '', 'avatar.png', 'bhg955lekpv7urjx', '', 0),
-(54, '123456', '123456', 0, 1401629425, 'asad@sad.com', 0, 0, 'asdasd', '', '', 'avatar.png', 'm7npdlumzr53rut3', '', 0);
+INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`, `confirmation_code`, `city`, `phone`, `active`) VALUES
+(1, 'Tunç', 'Akın', 392508000, 1399810339, 'tuncak30@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '123456', '1', '1', '4.png', '123456789qwertyu', 'ADANA', 0, 0),
+(5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(20, 'mehmet', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir20@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(21, 'ali', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir31@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(22, 'berk', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir4@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(24, 'rumeysa', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir6@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(25, 'emine', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir7@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(26, 'sezin', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir8@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(27, 'savas', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir9@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(28, 'murat', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir10@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(29, 'esra', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir11@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(30, 'didem', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir12@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(32, 'Selen', 'Bayramin', 392508000, 1399810995, 'selenbayramin@gmail.com', 1, 1, '123456', 'sadas', 'dsa', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(33, 'Berre', 'Tekeoğlu', 392508000, 1399810995, 'berretekeoglu@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(34, 'Günsu Dilek', 'Kobya', 392508000, 1399810995, 'gunsukobya@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(35, 'Meral', 'Görgülü', 392508000, 1399810995, 'meralgorgulu@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(36, 'Sezgincan', 'Mailmail', 392508000, 1399810995, 'sezgincan@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(37, 'Esma', 'Yemeztaşlıca', 392508000, 1399810995, 'esma@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(38, 'Elif', 'Oran', 392508000, 1399810995, 'eliforan@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(39, 'Gözde', 'Asena Olcay', 392508000, 1399810995, 'gozde@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(40, 'Batuhan', 'Sezgin', 392508000, 1399810995, 'batuhansezgin@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(41, 'Ecem', 'Yalız', 392508000, 1399810995, 'ecemyaliz@gmail.com', 1, 0, '123456', '', '', 'avatar.png', '123456789qwertyu', '', 0, 1),
+(42, 'deneme', 'deneme', 2147483647, 1401534904, 'mutaz@deneme.com', 0, 0, '123456', '', '', '', 'u091gkjq3zs2ftvh', '', 0, 1),
+(44, 'deneme', 'deneme', 2147483647, 1401535141, 'mutaz@deneme2.com', 2, 0, '123456', '', '', '', 'mv0pltfvaaurps61', '', 0, 1),
+(45, 'deneme', 'deneme', 2147483647, 1401535394, 'mutaz@deneme3.com', 0, 0, '123456', '', '', '', 'vizqt09cnoqixhua', '', 0, 1),
+(46, 'das', 'dasd', 820504800, 1401536550, 'a@aaa.com', 0, 0, '123456', '', '', '', '24rrhzxwkibf14dz', '', 0, 1),
+(47, 'sda', 'asdas', 0, 1401537267, 's@sa.com', 0, 0, '123456', '', '', '', '8wh0kvbhr3grtq7t', '', 0, 1),
+(49, '123', '123', 0, 1401537423, 'a@qqqqq.com', 0, 0, '123456', '', '', '', '4b5ioplciv93covt', '', 0, 1),
+(50, 'la', 'bebe', 820504800, 1401537827, 'b@b.com', 1, 0, '123456', '', '', '50.png', 'k69hxkupaja51ff0', 'ADANA', 0, 1),
+(51, 'sezin', 'alkabir', 473781600, 1401548038, 'sezin@alkabir.com', 1, 0, '123456', '', '', '51.png', 'c9go9er1pd7gmnkz', 'ADANA', 0, 1),
+(52, '123', '123', 0, 1401629065, 'a@dsada.com', 1, 0, '123456', '', '', 'avatar.png', 'urxqa5hfu1or673c', '', 0, 1),
+(53, '123456', '123456', 0, 1401629261, 'urxqa5hfu1or673c@ss.com', 0, 0, '123456', '', '', 'avatar.png', 'bhg955lekpv7urjx', '', 0, 1),
+(54, '123456', '123456', 0, 1401629425, 'asad@sad.com', 0, 0, 'asdasd', '', '', 'avatar.png', 'm7npdlumzr53rut3', '', 0, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

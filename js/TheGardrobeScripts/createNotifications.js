@@ -7,7 +7,8 @@
  */
 
 createNotifications = function(data){
-    debugger
+    if(data)
+    {
     var  notificationsContainer = $("#notifications_content");
     for(var i=0; i<data.length; i++){
         if(data[i].notification_type == "like"){
@@ -68,4 +69,5 @@ createNotifications = function(data){
         }
     }
     notificationsContainer.mCustomScrollbar();
+}
 }

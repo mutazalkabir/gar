@@ -43,10 +43,11 @@ function login(_email,_pass){
             withCredentials: true
         }
     }).done(function(data) {
-
+debugger
             loginAndCreateCookie(data);
             // alert( "success" +data );
         }).fail(function(data) {
+        debugger
             showWrongUserNameOrPassword();
             // alert( "error" +data );
         }).always(function(data) {
@@ -625,5 +626,30 @@ function unfollowUser(_userId, _followedId, _successFunction){
         }).always(function(data) {
             // alert( "finished" + data);
         });
+}
+
+
+
+function deactivateAccount(_userId, _successFunction){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "deactivateaccount", user_id: _userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+        debugger
+        _successFunction(data);
+        // alert( "success" +data );
+    }).fail(function(data) {
+        debugger
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
 }
 

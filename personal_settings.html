@@ -85,7 +85,21 @@
                     }
                 }).submit();
             });
+
+            $("#deactivate_sccount").on("click",function(){
+
+                debugger
+                deactivateAccount(window.user[0].user_id,function(){
+
+                    logoff();
+                    window.location = "login_register.php";
+                });
+
+            });
         })
+
+
+
     </script>
 </head>
 
@@ -212,6 +226,8 @@
                 </td>
             </tr>
         </table>
+
     </div>
+    <button id="deactivate_sccount">Hesabımı Dondur</button>
 </body>
 </html>
