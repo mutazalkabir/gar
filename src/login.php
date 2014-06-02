@@ -24,9 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $data[] = $row;
 
     }
-
-
-
     if(isset($data[0]["user_id"]))
     {
         session_start();
