@@ -93,7 +93,8 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
-                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'
+                            '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
+                        "<div id='report_aski'>Askı'yı rapor et</div>"
         }));
     }
     else if(parseInt(orderNumber) == 0){
@@ -101,7 +102,8 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
-                        '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
+                        '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'+
+            "<div id='report_aski'>Askı'yı rapor et</div>"
         }));
     }
     else{
@@ -110,7 +112,8 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             attributes:{"id":"aski_picture_holder"},
             htmlContent:'<i class="fa fa-angle-left" bring="'+ (parseInt(orderNumber) - 1) +'"></i>' +
                             '<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
-                        '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'
+                        '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'+
+            "<div id='report_aski'>Askı'yı rapor et</div>"
         }));
     }
 
@@ -123,12 +126,36 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
                     '<textarea id="aski_comment_textarea" placeholder="Yorumunuzu Girin"></textarea>'+
 
-                    '<button id="send_comment_button" type="submit">Yorum Gönder</button>'
+                    '<button id="send_comment_button" type="submit">Yorum Gönder</button>'+
+
+                    "<div id='tag_friends_button'><i class='fa fa-user'></i></div>"
     }));
 
     askiContentsHolder.append(askiPictureHolder);
     askiContentsHolder.append(askiProfileItems);
     $("#popup_profile_holder").append(askiSendCommentItems);
+
+
+    $("#tag_friends_button").on("click",function(){
+        showStatusPopup("Lütfen etiketlemek istediğiniz arkadaşlarınızı seçiniz","tagfriends","")
+    });
+
+    setFriendsForTagging =function(data){
+        for(var i=0; i<data.length; i++){
+            $(".all_friends_holder").append('<div user_id="'+ data[i].user_id +'" class="show_all_items"><div class="show_all_item_content" style="padding-left: 25px; text-align: left; min-height: 40px"><span class="show_all_user">'+ data[i].name + " " + data[i].surname +'</span></div></div>');
+        }
+
+        $(".show_all_items").on("click",function(){
+            if($(this).hasClass("tagged_friend")){
+                $(this).removeClass("tagged_friend");
+            }
+            else{
+                $(this).addClass("tagged_friend");
+            }
+        })
+
+        $(".all_friends_holder").mCustomScrollbar();
+    }
 
     createTags(askiDetayData.tags);
 
@@ -200,21 +227,6 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
     $("#send_comment").on("click",function(){
         $("#aski_comment_tab").trigger("click");
-    });
-
-    $("#aski_comment_textarea").keypress(function(event){
-      if (event.which == 64) {
-          $.ajax({
-               url: 'photo_tag_phps/friend_names.php',
-               type: 'POST',
-               dataType: 'json',
-               success: function(data){
-                     $('#aski_comment_textarea').autocomplete({
-                           source: data
-                     });
-               }
-          });
-      }
     });
 
     if(commentCount == 0){

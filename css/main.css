@@ -790,6 +790,59 @@ input:focus{
     color: #5856d6;
 }
 
+#aski_comment_textarea{
+    border: 1px solid #EAEAEA;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    font-weight: 100;
+    resize: vertical;
+    margin-bottom: 7px;
+}
+
+#tag_friends_button{
+    background-color: #00cd66;
+    text-shadow: 2px 2px 2px #038a46;
+    position: absolute;
+    cursor: pointer;
+    font-weight: 100;
+    bottom: 65px;
+    right: 20px;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 8px;
+}
+
+#report_aski{
+    padding: 5px 10px;
+    border: 2px solid #ffffff;
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+    z-index: 99;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: -57px;
+    opacity: 0;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+#report_aski:hover{
+    background-color: rgba(255,255,255,0.2);
+}
+
 .feed_item:hover .cloth_photo img{
     -webkit-transform: scale(0.8,0.8);
     -moz-transform: scale(0.8,0.8);
@@ -1276,7 +1329,7 @@ input:focus{
     right: 10px;
 }
 
-#glass_inner:hover .fa-angle-left, #glass_inner:hover .fa-angle-right{
+#glass_inner:hover .fa-angle-left, #glass_inner:hover .fa-angle-right, #glass_inner:hover #report_aski{
     opacity: 1;
 }
 
@@ -1369,7 +1422,7 @@ input:focus{
 #send_comment textarea{
     position: absolute;
     left: 70px;
-    width: 280px;
+    width: 225px;
     font-size: 14px;
     padding: 5px;
     resize: none;
@@ -3410,6 +3463,41 @@ input:focus{
     background-color: #00cd66;
 }
 
+.popup_top_bar[type="tagfriends"]{
+    background-color: #00aced;
+}
+
+.all_friends_holder{
+    position: absolute;
+    top: 80px;
+    bottom: 60px;
+    right: 5px;
+    left: 5px;
+}
+
+.tag_them{
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    left: 5px;
+    width: 490px;
+    background-color: #00cd66;
+    color: #ffffff;
+    -webkit-box-shadow: 0 6px #038a46;
+    -moz-box-shadow: 0 6px #038a46;
+    box-shadow: 0 6px #038a46;
+}
+
+.tag_them:hover{
+    box-shadow: none;
+    bottom: 4px;
+}
+
+.tagged_friend{
+    background-color: #cccccc;
+    color: #ffffff;
+}
+
 .popup_top_bar[type="error"]{
     background-color: #ff3030;
 }
@@ -3446,3 +3534,4 @@ input:focus{
 
 
 /* General Popups */
+

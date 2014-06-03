@@ -13,17 +13,58 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
         htmlContent:'<div class="popup_glass_inner"></div>'
     }));
 
-    var popup = $(GenerateDomElement({
-        nodeType:"div",
-        classNames:"status_popup animated bounceInDown",
-        htmlContent:'<div class="popup_top_bar" type="'+ _popupType +'">' +
-                        '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
-                    '</div>' +
-                    '<div class="popup_body">'+ _popupMessage +'</div>'
-    }));
+    if(_popupType == "tagfriends"){
+        var popup = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"status_popup animated bounceInDown",
+            attributes:{"style":"height:500px"},
+            htmlContent:'<div id="append_friends" class="popup_top_bar" type="'+ _popupType +'">' +
+                            '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
+                        '</div>' +
+                        '<div style="top: 50px; margin-top: 0px; font-size: 14px;" class="popup_body">'+ _popupMessage +'</div>'+
+                        '<div class="all_friends_holder"></div>'+
+                        "<button class='tag_them'>Seçilileri Tag'le :)</button>"
+        }));
+
+        getPromotedUsers(setFriendsForTagging);
+    }
+
+    else{
+        var popup = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"status_popup animated bounceInDown",
+            htmlContent:'<div class="popup_top_bar" type="'+ _popupType +'">' +
+                            '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
+                        '</div>' +
+                        '<div class="popup_body">'+ _popupMessage +'</div>'
+        }));
+    }
+
 
     popupGlass.find(".popup_glass_inner").append(popup);
+
     $("body").append(popupGlass);
+
+    $(".tag_them").on("click",function(){
+        var taggedFriends = [];
+        for(var j=0; j<$(".tagged_friend").length; j++){
+            var friend = {
+                name: $($(".tagged_friend")[j]).text(),
+                user_id: $($(".tagged_friend")[j]).attr("user_id")
+            }
+            taggedFriends.push(friend);
+
+            $("#aski_comment_textarea").val($("#aski_comment_textarea").val() + friend.name + ", ")
+        }
+
+        $(".status_popup").addClass("animated bounceOutUp");
+        setTimeout(function(){
+            $(".popup_glass").remove();
+            $(".status_popup").removeClass("animated bounceOutUp");
+        },550);
+
+
+    });
 
     setTimeout(function(){
         $(".status_popup").removeClass("animated bounceInDown");
