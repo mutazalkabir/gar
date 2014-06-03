@@ -56,15 +56,16 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
     else{
         var likeCount = 0;
     }
+    
     var askiProfileItems = $(GenerateDomElement({
         nodeType:"div",
         attributes:{"id":"popup_profile_holder"},
         htmlContent:'<div id="popup_profile_picture" class="popup_profile_items">' +
-                        '<img src="images/dummy_images/profil.jpg" />' +
+                        '<img src="storage/user_images/avatars/'+ askiDetayData.pic_id +'" />'+
                     '</div>'+
 
                     '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
-                    "<div id='popup_aski_date' class='popup_profile_items'><span>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span>"+ askiDetayData.category_name +"</span> kategorisinde, <span>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
+                    "<div id='popup_aski_date' class='popup_profile_items'><span>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span id='gardrobe_karistir_category' category_id="+ askiDetayData.category_id +">"+ askiDetayData.category_name +"</span> kategorisinde, <span>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
                     '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
 
                     '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
@@ -121,7 +122,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         nodeType:"div",
         attributes:{"id":"send_comment"},
         htmlContent:'<div id="commentor_profile_picture" class="popup_profile_items">' +
-                        '<img src="images/dummy_images/profil.jpg" />' +
+                        '<img src="storage/user_images/avatars/'+ window.user[0].pic_id +'" />'+
                     '</div>'+
 
                     '<textarea id="aski_comment_textarea" placeholder="Yorumunuzu Girin"></textarea>'+
@@ -133,6 +134,15 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
 
     askiContentsHolder.append(askiPictureHolder);
     askiContentsHolder.append(askiProfileItems);
+
+
+    $("#gardrobe_karistir_category").on("click",function(){
+        searchResult("category",$(this).attr("category_id"),createMainPageFeed);
+        $("#close_popup").trigger("click");
+    });
+
+
+
     $("#popup_profile_holder").append(askiSendCommentItems);
 
 
@@ -211,7 +221,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
                 nodeType:"div",
                 classNames:"my_feed_items",
                 htmlContent:'<div class="my_feed_item_content">' +
-                                '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                                '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ window.user[0].pic_id +'" />'+
                                 '<span class="my_feed_feed_content">'+ $("#aski_comment_textarea").val() +'</span>' +
                             '</div>'
             }));
@@ -244,7 +254,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
-                            '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.comments[i].user_id +'.png" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.comments[i].comment +'</span>' +
                         '</div>'
         }));
@@ -257,7 +267,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
-                            '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.likes[i].user_id +'.png" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.likes[i].liker_name +'</span>' +
                         '</div>'
         }));
@@ -270,7 +280,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
             nodeType:"div",
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
-                            '<img class="my_feed_profile_picture" src="images/dummy_images/profil.jpg">' +
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.shares[i].user_id +'.png" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.shares[i].liker_name +'</span>' +
                         '</div>'
         }));

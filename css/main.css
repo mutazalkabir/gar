@@ -1366,6 +1366,7 @@ input:focus{
     width: 100%;
     position: relative;
     margin: 10px 0px;
+    cursor: pointer;
 }
 
 #aski_detay_comment{
