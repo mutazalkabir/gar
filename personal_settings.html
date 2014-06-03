@@ -86,20 +86,16 @@
                 }).submit();
             });
 
-            $("#deactivate_sccount").on("click",function(){
-
-                debugger
+            $("#deactivate_account").on("click",function(){
+                showStatusPopup("Hesabınızı dondurdunuz :/ <br> Tekrar kullanıcı adınız ve şifrenizle giriş yapıp, TheGardrobe keyfine kaldığınız yerden devam edebilirsiniz :)", "error", deactivateAccount());
                 deactivateAccount(window.user[0].user_id,function(){
-
-                    logoff();
-                    window.location = "login_register.php";
+                    setTimeout(function(){
+                        logoff();
+                        window.location = "login_register.php";
+                    },2000);
                 });
-
             });
         })
-
-
-
     </script>
 </head>
 
@@ -210,7 +206,7 @@
             </tr>
             <tr>
                 <td>Kendini Tanıt</td>
-                <td><textarea id="settings_page_about" placeholder="Kendini Tanıt"></textarea></td>
+                <td><textarea maxlength="130" id="settings_page_about" placeholder="Kendini Tanıt"></textarea></td>
             </tr>
             <tr>
                 <td>Şehir</td>
@@ -223,11 +219,12 @@
             <tr>
                 <td colspan="2">
                     <button id="save_personal_settings">Değişiklikleri Kaydet</button>
+
+                    <button id="deactivate_account">Hesabımı Dondur</button>
                 </td>
             </tr>
         </table>
 
     </div>
-    <button id="deactivate_sccount">Hesabımı Dondur</button>
 </body>
 </html>

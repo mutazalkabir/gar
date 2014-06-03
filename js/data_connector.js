@@ -140,7 +140,6 @@ function searchResult(_type, _typeId, _successFunction){
 }
 
 function searchResultbyDate(_type, _startDate, _endDate, _successFunction){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -262,11 +261,9 @@ function addShare(_sharedId, _sharerId, _sharedUserId){
             withCredentials: true
         }
     }).done(function(newShare) {
-            debugger
             eval("setNewShare(newShare)");
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -311,7 +308,7 @@ function sendMessage(_conversationId, _messageBody, _senderId, _receiverId, _suc
             _successFunction(newMessageData);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
+
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -334,7 +331,6 @@ function getCategories(_successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -357,7 +353,6 @@ function getBrands(_successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -379,7 +374,6 @@ function addGardrobe(_userId, _title, _about){
             addNewGardrobe(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -400,7 +394,6 @@ function getGardrobes(_userId){
             setGardrobes(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -421,7 +414,6 @@ function getGardrobesForProfilePage(_userId){
             setGardrobesForProfilePage(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -444,7 +436,6 @@ function addNewHanger(_userId, _categoryId, _gardrobeId, _about, _city, _place, 
             hangerSuccessfullyAdded(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -464,11 +455,9 @@ function getTags(){
             withCredentials: true
         }
     }).done(function(data) {
-            debugger
             hangerSuccessfullyAdded(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -491,7 +480,6 @@ function getFollowers(_userId, _successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -631,7 +619,6 @@ function unfollowUser(_userId, _followedId, _successFunction){
 
 
 function deactivateAccount(_userId, _successFunction){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -642,11 +629,9 @@ function deactivateAccount(_userId, _successFunction){
             withCredentials: true
         }
     }).done(function(data) {
-        debugger
         _successFunction(data);
         // alert( "success" +data );
     }).fail(function(data) {
-        debugger
         // alert( "error" +data );
     }).always(function(data) {
         // alert( "finished" + data);

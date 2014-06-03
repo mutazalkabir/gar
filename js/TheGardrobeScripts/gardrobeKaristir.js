@@ -26,9 +26,8 @@ gardrobeKaristir = function(){
     $("#place_search").mouseleave(function(){
         $("#date_search").css("width", "190px");
     });
-
     $('#date-view1')
-        .datePicker({inline:true})
+        .datePicker({inline:true, startDate:'01/01/2014'})
         .bind(
         'dateSelected',
         function(e, selectedDate, $td)
@@ -86,15 +85,26 @@ gardrobeKaristir = function(){
                 }
             });
         },
-        minLength: 0,
+        minLength: 1,
         select: function(event, ui) {
-            debugger
+            window.location = "profile_page.php?user_id=" + ui.item.user_id;
         }
     });
+
+
+    $('#gardrobe_karistir, #search_input').on("click",function(event){
+        event.stopPropagation();
+    });
+
+    $('html').click(function(e) {
+        if(e.target.id != "search_input"){
+            removeGardrobeKaristir();
+        }
+    });
+
 }
 
 setBrands = function(data){
-    debugger
     var container = $("#brands_holder").find(".gardrobe_karistir_sub_items_content_holder");
 
     $(".gardrobe_karistir_brands").remove();
@@ -115,6 +125,7 @@ setBrands = function(data){
         container.prepend(gardrobeKaristirBrandItem);
 
         gardrobeKaristirBrandItem.on("click",function(){
+            removeGardrobeKaristir()
             searchResult("brand", $(this).find(".brand_name").text(), createMainPageFeed)
         })
     }
@@ -132,7 +143,8 @@ setBrands = function(data){
 }
 
 setCategoriesForGardrobeKaristir = function(data){
-    var container = $(".gardrobe_categories_scrollbar");
+    var container = $("#gardrobe_categories").find(".gardrobe_karistir_sub_items_content_holder");
+
     $(".gardrobe_karistir_category_items").remove();
     for(var i=0; i<data.length; i++){
         var gardrobeKaristirCategoryItem = $(GenerateDomElement({
@@ -147,19 +159,24 @@ setCategoriesForGardrobeKaristir = function(data){
         container.prepend(gardrobeKaristirCategoryItem);
 
         gardrobeKaristirCategoryItem.on("click",function(){
+            removeGardrobeKaristir()
             searchResult("category",$(this).attr("category_id"),createMainPageFeed);
         });
     }
 
-    $(".gardrobe_categories_scrollbar").mCustomScrollbar();
-    $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    container.mCustomScrollbar();
+    container.mCustomScrollbar("update");
 
-    $(".gardrobe_categories_scrollbar ").on("mouseenter",function(){
-        $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    container.on("mouseenter",function(){
+        setTimeout(function(){
+            container.mCustomScrollbar("update");
+        },200);
     });
 
-    $(".gardrobe_categories_scrollbar ").on("mouseleave",function(){
-        $(".gardrobe_categories_scrollbar").mCustomScrollbar("update");
+    container.on("mouseleave",function(){
+        setTimeout(function(){
+            container.mCustomScrollbar("update");
+        },200);
     });
 }
 
@@ -186,6 +203,7 @@ setPromotedUsers = function(data){
         container.prepend(randomUser);
 
         randomUser.on("click",function(){
+            removeGardrobeKaristir()
             window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
         });
     }

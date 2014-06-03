@@ -23,7 +23,7 @@ var Thegardrobe = function(){
 
         /* Ana Sayfa Main Feed
          ================================================== */
-        getMainPageFeed("fellowed", createMainPageFeed);
+        //getMainPageFeed("fellowed", createMainPageFeed);
         /*================================================== */
 
         /* Personal Messages

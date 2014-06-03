@@ -2830,6 +2830,7 @@ input:focus{
     margin-top: 20px;
     padding-left: 30px;
     border-left: 1px dotted #cccccc;
+    width: 530px;
 }
 
 #edit_personal_settings input, #edit_personal_settings select, #edit_personal_settings textarea{
@@ -2860,6 +2861,19 @@ input:focus{
     bottom: 6px;
 }
 
+#deactivate_account{
+    left: 300px;
+    background: #ee2c2c !important;
+    -webkit-box-shadow: 0 6px #b00c0c !important;
+    -moz-box-shadow:    0 6px #b00c0c !important;
+    box-shadow:         0 6px #b00c0c !important;
+}
+
+#deactivate_account:hover{
+    bottom: 0px;
+    box-shadow: none !important;
+}
+
 #edit_personal_settings tr td button:hover{
     bottom: 0px;
     box-shadow: none;
@@ -2882,6 +2896,12 @@ input:focus{
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
     display: none;
     padding: 20px 10px;
+}
+
+#gardrobe_karistir_user_search_wrapper{
+    position: relative;
+    float: left;
+    width: 100%;
 }
 
 #place span{
@@ -3140,23 +3160,11 @@ input:focus{
     margin: 10px 0px 10px 0px;
     position: absolute;
     z-index: 99999;
-    bottom: 10px;
     left: 0;
 }
 
-#search_user button{
-    position: relative;
-    width: 100%;
-    background-color: #00cd66;
-    color: #ffffff;
-    -webkit-box-shadow: 0 6px #038a46;
-    -moz-box-shadow:    0 6px #038a46;
-    box-shadow:         0 6px #038a46;
-}
-
-#search_user button:hover{
-    top: 12px;
-    box-shadow: none;
+#search_user .gardrobe_karistir_sub_items_content_holder{
+    margin-top: 20px !important;
 }
 
 /* Search Bar Sub Menu */

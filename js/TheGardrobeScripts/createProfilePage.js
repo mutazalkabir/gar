@@ -148,6 +148,10 @@ setFellowers = function(data){
    if(isFollowing){
        $("#follow_user").attr("following","true");
    }
+
+   $("#send_message_to_user").on("click",function(){
+       createNewMessage();
+   });
 }
 
 setFollowing = function(data){
@@ -191,6 +195,9 @@ setFollowing = function(data){
 }
 
 setUserData = function(data){
+    if(data[0].about.length > 130){
+        data[0].about = data[0].about.substring(0,130) + "...";
+    }
     $("#profile_page_profile_name").text(data[0].name +" "+ data[0].surname);
     $("#profile_description").text(data[0].about);
     $("#profile_page_profile_picture img").attr("src","storage/user_images/avatars/"+ data[0].pic_id);

@@ -39,14 +39,24 @@ createNewMessage = function(){
                 }
             });
         },
-        minLength: 0,
+        minLength: 1,
         select: function(event, ui) {
             receiverId = ui.item.user_id;
         }
     });
 
     $("#create_new_message").on("click",function(){
-        sendMessage("-1", $("#new_message_body").val(), window.user[0].user_id, receiverId, messageSent)
+        if($.trim($("#message_receiver_input").val())==""){
+            showStatusPopup("Bir alıcı adı giriniz", "error", "")
+        }
+        else{
+            if($.trim($("#new_message_body").val())==""){
+                showStatusPopup("Mesaj boş olamaz!", "error", "")
+            }
+            else{
+                sendMessage("-1", $("#new_message_body").val(), window.user[0].user_id, receiverId, messageSent);
+            }
+        }
     });
 
     $("#close_popup").on("click",function(){
@@ -59,6 +69,11 @@ createNewMessage = function(){
 }
 
 messageSent = function(data){
-    //TODO MESSAGE SUCCESSFULLY SENT
-    debugger
+    if(data == true){
+        showStatusPopup("Mesaj başarıyla gönderildi! :)", "success", "")
+    }
+    setTimeout(function(){
+        $("#glass, #glass_inner").remove();
+        location.reload();
+    },1500);
 }
