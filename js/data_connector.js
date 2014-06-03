@@ -206,11 +206,11 @@ function createMyFeed(_userId, _successFunction){
 
 
 /* Send New Comment */
-function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId){
+function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId,_mentionedFriendsList){
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "addcomment", hanger_id:_hangerId,  owner_id:_ownerId, comment:_comment, commeter_id:_commentorId, hanger_owner_id:_hangerOwnerId},
+        data:{operation: "addcomment", hanger_id:_hangerId,  owner_id:_ownerId, comment:_comment, commeter_id:_commentorId, hanger_owner_id:_hangerOwnerId,mentionedFriendsList:_mentionedFriendsList},
         dataType:"json",
         cache: false,
         xhrFields: {
@@ -226,6 +226,29 @@ function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId
         });
 }
 /* Send New Comment */
+
+/* Send New Mention */
+function sendMentionedFriends(_hangerId, _comment, _mentioner_id,_mentionedFriendsList){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "addmention", hanger_id:_hangerId, comment:_comment, mentioner_id:_mentioner_id, mentionedFriendsList:_mentionedFriendsList},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(newComment) {
+debugger
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+/* Send New Mention */
 
 /* Add Like */
 function addLike(_likedId, _likerId, _likedTypeId, _likedUserId){
@@ -637,4 +660,27 @@ function deactivateAccount(_userId, _successFunction){
         // alert( "finished" + data);
     });
 }
+
+/* Send New Mention */
+function reportHanger(_hangerId, _reporter_id, _hanger_owner_id,_comment){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "reporthanger", hanger_id:_hangerId, comment:_comment, reporter_id:_reporter_id, hanger_owner_id:_hanger_owner_id},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(newComment) {
+        debugger
+        // alert( "success" +data );
+    }).fail(function(data) {
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
+}
+/* Send New Mention */
 

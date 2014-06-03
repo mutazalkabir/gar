@@ -75,19 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     }
 
 
-    if ($operation == "reportuser") {
-        $data = array();
-        $reporter_id = (string)$_GET['reporter_id'];
-        $reported_id = (string)$_GET['reported_id'];
-        $date = new DateTime();
-        $date=$date->getTimestamp();
 
-        $insert = mysql_query("INSERT INTO reports VALUES ('','$reporter_id','$reported_id','$date','')");
-
-        header('Content-Type: application/json');
-        echo json_encode($insert);
-        //  exit();
-    }
 
     /////////////////////////////////////updateuser/////////////////////////////////////
     if ($operation == "updateuser") {
@@ -264,7 +252,7 @@ $data = array();
             $id= $data[$i]['hanger_id'];
             $likes= array();
 
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id , u.pic_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1' ");
 
             while ($row2 = mysql_fetch_assoc($result2)) {
                 if($row2["user_id"]==$user_id)
@@ -284,7 +272,7 @@ $data = array();
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $shares= array();
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1' ");
 
 
 
@@ -306,7 +294,7 @@ $data = array();
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $comments= array();
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1' ");
 
 
 
@@ -352,10 +340,6 @@ $data = array();
 		$insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','$gardrobe_id','$about','$city','$place','$newfilename','$tags','$date')");
         $hanger_id = mysql_insert_id();
         $brandArray = explode(',', $brands);
-        echo($brands);
-echo(" ");
-echo($brandArray);
-
 
         $max = sizeof($brandArray);
 // because first char is comma
@@ -1155,6 +1139,7 @@ $data= array();
 
 
     /////////////////////////////////////notifications/////////////////////////////////////
+
     if ($operation == "getnotifications") {
 
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
@@ -1174,6 +1159,83 @@ $data= array();
         echo json_encode($data);
 
     }
+
+    /////////////////////////////////////notifications/////////////////////////////////////
+
+    if ($operation == "addmention") {
+
+        $data = array();
+
+        $hanger_id= (string)$_GET['hanger_id'];
+        $mentionedFriendsList = (string)$_GET['mentionedFriendsList'];
+        $comment= (string)$_GET['comment'];
+        $mentioner_id= (string)$_GET['mentioner_id'];
+
+        $date = new DateTime();
+        $date = $date->getTimestamp();
+
+        echo($mentionedFriendsList);
+        echo "  %  ";
+
+
+
+
+
+        $mentionedUserArray = explode(',', $mentionedFriendsList);
+
+        echo($mentionedUserArray);
+
+
+        $max = sizeof($mentionedUserArray);
+
+        for($i=0;$i<$max;$i++)
+        {
+
+            echo($mentionedFriendsList[$i]);
+            $mentioned_id=$mentionedUserArray[$i];
+            $insert = mysql_query("INSERT INTO mentions VALUES ('','$mentioned_id','$mentioner_id','$hanger_id','$date','$comment')");
+            $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$mentioner_id','$mentioned_id','5','$hanger_id','$date')");
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
+
+
+
+    }
+
+    if ($operation == "reporthanger") {
+        $data = array();
+        $reporter_id = (string)$_GET['reporter_id'];
+        $hanger_id= (string)$_GET['hanger_id'];
+        $comment= (string)$_GET['comment'];
+        $hanger_owner_id= (string)$_GET['hanger_owner_id'];
+        $date = new DateTime();
+        $date=$date->getTimestamp();
+
+        $insert = mysql_query("INSERT INTO reports VALUES ('','$hanger_id','$reporter_id','$hanger_owner_id','$date','$comment')");
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
+        //  exit();
+    }
+
+    if ($operation == "getReports") {
+        $data = array();
+        $result = mysql_query("SELECT * FROM reports");
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[]=$row;
+        }
+
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+        //  exit();
+    }
+
+
+
 
 
 

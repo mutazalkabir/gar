@@ -135,10 +135,15 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
     askiContentsHolder.append(askiPictureHolder);
     askiContentsHolder.append(askiProfileItems);
 
-
     $("#gardrobe_karistir_category").on("click",function(){
         searchResult("category",$(this).attr("category_id"),createMainPageFeed);
         $("#close_popup").trigger("click");
+    });
+
+    $("#report_aski").on("click",function(){
+      debugger
+       // function reportHanger(_hangerId, _userid, _hanger_owner_id,_comment){
+        reportHanger(askiDetayData.hanger_id,window.user[0].user_id,askiDetayData.user_id,"uygunsuz resim");
     });
 
 
@@ -151,8 +156,14 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
     });
 
     setFriendsForTagging =function(data){
+
+
         for(var i=0; i<data.length; i++){
-            $(".all_friends_holder").append('<div user_id="'+ data[i].user_id +'" class="show_all_items"><div class="show_all_item_content" style="padding-left: 25px; text-align: left; min-height: 40px"><span class="show_all_user">'+ data[i].name + " " + data[i].surname +'</span></div></div>');
+            if(jQuery.inArray(data[i].user_id, window.taggedFriends)==-1)
+            {
+                $(".all_friends_holder").append('<div user_id="'+ data[i].user_id +'" class="show_all_items"><div class="show_all_item_content" style="padding-left: 25px; text-align: left; min-height: 40px"><span class="show_all_user">'+ data[i].name + " " + data[i].surname +'</span></div></div>');
+            }
+
         }
 
         $(".show_all_items").on("click",function(){
@@ -207,8 +218,17 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
     }
 
     $("#send_comment_button").on("click",function(){
+        debugger
         if($.trim($("#aski_comment_textarea").val()) != ""){
             sendComment(askiDetayData.hanger_id, askiDetayData.user_id, $("#aski_comment_textarea").val(), window.user[0].user_id, askiDetayData.user_id);
+            if(window.taggedFriends.length>0)
+            {
+                debugger
+                sendMentionedFriends(askiDetayData.hanger_id, $("#aski_comment_textarea").val(), window.user[0].user_id,window.taggedFriendsList);
+            }
+
+            window.taggedFriendsList="";
+            window.taggedFriends= new Array();
         }
         else{
             showStatusPopup("Lütfen bir yorum gir!","error","")
@@ -307,7 +327,9 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         setTimeout(function(){
             $("#glass, #glass_inner").remove();
         },400);
-
+        //mention için eklenmiş user varsa siler
+        window.taggedFriendsList="";
+        window.taggedFriends= new Array();
         showPreloader();
 
         $(".feed_item").remove();

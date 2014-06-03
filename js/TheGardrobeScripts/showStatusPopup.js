@@ -46,14 +46,23 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
     $("body").append(popupGlass);
 
     $(".tag_them").on("click",function(){
+        debugger
+        if(!window.taggedFriends)
+        {
+            window.taggedFriends = new Array();
+            window.taggedFriendsList="";
+        }
         var taggedFriends = [];
         for(var j=0; j<$(".tagged_friend").length; j++){
             var friend = {
                 name: $($(".tagged_friend")[j]).text(),
                 user_id: $($(".tagged_friend")[j]).attr("user_id")
             }
-            taggedFriends.push(friend);
+            var friendId  =  $($(".tagged_friend")[j]).attr("user_id");
 
+            window.taggedFriendsList=window.taggedFriendsList+","+$($(".tagged_friend")[j]).attr("user_id");
+            window.taggedFriends.push(friendId);
+            taggedFriends.push(friend);
             $("#aski_comment_textarea").val($("#aski_comment_textarea").val() + friend.name + ", ")
         }
 

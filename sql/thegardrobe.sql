@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2014 at 12:12 AM
+-- Generation Time: Jun 03, 2014 at 11:13 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(400) NOT NULL,
   `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=177 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=184 ;
 
 --
 -- Dumping data for table `comment`
@@ -275,7 +275,14 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 (173, 4, 1401315727, 78, 'dfsadasasdd', 4),
 (174, 4, 1401316828, 17, 'denme', 40),
 (175, 51, 1401548354, 87, 'dasdada', 51),
-(176, 4, 1401646830, 12, 'mına goduk bülent başgaaaan', 1);
+(176, 4, 1401646830, 12, 'mına goduk bülent başgaaaan', 1),
+(177, 51, 1401821790, 88, '123 123, mumtaz alkabir, hgddhhdhfxhfxxjfxgfxfjfmurat alkabir, ', 1),
+(178, 4, 1401823728, 12, 'Mutaz Alkabir, mumtaz alkabir, sinem deneme, ', 1),
+(179, 4, 1401824154, 12, 'mMutaz Alkabir, sinem deneme, mehmet alkabir, ', 1),
+(180, 4, 1401826974, 12, 'deneme undefined, undefined, undefined, ', 1),
+(181, 51, 1401827603, 12, 'Tunç Akın, Mutaz Alkabir, mumtaz alkabir, berk alkabir, rumeysa alkabir, ', 1),
+(182, 51, 1401827837, 12, 'Tunç Akın, Mutaz Alkabir, mumtaz alkabir, sinem deneme, ', 1),
+(183, 51, 1401829675, 12, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, ', 1);
 
 -- --------------------------------------------------------
 
@@ -292,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `conversation` (
   `receiver_read` int(1) NOT NULL,
   PRIMARY KEY (`c_id`),
   UNIQUE KEY `tag_id` (`c_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `conversation`
@@ -304,7 +311,8 @@ INSERT INTO `conversation` (`c_id`, `user_one`, `user_two`, `ip`, `conversation_
 (3, 4, 23, '', 1400524084, 0),
 (4, 27, 4, '', 1400677314, 0),
 (5, 1, 4, '', 1401653307, 0),
-(6, 1, 4, '', 1401653733, 0);
+(6, 1, 4, '', 1401653733, 0),
+(7, 51, 1, '', 1401822320, 0);
 
 -- --------------------------------------------------------
 
@@ -341,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `fellowship` (
   `fellowship_date` int(11) NOT NULL,
   PRIMARY KEY (`fellowship_id`),
   UNIQUE KEY `fellowship_id` (`fellowship_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `fellowship`
@@ -370,7 +378,8 @@ INSERT INTO `fellowship` (`fellower_id`, `fellowed_id`, `fellowship_id`, `fellow
 (17, 20, 25, 1400350567),
 (17, 20, 30, 1400521579),
 (1, 5, 38, 1401641397),
-(1, 4, 39, 1401641420);
+(1, 4, 39, 1401641420),
+(51, 1, 41, 1401822293);
 
 -- --------------------------------------------------------
 
@@ -653,6 +662,39 @@ INSERT INTO `likes` (`like_id`, `liked_id`, `user_id`, `liked_type_id`, `like_da
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mentions`
+--
+
+CREATE TABLE IF NOT EXISTS `mentions` (
+  `mention_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `mentioned_id` int(11) NOT NULL,
+  `mentioner_id` int(11) NOT NULL,
+  `hanger_id` int(11) NOT NULL,
+  `date` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  PRIMARY KEY (`mention_id`),
+  UNIQUE KEY `mention_id` (`mention_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- Dumping data for table `mentions`
+--
+
+INSERT INTO `mentions` (`mention_id`, `mentioned_id`, `mentioner_id`, `hanger_id`, `date`, `comment`) VALUES
+(3, 0, 51, 12, 0, '1401827840'),
+(4, 1, 51, 12, 0, '1401827840'),
+(5, 4, 51, 12, 0, '1401827840'),
+(6, 5, 51, 12, 0, '1401827840'),
+(7, 17, 51, 12, 0, '1401827840'),
+(8, 0, 51, 12, 1401829677, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, '),
+(9, 5, 51, 12, 1401829677, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, '),
+(10, 17, 51, 12, 1401829677, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, '),
+(11, 37, 51, 12, 1401829677, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, '),
+(12, 51, 51, 12, 1401829677, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, ');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
@@ -663,8 +705,9 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `notification_type_id` int(11) NOT NULL,
   `notificated_item_id` int(11) NOT NULL,
   `notification_date` int(11) NOT NULL,
+  PRIMARY KEY (`notification_id`),
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=313 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=333 ;
 
 --
 -- Dumping data for table `notifications`
@@ -978,7 +1021,25 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 (309, 1, 37, 4, 0, 1401643469),
 (310, 4, 1, 1, 12, 1401646783),
 (311, 4, 1, 2, 12, 1401646809),
-(312, 4, 1, 3, 12, 1401646830);
+(312, 4, 1, 3, 12, 1401646830),
+(313, 51, 1, 3, 88, 1401821790),
+(314, 51, 1, 4, 0, 1401822293),
+(315, 4, 1, 3, 12, 1401823728),
+(316, 4, 1, 3, 12, 1401824154),
+(317, 4, 1, 3, 12, 1401826974),
+(319, 51, 1, 3, 12, 1401827603),
+(321, 51, 1, 3, 12, 1401827837),
+(322, 51, 0, 5, 12, 1401827840),
+(323, 51, 1, 5, 12, 1401827840),
+(324, 51, 4, 5, 12, 1401827840),
+(325, 51, 5, 5, 12, 1401827840),
+(326, 51, 17, 5, 12, 1401827840),
+(327, 51, 1, 3, 12, 1401829675),
+(328, 51, 0, 5, 12, 1401829677),
+(329, 51, 5, 5, 12, 1401829677),
+(330, 51, 17, 5, 12, 1401829677),
+(331, 51, 37, 5, 12, 1401829677),
+(332, 51, 51, 5, 12, 1401829677);
 
 -- --------------------------------------------------------
 
@@ -990,7 +1051,7 @@ CREATE TABLE IF NOT EXISTS `notification_types` (
   `notification_type_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `notification_type` varchar(20) NOT NULL,
   UNIQUE KEY `notification_type_id` (`notification_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `notification_types`
@@ -1000,7 +1061,8 @@ INSERT INTO `notification_types` (`notification_type_id`, `notification_type`) V
 (1, 'like'),
 (2, 'share'),
 (3, 'comment'),
-(4, 'fellowship');
+(4, 'fellowship'),
+(5, 'mention');
 
 -- --------------------------------------------------------
 
@@ -1017,7 +1079,7 @@ CREATE TABLE IF NOT EXISTS `pm` (
   `conversation_id` int(11) NOT NULL,
   PRIMARY KEY (`message_id`),
   UNIQUE KEY `brand_id` (`message_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `pm`
@@ -1050,7 +1112,8 @@ INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date
 (24, 1, 4, 'cxzczxzx', 1401653160, 0),
 (25, 1, 4, 'asddsa', 1401653307, 5),
 (26, 1, 4, 'sadasda', 1401653701, 6),
-(27, 1, 4, 'bvcbbcv', 1401653733, 6);
+(27, 1, 4, 'bvcbbcv', 1401653733, 6),
+(28, 51, 1, 'asdasdad', 1401822320, 7);
 
 -- --------------------------------------------------------
 
@@ -1059,12 +1122,23 @@ INSERT INTO `pm` (`message_id`, `user_one`, `user_two`, `message`, `message_date
 --
 
 CREATE TABLE IF NOT EXISTS `reports` (
-  `report_id` int(11) NOT NULL,
+  `report_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `hanger_id` int(11) NOT NULL,
   `reporter_id` int(11) NOT NULL,
   `reported_id` int(11) NOT NULL,
   `report_date` int(11) NOT NULL,
-  `report_comment` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `report_comment` text NOT NULL,
+  PRIMARY KEY (`report_id`),
+  UNIQUE KEY `report_id` (`report_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`report_id`, `hanger_id`, `reporter_id`, `reported_id`, `report_date`, `report_comment`) VALUES
+(4, 12, 4, 1, 1401829838, 'uygunsuz resim'),
+(5, 12, 51, 1, 1401829984, 'uygunsuz resim');
 
 -- --------------------------------------------------------
 
@@ -1188,7 +1262,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`, `confirmation_code`, `city`, `phone`, `active`) VALUES
 (1, 'Tunç', 'Akın', 392508000, 1399810339, 'tuncak30@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
-(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '123456', '1', '1', '4.png', '123456789qwertyu', 'ADANA', 0, 0),
+(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '123456', '1', '1', '4.png', '123456789qwertyu', 'ADANA', 0, 1),
 (5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
 (17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
 (19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1),
