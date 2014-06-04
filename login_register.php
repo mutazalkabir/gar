@@ -21,6 +21,7 @@
     <!-- TheGardrobe Component Scripts -->
          <script type="text/javascript" src="js/TheGardrobeScripts/cookieUtils.js"></script>
     <script type="text/javascript" src="js/data_connector.js"></script>
+    <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/dateConvertor.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/popupManager.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/createMainPageFeed.js"></script>
@@ -38,13 +39,60 @@
 </head>
 
 <script>
+
     window.fbAsyncInit = function() {
+        showPreloader();
+        var mail="";
         FB.init({
-            appId      : '280604802109303',
+            appId      : '1495264814020195',
             xfbml      : true,
             version    : 'v2.0'
         });
+
+      /*  FB.Event.subscribe('auth.login', function(){
+            debugger
+            window.location.reload();
+        });*/
+
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                console.log('Logged in.');
+
+                FB.api('/me', function(response) {
+                    //var stringResponse=JSON.stringify(response)
+                    var jsonResponse=response;
+                    console.log(jsonResponse);
+                    loginWithFacebook(jsonResponse.id,jsonResponse.email,jsonResponse.first_name,jsonResponse.last_name,
+                        loginAndCreateCookie,
+                        function(){})
+                });
+
+            }
+            else {
+                $(".btn-facebook").on("click",function(){
+                        FB.login(function(response) {
+                            // handle the response
+                          FB.api('/me', function(response) {
+                                //var stringResponse=JSON.stringify(response)
+                                var jsonResponse=response;
+                                console.log(jsonResponse);
+                                loginWithFacebook(jsonResponse.id,jsonResponse.email,jsonResponse.first_name,jsonResponse.last_name,
+                                    loginAndCreateCookie,
+                                    function(){})
+                            });
+
+                        }, {
+                            scope: 'public_profile,email',
+                            return_scopes: true
+                        });
+                });
+                removePreloader();
+            }
+        });
+
     };
+
+
 
     (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
@@ -53,9 +101,27 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
+
+    $(".btn-facebook").on("click",function(){
+
+    });
 </script>
 
-<body>
+<body onload="">
+
+<div id="fb-root"></div>
+<!--  <script>
+  (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1495264814020195&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>-->
+
+
 <div id="body_background_image">
 
 </div>
@@ -83,6 +149,7 @@
                 <i class="fa fa-google-plus"></i>Google +
             </a>
 	    </div>
+       <!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>-->
 	</div>
 
     <div id="register_form_container">
@@ -234,7 +301,7 @@
             <i class="fa fa-reply"></i>
             <span>Giriş</span>
         </div>
-    </div>    
+    </div>
 </div>
 </body>
 </html>

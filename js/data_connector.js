@@ -9,8 +9,6 @@
 /* Login - Register */
 function register(_email,_name,_surname,_pass,_gender,_bDate)
 {
-    debugger
-
     $.ajax({
         url: "src/register.php",
         type: "POST",
@@ -22,12 +20,9 @@ function register(_email,_name,_surname,_pass,_gender,_bDate)
         }
     }).done(function(data) {
        // window.location=data;
-            debugger
         }).fail(function(data) {
-              debugger
             // alert( "error" +data );
         }).always(function(data) {
-            debugger
             // alert( "finished" + data);
         });
 }
@@ -43,11 +38,9 @@ function login(_email,_pass){
             withCredentials: true
         }
     }).done(function(data) {
-debugger
             loginAndCreateCookie(data);
             // alert( "success" +data );
         }).fail(function(data) {
-        debugger
             showWrongUserNameOrPassword();
             // alert( "error" +data );
         }).always(function(data) {
@@ -229,7 +222,6 @@ function sendComment(_hangerId, _ownerId, _comment, _commentorId, _hangerOwnerId
 
 /* Send New Mention */
 function sendMentionedFriends(_hangerId, _comment, _mentioner_id,_mentionedFriendsList){
-    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -240,7 +232,6 @@ function sendMentionedFriends(_hangerId, _comment, _mentioner_id,_mentionedFrien
             withCredentials: true
         }
     }).done(function(newComment) {
-debugger
             // alert( "success" +data );
         }).fail(function(data) {
             // alert( "error" +data );
@@ -523,7 +514,6 @@ function getFollowing(_userId, _successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -545,7 +535,6 @@ function updateUserInformation(_userId,_name, _surname, _password, _phoneNumber,
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -567,7 +556,6 @@ function getUser(_userId, _successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -588,7 +576,6 @@ function getPromotedUsers(_successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -611,7 +598,6 @@ function followUser(_userId, _followedId, _successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -632,7 +618,6 @@ function unfollowUser(_userId, _followedId, _successFunction){
             _successFunction(data);
             // alert( "success" +data );
         }).fail(function(data) {
-            debugger
             // alert( "error" +data );
         }).always(function(data) {
             // alert( "finished" + data);
@@ -663,7 +648,7 @@ function deactivateAccount(_userId, _successFunction){
 
 /* Send New Mention */
 function reportHanger(_hangerId, _reporter_id, _hanger_owner_id,_comment){
-    debugger
+
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -673,10 +658,33 @@ function reportHanger(_hangerId, _reporter_id, _hanger_owner_id,_comment){
         xhrFields: {
             withCredentials: true
         }
-    }).done(function(newComment) {
-        debugger
+    }).done(function(data) {
         // alert( "success" +data );
     }).fail(function(data) {
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
+}
+
+function loginWithFacebook(_fbid, _mail, _name, _surname, _successFunction, _failFunction){
+    debugger
+    $.ajax({
+        url: "src/login.php",
+        type: "GET",
+        data:{operation: "loginbyfacebook", fbid:_fbid, mail:_mail, name:_name, surname:_surname},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+        debugger
+        _successFunction(data);
+        // alert( "success" +data );
+    }).fail(function(data) {
+        _failFunction(data);
+        debugger
         // alert( "error" +data );
     }).always(function(data) {
         // alert( "finished" + data);

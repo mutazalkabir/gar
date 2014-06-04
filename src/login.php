@@ -8,6 +8,7 @@
 error_reporting(E_ALL ^ E_DEPRECATED);
 include 'constants.php';
 include 'dbconnect.php';
+include 'utils.php';
 
 error_reporting(E_ALL ^ E_DEPRECATED);
 
@@ -38,6 +39,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
 
 }
+else if ($_SERVER['REQUEST_METHOD'] == 'GET')
+{
+    $operation = (string)$_GET['operation'];
+    if ($operation == "loginbyfacebook") {
+
+        $data = array();
+        $mail=(string)$_GET['mail'];
+        $fbid=(string)$_GET['fbid'];
+        $name=(string)$_GET['name'];
+        $surname=(string)$_GET['surname'];
+        $gender="2";//(string)$_POST['gender'];
+        $bdate ="0000";//intval((string)$_POST['bdate'])/1000;
+        $date = new DateTime();
+        $date=$date->getTimestamp();
+        $confirmation_code = genarateID();
+
+        $result = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND fbid='$fbid' AND confirm=1 limit 1");
+
+        while($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+
+        }
+
+        if(isset($data[0]["user_id"]))//if user registered
+        {
+            session_start();
+            $update = mysql_query("UPDATE users SET active='1' WHERE mail='$mail'");
+            $_SESSION['user_id'] =$data[0]["user_id"];
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($data);
+        }
+        else{ //register user then login
+            $confirmation_code = genarateID();
+            //TODO Generate Confirmation Code
+
+            $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','1','$gender','***','','','avatar.png','$confirmation_code','','','1','$fbid')");
+            $user_id = mysql_insert_id();
+            $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
+
+            $result2 = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND fbid='$fbid' AND confirm=1 limit 1");
+            while($row = mysql_fetch_assoc($result2)) {
+                $data[] = $row;
+
+            }
+
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($result2);
+        }
+    }
+
+
+}
+
+
 else
 {
     // var_dump($_GET);
