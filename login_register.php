@@ -41,7 +41,7 @@
 <script>
 
     window.fbAsyncInit = function() {
-        showPreloader();
+       // showPreloader();
         var mail="";
         FB.init({
             appId      : '1495264814020195',

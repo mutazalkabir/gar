@@ -394,10 +394,10 @@ $data = array();
             unset($hangers);
         }
 
-        if($total_hanger_count>0)
-        {
+      //  if($total_hanger_count>0)
+      //  {
             $data[0]["hanger_count"]=$total_hanger_count;
-        }
+        //}
 
 
         //$field_names = array_keys($data[0]);
@@ -612,7 +612,7 @@ $data= array();
         if($insert==false)
             echo mysql_error();
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$fellower_id','$fellowed_id','4','null','$date')");
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$fellower_id','$fellowed_id','4','null','$date','0')");
         if($insert2==false)
             echo mysql_error();
 
@@ -864,7 +864,7 @@ $data= array();
         if($insert==false)
             echo mysql_error();
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$commeter_id','$hanger_owner_id','3','$hanger_id','$date')");
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$commeter_id','$hanger_owner_id','3','$hanger_id','$date','0')");
         if($insert2==false)
             echo mysql_error();
 
@@ -916,7 +916,7 @@ $data= array();
 // $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$commeter_id','$hanger_owner_id','3','$hanger_id','$date')");
 
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$liker_id','$liked_user_id','1','$liked_id','$date')");
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$liker_id','$liked_user_id','1','$liked_id','$date','0')");
         if($insert2==false)
             echo mysql_error();
 
@@ -963,7 +963,7 @@ $data= array();
         if($insert==false)
             echo mysql_error();
 
-        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','$shared_user_id','2','$hanger_id','$date')");
+        $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$sharer_id','$shared_user_id','2','$hanger_id','$date','0')");
         
         if($insert2==false)
             echo mysql_error();
@@ -1144,7 +1144,7 @@ $data= array();
 
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
 
-        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id= u.user_id AND u.active='1'");
+        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, n.seen, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id= u.user_id AND u.active='1'");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;
@@ -1159,8 +1159,26 @@ $data= array();
         echo json_encode($data);
 
     }
+    if ($operation == "notificationsseen") {
 
-    /////////////////////////////////////notifications/////////////////////////////////////
+        $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
+
+        $update = mysql_query("UPDATE notifications SET seen='1' WHERE notified_id='$user_id'");
+
+
+
+
+            header('Content-Type: application/json');
+            echo json_encode($update);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+    }
+
+    /////////////////////////////////////mention/////////////////////////////////////
 
     if ($operation == "addmention") {
 
@@ -1194,7 +1212,7 @@ $data= array();
             echo($mentionedFriendsList[$i]);
             $mentioned_id=$mentionedUserArray[$i];
             $insert = mysql_query("INSERT INTO mentions VALUES ('','$mentioned_id','$mentioner_id','$hanger_id','$date','$comment')");
-            $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$mentioner_id','$mentioned_id','5','$hanger_id','$date')");
+            $insert2 = mysql_query("INSERT INTO notifications VALUES ('','$mentioner_id','$mentioned_id','5','$hanger_id','$date','0')");
         }
 
         header('Content-Type: application/json');
