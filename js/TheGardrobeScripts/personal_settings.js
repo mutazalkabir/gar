@@ -189,7 +189,7 @@ var Thegardrobe = function(){
                 if(pass == ""){
                     pass=window.user[0].pass;
                 }
-                updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId, userUpdated);
+                updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId,$("#x").val(),$("#y").val(),$("#min_side").val(), userUpdated);
             }
 
         });

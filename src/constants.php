@@ -7,7 +7,7 @@
  */
 error_reporting(E_ALL ^ E_DEPRECATED);
 //error_reporting(E_ALL & ~E_NOTICE);
-//error_reporting(E_ERROR | E_WARNING | E_PARSE);
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 $username = "root";
 $password = "";
 $hostname = "localhost";
@@ -22,6 +22,7 @@ $BY_FRIENDS = "friends";
 
 
 $UPLOADED_IMAGE_FOLDER_PATH="../storage/user_images/";
+$AVATARS_FOLDER_PATH=$UPLOADED_IMAGE_FOLDER_PATH."avatars/";
 
 /*
 $username = "a4955560_eren";

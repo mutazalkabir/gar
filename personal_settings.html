@@ -80,6 +80,9 @@
                             aspectRatio: 1,
                             done: function(data) {
                                 console.log(data);
+                                $("#x").val(data.x1);
+                                $("#y").val(data.y1);
+                                $("#min_side").val(data.width);
                             }
                         });
                     }
@@ -168,8 +171,6 @@
         </div>
 
         <form id="upload_new_profile_image" method="post" enctype="multipart/form-data" name="image_upload_form" id="image_upload_form" action="src/upload_avatar.php">
-
-
             <div id="psp_profile_picture_holder">
                 <!--img src="images/dummy_images/profil.jpg"/-->
                 <div id="profile_pic_browse_wrapper">Fotoğraf Yükle
@@ -218,6 +219,9 @@
             </tr>
             <tr>
                 <td colspan="2">
+                    <input type="hidden" id="x" name="x" />
+                    <input type="hidden" id="y" name="y" />
+                    <input type="hidden" id="min_side" name="min_side" />
                     <button id="save_personal_settings">Değişiklikleri Kaydet</button>
 
                     <button id="deactivate_account">Hesabımı Dondur</button>

@@ -562,11 +562,11 @@ function getFollowing(_userId, _successFunction){
 }
 /* Takipçiler ve Takip Edilenler */
 
-function updateUserInformation(_userId,_name, _surname, _password, _phoneNumber, _city, _about, _pictureId,  _successFunction){
+function updateUserInformation(_userId,_name, _surname, _password, _phoneNumber, _city, _about, _pictureId,_x,_y,_min_side,  _successFunction){
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "updateuser", user_id: _userId, name: _name, surname: _surname, pass: _password, phone: _phoneNumber, city: _city, about: _about, pic_id: _pictureId},
+        data:{operation: "updateuser", user_id: _userId, name: _name, surname: _surname, pass: _password, phone: _phoneNumber, city: _city, about: _about, pic_id: _pictureId,x:_x,y:_y,min_side:_min_side},
         dataType:"json",
         cache: false,
         xhrFields: {

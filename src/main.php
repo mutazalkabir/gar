@@ -89,10 +89,60 @@ $data = array();
         $city=(string)$_GET['city'];
         $about=(string)$_GET['about'];
         $pic_id=(string)$_GET['pic_id'];
+        $min_side=(string)$_GET['min_side'];
+        $x=(string)$_GET['x'];
+        $y=(string)$_GET['y'];
 
 
         $update = mysql_query("UPDATE users SET name='$name', surname='$surname', pass='$pass', about='$about', phone='$phone' ,city='$city', pic_id='$pic_id' WHERE user_id='$user_id'");
 
+
+
+
+
+        // SETTINGS
+        $image_name = $AVATARS_FOLDER_PATH.$pic_id;    // Full path and image name with extension
+        $thumb_name = $AVATARS_FOLDER_PATH.'thumbnail';   // Generated thumbnail name without extension
+        $thumb_side = 500;
+      //  $min_side=993;// Desired thumbnail side size
+        // END OF SETTINGS
+
+        $image_extension = explode('.', $image_name); // I assume that images are named only following 'imagename.ext' pattern
+
+        /* if (preg_match('/jpg|jpeg/', $image_extension[1])) {
+             $src_image = imagecreatefromjpeg($image_name);
+             $image_extension = 'jpg';
+         } else if (preg_match('/png/', $image_extension[1])) {*/
+        $src_image = imagecreatefrompng($image_name);
+        $image_extension = 'png';
+        //}
+
+        $src_width = imageSX($src_image);   // Width of the original image
+        $src_height = imageSY($src_image);  // Height of the original image
+
+        //$min_side = min($src_width, $src_height);
+
+        /*********** If you need this part uncomment it
+        $ratio = $min_side / $thumb_width;
+        $new_width = floor($src_width / $ratio);
+        $new_height = floor($src_height / $ratio);
+         **********************************************/
+
+        $dst_image = imagecreatetruecolor($thumb_side, $thumb_side);
+        imagecopyresampled($dst_image, $src_image,0 , 0, $x, $y, $thumb_side, $thumb_side, $min_side, $min_side);
+
+        switch ($image_extension)
+        {
+            case 'jpg':
+                imagejpeg($dst_image, $image_name, 5);
+                break;
+            case 'png':
+                imagepng($dst_image, $image_name, 5);
+                break;
+        }
+
+        imagedestroy($src_image);
+        imagedestroy($dst_image);
 
         if($update)
         {
@@ -102,6 +152,7 @@ $data = array();
                     $data[] = $row;
                 }
                 //$field_names = array_keys($data[0]);
+
 
                 header('Content-Type: application/json');
                 echo json_encode($data);
@@ -1164,9 +1215,6 @@ $data= array();
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
 
         $update = mysql_query("UPDATE notifications SET seen='1' WHERE notified_id='$user_id'");
-
-
-
 
             header('Content-Type: application/json');
             echo json_encode($update);
