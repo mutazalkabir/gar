@@ -6,8 +6,14 @@
  * To change this template use File | Settings | File Templates.
  */
 
-createNewMessage = function(){
-    var receiverId = "";
+createNewMessage = function(_userId){
+    if(_userId != undefined){
+        var receiverId = _userId;
+    }
+    else{
+        var receiverId = "";
+    }
+
     $("body").append('<div id="glass">' +
                         '<div id="glass_inner" class="bounceInLeft animated new_message">' +
                         '<i id="close_popup" class="fa fa-times fa-2"></i>' +
@@ -24,26 +30,32 @@ createNewMessage = function(){
 
 
 
+    if(receiverId != ""){
+        $("#message_receiver_input").css("display","none");
+        $("#message_receiver_input").val("from_user_page");
+    }
+    else{
+        $("#message_receiver_input").autocomplete({
+            source: function(req, response) {
+                $.ajax({
+                    url: "src/main.php",
+                    type: "GET",
+                    data:{operation: "getallusers"},
+                    dataType: "json",
+                    success: function( data ) {
+                        var re = $.ui.autocomplete.escapeRegex(req.term);
+                        var matcher = new RegExp( "^" + re, "i" );
+                        response($.grep(data, function(item){return matcher.test(item.value);}) );
+                    }
+                });
+            },
+            minLength: 1,
+            select: function(event, ui) {
+                receiverId = ui.item.user_id;
+            }
+        });
+    }
 
-    $("#message_receiver_input").autocomplete({
-        source: function(req, response) {
-            $.ajax({
-                url: "src/main.php",
-                type: "GET",
-                data:{operation: "getallusers"},
-                dataType: "json",
-                success: function( data ) {
-                    var re = $.ui.autocomplete.escapeRegex(req.term);
-                    var matcher = new RegExp( "^" + re, "i" );
-                    response($.grep(data, function(item){return matcher.test(item.value);}) );
-                }
-            });
-        },
-        minLength: 1,
-        select: function(event, ui) {
-            receiverId = ui.item.user_id;
-        }
-    });
 
     $("#create_new_message").on("click",function(){
         if($.trim($("#message_receiver_input").val())==""){

@@ -62,7 +62,7 @@ setGardrobesForProfilePage = function(gardrobeData){
             var gardrobes = $(GenerateDomElement({
                 nodeType:"div",
                 classNames: "feed_item profile_feed_item",
-                attributes:{"gardrobe_id": gardrobeData[i].gardrobe_id},
+                attributes:{"gardrobe_id": gardrobeData[i].gardrobe_id, "order":i},
                 htmlContent:'<span class="cloth_cover gardrobe"></span>'+
                             '<div class="cloth_photo gardrobe">'+
                                 '<div class="gardrobe_preview_container"><img src="'+ askiPicturePath + userId + "/" + picId +'" /></div>'+
@@ -80,6 +80,10 @@ setGardrobesForProfilePage = function(gardrobeData){
                             '</div>'
             }));
         gardrobesContainer.append(gardrobes);
+
+            gardrobes.on("click",function(){
+                createAskiForProfilePage(gardrobeData[$(this).attr("order")].hangers);
+            })
         }
     }
 
@@ -150,7 +154,7 @@ setFellowers = function(data){
    }
 
    $("#send_message_to_user").on("click",function(){
-       createNewMessage();
+       createNewMessage(decodeURIComponent($.urlParam('user_id')));
    });
 }
 
@@ -201,4 +205,10 @@ setUserData = function(data){
     $("#profile_page_profile_name").text(data[0].name +" "+ data[0].surname);
     $("#profile_description").text(data[0].about);
     $("#profile_page_profile_picture img").attr("src","storage/user_images/avatars/"+ data[0].pic_id);
+}
+
+createAskiForProfilePage = function(data){
+    var data = JSON.stringify(data)
+    localStorage.setItem("new_aski_data", data);
+    window.location = "search_results.php";
 }

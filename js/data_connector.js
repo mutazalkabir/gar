@@ -305,6 +305,47 @@ function getAllConversations(_userId){
             // alert( "finished" + data);
         });
 }
+
+function setConversationsRead(_conversationId){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "markconversationasread", conversation_id:_conversationId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            debugger
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+
+function setNotificationsRead(_userId){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "notificationsseen", user_id:_userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            debugger
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
 /* Get Conversations */
 
 /* Send Message */

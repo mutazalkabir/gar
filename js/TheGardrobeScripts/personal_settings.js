@@ -146,6 +146,7 @@ var Thegardrobe = function(){
         $("#settings_page_phone").val(window.user[0].phone);
         $("#settings_page_about").val(window.user[0].about);
         $("#settings_page_city").text(window.user[0].city);
+        $("#psp_profile_picture_holder").append('<img src="storage/user_images/avatars/'+ window.user[0].pic_id +'"/>')
 
         $("#settings_page_phone").mask("(999) 999-99-99");
 

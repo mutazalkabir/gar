@@ -71,7 +71,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     <script type="text/javascript" src="js/helpers/dataPicker.js"></script>
     <script type="text/javascript" src="js/helpers/date.js"></script>
     <script type="text/javascript" src="js/helpers/ajaxform.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/search_results.js"></script>
     <!-- TheGardrobe Component Scripts -->
 
     <link media="screen" type="text/css" href="css/photo_tagging/jquery-ui-1.8.17.custom.css" rel="stylesheet">
@@ -146,10 +146,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     </div>
 
     <div id="page_contents" class="clearfix">
-        <div id="all_or_followers_only_selector">
-            <span class="active_selector_span">Takip Ettiklerim</span>
-            <span>Herkes</span>            
-        </div>
+
     </div>
 </body>
 </html>

@@ -9,6 +9,7 @@
 createNotifications = function(data){
     if(data)
     {
+    var unreadNotificationCount = 0;
     var  notificationsContainer = $("#notifications_content");
     for(var i=0; i<data.length; i++){
         if(data[i].notification_type == "like"){
@@ -24,6 +25,9 @@ createNotifications = function(data){
                             '</div>'
             }));
             notificationsContainer.append(notification);
+            if(data[i].seen == 0){
+                unreadNotificationCount++;
+            }
         }
         else if(data[i].notification_type == "comment"){
             var notification = $(GenerateDomElement({
@@ -38,6 +42,9 @@ createNotifications = function(data){
                             '</div>'
             }));
             notificationsContainer.append(notification);
+            if(data[i].seen == 0){
+                unreadNotificationCount++;
+            }
         }
         else if(data[i].notification_type == "share"){
             var notification = $(GenerateDomElement({
@@ -52,6 +59,9 @@ createNotifications = function(data){
                             '</div>'
             }));
             notificationsContainer.append(notification);
+            if(data[i].seen == 0){
+                unreadNotificationCount++;
+            }
         }
         else{
             var notification = $(GenerateDomElement({
@@ -66,8 +76,24 @@ createNotifications = function(data){
                             '</div>'
             }));
             notificationsContainer.append(notification);
+            if(data[i].seen == 0){
+                unreadNotificationCount++;
+            }
         }
     }
+
+    if(unreadNotificationCount > 0){
+        $("#notifications").attr("hasNewItem","true");
+        $("#notifications").find(".notification_count_holder").text(unreadNotificationCount);
+    }
+    else{
+        $("#notifications").attr("hasNewItem","false");
+    }
+
+    $("#notifications").on("click",function(){
+        debugger
+        setNotificationsRead(window.user[0].user_id);
+    });
     notificationsContainer.mCustomScrollbar();
 }
 }
