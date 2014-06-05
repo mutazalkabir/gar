@@ -3011,6 +3011,10 @@ input:focus{
     border-right: none;
 }
 
+.gardrobe_karistir_category_items .category_name{
+    font-size: 13px !important;
+}
+
 .gardrobe_karistir_sub_items_holder span{
     font-weight: 100;
     font-size: 16px;

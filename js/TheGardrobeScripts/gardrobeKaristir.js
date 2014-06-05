@@ -150,11 +150,11 @@ setCategoriesForGardrobeKaristir = function(data){
         var gardrobeKaristirCategoryItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"gardrobe_karistir_category_items",
-            attributes: {category_id: data[i].category_id},
+            attributes: {category_id: data[i].category_id, "title": data[i].category_name},
             htmlContent:'<div class="category_holder">'+
                             '<i class="flaticon-gardrobe-bikini4"></i>' +
                         '</div>'+
-                        '<span class="category_name">'+ data[i].category_name +'</span>'
+                        '<span title="'+ data[i].category_name +'" class="category_name">'+ data[i].category_name +'</span>'
         }));
         container.prepend(gardrobeKaristirCategoryItem);
 
