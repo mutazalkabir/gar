@@ -5,14 +5,23 @@
  * Date: 11.05.2014
  * Time: 13:29
  */
-error_reporting(E_ALL ^ E_DEPRECATED);
+//error_reporting(E_ALL ^ E_DEPRECATED);
 //error_reporting(E_ALL & ~E_NOTICE);
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+
 $username = "root";
 $password = "";
 $hostname = "localhost";
 $dbname = "thegardrobe";
-
+/*
+$username = "thegecom_mutaz";
+$password = "123qwe**";
+$hostname = "localhost";
+$dbname = "thegecom_tehgardrobe";
+*/
 $BY_CATEGORY = "category";
 $BY_CITY = "city";
 $BY_DATE = "date";
