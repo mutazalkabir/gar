@@ -59,12 +59,11 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     else{
         var likeCount = 0;
     }
-    
     var askiProfileItems = $(GenerateDomElement({
         nodeType:"div",
         attributes:{"id":"popup_profile_holder"},
         htmlContent:'<div id="popup_profile_picture" class="popup_profile_items">' +
-                        '<img src="storage/user_images/avatars/'+ askiDetayData.pic_id +'" />'+
+                        '<img src="storage/user_images/avatars/'+ askiDetayData.avatar +'" />'+
                     '</div>'+
 
                     '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
