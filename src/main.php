@@ -1170,6 +1170,7 @@ $data= array();
             $max = sizeof($data);
 
 
+            
             while ($row2 = mysql_fetch_assoc($result2)) {
                 $data2[]=$row2;
               /*  if($row2["receiver_read"]=="1")
