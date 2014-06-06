@@ -261,13 +261,13 @@
             }
 
             this.$preview.html('<img src="' + this.url + '">');
-            this.$preview.append('<div id="cropping_done_button">TAMAM</div>');
+/*            this.$preview.append('<div id="cropping_done_button">TAMAM</div>');
 
 
             $("#cropping_done_button").live("click",function(){
                 //TODO MUTAZ CROPPING
                 $(".cropper-container").remove()
-            });
+            });*/
 
         },
 
