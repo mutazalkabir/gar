@@ -82,7 +82,10 @@ setGardrobesForProfilePage = function(gardrobeData){
         gardrobesContainer.append(gardrobes);
 
             gardrobes.on("click",function(){
-                createAskiForProfilePage(gardrobeData[$(this).attr("order")].hangers);
+                window.location="index.php?gardrobe_id="+$(this).attr("gardrobe_id");
+            //
+                //getMainPageFeed("gardrobe", createMainPageFeed);
+                //createAskiForProfilePage(gardrobeData[$(this).attr("order")].hangers);
             })
         }
     }

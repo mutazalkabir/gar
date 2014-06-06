@@ -22,7 +22,32 @@ var Thegardrobe = function(){
 
         /* Ana Sayfa Main Feed
          ================================================== */
-        getMainPageFeed("fellowed", createMainPageFeed);
+
+        $.urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            if (results==null){
+                return null;
+            }
+            else{
+                return results[1] || 0;
+            }
+        }
+
+        debugger
+        var gardrobe_id = decodeURIComponent($.urlParam('gardrobe_id'));
+        if(gardrobe_id!="null")
+        {
+            $("#all_or_followers_only_selector").css("display","none");
+            searchResult("gardrobe",gardrobe_id,createMainPageFeed)
+        }
+        else
+        {
+            $("#all_or_followers_only_selector").css("display","block");
+            getMainPageFeed("fellowed", createMainPageFeed);
+
+        }
+
+
         /*================================================== */
 
         /* Personal Messages
@@ -144,6 +169,10 @@ var Thegardrobe = function(){
     }
     _this.initSearchResultsPage= function()
     {
+
+            searchResult("gardrobe",$(this).attr("gardrobe_id"),createMainPageFeed)
+
+
         cities = ["ADANA","ADIYAMAN","AFYONKARAHİSAR", "AĞRI","AMASYA","ANKARA","ANTALYA","ARTVİN","AYDIN", "BALIKESİR","BİLECİK","BİNGÖL","BİTLİS","BOLU", "BURDUR","BURSA","ÇANAKKALE","ÇANKIRI","ÇORUM", "DENİZLİ","DİYARBAKIR","EDİRNE","ELAZIĞ","ERZİNCAN", "ERZURUM","ESKİŞEHİR","GAZİANTEP","GİRESUN", "GÜMÜŞHANE","HAKKARİ","HATAY","ISPARTA","MERSİN", "İSTANBUL","İZMİR","KARS","KASTAMONU","KAYSERİ", "KIRKLARELİ","KIRŞEHİR","KOCAELİ","KONYA","KÜTAHYA", "MALATYA","MANİSA","KAHRAMANMARAŞ","MARDİN","MUĞLA", "MUŞ","NEVŞEHİR","NİĞDE","ORDU","RİZE","SAKARYA", "SAMSUN","SİİRT","SİNOP","SİVAS","TEKİRDAĞ","TOKAT", "TRABZON","TUNCELİ","ŞANLIURFA","UŞAK","VAN", "YOZGAT","ZONGULDAK","AKSARAY","BAYBURT","KARAMAN", "KIRIKKALE","BATMAN","ŞIRNAK","BARTIN","ARDAHAN","IĞDIR", "YALOVA","KARABÜK","KİLİS","OSMANİYE","DÜZCE"];
 
         window.user = JSON.parse(window.readCookie("user"));
@@ -157,7 +186,10 @@ var Thegardrobe = function(){
          ================================================== */
         var searchResults = localStorage.getItem("new_aski_data");
         var searchResultsJSON = JSON.parse(searchResults);
-        createMainPageFeed(searchResultsJSON)
+
+
+       //
+        //createMainPageFeed(searchResultsJSON)
         /*================================================== */
 
         /* Personal Messages

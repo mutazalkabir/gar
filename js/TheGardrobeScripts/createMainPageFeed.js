@@ -7,6 +7,7 @@
  */
 
 createMainPageFeed = function(mainPageFeedData){
+    debugger
     if(mainPageFeedData.length == 0){
         if($("#no_search_result").length == 0){
             $("body").append('<span id="no_search_result">Arama Kriterlerinize Uyan Askı Bulunamadı</span>');
