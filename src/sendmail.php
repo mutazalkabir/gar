@@ -6,7 +6,7 @@
  * Time: 01:46
  */
 
-$to = "ysezin@gmail.com";
+$to = "mutazalkabir@gmail.com";
 $subject = "active edin";
 
 
