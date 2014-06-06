@@ -78,6 +78,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     <link media="screen" type="text/css" href="css/photo_tagging/styles2.css" rel="stylesheet">
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery-ui-1.8.17.custom.min.js"></script>
     <script type="text/javascript" src="js/helpers/photo_tagging/jquery.phototag.js"></script>
+    <script src="http://connect.facebook.net/en_US/all.js" type="text/javascript" charset="utf-8"></script>
 
     <style type="text/css">
         #page_contents{
@@ -87,6 +88,8 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
 </head>
 
 <body>
+<div id="fb-root"></div>
+
     <div id="main_navigation_bar">
         <div id="navigation_bar_contents">
             <div id="main_logo"></div>

@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
+showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArrowButtons){
     if(fromMainFeed == true){
         var askiDetay = $(GenerateDomElement({
             nodeType:"div",
@@ -217,6 +217,11 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         }
     }
 
+    if(_hasArrowButtons == false){
+        $(".fa-angle-right").remove();
+        $(".fa-angle-left").remove();
+    }
+
     $("#send_comment_button").on("click",function(){
         debugger
         if($.trim($("#aski_comment_textarea").val()) != ""){
@@ -332,12 +337,24 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed){
         window.taggedFriends= new Array();
         showPreloader();
 
-        $(".feed_item").remove();
 
-        if($(".active_selector_span").html() == "Takip Ettiklerim")
-            getMainPageFeed("fellowed",createMainPageFeed);
+        if($(".active_selector_span").html() == "Takip Ettiklerim"){
+            if($(".active_selector_span:visible").length>0){
+                $(".feed_item").remove();
+                getMainPageFeed("fellowed",createMainPageFeed);
+            }
+            else{
+                removePreloader()
+            }
+        }
         else{
-            getMainPageFeed("all",createMainPageFeed);
+            if($(".active_selector_span:visible").length>0){
+                $(".feed_item").remove();
+                getMainPageFeed("all",createMainPageFeed);
+            }
+            else{
+                removePreloader()
+            }
         }
     });
 

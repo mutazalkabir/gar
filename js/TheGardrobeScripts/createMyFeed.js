@@ -75,7 +75,7 @@ setMyFeed = function(myFeedData){
                     window.location = "profile_page.php?user_id="+$(this).attr("user_id");
                }
                else{
-                   showPopup("",mainPageFeedData, "", true);
+                   showPopup("","","","",false);
                }
             });
         }

@@ -28,6 +28,21 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
 
         getPromotedUsers(setFriendsForTagging);
     }
+    else if(_popupType == "share"){
+        addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
+        var popup = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"status_popup animated bounceInDown",
+            attributes:{"style":"height:250px; min-height:250px"},
+            htmlContent:'<div id="append_friends" class="popup_top_bar" type="'+ _popupType +'">' +
+                '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
+                '</div>' +
+                '<div style="top: 55px; margin-top: 0px; font-size: 16px;" class="popup_body">'+ _popupMessage +'</div>'+
+                    '<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/thegardrobe/storage/user_images/1/0.png"><span class="symbol facebook">circlefacebook</span></a>'+
+                    '<a target="_blank" href="https://www.twitter.com/TheGardrobe"><span class="symbol twitter">circletwitterbird</span></a>'+
+                    '<a target="_blank" href="https://plus.google.com/107522711390698172759/"><span class="symbol googleplus">circlegoogleplus</span></a>'
+        }));
+    }
 
     else{
         var popup = $(GenerateDomElement({
@@ -44,6 +59,10 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
     popupGlass.find(".popup_glass_inner").append(popup);
 
     $("body").append(popupGlass);
+
+    $(".facebook").on("click",function(e){
+
+    })
 
     $(".tag_them").on("click",function(){
         debugger

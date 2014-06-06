@@ -3473,6 +3473,10 @@ input:focus{
     background-color: #00aced;
 }
 
+.popup_top_bar[type="share"]{
+    background-color: #00aced;
+}
+
 .all_friends_holder{
     position: absolute;
     top: 80px;
@@ -3525,6 +3529,11 @@ input:focus{
     left: 0;
     right: 0;
     padding: 0px 10px;
+}
+
+.status_popup .symbol{
+    font-size: 100px;
+    margin: 30px 10px 30px 10px;
 }
 
 .popup_body{

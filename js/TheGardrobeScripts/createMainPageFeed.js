@@ -7,7 +7,16 @@
  */
 
 createMainPageFeed = function(mainPageFeedData){
-    debugger
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+
     if(mainPageFeedData.length == 0){
         if($("#no_search_result").length == 0){
             $("body").append('<span id="no_search_result">Arama Kriterlerinize Uyan Askı Bulunamadı</span>');
@@ -135,6 +144,8 @@ createMainPageFeed = function(mainPageFeedData){
                         opacity:"0.8",
                         cursor:"default"
                     });
+
+                    showStatusPopup("Beğendiğin askıyı aşağıdaki sosyal ağlardan paylaşabilirsin! :)","share","");
                     addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
                 }
                 else{
@@ -156,7 +167,15 @@ createMainPageFeed = function(mainPageFeedData){
                 e.stopImmediatePropagation();
             }
             else{
-                showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true);
+                var gardrobe_id = decodeURIComponent($.urlParam('gardrobe_id'));
+                if(gardrobe_id!="null")
+                {
+                    showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true, false);
+                }
+                else
+                {
+                    showPopup(mainPageFeedData[$(this).attr("order_number")],mainPageFeedData, $(this).attr("order_number"), true, true);
+                }
             }
         });
     }
