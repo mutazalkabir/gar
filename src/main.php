@@ -1166,7 +1166,7 @@ $data= array();
             $conversation_id=$row["conversation_id"];
           //  $result2 = mysql_query(" SELECT * FROM pm WHERE conversation_id = '$conversation_id' ORDER BY message_date ASC");
 
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ', u.surname) as user_one_name, CONCAT(u2.name,' ', u2.surname) as user_two_name, p.* FROM users u, users u2, pm p WHERE p.conversation_id ='$conversation_id' AND (u.user_id = p.user_one OR u.user_id = p.user_two) AND ( u2.user_id = p.user_one OR u2.user_id = p.user_two ) AND u.user_id != u2.user_id AND u.user_id = p.user_one AND u.active='1' AND u2.active='1' ORDER BY message_date ASC LIMIT 0 , 30");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name,' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, p.* FROM users u, users u2, pm p WHERE p.conversation_id ='$conversation_id' AND (u.user_id = p.user_one OR u.user_id = p.user_two) AND ( u2.user_id = p.user_one OR u2.user_id = p.user_two ) AND u.user_id != u2.user_id AND u.user_id = p.user_one AND u.active='1' AND u2.active='1' ORDER BY message_date ASC LIMIT 0 , 30");
             $max = sizeof($data);
 
 
