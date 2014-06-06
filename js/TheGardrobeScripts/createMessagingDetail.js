@@ -15,7 +15,7 @@ createMessagingDetail = function(){
 setMessages = function(messages){
     var conversationId = messages[0].conversation_id;
     if(window.user[0].user_id == messages[0].user_two){
-        var receiverId = messages[0].user_on;
+        var receiverId = messages[0].user_one;
     }
     else{
         var receiverId = messages[0].user_two;
