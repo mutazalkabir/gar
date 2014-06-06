@@ -142,6 +142,21 @@ setBrands = function(data){
     });
 }
 
+var categories = {
+    "Ufak Dokunuşlar (Aksesuarlar)":"flaticon-ring5",
+    "Uyku Vakti":"flaticon-sleepy7",
+    "Ev Hali":"flaticon-family24",
+    "Soğuk Havalar":"flaticon-winter",
+    "Her gün Modası":"flaticon-clothes15",
+    "Deniz Havası":"flaticon-bikini4",
+    "Spor Zamanı":"flaticon-soccer18",
+    "Yolculukta":"flaticon-car95",
+    "Rahat Bir Şeyler":"flaticon-person198",
+    "Hoşgeldin Yaz":"flaticon-beach5",
+    "Salaş ama Seksi":"flaticon-lips",
+    "Şık ve Özel":"flaticon-suit"
+}
+
 setCategoriesForGardrobeKaristir = function(data){
     var container = $("#gardrobe_categories").find(".gardrobe_karistir_sub_items_content_holder");
 
@@ -152,7 +167,7 @@ setCategoriesForGardrobeKaristir = function(data){
             classNames:"gardrobe_karistir_category_items",
             attributes: {category_id: data[i].category_id, "title": data[i].category_name},
             htmlContent:'<div class="category_holder">'+
-                            '<i class="flaticon-gardrobe-bikini4"></i>' +
+                            '<i class="'+ categories[data[i].category_name] +'"></i>' +
                         '</div>'+
                         '<span title="'+ data[i].category_name +'" class="category_name">'+ data[i].category_name +'</span>'
         }));

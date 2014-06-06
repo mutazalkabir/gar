@@ -38,8 +38,8 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+
     <link href="css/flaticon.css" rel="stylesheet" type="text/css" />
-    <link href="css/flaticon_gardrobe.css" rel="stylesheet" type="text/css" />
     <link href="css/datePicker.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="js/helpers/browser_selector.js"></script>
