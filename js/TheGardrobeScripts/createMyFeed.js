@@ -75,10 +75,15 @@ setMyFeed = function(myFeedData){
                     window.location = "profile_page.php?user_id="+$(this).attr("user_id");
                }
                else{
-                   showPopup("","","","",false);
+                   getHangerById($(this).attr("hanger_id"),showPopupFromFeed)
+                   //showPopup("","","","",false);
                }
             });
         }
         $("#my_feed").mCustomScrollbar();
     }
+}
+
+showPopupFromFeed = function(hangerData){
+    showPopup(hangerData,"","",true,false);
 }
