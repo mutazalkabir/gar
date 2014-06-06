@@ -7,6 +7,7 @@
  */
 
 showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArrowButtons){
+    debugger
     if(fromMainFeed == true){
         var askiDetay = $(GenerateDomElement({
             nodeType:"div",
@@ -105,6 +106,14 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             htmlContent:'<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
                         '<i class="fa fa-angle-right" bring="'+ (parseInt(orderNumber) + 1) +'"></i>'+
             "<div id='report_aski'>Askı'yı rapor et</div>"
+        }));
+    }
+    else if(orderNumber == ""){
+        var askiPictureHolder = $(GenerateDomElement({
+            nodeType:"div",
+            attributes:{"id":"aski_picture_holder"},
+            htmlContent:'<div id="aski_picture"><img src="'+ askiPicturePath + askiDetayData.user_id + "/" + askiDetayData.pic_id +'" /></div>'+
+                        "<div id='report_aski'>Askı'yı rapor et</div>"
         }));
     }
     else{

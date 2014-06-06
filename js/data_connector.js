@@ -91,6 +91,28 @@ function getMainPageFeed(_state, _successFunction){
         });
 }
 
+function getHangerById(_hangerId, _successFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "gethangerbyid", hanger_id: _hangerId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(hangerData) {
+            debugger
+            _successFunction(hangerData)
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            return data;
+            // alert( "finished" + data);
+        });
+}
+
 function getNotifications(_userId, _successFunction){
     $.ajax({
         url: "src/main.php",
@@ -700,6 +722,7 @@ function reportHanger(_hangerId, _reporter_id, _hanger_owner_id,_comment){
             withCredentials: true
         }
     }).done(function(data) {
+            showStatusPopup("Askıyı rapor ettiniz","success","")
         // alert( "success" +data );
     }).fail(function(data) {
         // alert( "error" +data );
