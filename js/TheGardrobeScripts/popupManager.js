@@ -7,7 +7,9 @@
  */
 
 showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArrowButtons){
-    debugger
+    if(askiDetayData.length > 0){
+        askiDetayData = askiDetayData[0];
+    }
     if(fromMainFeed == true){
         var askiDetay = $(GenerateDomElement({
             nodeType:"div",
