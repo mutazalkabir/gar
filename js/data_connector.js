@@ -372,6 +372,7 @@ function setNotificationsRead(_userId){
 
 /* Send Message */
 function sendMessage(_conversationId, _messageBody, _senderId, _receiverId, _successFunction){
+    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",

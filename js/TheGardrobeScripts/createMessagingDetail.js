@@ -14,7 +14,12 @@ createMessagingDetail = function(){
 
 setMessages = function(messages){
     var conversationId = messages[0].conversation_id;
-    var receiverId = messages[0].user_two;
+    if(window.user[0].user_id == messages[0].user_two){
+        var receiverId = messages[0].user_one;
+    }
+    else{
+        var receiverId = messages[0].user_two;
+    }
     var container = $("#messages_detail_content_holder");
 
     for(var i=0; i<messages.length; i++){
