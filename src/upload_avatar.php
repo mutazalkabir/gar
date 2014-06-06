@@ -29,10 +29,10 @@ else
     $newfilename=$user_id.".".end(explode(".",$_FILES["file"]["name"]));
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
 
-    $dir = 'photos/';
+   /* $dir = 'photos/';
     foreach(glob($dir.'*.*') as $v){
         unlink($v);
-    }
+    }*/
 }
 
 
