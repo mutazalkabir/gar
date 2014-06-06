@@ -217,6 +217,99 @@ $data = array();
 
     /////////////////////////////////////HANGER/////////////////////////////////////
 
+
+    if ($operation == "gethangerbyid") {
+        $data = array();
+        $hanger_id= (string)$_GET['hanger_id'];;
+
+
+        $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
+             FROM users u, hanger h, gardrobe g,category c
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.hanger_id=$hanger_id AND u.active='1' ORDER BY  h.create_date ASC");
+
+
+
+        while ($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+
+        //get Likes
+        $max = sizeof($data);
+
+
+
+
+
+        for($i=0;$i<$max;$i++){
+            $id= $data[$i]['hanger_id'];
+            $likes= array();
+
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id , u.pic_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1' ");
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                if($row2["user_id"]==$user_id)
+                {
+                    $data[$i]["hadliked"]="true";
+                }
+                array_push($likes,$row2);
+            }
+            if($likes!=null)
+            {
+                $data[$i]["likes"]=$likes;
+            }
+            unset($likes);
+        }
+
+        //get shares
+        for($i=0;$i<$max;$i++){
+            $id= $data[$i]['hanger_id'];
+            $shares= array();
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1' ");
+
+
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                if($row2["user_id"]==$user_id)
+                {
+                    $data[$i]["hadshared"]="true";
+                }
+                array_push($shares,$row2);
+            }
+
+            if($shares!=null)
+            {
+                $data[$i]["shares"]=$shares;
+            }
+            unset($shares);
+        }
+        //get comments
+        for($i=0;$i<$max;$i++){
+            $id= $data[$i]['hanger_id'];
+            $comments= array();
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1' ");
+
+
+
+            while ($row2 = mysql_fetch_assoc($result2)) {
+                array_push($comments,$row2);
+            }
+
+            if($comments!=null)
+            {
+                $data[$i]["comments"]=$comments;
+            }
+            unset($comments);
+        }
+
+        //prepare array field names
+        // $field_names = array_keys($data[0]);
+
+
+        //return data
+        header('Content-Type: application/json');
+        echo json_encode($data);
+
+    }
     if ($operation == "gethanger") {
         $data = array();
         $state= "";
