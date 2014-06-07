@@ -5,7 +5,7 @@
  * Date: 11.05.2014
  * Time: 15:50
  */
-error_reporting(E_ALL ^ E_DEPRECATED);
+
 class DB_Class {
     VAR $db;
     ///////////////////////////

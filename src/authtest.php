@@ -6,8 +6,9 @@
  * Time: 23:54
  */
 
-include 'constants.php';
-include 'dbconnect.php';
+//include 'constants.php';
+//include 'dbconnect.php';
+include 'config/dbconfig.php';
 //error_reporting(E_ALL ^ E_DEPRECATED);
 
 //session_name('thegardrobeLogin');

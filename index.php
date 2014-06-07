@@ -18,6 +18,7 @@ session_start();
 
 if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE['thegardrobeRemember']) && !$_SESSION['rememberMe'])
 {
+
     // If you are logged in, but you don't have the tzRemember cookie (browser restart)
     // and you have not checked the rememberMe checkbox:
 

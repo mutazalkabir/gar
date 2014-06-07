@@ -5,12 +5,13 @@
  * Date: 19.04.2014
  * Time: 11:56
  */
-error_reporting(E_ALL ^ E_DEPRECATED);
-include 'constants.php';
-include 'dbconnect.php';
+
+//include 'constants.php';
+//include 'dbconnect.php';
+include 'config/dbconfig.php';
 include 'utils.php';
 
-error_reporting(E_ALL ^ E_DEPRECATED);
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -97,7 +98,8 @@ else
 {
     // var_dump($_GET);
     header('Content-Type: application/json; charset=utf-8');
+    echo "bok";
 }
 
-mysql_close($dbhandle);
+//mysql_close($dbhandle);
 ?>

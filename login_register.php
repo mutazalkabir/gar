@@ -1,3 +1,21 @@
+<?php
+//Always place this code at the top of the Page
+session_start();
+if (isset($_SESSION['user_id'])) {
+    // Redirection to login page twitter or facebook
+    header("location: index.php");
+}
+
+if (array_key_exists("login", $_GET)) {
+    $oauth_provider = $_GET['oauth_provider'];
+    if ($oauth_provider == 'twitter') {
+        header("Location: login-twitter.php");
+    } else if ($oauth_provider == 'facebook') {
+        header("Location: src/login-facebook.php");
+    }
+}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -41,17 +59,12 @@
 <script>
 
     window.fbAsyncInit = function() {
-       // showPreloader();
+        //showPreloader();
         var mail="";
-        FB.init({
+       /* FB.init({
             appId      : '1495264814020195',
             xfbml      : true,
             version    : 'v2.0'
-        });
-
-      /*  FB.Event.subscribe('auth.login', function(){
-            debugger
-            window.location.reload();
         });*/
 
         FB.getLoginStatus(function(response) {
@@ -142,7 +155,7 @@
             <a class="social_login_buttons btn-twitter">
                 <i class="fa fa-twitter"></i>Twitter
             </a>
-            <a class="social_login_buttons btn-facebook">
+            <a class="social_login_buttons btn-facebook" ><!--href="?login&oauth_provider=facebook"-->
                 <i class="fa fa-facebook"></i>Facebook
             </a>
             <a class="social_login_buttons btn-google-plus">

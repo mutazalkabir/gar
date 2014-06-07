@@ -6,10 +6,10 @@
  * Time: 11:56
  */
 
-include 'constants.php';
-include 'dbconnect.php';
+//include 'constants.php';
+//include 'dbconnect.php';
+include 'config/dbconfig.php';
 include 'utils.php';
-error_reporting(E_ALL ^ E_DEPRECATED);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     header('Content-Type: text/plain; charset=utf-8');
     echo ("confirm_mail.html?".$confirmation_code);
-    mysql_close($dbhandle);
+    //mysql_close($dbhandle);
     die();
     //TODO Send mail
 

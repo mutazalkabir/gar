@@ -7,6 +7,11 @@
  */
 
 session_start();
-session_destroy();
+unset($_SESSION['user_id']);
 $_SESSION = array();
+session_destroy();
+
+header('Content-Type: application/json');
+echo json_encode(true);
+
 ?>

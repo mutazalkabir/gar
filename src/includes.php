@@ -5,8 +5,9 @@
  * Date: 16.05.2014
  * Time: 01:54
  */
-include '../src/constants.php';
-include '../src/dbconnect.php';
+include 'constants.php';
+//include 'dbconnect.php';
+include 'config/dbconfig.php';
 include '../src/utils.php';
 
 ?>

@@ -6,10 +6,11 @@
  * Time: 02:11
  */
 
-include 'constants.php';
-include 'dbconnect.php';
+//include 'constants.php';
+//include 'dbconnect.php';
+include 'config/dbconfig.php';
 include 'utils.php';
-error_reporting(E_ALL ^ E_DEPRECATED);
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {

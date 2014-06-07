@@ -139,8 +139,8 @@ var Thegardrobe = function(){
         });
 
         $(".settings_submenu_items:last-child").on("click",function(){
-            logoff()
-            window.location = "login_register.php";
+            logoff();
+
         });
     }
 

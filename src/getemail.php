@@ -52,5 +52,5 @@ or die("Could not select examples");
         header('Content-Type: text/html; charset=utf-8');
     }
 
-mysql_close($dbhandle);
+//mysql_close($dbhandle);
  ?>

@@ -61,6 +61,8 @@ function logoff(){
             withCredentials: true
         }
     }).done(function(data) {
+        debugger
+        window.location = "login_register.php";
 
     }).fail(function(data) {
 
