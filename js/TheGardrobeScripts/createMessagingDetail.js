@@ -5,11 +5,28 @@
  * Time: 11:04
  * To change this template use File | Settings | File Templates.
  */
-
+//localStorage.getItem("conservationId")
 createMessagingDetail = function(){
+
     var messageDetailsObject = localStorage.getItem("conservation");
-    var messageDetailsJSON = JSON.parse(messageDetailsObject);
-    setMessages(messageDetailsJSON);
+    var convId=localStorage.getItem("conversationid");
+    getAllConversationsDetailPage(window.user[0].user_id,function(data){
+        debugger
+        for(var i =0 ; i< data.length; i++)
+        {
+            if(data[i].conversation_id==convId)
+            {
+                debugger
+                messageDetailsObject=data[i].messages;
+                setMessages(messageDetailsObject);
+                break;
+            }
+        }
+    });
+
+
+  //  var messageDetailsJSON = JSON.parse(messageDetailsObject);
+
 }
 
 setMessages = function(messages){

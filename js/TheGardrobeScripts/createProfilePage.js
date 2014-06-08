@@ -22,41 +22,42 @@ setGardrobesForProfilePage = function(gardrobeData){
     var askiPicturePath = "storage/user_images/";
 
     if(gardrobeData.length>0){
+       // askiPicturePath + userId + "/" + picId +'
         for(var i=0; i<gardrobeData.length; i++){
             if(gardrobeData[i].hangers[0] == undefined){
                 var userId = decodeURIComponent($.urlParam('user_id'));
-                var picId = "dummyaski.jpg";
+                var picId =askiPicturePath+ "dummyaski.jpg";
             }
             else{
                 var userId = gardrobeData[i].hangers[0].user_id;
-                var picId = gardrobeData[i].hangers[0].pic_id;
+                var picId = askiPicturePath + userId + "/" + gardrobeData[i].hangers[0].pic_id;
             }
 
             if(gardrobeData[i].hangers[1] == undefined){
                 var userId = decodeURIComponent($.urlParam('user_id'));
-                var picId1 = "dummyaski.jpg";
+                var picId1 = askiPicturePath+ "dummyaski.jpg";
             }
             else{
                 var userId = gardrobeData[i].hangers[1].user_id;
-                var picId1 = gardrobeData[i].hangers[1].pic_id;
+                var picId1 =askiPicturePath + userId + "/" + gardrobeData[i].hangers[1].pic_id;
             }
 
             if(gardrobeData[i].hangers[2] == undefined){
                 var userId = decodeURIComponent($.urlParam('user_id'));
-                var picId2 = "dummyaski.jpg";
+                var picId2 = askiPicturePath+ "dummyaski.jpg";
             }
             else{
                 var userId = gardrobeData[i].hangers[2].user_id;
-                var picId2 = gardrobeData[i].hangers[2].pic_id;
+                var picId2 = askiPicturePath + userId + "/" + gardrobeData[i].hangers[2].pic_id;
             }
 
             if(gardrobeData[i].hangers[3] == undefined){
                 var userId = decodeURIComponent($.urlParam('user_id'));
-                var picId3 = "dummyaski.jpg";
+                var picId3 =askiPicturePath+ "dummyaski.jpg";
             }
             else{
                 var userId = gardrobeData[i].hangers[3].user_id;
-                var picId3 = gardrobeData[i].hangers[3].pic_id;
+                var picId3 = askiPicturePath + userId + "/" + gardrobeData[i].hangers[3].pic_id;
             }
 
             var gardrobes = $(GenerateDomElement({
@@ -65,10 +66,10 @@ setGardrobesForProfilePage = function(gardrobeData){
                 attributes:{"gardrobe_id": gardrobeData[i].gardrobe_id, "order":i},
                 htmlContent:'<span class="cloth_cover gardrobe"></span>'+
                             '<div class="cloth_photo gardrobe">'+
-                                '<div class="gardrobe_preview_container"><img src="'+ askiPicturePath + userId + "/" + picId +'" /></div>'+
-                                '<div class="gardrobe_preview_container"><img src="'+ askiPicturePath + userId + "/" + picId1 +'" /></div>'+
-                                '<div class="gardrobe_preview_container"><img src="'+ askiPicturePath + userId + "/" + picId2 +'" /></div>'+
-                                '<div class="gardrobe_preview_container"><img src="'+ askiPicturePath + userId + "/" + picId3 +'" /></div>'+
+                                '<div class="gardrobe_preview_container"><img src="'+picId +'" /></div>'+
+                                '<div class="gardrobe_preview_container"><img src="'+picId1 +'" /></div>'+
+                                '<div class="gardrobe_preview_container"><img src="'+picId2 +'" /></div>'+
+                                '<div class="gardrobe_preview_container"><img src="'+picId3 +'" /></div>'+
                             ' </div>'+
                             '<div class="profile_photo">'+
                                 '<img user_id="'+gardrobeData[i].user_id+'" class="main_page_feed_profile_image" src="storage/user_images/avatars/'+ gardrobeData[i].avatar+'">'+

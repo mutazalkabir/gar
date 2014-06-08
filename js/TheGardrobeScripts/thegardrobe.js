@@ -34,7 +34,7 @@ var Thegardrobe = function(){
                 return results[1] || 0;
             }
         }
-
+        debugger
         var gardrobe_id = decodeURIComponent($.urlParam('gardrobe_id'));
         if(gardrobe_id!="null")
         {
@@ -99,7 +99,7 @@ var Thegardrobe = function(){
             }
         }
 
-        getGardrobesForProfilePage(decodeURIComponent($.urlParam('user_id')));
+       // getGardrobesForProfilePage(decodeURIComponent($.urlParam('user_id')));
         /*================================================== */
 
         /* Mesaj Detay

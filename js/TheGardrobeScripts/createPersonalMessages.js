@@ -49,8 +49,12 @@ createPersonalMessages = function(conservations){
     messagesContainer.mCustomScrollbar();
     $(".messages").on("click",function(){
         window.location = "messages_detail.html";
+        debugger
         if (typeof(Storage) != "undefined"){
             localStorage.setItem("conservation", $(this).attr("message_body"));
+            debugger
+            localStorage.setItem("conversationid", $(this).attr("conversation_id"));
+
         }
     });
 }

@@ -354,6 +354,29 @@ function getAllConversations(_userId){
         });
 }
 
+
+
+function getAllConversationsDetailPage(_userId,_succesFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "getallconversations", user_id:_userId},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(conversations) {
+           // eval("createPersonalMessages(conversations)");
+            _succesFunction(conversations);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+
 function setConversationsRead(_conversationId){
     $.ajax({
         url: "src/main.php",
@@ -495,6 +518,7 @@ function getGardrobes(_userId){
             withCredentials: true
         }
     }).done(function(data) {
+            debugger
             setGardrobes(data);
             // alert( "success" +data );
         }).fail(function(data) {
@@ -505,6 +529,7 @@ function getGardrobes(_userId){
 }
 
 function getGardrobesForProfilePage(_userId){
+    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",

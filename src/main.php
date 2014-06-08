@@ -8,7 +8,7 @@
 
 error_reporting(E_ALL ^ E_DEPRECATED);
 //include 'src/authtest.php';
-//include 'constants.php';
+include 'constants.php';
 //include 'dbconnect.php';
 include 'config/dbconfig.php';
 
