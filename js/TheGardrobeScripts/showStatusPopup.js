@@ -6,7 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
+showStatusPopup = function(_popupMessage, _popupType, _closeFunction, _picURL){
+    window.picURL = "http://www.thegardrobe.com/"+_picURL;
+
     var popupGlass = $(GenerateDomElement({
         nodeType:"div",
         classNames:"popup_glass",
@@ -29,6 +31,7 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
         getPromotedUsers(setFriendsForTagging);
     }
     else if(_popupType == "share"){
+
         addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
         var popup = $(GenerateDomElement({
             nodeType:"div",
@@ -38,8 +41,8 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction){
                 '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
                 '</div>' +
                 '<div style="top: 55px; margin-top: 0px; font-size: 16px;" class="popup_body">'+ _popupMessage +'</div>'+
-                    '<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/thegardrobe/storage/user_images/1/0.png"><span class="symbol facebook">circlefacebook</span></a>'+
-                    '<a target="_blank" href="https://www.twitter.com/TheGardrobe"><span class="symbol twitter">circletwitterbird</span></a>'+
+                    '<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.thegardrobe.com/facebook_sharer.php?pic_url=http://www.thegardrobe.com/'+ window.picURL +'"><span class="symbol facebook">circlefacebook</span></a>'+
+                    '<a target="_blank" href="https://twitter.com/intent/tweet?button_hashtag=TheGardrobe&text=TheGardrobe.comdan bir askı paylaştım! '+  window.picURL +'" +><span class="symbol twitter">circletwitterbird</span></a>'+
                     '<a target="_blank" href="https://plus.google.com/107522711390698172759/"><span class="symbol googleplus">circlegoogleplus</span></a>'
         }));
     }

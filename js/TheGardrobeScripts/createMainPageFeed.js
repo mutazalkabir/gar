@@ -136,16 +136,14 @@ createMainPageFeed = function(mainPageFeedData){
             else if(e.target.className == "buttons share_button"){
                 e.preventDefault();
                 e.stopImmediatePropagation();
-                if($(this).find(".share_button").text() != "Paylaştın"){
+                if($(this).find(".share_button").text() == "Paylaştın"){
                     var shareCount = parseInt($(this).find(".main_page_feed_share_count").text());
                     $(this).find(".main_page_feed_share_count").text(shareCount + 1);
                     $(this).find(".share_button").text("Paylaştın");
                     $(this).find(".share_button").css({
-                        opacity:"0.8",
-                        cursor:"default"
+                        opacity:"0.8"
                     });
-
-                    showStatusPopup("Beğendiğin askıyı aşağıdaki sosyal ağlardan paylaşabilirsin! :)","share","");
+                    showStatusPopup("Beğendiğin askıyı aşağıdaki sosyal ağlardan paylaşabilirsin! :)","share","",$(this).find(".cloth_photo img").attr("src"));
                     addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
                 }
                 else{
