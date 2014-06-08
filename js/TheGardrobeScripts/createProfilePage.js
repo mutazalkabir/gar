@@ -95,7 +95,6 @@ setGardrobesForProfilePage = function(gardrobeData){
             })
         }
             $("#profile_page_header").append('<div id="page_header_overflow"></div>');
-        debugger
             for(var k=0; k<headerPictures.length; k++){
                 $("#page_header_overflow").append('<div class="profile_header_preview_container"><img class="maybe_broken" src="'+askiPicturePath + userId + "/" + headerPictures[k] +'" /></div>');
             }
