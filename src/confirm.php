@@ -12,7 +12,11 @@ include 'config/dbconfig.php';
 include 'utils.php';
 
 
-    $confirmation_code=(string)$_GET['confirmation_code'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+
+    $confirmation_code=(string)$_POST['confirmation_code'];
+echo($confirmation_code);
     //TODO Generate Confirmation Code
 
     $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
@@ -20,15 +24,24 @@ include 'utils.php';
     if($update)
     {
        // sleep(3);
-        header("Location: ../login_register.php");
+        //header("Location: ../login_register.php");
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(true);
     }
     else{
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($update);
+        echo json_encode(false);
     }
 
-    exit();
 
-mysql_close($dbhandle);
+}
+
+
+else
+{
+    // var_dump($_GET);
+    header('Content-Type: application/json; charset=utf-8');
+    echo "aa";
+}
 
 ?>

@@ -98,7 +98,7 @@ else
 {
     // var_dump($_GET);
     header('Content-Type: application/json; charset=utf-8');
-    echo "bok";
+    echo "aa";
 }
 
 //mysql_close($dbhandle);

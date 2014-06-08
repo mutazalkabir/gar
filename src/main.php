@@ -6,7 +6,7 @@
  * Time: 16:26
  */
 
-error_reporting(E_ALL ^ E_DEPRECATED);
+//error_reporting(E_ALL ^ E_DEPRECATED);
 //include 'src/authtest.php';
 include 'constants.php';
 //include 'dbconnect.php';
@@ -814,7 +814,7 @@ $data= array();
 
         $result = mysql_query(" SELECT  'like' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, l.liked_id as hanger_id, l.like_date as date
            FROM users u, users u2, users u3,fellowship f,fellowship f2, likes l,type t
-           WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+           WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
            ORDER BY l.like_date ASC");
 
 /*
@@ -831,7 +831,7 @@ $data= array();
 
         $result = mysql_query(" SELECT  'share' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, s.share_id as hanger_id, s.share_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
-        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+        WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
         ORDER BY s.share_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -842,7 +842,7 @@ $data= array();
 
         $result = mysql_query("SELECT  'comment' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, c.comment_id as hanger_id, c.comment_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
-        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+        WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellowed_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
         ORDER BY c.comment_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
