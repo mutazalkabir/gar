@@ -36,8 +36,8 @@ else
 }
 
 
-
-echo "<img id='$newfilename' src='./storage/user_images/avatars/".$newfilename."'  class='cropper'>";
+echo ($newfilename);
+echo "<img id='$newfilename' src='storage/user_images/avatars/".$newfilename."'  class='cropper'>";
 
 
 /*

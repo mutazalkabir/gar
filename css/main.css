@@ -2867,6 +2867,7 @@ input:focus{
 
 #psp_profile_picture_holder img{
     overflow: hidden !important;
+    max-width: 100%;
 }
 
 #personal_settings_page_header{

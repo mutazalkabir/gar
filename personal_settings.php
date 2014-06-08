@@ -76,9 +76,9 @@
                     target: '#img_container',
                     success: function(){
                         $(".cropper").cropper({
-                            preview: "#psp_profile_picture_holder",
                             aspectRatio: 1,
                             done: function(data) {
+                            console.log(data);
                                 $("#x").val(data.x1);
                                 $("#y").val(data.y1);
                                 $("#min_side").val(data.width);

@@ -134,6 +134,7 @@ var Thegardrobe = function(){
         $("#settings_page_pass2").val(window.user[0].pass);
         $("#settings_page_about").val(window.user[0].about);
         $("#settings_page_city").text(window.user[0].city);
+
         $("#psp_profile_picture_holder").append('<img src="storage/user_images/avatars/'+ window.user[0].pic_id +'"/>')
 
         $("#settings_page_phone").mask("(999) 999-99-99");
@@ -163,7 +164,7 @@ var Thegardrobe = function(){
                             picId = window.user[0].pic_id;
                         }
 
-                        updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId, userUpdated);
+                        updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId,$("#x").val(),$("#y").val(),$("#min_side").val(), userUpdated);
                     }
                 }
             }
@@ -178,18 +179,19 @@ var Thegardrobe = function(){
                 if(pass == ""){
                     pass=window.user[0].pass;
                 }
+                debugger
                 updateUserInformation(window.user[0].user_id, $("#settings_page_name").val(), $("#settings_page_surname").val(), $("#settings_page_pass1").val(), $("#settings_page_phone").val(),  window.newCity, $("#settings_page_about").val(), picId,$("#x").val(),$("#y").val(),$("#min_side").val(), userUpdated);
             }
 
         });
 
         function userUpdated(data){
-            debugger
             if(data!=false){
                 debugger
                 showStatusPopup("Bilgiler başarıyla güncellendi!", "success", "")
                 createCookie("user", JSON.stringify(data), 10);
                 window.user = data;
+                location.reload();
             }
             else{
                 showStatusPopup("Bilgilerinizi kontrol edip tekrar deneyin", "error", "")
