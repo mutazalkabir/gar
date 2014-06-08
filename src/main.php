@@ -223,7 +223,7 @@ $data = array();
         $data = array();
         $hanger_id= (string)$_GET['hanger_id'];;
 
-
+        $user_id =$_SESSION['user_id'];
         $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
              WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.hanger_id=$hanger_id AND u.active='1' ORDER BY  h.create_date ASC");
