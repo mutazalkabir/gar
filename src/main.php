@@ -677,6 +677,7 @@ $data = array();
         $data = array();
 
         $brand_name = (string)$_GET['brand_name'];
+        $brand_pic = (string)$_GET['brand_pic'];
 
 
         $insert = mysql_query("INSERT INTO brands VALUES ('','$brand_name','')");
