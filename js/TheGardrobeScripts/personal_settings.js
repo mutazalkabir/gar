@@ -144,6 +144,8 @@ var Thegardrobe = function(){
         $("#settings_page_surname").val(window.user[0].surname);
         $("#settings_page_mail").val(window.user[0].mail);
         $("#settings_page_phone").val(window.user[0].phone);
+        $("#settings_page_pass1").val(window.user[0].pass);
+        $("#settings_page_pass2").val(window.user[0].pass);
         $("#settings_page_about").val(window.user[0].about);
         $("#settings_page_city").text(window.user[0].city);
         $("#psp_profile_picture_holder").append('<img src="storage/user_images/avatars/'+ window.user[0].pic_id +'"/>')

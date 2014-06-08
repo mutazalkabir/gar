@@ -12,10 +12,7 @@ include 'config/dbconfig.php';
 include 'utils.php';
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
-{
-
-    $confirmation_code=(string)$_POST['confirmation_code'];
+    $confirmation_code=(string)$_GET['confirmation_code'];
     //TODO Generate Confirmation Code
 
     $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
@@ -31,12 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
 
     exit();
-}
-else
-{
-    // var_dump($_GET);
-    header('Content-Type: application/json; charset=utf-8');
-}
 
 mysql_close($dbhandle);
 

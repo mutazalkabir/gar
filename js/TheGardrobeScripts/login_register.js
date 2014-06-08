@@ -64,6 +64,7 @@ $(document).ready(function(){
     });
 
     $("#submit_confirmation_code").on("click",function(){
+        debugger
         if($.trim($("#confirmation_code").val()).length < 16 || $.trim($("#confirmation_code").val()) == ""){
             $("#confirmation_code").addClass("wrong_email");
             $("#confirmation_form_container").addClass("shake animatedSlow");
@@ -76,10 +77,15 @@ $(document).ready(function(){
             return false;
         }
         else{
+            confirmation($("#confirmation_code").val(), successfullyConfirmed)
             return true;
             //login($("#login_e_mail").val(),$("#login_password").val());
         }
     });
+
+    successfullyConfirmed = function(data){
+        debugger
+    }
 
     loginAndCreateCookie = function(userData){
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
@@ -134,10 +140,12 @@ $(document).ready(function(){
     }
 
     */
-
+/*    if(window.readCookie("user") == undefined || window.readCookie("user") == "undefined" || window.readCookie("user") == null){
+        logoff();
+    }*/
     window.user = JSON.parse(window.readCookie("user"));
     if(window.user == undefined){
-        showStatusPopup("Bu sayfayı görebilmek için giriş yapmanız gerekiyor","error",setTimeout(function(){window.location="login_register.php"},3000))
+        //showStatusPopup("Bu sayfayı görebilmek için giriş yapmanız gerekiyor","error",setTimeout(function(){window.location="login_register.php"},3000))
     }
 
     $("#show_register_form").on("click",function(){

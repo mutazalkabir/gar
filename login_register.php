@@ -52,7 +52,6 @@ if (array_key_exists("login", $_GET)) {
     <script type="text/javascript" src="js/TheGardrobeScripts/messaging.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/gardrobeKaristir.js"></script>
     <script type="text/javascript" src="js/helpers/domGenerator.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
     <!-- TheGardrobe Component Scripts -->
 </head>
 
@@ -61,11 +60,11 @@ if (array_key_exists("login", $_GET)) {
     window.fbAsyncInit = function() {
         //showPreloader();
         var mail="";
-       /* FB.init({
+        FB.init({
             appId      : '1495264814020195',
             xfbml      : true,
             version    : 'v2.0'
-        });*/
+        });
 
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {

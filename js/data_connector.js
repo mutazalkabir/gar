@@ -7,6 +7,30 @@
  */
 
 /* Login - Register */
+function confirmation(_confirmationCode, _successFunction)
+{
+    debugger
+    $.ajax({
+        url: "src/confirm.php",
+        type: "GET",
+        data:{ confirmation_code: _confirmationCode},
+        dataType:"text",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            debugger
+            _successFunction(data);
+            // window.location=data;
+        }).fail(function(data) {
+            debugger
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
+
 function register(_email,_name,_surname,_pass,_gender,_bDate)
 {
     $.ajax({
