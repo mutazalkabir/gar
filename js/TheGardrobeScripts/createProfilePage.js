@@ -20,10 +20,15 @@ setGardrobesForProfilePage = function(gardrobeData){
 
     var gardrobesContainer = $("#profile_page_gardrobes");
     var askiPicturePath = "storage/user_images/";
-
+    var headerPictures = [];
     if(gardrobeData.length>0){
        // askiPicturePath + userId + "/" + picId +'
         for(var i=0; i<gardrobeData.length; i++){
+            for(var j=0; j<gardrobeData[i].hangers.length; j++){
+                if(gardrobeData[i].hangers[j].pic_id != "dummyaski.jpg"){
+                    headerPictures.push(gardrobeData[i].hangers[j].pic_id);
+                }
+            }
             if(gardrobeData[i].hangers[0] == undefined){
                 var userId = decodeURIComponent($.urlParam('user_id'));
                 var picId =askiPicturePath+ "dummyaski.jpg";
@@ -89,6 +94,15 @@ setGardrobesForProfilePage = function(gardrobeData){
                 //createAskiForProfilePage(gardrobeData[$(this).attr("order")].hangers);
             })
         }
+            $("#profile_page_header").append('<div id="page_header_overflow"></div>');
+        debugger
+            for(var k=0; k<headerPictures.length; k++){
+                $("#page_header_overflow").append('<div class="profile_header_preview_container"><img class="maybe_broken" src="'+askiPicturePath + userId + "/" + headerPictures[k] +'" /></div>');
+            }
+
+            $(".maybe_broken").error(function(){
+                   $(this).remove();
+            });
     }
 
     getFollowers(decodeURIComponent($.urlParam('user_id')), setFellowers);

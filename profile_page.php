@@ -82,7 +82,7 @@
             <div id="messages_notifications_etc_holder">
                 <div id="topbar_profile_picture_and_name">
                     <img id="avatar" src="images/dummy_images/profil.jpg"/>
-                    <span>Tunç</span>
+                    <span></span>
 
                     <span id="new_aski_button"><i class="flaticon-clothing1"></i>Askı Ekle</span>
                 </div>
@@ -131,20 +131,21 @@
     </div>
 
     <div id="page_contents" class="clearfix">
-        <div id="profile_page_header">
-            <div id="profile_page_profile_picture">
-                <img src="images/dummy_images/profil.jpg"/>
-            </div>
-            <span id="profile_page_profile_name"></span>
+                <div id="profile_page_profile_picture">
+                    <img src="images/dummy_images/profil.jpg"/>
+                </div>
+                <span id="profile_page_profile_name"></span>
 
-            <div id="send_message_to_user" class="profile_buttons">
-                <i class="fa fa-envelope-o"></i>
-                <span>Mesaj Gönder</span>
-            </div>
-            <div id="follow_user" class="profile_buttons" following="false">
-                <i class="fa fa-plus"></i>
-                <span></span>
-            </div>
+                <div id="send_message_to_user" class="profile_buttons">
+                    <i class="fa fa-envelope-o"></i>
+                    <span>Mesaj Gönder</span>
+                </div>
+                <div id="follow_user" class="profile_buttons" following="false">
+                    <i class="fa fa-plus"></i>
+                    <span></span>
+                </div>
+        <div id="profile_page_header">
+
         </div>
         <div id="profile_page_profile_information_bar">
             <span id="profile_description"></span>
