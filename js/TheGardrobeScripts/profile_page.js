@@ -47,7 +47,7 @@ var Thegardrobe = function(){
 
         /* Ana Sayfa My Feed
          ================================================== */
-        createMyFeed();
+        createMyFeed(window.user[0].user_id, setMyFeed);
         /*================================================== */
 
         /* Ana Sayfa My Feed
@@ -122,7 +122,7 @@ var Thegardrobe = function(){
         });
 
         $("#topbar_profile_picture_and_name").find("span:first-of-type").on("click",function(){
-            window.location = "profile_page.php";
+            window.location = "profile_page.php?user_id=" + window.user[0].user_id;
         });
 
         $("#main_logo").on("click",function(){
@@ -130,7 +130,7 @@ var Thegardrobe = function(){
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
-            window.location = "personal_settings.html";
+            window.location = "personal_settings.php";
         });
 
         $(".settings_submenu_items:last-child").on("click",function(){

@@ -36,10 +36,23 @@ var Thegardrobe = function(){
         }
         debugger
         var gardrobe_id = decodeURIComponent($.urlParam('gardrobe_id'));
+        var type = decodeURIComponent($.urlParam('type'));
+        var type_id =decodeURIComponent($.urlParam('type_id'));
+        var start_date =decodeURIComponent($.urlParam('start_date'));
+        var end_date =decodeURIComponent($.urlParam('end_date'));
         if(gardrobe_id!="null")
         {
             $("#all_or_followers_only_selector").css("display","none");
             searchResult("gardrobe",gardrobe_id,createMainPageFeed)
+        }
+        else if(start_date!="null")
+        {
+            searchResultbyDate("date",start_date,end_date,createMainPageFeed);
+        }
+
+        else if(type!="null")
+        {
+            searchResult(type,type_id,createMainPageFeed)
         }
         else
         {
@@ -160,7 +173,7 @@ var Thegardrobe = function(){
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
-            window.location = "personal_settings.html";
+            window.location = "personal_settings.php";
         });
 
         $(".settings_submenu_items:last-child").on("click",function(){
@@ -301,7 +314,7 @@ var Thegardrobe = function(){
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
-            window.location = "personal_settings.html";
+            window.location = "personal_settings.php";
         });
 
         $(".settings_submenu_items:last-child").on("click",function(){

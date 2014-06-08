@@ -32,6 +32,7 @@ gardrobeKaristir = function(){
         'dateSelected',
         function(e, selectedDate, $td)
         {
+            debugger
             removeGardrobeKaristir();
 
             var startDate = new Date();
@@ -49,8 +50,8 @@ gardrobeKaristir = function(){
             endDate.setMinutes(59);
             endDate.setSeconds(59);
 
-
-            searchResultbyDate("date", startDate.getTime()/1000, endDate.getTime()/1000,createMainPageFeed);
+            window.location="index.php?type=date&start_date="+startDate.getTime()/1000+"&end_date="+endDate.getTime()/1000;
+         //   searchResultbyDate("date", startDate.getTime()/1000, endDate.getTime()/1000,createMainPageFeed);
             $('#date1').val(selectedDate.asString());
         }
     );
@@ -64,7 +65,8 @@ gardrobeKaristir = function(){
 
     $("#place span").not("#show_all_cities").on("click",function(){
         removeGardrobeKaristir()
-        searchResult("city",$(this).text(),createMainPageFeed);
+        window.location="index.php?type=city&type_id="+$(this).text();
+        //searchResult("city",$(this).text(),createMainPageFeed);
     });
 
 
@@ -126,7 +128,8 @@ setBrands = function(data){
 
         gardrobeKaristirBrandItem.on("click",function(){
             removeGardrobeKaristir()
-            searchResult("brand", $(this).find(".brand_name").text(), createMainPageFeed)
+            window.location="index.php?type=brand&type_id="+$(this).find(".brand_name").text();
+          //  searchResult("brand", $(this).find(".brand_name").text(), createMainPageFeed)
         })
     }
 
@@ -175,7 +178,8 @@ setCategoriesForGardrobeKaristir = function(data){
 
         gardrobeKaristirCategoryItem.on("click",function(){
             removeGardrobeKaristir()
-            searchResult("category",$(this).attr("category_id"),createMainPageFeed);
+            window.location="index.php?type=category&type_id="+$(this).attr("category_id");
+            //searchResult("category",$(this).attr("category_id"),createMainPageFeed);
         });
     }
 

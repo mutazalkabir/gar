@@ -94,6 +94,7 @@ $(document).ready(function(){
             $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
         },150);
         window.user=userData;
+        debugger
            createCookie("user", JSON.stringify(userData), 10);
 
         setTimeout(function(){

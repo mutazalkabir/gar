@@ -48,7 +48,7 @@ createPersonalMessages = function(conservations){
 
     messagesContainer.mCustomScrollbar();
     $(".messages").on("click",function(){
-        window.location = "messages_detail.html";
+        window.location = "messages_detail.php";
         debugger
         if (typeof(Storage) != "undefined"){
             localStorage.setItem("conservation", $(this).attr("message_body"));

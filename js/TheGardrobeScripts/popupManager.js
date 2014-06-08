@@ -58,7 +58,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     }
     else{
         var likeCount = 0;
-    }
+    }debugger
     var askiProfileItems = $(GenerateDomElement({
         nodeType:"div",
         attributes:{"id":"popup_profile_holder"},
@@ -67,7 +67,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
                     '</div>'+
 
                     '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
-                    "<div id='popup_aski_date' class='popup_profile_items'><span>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span id='gardrobe_karistir_category' category_id="+ askiDetayData.category_id +">"+ askiDetayData.category_name +"</span> kategorisinde, <span>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
+                    "<div id='popup_aski_date' class='popup_profile_items'><span create_date="+ askiDetayData.create_date +" id='gardrobe_karistir_date'>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span id='gardrobe_karistir_category' category_id="+ askiDetayData.category_id +">"+ askiDetayData.category_name +"</span> kategorisinde, <span gardrobe_id="+ askiDetayData.gardrobe_id +" id='gardrobe_karistir_gardrobe'>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
                     '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
 
                     '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
@@ -146,7 +146,38 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     askiContentsHolder.append(askiProfileItems);
 
     $("#gardrobe_karistir_category").on("click",function(){
-        searchResult("category",$(this).attr("category_id"),createMainPageFeed);
+        window.location="index.php?type=category&type_id="+$(this).attr("category_id");
+        //searchResult("category",$(this).attr("category_id"),createMainPageFeed);
+        $("#close_popup").trigger("click");
+    });
+
+    $("#gardrobe_karistir_date").on("click",function(){
+        var selectedDate = new Date(parseInt($(this).attr("create_date")));
+        var startDate = new Date();
+        var endDate = new Date();
+        startDate.setDate(selectedDate.getDate());
+        startDate.setMonth(selectedDate.getMonth());
+        startDate.setFullYear(selectedDate.getFullYear());
+        startDate.setHours(0);
+        startDate.setMinutes(0);
+        startDate.setSeconds(0);
+        endDate.setDate(selectedDate.getDate());
+        endDate.setMonth(selectedDate.getMonth());
+        endDate.setFullYear(selectedDate.getFullYear());
+        endDate.setHours(23);
+        endDate.setMinutes(59);
+        endDate.setSeconds(59);
+
+        window.location="index.php?type=date&start_date="+startDate+"&end_date="+endDate;
+
+        //window.location="index.php?type=category&type_id="+$(this).attr("category_id");
+        //searchResult("category",$(this).attr("category_id"),createMainPageFeed);
+        $("#close_popup").trigger("click");
+    });
+
+    $("#gardrobe_karistir_gardrobe").on("click",function(){
+        window.location="index.php?gardrobe_id="+$(this).attr("gardrobe_id");
+        //searchResult("category",$(this).attr("category_id"),createMainPageFeed);
         $("#close_popup").trigger("click");
     });
 
@@ -289,7 +320,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             nodeType:"div",
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
-                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.comments[i].user_id +'.png" />'+
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.comments[i].pic_id +'" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.comments[i].comment +'</span>' +
                         '</div>'
         }));
@@ -302,7 +333,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             nodeType:"div",
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
-                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.likes[i].user_id +'.png" />'+
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.likes[i].pic_id +'" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.likes[i].liker_name +'</span>' +
                         '</div>'
         }));
@@ -315,7 +346,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             nodeType:"div",
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
-                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.shares[i].user_id +'.png" />'+
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.shares[i].pic_id +'" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.shares[i].liker_name +'</span>' +
                         '</div>'
         }));

@@ -31,12 +31,14 @@ createMessagingDetail = function(){
 
 setMessages = function(messages){
     var conversationId = messages[0].conversation_id;
+
     if(window.user[0].user_id == messages[0].user_two){
         var receiverId = messages[0].user_one;
     }
     else{
         var receiverId = messages[0].user_two;
     }
+
     var container = $("#messages_detail_content_holder");
     for(var i=0; i<messages.length; i++){
         if(messages[i].user_one == window.user[0].user_id){
@@ -59,7 +61,7 @@ setMessages = function(messages){
                 classNames:"message_block clearfix right_side",
                 htmlContent:'<span class="message_detail_sender_name">'+ messages[i].user_one_name +'</span>' +
                             '<div class="sender_profile_picture">' +
-                                '<img src="storage/user_images/avatars/'+ messages[i].user_two_pic_id +'" />'+
+                                '<img src="storage/user_images/avatars/'+ messages[i].user_one_pic_id +'" />'+
                             '</div>' +
                             '<div class="message_detail_message_body">'+ messages[i].message +'</div>' +
                             '<span class="message_detail_message_date">'+ convertDateWithHour(messages[i].message_date) +' tarihinde gönderildi</span>'
@@ -85,7 +87,7 @@ setMessages = function(messages){
                 classNames:"message_block clearfix left_side",
                 htmlContent:'<span class="message_detail_sender_name">'+ window.user[0].name + " " + window.user[0].surname +'</span>' +
                             '<div class="sender_profile_picture">' +
-                                '<img src="images/dummy_images/profil.jpg" />' +
+                                '<img src="storage/user_images/avatars/'+ window.user[0].pic_id +'" />'+
                             '</div>' +
                             '<div class="message_detail_message_body">'+ $("#message_body").val() +'</div>' +
                             '<span class="message_detail_message_date">'+ createDate() +' tarihinde gönderildi</span>'

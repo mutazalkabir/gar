@@ -135,7 +135,7 @@ var Thegardrobe = function(){
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
-            window.location = "personal_settings.html";
+            window.location = "personal_settings.php";
         });
 
         $(".settings_submenu_items:last-child").on("click",function(){

@@ -48,7 +48,7 @@ var Thegardrobe = function(){
 
         /* Ana Sayfa My Feed
          ================================================== */
-        createMyFeed();
+        createMyFeed(window.user[0].user_id, setMyFeed);
         /*================================================== */
 
         /* Ana Sayfa My Feed
@@ -58,20 +58,6 @@ var Thegardrobe = function(){
         });
         /*================================================== */
 
-        /* Profil Sayfası
-         ================================================== */
-        $.urlParam = function(name){
-            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-            if (results==null){
-                return null;
-            }
-            else{
-                return results[1] || 0;
-            }
-        }
-
-        getGardrobesForProfilePage(decodeURIComponent($.urlParam('user_id')));
-        /*================================================== */
 
         /* Mesaj Detay
          ================================================== */
@@ -123,7 +109,7 @@ var Thegardrobe = function(){
         });
 
         $("#topbar_profile_picture_and_name").find("span:first-of-type").on("click",function(){
-            window.location = "profile_page.php";
+            window.location = "profile_page.php?user_id=" + window.user[0].user_id;
         });
 
         $("#main_logo").on("click",function(){
@@ -131,7 +117,7 @@ var Thegardrobe = function(){
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
-            window.location = "personal_settings.html";
+            window.location = "personal_settings.php";
         });
 
         $(".settings_submenu_items:last-child").on("click",function(){
@@ -162,6 +148,7 @@ var Thegardrobe = function(){
         });
 
         $("#save_personal_settings").on("click",function(){
+            debugger
             if($.trim($("#settings_page_pass1").val()) != ""){
                 if($.trim($("#settings_page_pass1").val()).length < 6){
                     showStatusPopup("Şifre en az 6 haneli olmalı", "error", "")
@@ -197,6 +184,7 @@ var Thegardrobe = function(){
         });
 
         function userUpdated(data){
+            debugger
             if(data!=false){
                 debugger
                 showStatusPopup("Bilgiler başarıyla güncellendi!", "success", "")
