@@ -157,9 +157,6 @@ if (array_key_exists("login", $_GET)) {
             <a class="social_login_buttons btn-facebook" ><!--href="?login&oauth_provider=facebook"-->
                 <i class="fa fa-facebook"></i>Facebook
             </a>
-            <a class="social_login_buttons btn-google-plus">
-                <i class="fa fa-google-plus"></i>Google +
-            </a>
 	    </div>
        <!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>-->
 	</div>
