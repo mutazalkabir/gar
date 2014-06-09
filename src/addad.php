@@ -32,7 +32,7 @@ else
     if (!file_exists($save_path)) {
         mkdir($save_path, 0777, true);
     }
-    $newfilename=genarateID().".".end(explode(".",$_FILES["file"]["name"]));
+    $newfilename="ad.".end(explode(".",$_FILES["file"]["name"]));
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
     // exec('doya_adi_duzenle.bat');
 }
