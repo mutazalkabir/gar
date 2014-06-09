@@ -56,7 +56,7 @@ if (array_key_exists("login", $_GET)) {
 </head>
 
 <script>
-
+var FBOBJECT ;
     window.fbAsyncInit = function() {
         //showPreloader();
         var mail="";
@@ -65,23 +65,24 @@ if (array_key_exists("login", $_GET)) {
             xfbml      : true,
             version    : 'v2.0'
         });
+        FBOBJECT=FB;
 
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 console.log('Logged in.');
 
-                FB.api('/me', function(response) {
+        /*        FB.api('/me', function(response) {
                     //var stringResponse=JSON.stringify(response)
                     var jsonResponse=response;
                     console.log(jsonResponse);
                     loginWithFacebook(jsonResponse.id,jsonResponse.email,jsonResponse.first_name,jsonResponse.last_name,
                         loginAndCreateCookie,
                         function(){})
-                });
+                });*/
 
             }
             else {
-                $(".btn-facebook").on("click",function(){
+               /* $(".btn-facebook").on("click",function(){
                         FB.login(function(response) {
                             // handle the response
                           FB.api('/me', function(response) {
@@ -97,7 +98,7 @@ if (array_key_exists("login", $_GET)) {
                             scope: 'public_profile,email',
                             return_scopes: true
                         });
-                });
+                });*/
                 removePreloader();
             }
         });
@@ -115,9 +116,7 @@ if (array_key_exists("login", $_GET)) {
     }(document, 'script', 'facebook-jssdk'));
 
 
-    $(".btn-facebook").on("click",function(){
 
-    });
 </script>
 
 <body onload="">

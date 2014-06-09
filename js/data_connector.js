@@ -806,19 +806,19 @@ function loginWithFacebook(_fbid, _mail, _name, _surname, _successFunction, _fai
     });
 }
 
-
-function sendPasswordEmail(_mail){
+function loginWithTwitter(_twid, _successFunction, _failFunction){
+    debugger
     $.ajax({
-        url: "src/sendmail.php",
+        url: "src/login.php",
         type: "GET",
-        data:{mail:_mail},
+        data:{operation: "loginbytwitter", twid:_twid},
         dataType:"json",
         cache: false,
         xhrFields: {
             withCredentials: true
         }
     }).done(function(data) {
-
+        debugger
         _successFunction(data);
         // alert( "success" +data );
     }).fail(function(data) {
@@ -829,6 +829,7 @@ function sendPasswordEmail(_mail){
         // alert( "finished" + data);
     });
 }
+
 
 
 function sendPasswordEmail(_mail){

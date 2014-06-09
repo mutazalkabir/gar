@@ -90,6 +90,47 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET')
         }
     }
 
+    else if ($operation == "loginbytwitter") {
+
+        $data = array();
+
+        $twid=(string)$_GET['twid'];
+
+
+
+        $result = mysql_query("SELECT * FROM `users` WHERE twid='$twid' AND confirm=1 limit 1");
+
+        while($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+
+        }
+
+        if(isset($data[0]["user_id"]))//if user registered
+        {
+            session_start();
+            $update = mysql_query("UPDATE users SET active='1' WHERE twid='$twid'");
+            $_SESSION['user_id'] =$data[0]["user_id"];
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($data);
+        }
+      /*  else{ //register user then login
+            $confirmation_code = genarateID();
+
+            $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','1','$gender','***','','','avatar.png','$confirmation_code','','','1','$fbid')");
+            $user_id = mysql_insert_id();
+            $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
+
+            $result2 = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND fbid='$fbid' AND confirm=1 limit 1");
+            while($row = mysql_fetch_assoc($result2)) {
+                $data[] = $row;
+
+            }
+
+            header('Content-Type: application/json; charset=utf-8');
+            echo json_encode($result2);
+        }*/
+    }
+
 
 }
 

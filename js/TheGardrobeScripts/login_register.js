@@ -7,6 +7,67 @@
  */
 
 $(document).ready(function(){
+
+
+    $(".btn-facebook").on("click",function(){
+        debugger
+        FBOBJECT.login(function(response) {
+            // handle the response
+            FBOBJECT.api('/me', function(response) {
+                //var stringResponse=JSON.stringify(response)
+                var jsonResponse=response;
+                console.log(jsonResponse);
+                loginWithFacebook(jsonResponse.id,jsonResponse.email,jsonResponse.first_name,jsonResponse.last_name,
+                    loginAndCreateCookie,
+                    function(){})
+            });
+
+        }, {
+            scope: 'public_profile,email',
+            return_scopes: true
+        });
+    });
+
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+
+
+
+    loginAndCreateCookie = function(userData){
+        $("#login_form_container").addClass("fadeOutLeft animatedSlow");
+        setTimeout(function(){
+            $("#successfully_logged_in").css("display","block");
+            $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
+        },150);
+        window.user=userData;
+        debugger
+        createCookie("user", JSON.stringify(userData), 10);
+
+        setTimeout(function(){
+            window.location = "index.php";
+        }, 2000);
+    }
+
+
+    if( decodeURIComponent($.urlParam('twid'))!="null")
+    {
+        loginWithTwitter($.urlParam('twid'),loginAndCreateCookie,function(){});
+
+    }
+
+
+        $(".btn-twitter").on("click",function(){
+            debugger
+           window.location="src/login-twitter.php";
+        });
+
     $(".symbol").on("mouseenter",function(){
         $(this).addClass("bounce animatedSlow");
     });
@@ -89,21 +150,6 @@ $(document).ready(function(){
     });
 
 
-
-    loginAndCreateCookie = function(userData){
-        $("#login_form_container").addClass("fadeOutLeft animatedSlow");
-        setTimeout(function(){
-            $("#successfully_logged_in").css("display","block");
-            $("#successfully_logged_in").addClass("fadeInRight animatedSlow");
-        },150);
-        window.user=userData;
-        debugger
-           createCookie("user", JSON.stringify(userData), 10);
-
-        setTimeout(function(){
-            window.location = "index.php";
-        }, 2000);
-    }
 
     showWrongUserNameOrPassword = function(){
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
