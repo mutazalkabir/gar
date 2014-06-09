@@ -34,15 +34,27 @@
             getCategories(setCategories);
 
             function setCategories(data){
-
                 for(var i=0; i<data.length; i++){
-                     $("#sortable").append('<li class="ui-state-default">'+ data[i].category_name +'</li>');
+                     $("#sortable").append('<li category_id="'+ data[i].category_id +'" class="ui-state-default">'+ data[i].category_name +'</li>');
                 }
             }
 
             $(function() {
                 $( "#sortable" ).sortable();
                 $( "#sortable" ).disableSelection();
+            });
+
+            $("#submit_categories").on("click",function(){
+            var categories = [];
+                for(var j=0; j<$(".ui-state-default").length; j++){
+                    var obj = {
+                        order: j,
+                        category_id: $($(".ui-state-default")[j]).attr("category_id"),
+                        category_name: $($(".ui-state-default")[j]).text()
+                    }
+                    categories.push(obj);
+                }
+                debugger
             });
         });
     </script>
@@ -56,8 +68,8 @@
 
 
 
-<form class="admin_forms" action="src/addbrand.php" method="post" enctype="multipart/form-data">
-    <input class="admin_submit_buttons" type="submit" name="submit" value="Kaydet" />
+<form class="admin_forms">
+    <input class="admin_submit_buttons" id="submit_categories" type="submit" value="Kaydet" />
 </form>
 </div>
 
