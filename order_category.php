@@ -65,9 +65,6 @@
           <ul id="sortable">
           </ul>
 
-
-
-
 <form class="admin_forms">
     <input class="admin_submit_buttons" id="submit_categories" type="submit" value="Kaydet" />
 </form>
