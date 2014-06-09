@@ -19,16 +19,14 @@ include "includes.php";
 session_start();
 
 
-$brand_name=(string)$_POST['brand_name'];
+$ad_name=(string)$_POST['ad_name'];
 
 if ($_FILES["file"]["error"] > 0)
 {
-
     echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
 }
 else
 {
-
     $save_path=$UPLOADED_AD_IMAGE_FOLDER_PATH; // Folder where you wanna move the file.
     //chmod($save_path, 0777);
     if (!file_exists($save_path)) {
@@ -38,6 +36,4 @@ else
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
     // exec('doya_adi_duzenle.bat');
 }
-
-
 ?>
