@@ -403,13 +403,29 @@ input:focus{
     margin: -40px 0px 0px -210px;
 }
 
-#admin_tables_container{
+#admin_tables_container, #not_full_width{
     top: 50px;
     right: 50px;
     bottom: 50px;
     left: 300px;
     position: absolute;
     overflow: auto;
+}
+
+#not_full_width ul li{
+    color: #333333;
+    font-weight: 100;
+    font-size: 16px;
+    border-bottom: none;
+    height: 60px;
+    line-height: 40px;
+    padding: 10px;
+    cursor: move;
+}
+
+#not_full_width ul li:last-of-type{
+    border-bottom: 1px solid #ccc;
+
 }
 
 #admin_tables_container table{
