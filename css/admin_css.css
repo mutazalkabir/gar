@@ -1,0 +1,357 @@
+/*
+	!!!!! DO NOT CHANGE OR MODIFY THIS PART !!!!!
+
+	URI: http://www.thegardrobe.com
+	Description: Main CSS File For The Gardrobe
+	Version: 1.0
+	Author: Tunç Akın
+	Author URI: http://www.tuncakin.com
+
+	!!!!! DO NOT CHANGE OR MODIFY THIS PART !!!!!
+*/
+
+/* Reset CSS */
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+div{
+    display: block;
+}
+
+img {
+    border: none;
+}
+
+table {
+    border-spacing: 0px;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html, body{
+    height: 100%;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+::-webkit-input-placeholder {
+    color: #999;
+    font-weight: 100;
+}
+
+:-moz-placeholder {
+    color: #999;
+    font-weight: 100;
+}
+
+::-moz-placeholder {
+    color: #999;
+    font-weight: 100;
+}
+
+:-ms-input-placeholder {
+    color: #999;
+    font-weight: 100;
+}
+
+*:focus {
+    outline: 0;
+}
+/* Reset CSS */
+
+/* General Components */
+body{
+    background-color: #F5F5F5;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    color: #333;
+    overflow-x: hidden;
+    min-width: 1060px;
+}
+
+button{
+    display: block;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: 300;
+    padding: 10px 16px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover{
+    margin-top: 6px;
+    box-shadow: none;
+}
+
+button:focus{
+    outline:none;
+}
+
+@font-face {
+    font-family: 'Mono Social Icons Font';
+    src: url('fonts/MonoSocialIconsFont-1.10.eot');
+    src: url('fonts/MonoSocialIconsFont-1.10.eot?#iefix') format('embedded-opentype'),
+    url('fonts/MonoSocialIconsFont-1.10.woff') format('woff'),
+    url('fonts/MonoSocialIconsFont-1.10.ttf') format('truetype'),
+    url('fonts/MonoSocialIconsFont-1.10.svg#MonoSocialIconsFont') format('svg');
+    src: url('fonts/MonoSocialIconsFont-1.10.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.symbol{
+    font-size: 70px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px 2px;
+}
+
+.symbol, a.symbol:before {
+    font-family: 'Mono Social Icons Font';
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    -ms-text-rendering: optimizeLegibility;
+    -o-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+a.symbol:before {
+    content: attr(title);
+    margin-right: 0.3em;
+    font-size: 130%;
+}
+
+.facebook{
+    color: #3b5998;
+}
+
+.twitter{
+    color: #00aced;
+}
+
+.googleplus{
+    color: #dd4b39;
+}
+
+.instagram{
+    color: #517fa4;
+}
+
+.social_login_buttons{
+    float: left;
+    padding: 6px 12px 6px 40px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    color: #333333;
+    margin: 0px 8px 0px 8px;
+}
+
+.social_login_buttons:first-of-type{
+    margin-left: 0;
+}
+
+.social_login_buttons:last-of-type{
+    margin-right: 0;
+}
+
+.social_login_buttons :first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    line-height: 34px;
+    font-size: 17px;
+    color: #333333;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+input{
+    border: 1px solid #EAEAEA;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 100;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+}
+
+textarea{
+    border: 1px solid #EAEAEA;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 100;
+    resize: vertical;
+    margin-bottom: 7px;
+}
+
+select{
+    border: 1px solid #EAEAEA;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: 100;
+    -webkit-transition: all 250ms ease;
+    -moz-transition: all 250ms ease;
+    -ms-transition: all 250ms ease;
+    -o-transition: all 250ms ease;
+    transition: all 250ms ease;
+    color: #999;
+    font-weight: 100;
+    display: inline-block;
+    margin: 0px 0px 10px 0px;
+    background: url("../images/site_images/form_elements/select.png") no-repeat right #fff;
+    text-indent: 0.01px;
+    text-overflow: '';
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    apearance: none;
+    min-width: 105px;
+}
+
+select option{
+    color: #999;
+    font-weight: 100;
+}
+
+input:focus{
+    border: 1px solid #ccc;
+}
+
+.logo{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    margin: -115px 0px 0px -100px;
+}
+
+#main_navigation_bar{
+    width: 100%;
+    position: fixed;
+    height: 60px;
+    background: #ff3030; /* Old browsers */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmMzAzMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiYzIzMjMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  #ff3030 0%, #bc2323 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff3030), color-stop(100%,#bc2323)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ff3030 0%,#bc2323 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ff3030 0%,#bc2323 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ff3030 0%,#bc2323 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ff3030 0%,#bc2323 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3030', endColorstr='#bc2323',GradientType=0 ); /* IE6-8 */
+    z-index: 999;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:         0px 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+#form_container{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    width: 400px;
+    height: 250px;
+    margin: -175px 0px 0px -200px;
+    background-color: #fff;
+    padding: 30px 20px 30px 20px;
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+#form_container input, #form_container button{
+    width: 100%;
+}
+
+#form_container button{
+    position: absolute;
+    bottom:20px;
+    right: 20px;
+    left: 20px;
+    width: 360px;
+    background: #ee2c2c;
+    color: #fff;
+    -webkit-box-shadow: 0 6px #b00c0c;
+    -moz-box-shadow:    0 6px #b00c0c;
+    box-shadow:         0 6px #b00c0c;
+}
+
+#form_container button:hover{
+    box-shadow: none;
+    bottom: 14px;
+    cursor: pointer;
+}
+
+#form_container *{
+    margin: 5px 0px 5px 0px;
+}
+
+#admin_logo{
+    position: absolute;
+    left: 50%;
+    margin: 0px 0px 0px -95px;
+    top: -130px;
+}
