@@ -142,13 +142,11 @@ openAddAskiPopup = function(){
     });
 
     $("#add_new_aski_button").on("click",function(){
-        debugger
         var myTags = JSON.stringify(window.TAGS);
         var tagArray="";
-for(var x=0;x<window.TAGS.length;x++)
-{
-tagArray = tagArray+","+window.TAGS[x].brand;
-}
+        for(var x=0;x<window.TAGS.length;x++){
+            tagArray = tagArray+","+window.TAGS[x].brand;
+        }
         //addNewHanger(window.user[0].user_id, window.selectedCategoryId,  window.selectedGardrobeId, $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags);
         //MUTAZ değiştirdim çünkü alamıyordu selected gardroubu
         addNewHanger(window.user[0].user_id, window.selectedCategoryId,  $("#my_gardrobes").find(":selected").attr("id"), $("#new_aski_description").val(), $("#cities").find("option:selected").val(), $("#new_aski_place").val(), $(".photoTag").attr("id"), myTags,tagArray);
@@ -161,6 +159,10 @@ tagArray = tagArray+","+window.TAGS[x].brand;
             //MUTAZ
             getMainPageFeed("fellowed",createMainPageFeed);
             showPreloader();
+
+            setTimeout(function(){
+                location.reload();
+            },2000);
         }
         else{
             showStatusPopup("Askı Oluşturulamadı :(", "error", "");
@@ -173,5 +175,6 @@ tagArray = tagArray+","+window.TAGS[x].brand;
         setTimeout(function(){
             $("#glass, #glass_inner").remove();
         },400);
+
     });
 }

@@ -86,9 +86,9 @@
 
                     <span id="new_aski_button"><i class="flaticon-clothing1"></i>Askı Ekle</span>
                 </div>
-                <div id="notifications" class="topbar_items" hasNewItem="true">
+                <div id="notifications" class="topbar_items" hasNewItem="false">
                     <i class="fa fa-globe"></i>
-                    <div class="notification_count_holder">3</div>
+                    <div class="notification_count_holder"></div>
                     <div class="topbar_items_submenus" id="notifications_submenu">
                         <div id="notifications_content">
 
@@ -134,18 +134,16 @@
                 <div id="profile_page_profile_picture">
                     <img src="images/dummy_images/profil.jpg"/>
                 </div>
-                <span id="profile_page_profile_name"></span>
-
-                <div id="send_message_to_user" class="profile_buttons">
-                    <i class="fa fa-envelope-o"></i>
-                    <span>Mesaj Gönder</span>
-                </div>
-                <div id="follow_user" class="profile_buttons" following="false">
-                    <i class="fa fa-plus"></i>
-                    <span></span>
-                </div>
         <div id="profile_page_header">
-
+            <span id="profile_page_profile_name"></span>
+            <div id="send_message_to_user" class="profile_buttons">
+                <i class="fa fa-envelope-o"></i>
+                <span>Mesaj Gönder</span>
+            </div>
+            <div id="follow_user" class="profile_buttons" following="false">
+                <i class="fa fa-plus"></i>
+                <span></span>
+            </div>
         </div>
         <div id="profile_page_profile_information_bar">
             <span id="profile_description"></span>

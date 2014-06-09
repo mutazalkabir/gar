@@ -1601,6 +1601,7 @@ input:focus{
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    z-index: 9999;
 }
 
 .profile_buttons:last-of-type{
@@ -1636,6 +1637,10 @@ input:focus{
 
 #follow_user span:before{
     content: "Takip Et";
+}
+
+#follow_user{
+    right: 170px;
 }
 
 #follow_user[following="true"] span:before{
@@ -2422,12 +2427,13 @@ input:focus{
 
 #aski_main_image_options{
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50px;
+    bottom: 10px;
+    width: 630px;
+    height: 40px;
     left: 0;
     right: 0;
     z-index: 99;
+    overflow-y: scroll;
 }
 
 .tag_an_aski{

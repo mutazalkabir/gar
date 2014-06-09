@@ -67,7 +67,7 @@ createNotifications = function(data){
             var notification = $(GenerateDomElement({
                 nodeType:"div",
                 classNames:"notifications",
-                attributes: {notification_type: data[i].notification_type},
+                attributes: {notification_type: data[i].notification_type, "user_id":data[i].notifier_id},
                 htmlContent:'<div class="notification_owner_picture">' +
                                 '<img src="storage/user_images/avatars/'+ data[i].pic_id +'" />' +
                             '</div>' +
@@ -90,8 +90,16 @@ createNotifications = function(data){
         $("#notifications").attr("hasNewItem","false");
     }
 
+        $(".notifications").on("click",function(){
+            if($(this).attr("notification_type") == "fellowship"){
+                window.location = "profile_page.php?user_id="+$(this).attr("user_id");
+            }
+            else{
+                getHangerById($(this).attr("aski_id"),showPopupFromFeed);
+            }
+        });
+
     $("#notifications").on("click",function(){
-        debugger
         setNotificationsRead(window.user[0].user_id);
     });
     notificationsContainer.mCustomScrollbar();
