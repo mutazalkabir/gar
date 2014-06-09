@@ -17,34 +17,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $data = array();
     $username=(string)$_POST['username'];
-
     $password=(string)$_POST['password'];
+    $result = mysql_query("SELECT * FROM admins WHERE user_name='$username'  AND pass = '$password'");
 
-    $result = mysql_query("SELECT * FROM `admins` WHERE user_name='$username' AND pass='$password' AND confirm=1 limit 1");
+    if($result==false)
+    {
 
-    while($row = mysql_fetch_assoc($result)) {
-        $data[] = $row;
+        header('Content-Type: application/json');
+        echo json_encode($result);
 
     }
+    else{
+        while($row = mysql_fetch_assoc($result)) {
+            $data[] = $row;
+        }
 
         session_name("admin_login");
         session_start();
-
-        $update = mysql_query("UPDATE users SET active='1' WHERE mail='$mail'");
         $_SESSION['user_id'] =$data[0]["user_id"];
         $_SESSION['user_name'] =$data[0]["user_name"];
-        header('Location : adminoperations.php');
+        header('Location: ../adminoperations.php');
         echo json_encode($data);
 
 
+    }
 
 }
 
 else
 {
     // var_dump($_GET);
-    header('Content-Type: application/json; charset=utf-8');
-    echo "aa";
+    header('Location: ../adminlogin.php');
+    die();
 }
 
 //mysql_close($dbhandle);

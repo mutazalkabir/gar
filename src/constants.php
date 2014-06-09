@@ -19,6 +19,8 @@ $BY_GARDROBE = "gardrobe";
 
 
 $UPLOADED_IMAGE_FOLDER_PATH="../storage/user_images/";
+$UPLOADED_BRAND_IMAGE_FOLDER_PATH="../storage/brand_images/";
+$UPLOADED_AD_IMAGE_FOLDER_PATH="../storage/ad_images/";
 $AVATARS_FOLDER_PATH=$UPLOADED_IMAGE_FOLDER_PATH."avatars/";
 
 /*

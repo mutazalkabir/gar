@@ -25,7 +25,7 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-        $("#login_admin").on("click",function(){
+      /*  $("#login_admin").on("click",function(){
             var eMail = $("#username").val();
             var atpos=eMail.indexOf("@");
             var dotpos=eMail.lastIndexOf(".");
@@ -58,7 +58,7 @@
                     //login($("#login_e_mail").val(),$("#login_password").val());
                 }
             }
-        });
+        });*/
     });
     </script>
 </head>
