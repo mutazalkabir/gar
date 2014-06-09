@@ -229,6 +229,19 @@ $data = array();
       //  exit();
     }
 
+
+    if ($operation == "updatecategoryorder") {
+        $data = array();
+        $category_id = (string)$_GET['category_id'];
+        $category_order = (string)$_GET['category_order'];
+
+
+        $insert = mysql_query("UPDATE category SET category_order = $category_order WHERE category_id=$category_id");
+
+        header('Content-Type: application/json');
+        echo json_encode($insert);
+        //  exit();
+    }
     /////////////////////////////////////HANGER/////////////////////////////////////
 
 

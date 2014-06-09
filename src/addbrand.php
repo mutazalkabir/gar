@@ -50,7 +50,7 @@ else
 
 
 
-    header('Content-Type: application/json');
+    header('Location: ../add_brand.php');
     echo json_encode($insert);
 
 

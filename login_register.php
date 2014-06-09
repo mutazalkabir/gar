@@ -52,7 +52,7 @@ if (array_key_exists("login", $_GET)) {
     <script type="text/javascript" src="js/TheGardrobeScripts/messaging.js"></script>
     <script type="text/javascript" src="js/TheGardrobeScripts/gardrobeKaristir.js"></script>
     <script type="text/javascript" src="js/helpers/domGenerator.js"></script>
-    <!-- TheGardrobe Component Scripts -->
+    <!-- TheGardrobe Component Scripts mutaz app id : 290801684377677-->
 </head>
 
 <script>
@@ -61,7 +61,7 @@ if (array_key_exists("login", $_GET)) {
         //showPreloader();
         var mail="";
         FB.init({
-            appId      : '290801684377677',
+            appId      : '1495264814020195',
             xfbml      : true,
             version    : 'v2.0'
         });

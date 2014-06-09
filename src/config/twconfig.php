@@ -1,7 +1,7 @@
 <?php
 
-define('YOUR_CONSUMER_KEY', 'Twitter Key');
-define('YOUR_CONSUMER_SECRET', 'Twitter Secret Key');
+define('YOUR_CONSUMER_KEY', 'j9Y09wgQ6bQX7VeGQ0ZETzPCX');
+define('YOUR_CONSUMER_SECRET', 'iRkZbYxXkLZa4m4RcKuTLqiBcl4VaDPzdXBA0tD2wrNku1Xbm1');
 
 
 
