@@ -32,6 +32,7 @@ openAddAskiPopup = function(){
     }));
 
     $("body").append(glass);
+    $("#aski_main_image_options").mCustomScrollbar();
 
     var newAskiForm = $(GenerateDomElement({
         nodeType:"form",

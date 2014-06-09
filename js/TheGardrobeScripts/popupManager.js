@@ -249,11 +249,15 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
                             nodeType:"div",
                             classNames: "photoTag-tag",
                             attributes:{"id": "photoTag-tag_" + tags[i].id, "style":"position: absolute; width:25px; height:25px; left:"+ tags[i].left +"px; top:"+ tags[i].top +"px;"},
-                            htmlContent:'<div class="innerTag">'+ tags[i].brand +" "+ tags[i].text +'</div>'
+                            htmlContent:'<div class="innerTag"><span class="brand_search_from_tag">'+ tags[i].brand +"</span> "+ tags[i].text +'</div>'
                         }));
                         tagsContainer.append(clothTag);
                     }
                 }
+
+                $(".brand_search_from_tag").on("click",function(){
+                    window.location="index.php?type=brand&type_id="+$(this).text();
+                });
             });
         }
     }

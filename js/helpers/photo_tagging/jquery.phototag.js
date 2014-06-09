@@ -170,7 +170,6 @@
 		}
 
 		var prepareTempTagBox = function( tempTagBox, image, image_id ){
-            debugger
 			tempTagBox.draggable({
 				containment: image,
 				cursor: 'move',
@@ -180,7 +179,6 @@
 		};
 
 		var createNewTagForm = function( tempTagBox, image, image_id ){
-            debugger
 			var form = $('<form id="tempNewTagForm" action="'+options.addTagUrl+'"></form>');
 			var newTagFormBox = $('<div id="tempTagBoxForm" class="photoTagForm"></div>');
 			var tempTagBoxPosition = $(tempTagBox).position();
@@ -257,7 +255,6 @@
 					$('#' + options.imageWrapBox.idPrefix + image_id).append(tagBox);
 					extendTagBoxAttributes(tagBox,response.tag,image,image_id);
 				});
-                $(".photoTag-taglist").mCustomScrollbar("update");
 				removeNewTempTag();
 				showAllTags(image_id);
 			});
@@ -329,7 +326,6 @@
 		}
 
 		var createTempTag = function( image, image_id ){
-            debugger
 			var dimension = {width: options.tag.defaultWidth,height: options.tag.defaultHeight};
 			var position = {
 				top: (image.height()/2-dimension.height/2),
@@ -369,7 +365,7 @@
 			canvas.append(controlPane);
 			image.wrap(canvas);
 			if(!options.externalAddTagLinks.bind)
-				$('#aski_main_image_options').append(createAddTagLink(image,image_id));
+				$('#aski_main_image_options').find(".mCustomScrollBox").append(createAddTagLink(image,image_id));
 			else{
 				var externalAddLinks = $(options.externalAddTagLinks.selector);
 				externalAddLinks.each(function(){
@@ -381,7 +377,8 @@
 			if(options.imageWrapBox.showTagList){
 				var tagList = $('<ul id="'+options.imageWrapBox.tagListIdPrefix+image_id+'" class="'+options.imageWrapBox.tagListCssClass+'"></ul>');
 				tagList.mCustomScrollbar();
-                $('#aski_main_image_options').append(tagList);
+                $('#aski_main_image_options').find(".mCustomScrollBox").append(tagList);
+                $("#aski_main_image_options").mCustomScrollbar("update");
 			}
 		}
 
