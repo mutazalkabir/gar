@@ -36,4 +36,8 @@ else
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
     // exec('doya_adi_duzenle.bat');
 }
+
+
+header('Location: ../add_ad.php');
+echo json_encode($insert);
 ?>

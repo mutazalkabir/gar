@@ -829,5 +829,52 @@ function sendPasswordEmail(_mail){
         // alert( "finished" + data);
     });
 }
+
+
+function sendPasswordEmail(_mail){
+    $.ajax({
+        url: "src/sendmail.php",
+        type: "GET",
+        data:{mail:_mail},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+
+        _successFunction(data);
+        // alert( "success" +data );
+    }).fail(function(data) {
+        _failFunction(data);
+        debugger
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
+}
+
+function updateCategory(category_id,category_order){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation:"updatecategoryorder", category_id:category_id,category_order:category_order},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+
+        _successFunction(data);
+        // alert( "success" +data );
+    }).fail(function(data) {
+        _failFunction(data);
+        debugger
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
+}
 /* Send New Mention */
 

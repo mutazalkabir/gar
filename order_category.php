@@ -52,6 +52,7 @@
                         category_id: $($(".ui-state-default")[j]).attr("category_id"),
                         category_name: $($(".ui-state-default")[j]).text()
                     }
+                    updateCategory(obj.category_id,obj.order);
                     categories.push(obj);
                 }
                 debugger
@@ -65,9 +66,12 @@
           <ul id="sortable">
           </ul>
 
-<form class="admin_forms">
+
+
+
+
     <input class="admin_submit_buttons" id="submit_categories" type="submit" value="Kaydet" />
-</form>
+
 </div>
 
 </html>
