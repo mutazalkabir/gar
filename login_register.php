@@ -61,7 +61,7 @@ if (array_key_exists("login", $_GET)) {
         //showPreloader();
         var mail="";
         FB.init({
-            appId      : '1495264814020195',
+            appId      : '290801684377677',
             xfbml      : true,
             version    : 'v2.0'
         });
