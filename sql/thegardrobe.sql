@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 06, 2014 at 01:22 AM
+-- Generation Time: Jun 09, 2014 at 10:57 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -23,6 +23,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admins`
+--
+
+CREATE TABLE IF NOT EXISTS `admins` (
+  `user_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(40) NOT NULL,
+  `pass` varchar(16) NOT NULL,
+  `role` int(11) NOT NULL,
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`user_id`, `user_name`, `pass`, `role`) VALUES
+(1, 'admin@thegardrobe.com', '123456', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `brands`
 --
 
@@ -32,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `brand_pic` varchar(21) NOT NULL,
   PRIMARY KEY (`brand_id`),
   UNIQUE KEY `brand_id` (`brand_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `brands`
@@ -47,7 +68,12 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_pic`) VALUES
 (6, 'Nike', ''),
 (7, 'Addidas', ''),
 (8, 'Polo', ''),
-(9, 'Ralph', '');
+(9, 'Ralph', ''),
+(10, 'thegardrobe', '0i3wr90apondvwwr.png'),
+(11, 'thegardrobe', 'xqa67vhrgbrattox.png'),
+(12, 'twitter', 'lgglgqxs51kpkg0q.png'),
+(13, 'twitter', '49n4zmu3x3rf8qtw.png'),
+(14, '', '8r91ev208e7qco8h.');
 
 -- --------------------------------------------------------
 
@@ -58,6 +84,7 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_pic`) VALUES
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `category_name` varchar(40) NOT NULL,
+  `category_order` int(11) NOT NULL,
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `category_id` (`category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
@@ -66,19 +93,19 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`category_id`, `category_name`) VALUES
-(1, 'Şık ve Özel'),
-(2, 'Salaş ama Seksi'),
-(5, 'Hoşgeldin Yaz'),
-(6, 'Rahat Bir Şeyler'),
-(7, 'Yolculukta'),
-(8, 'Spor Zamanı'),
-(9, 'Deniz Havası'),
-(10, 'Her gün Modası'),
-(11, 'Soğuk Havalar'),
-(12, 'Ev Hali'),
-(13, 'Uyku Vakti'),
-(14, 'Ufak Dokunuşlar (Aksesuarlar)');
+INSERT INTO `category` (`category_id`, `category_name`, `category_order`) VALUES
+(1, 'Şık ve Özel', 1),
+(2, 'Salaş ama Seksi', 2),
+(3, 'Hoşgeldin Yaz', 3),
+(4, 'Rahat Bir Şeyler', 4),
+(5, 'Yolculukta', 5),
+(6, 'Spor Zamanı', 6),
+(7, 'Deniz Havası', 7),
+(8, 'Her gün Modası', 8),
+(9, 'Soğuk Havalar', 9),
+(10, 'Ev Hali', 10),
+(11, 'Uyku Vakti', 11),
+(12, 'Ufak Dokunuşlar (Aksesuarlar)', 12);
 
 -- --------------------------------------------------------
 
@@ -94,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `comment` varchar(400) NOT NULL,
   `commented_user_id` int(11) NOT NULL,
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=184 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=185 ;
 
 --
 -- Dumping data for table `comment`
@@ -282,7 +309,8 @@ INSERT INTO `comment` (`comment_id`, `user_id`, `comment_date`, `hanger_id`, `co
 (180, 4, 1401826974, 12, 'deneme undefined, undefined, undefined, ', 1),
 (181, 51, 1401827603, 12, 'Tunç Akın, Mutaz Alkabir, mumtaz alkabir, berk alkabir, rumeysa alkabir, ', 1),
 (182, 51, 1401827837, 12, 'Tunç Akın, Mutaz Alkabir, mumtaz alkabir, sinem deneme, ', 1),
-(183, 51, 1401829675, 12, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, ', 1);
+(183, 51, 1401829675, 12, 'ooo çok güzel batman. mumtaz alkabir, sinem deneme, Esma Yemeztaşlıca, sezin alkabir, ', 1),
+(184, 4, 1402087043, 87, 'hgjh', 51);
 
 -- --------------------------------------------------------
 
@@ -395,7 +423,7 @@ CREATE TABLE IF NOT EXISTS `gardrobe` (
   `create_date` int(11) NOT NULL,
   PRIMARY KEY (`gardrobe_id`),
   UNIQUE KEY `gardrobe_id` (`gardrobe_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `gardrobe`
@@ -438,7 +466,8 @@ INSERT INTO `gardrobe` (`gardrobe_id`, `user_id`, `gardrobe_name`, `about`, `cre
 (35, 56, 'ilk gardrobum', 'genel', 1401911740),
 (36, 57, 'ilk gardrobum', 'genel', 1401914287),
 (37, 58, 'ilk gardrobum', 'genel', 1401914551),
-(38, 59, 'ilk gardrobum', 'genel', 1401915576);
+(38, 59, 'ilk gardrobum', 'genel', 1401915576),
+(39, 60, 'ilk gardrobum', 'genel', 1402332493);
 
 -- --------------------------------------------------------
 
@@ -715,7 +744,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   `seen` int(11) NOT NULL,
   PRIMARY KEY (`notification_id`),
   UNIQUE KEY `notification_id` (`notification_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=334 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=339 ;
 
 --
 -- Dumping data for table `notifications`
@@ -1048,7 +1077,12 @@ INSERT INTO `notifications` (`notification_id`, `notifier_id`, `notified_id`, `n
 (330, 51, 17, 5, 12, 1401829677, 0),
 (331, 51, 37, 5, 12, 1401829677, 0),
 (332, 51, 51, 5, 12, 1401829677, 0),
-(333, 4, 4, 1, 78, 1402002499, 1);
+(333, 4, 4, 1, 78, 1402002499, 1),
+(334, 4, 51, 3, 87, 1402087043, 0),
+(335, 4, 0, 2, 0, 1402087056, 0),
+(336, 4, 1, 2, 49, 1402087056, 0),
+(337, 4, 1, 2, 88, 1402087155, 0),
+(338, 4, 0, 2, 0, 1402087155, 0);
 
 -- --------------------------------------------------------
 
@@ -1162,7 +1196,7 @@ CREATE TABLE IF NOT EXISTS `share` (
   `share_date` int(11) NOT NULL,
   `shared_user_id` int(11) NOT NULL,
   UNIQUE KEY `share_id` (`share_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `share`
@@ -1197,7 +1231,11 @@ INSERT INTO `share` (`share_id`, `hanger_id`, `user_id`, `share_date`, `shared_u
 (26, 17, 4, 1401316837, 40),
 (27, 85, 50, 1401539758, 50),
 (28, 77, 1, 1401638718, 4),
-(29, 12, 4, 1401646809, 1);
+(29, 12, 4, 1401646809, 1),
+(30, 0, 4, 1402087056, 0),
+(31, 49, 4, 1402087056, 1),
+(32, 88, 4, 1402087155, 1),
+(33, 0, 4, 1402087155, 0);
 
 -- --------------------------------------------------------
 
@@ -1264,7 +1302,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=61 ;
 
 --
 -- Dumping data for table `users`
@@ -1272,7 +1310,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `mail`, `confirm`, `gender`, `pass`, `about`, `profession`, `pic_id`, `confirmation_code`, `city`, `phone`, `active`, `fbid`) VALUES
 (1, 'Tunç', 'Akın', 392508000, 1399810339, 'tuncak30@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1, 0),
-(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '', '1', '1', '4.png', '123456789qwertyu', 'ADANA', 0, 1, 0),
+(4, 'Mutaz', 'Alkabir', 392508000, 1399810339, 'mutazalkabir@gmail.com', 1, 0, '123456', '1', '1', '4.png', '123456789qwertyu', 'ADANA', 0, 1, 0),
 (5, 'mumtaz', 'alkabir', 392508000, 1399810995, 'mutaz_alkabir@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1, 0),
 (17, 'sinem', 'deneme', 392508000, 1399998580, 'mmm@gmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1, 0),
 (19, 'ahmet', 'alkabir', 392508000, 1399810339, 'mutaz_alkabir13@hotmail.com', 1, 0, '123456', '1', '1', 'avatar.png', '123456789qwertyu', '', 0, 1, 0),
@@ -1308,7 +1346,8 @@ INSERT INTO `users` (`user_id`, `name`, `surname`, `birth_date`, `login_date`, `
 (53, '123456', '123456', 0, 1401629261, 'urxqa5hfu1or673c@ss.com', 0, 0, '123456', '', '', 'avatar.png', 'bhg955lekpv7urjx', '', 0, 1, 0),
 (54, '123456', '123456', 0, 1401629425, 'asad@sad.com', 0, 0, 'asdasd', '', '', 'avatar.png', 'm7npdlumzr53rut3', '', 0, 1, 0),
 (58, 'Sezin', 'Yüce Alkabir', 0, 1401914551, 'ysezin@hotmail.com', 1, 2, '***', '', '', 'avatar.png', 'izpda6c52dvgt6em', '', 0, 1, 10152508201673377),
-(59, 'Mutaz', 'Alkabir', 0, 1401915576, 'mutaz_alkabir@hotmail.com', 1, 2, '', '', '', '59.png', 'l7w901gu2enu4alh', 'ADANA', 0, 1, 10152097896757611);
+(59, 'Mutaz', 'Alkabir', 0, 1401915576, 'mutaz_alkabir@hotmail.com', 1, 2, '', '', '', '59.png', 'l7w901gu2enu4alh', 'ADANA', 0, 1, 10152097896757611),
+(60, 'mutaz', 'alkabir', 728748000, 1402332493, 'mutaz@aaaaaaa.com', 1, 0, '123456', '', '', 'avatar.png', '8sj0qqq39naqg5fu', '', 0, 1, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
