@@ -355,3 +355,7 @@ input:focus{
     margin: 0px 0px 0px -95px;
     top: -130px;
 }
+
+.wrong_email{
+    border: 1px solid red !important;
+}
