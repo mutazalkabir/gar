@@ -106,9 +106,7 @@
         <div id="navigation_bar_contents">
             <div id="main_logo"></div>
             <input id="search_input" type="text" placeholder="Gardrobe Karıştır">
-            <div id="gardrobe_karistir">
-
-            </div>
+            <?php include 'gardrobe_karistir.php';?>
             <div id="messages_notifications_etc_holder">
                 <div id="topbar_profile_picture_and_name">
                     <img id="avatar" src="images/dummy_images/profil.jpg"/>
@@ -116,9 +114,9 @@
 
                     <span id="new_aski_button"><i class="flaticon-clothing1"></i>Askı Ekle</span>
                 </div>
-                <div id="notifications" class="topbar_items" hasNewItem="true">
+                <div id="notifications" class="topbar_items" hasNewItem="false">
                     <i class="fa fa-globe"></i>
-                    <div class="notification_count_holder">3</div>
+                    <div class="notification_count_holder"></div>
                     <div class="topbar_items_submenus" id="notifications_submenu">
                         <div id="notifications_content">
 

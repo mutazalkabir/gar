@@ -7,6 +7,7 @@
  */
 
 createNotifications = function(data){
+    debugger
     if(data)
     {
     var unreadNotificationCount = 0;
