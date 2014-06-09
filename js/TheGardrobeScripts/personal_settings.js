@@ -113,7 +113,7 @@ var Thegardrobe = function(){
         });
 
         $("#main_logo").on("click",function(){
-            window.location = "index.php";
+            window.location = "../../indextest.php";
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
