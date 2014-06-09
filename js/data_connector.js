@@ -804,5 +804,29 @@ function loginWithFacebook(_fbid, _mail, _name, _surname, _successFunction, _fai
         // alert( "finished" + data);
     });
 }
+
+
+function sendPasswordEmail(_mail){
+    $.ajax({
+        url: "src/sendmail.php",
+        type: "GET",
+        data:{mail:_mail},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+
+        _successFunction(data);
+        // alert( "success" +data );
+    }).fail(function(data) {
+        _failFunction(data);
+        debugger
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
+}
 /* Send New Mention */
 

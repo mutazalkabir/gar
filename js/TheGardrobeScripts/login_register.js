@@ -242,6 +242,7 @@ $(document).ready(function(){
             return false;
         }
         else{
+            sendPasswordEmail(eMail);
             $("#forgot_password").addClass("fadeOutLeft animatedSlow");
             setTimeout(function(){
                 $("#successfully_reset_container").css("display","block");
