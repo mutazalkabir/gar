@@ -36,6 +36,24 @@ else
     }
     $newfilename=genarateID().".".end(explode(".",$_FILES["file"]["name"]));
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
+
+
+
+    $data = array();
+
+
+
+
+    $insert = mysql_query("INSERT INTO brands VALUES ('','$brand_name','$newfilename')");
+    if($insert==false)
+        echo mysql_error();
+
+
+
+    header('Content-Type: application/json');
+    echo json_encode($insert);
+
+
     // exec('doya_adi_duzenle.bat');
 }
 
