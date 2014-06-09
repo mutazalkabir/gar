@@ -7,18 +7,18 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
-/*
+
 $username = "root";
 $password = "";
 $hostname = "localhost";
 $dbname = "thegardrobe";
-*/
+/*
 $username = "thegecom_mutaz";
 $password = "123qwe**";
 $hostname = "localhost";
 $dbname = "thegecom_tehgardrobe";
 
-
+*/
 
 define('DB_SERVER',$hostname );
 define('DB_USERNAME',$username );

@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['user_id'])) {
     // Redirection to login page twitter or facebook
-    header("location: indextest.php");
+    header("location: index.php");
 }
 
 if (array_key_exists("login", $_GET)) {

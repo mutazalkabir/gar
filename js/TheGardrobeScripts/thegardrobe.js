@@ -175,7 +175,7 @@ var Thegardrobe = function(){
         });
 
         $("#main_logo").on("click",function(){
-            window.location = "../../indextest.php";
+            window.location = "index.php";
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){
@@ -316,7 +316,7 @@ var Thegardrobe = function(){
         });
 
         $("#main_logo").on("click",function(){
-            window.location = "../../indextest.php";
+            window.location = "index.php";
         });
 
         $(".settings_submenu_items:first-child").on("click",function(){

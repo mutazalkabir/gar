@@ -101,7 +101,7 @@ $(document).ready(function(){
            createCookie("user", JSON.stringify(userData), 10);
 
         setTimeout(function(){
-            window.location = "../../indextest.php";
+            window.location = "index.php";
         }, 2000);
     }
 

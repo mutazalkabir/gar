@@ -170,7 +170,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
 
         window.location="index.php?type=date&start_date="+startDate+"&end_date="+endDate;
 
-        //window.location="indextest.php?type=category&type_id="+$(this).attr("category_id");
+        //window.location="index.php?type=category&type_id="+$(this).attr("category_id");
         //searchResult("category",$(this).attr("category_id"),createMainPageFeed);
         $("#close_popup").trigger("click");
     });

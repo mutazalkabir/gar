@@ -48,7 +48,7 @@ if ($user) {
 			$_SESSION['email'] = $email;
             $_SESSION['oauth_provider'] = $userdata['oauth_provider'];
             echo(1);
-       //     header("Location: indextest.php");
+       //     header("Location: index.php");
         }
     } else {
         # For testing purposes, if there was an error, let's kill the script
