@@ -216,7 +216,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <input type="hidden" id="x" name="x" />
+                    <input type="hidden" id="x" name="x" value="error"/>
                     <input type="hidden" id="y" name="y" />
                     <input type="hidden" id="min_side" name="min_side" />
                     <button id="save_personal_settings">Değişiklikleri Kaydet</button>

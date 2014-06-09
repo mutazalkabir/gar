@@ -95,7 +95,17 @@ $data = array();
         $y=(string)$_GET['y'];
 
 
-        $update = mysql_query("UPDATE users SET name='$name', surname='$surname', pass='$pass', about='$about', phone='$phone' ,city='$city', pic_id='$pic_id' WHERE user_id='$user_id'");
+        if($x === 'error'){
+
+            $update = mysql_query("UPDATE users SET name='$name', surname='$surname', pass='$pass', about='$about', phone='$phone' ,city='$city' WHERE user_id='$user_id'");
+        }
+        else{
+            $update = mysql_query("UPDATE users SET name='$name', surname='$surname', pass='$pass', about='$about', phone='$phone' ,city='$city', pic_id='$pic_id' WHERE user_id='$user_id'");
+
+
+
+
+
 
 
 
@@ -130,6 +140,7 @@ $data = array();
          **********************************************/
 
         $dst_image = imagecreatetruecolor($thumb_side, $thumb_side);
+
         imagecopyresampled($dst_image, $src_image,0 , 0, $x, $y, $thumb_side, $thumb_side, $min_side, $min_side);
 
         switch ($image_extension)
@@ -144,6 +155,8 @@ $data = array();
 
         imagedestroy($src_image);
         imagedestroy($dst_image);
+
+        }
 
         if($update)
         {
