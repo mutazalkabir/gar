@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $confirmation_code = genarateID();
     //TODO Generate Confirmation Code
 
-    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','avatar.png','$confirmation_code','','','1','')");
+    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','avatar.png','$confirmation_code','','','0','')");
     $user_id = mysql_insert_id();
     $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
     header('Content-Type: text/plain; charset=utf-8');
-    echo ("confirm_mail.html?".$confirmation_code);
+    echo ("confirm_mail.php?".$confirmation_code);
     //mysql_close($dbhandle);
     die();
     //TODO Send mail

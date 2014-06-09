@@ -12,25 +12,27 @@ include 'config/dbconfig.php';
 include 'utils.php';
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
+if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
 
-    $confirmation_code=(string)$_POST['confirmation_code'];
-echo($confirmation_code);
+    $confirmation_code=(string)$_GET['confirmation_code'];
     //TODO Generate Confirmation Code
 
     $update = mysql_query("UPDATE users SET confirm = 1 WHERE confirmation_code = '$confirmation_code'");
+    $result = mysql_query("SELECT user_id FROM `users` WHERE confirmation_code = '$confirmation_code'");
     //execute the SQL query and return records
-    if($update)
+    if($result)
     {
-       // sleep(3);
-        //header("Location: ../login_register.php");
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(true);
+        header("Location: ../login_register.php");
+        //header('Content-Type: application/json; charset=utf-8');
+        //echo json_encode($result);
+        die();
     }
-    else{
+    else
+    {
+        // var_dump($_GET);
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(false);
+        echo json_encode("error");
     }
 
 
@@ -41,7 +43,7 @@ else
 {
     // var_dump($_GET);
     header('Content-Type: application/json; charset=utf-8');
-    echo "aa";
+    echo json_encode("error");
 }
 
 ?>

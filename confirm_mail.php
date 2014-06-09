@@ -1,3 +1,30 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: mutazalkabir
+ * Date: 27.05.2014
+ * Time: 23:54
+ */
+
+//error_reporting(E_ALL ^ E_DEPRECATED);
+//include 'login.php';
+//session_name('thegardrobeLogin');
+// Starting the session
+
+//session_set_cookie_params(2*7*24*60*60);
+// Making the cookie live for 2 weeks
+//session_name('gardrobeLogin');
+session_start();
+
+
+    // If you are logged in, but you don't have the tzRemember cookie (browser restart)
+    // and you have not checked the rememberMe checkbox:
+
+
+
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

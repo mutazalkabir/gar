@@ -14,19 +14,17 @@ function confirmation(_confirmationCode, _successFunction)
         type: "POST",
         data:{confirmation_code: _confirmationCode},
         dataType:"json",
-        cache: false,
-        xhrFields: {
-            withCredentials: true
-        }
+        async: false,
+        cache: true
     }).done(function(data) {
         debugger
-        _successFunction(data)
+
     }).fail(function(data) {
         debugger
         // alert( "error" +data );
     }).always(function(data) {
         debugger
-        return data;
+        _successFunction(data)
         // alert( "finished" + data);
     });
 }

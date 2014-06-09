@@ -63,9 +63,13 @@ $(document).ready(function(){
         }
     });
 
+
+    successfullyConfirmed = function(data){
+        debugger
+    }
     $("#submit_confirmation_code").on("click",function(){
         debugger
-        if($.trim($("#confirmation_code").val()).length < 16 || $.trim($("#confirmation_code").val()) == ""){
+       /* if($.trim($("#confirmation_code").val()).length < 16 || $.trim($("#confirmation_code").val()) == ""){
             $("#confirmation_code").addClass("wrong_email");
             $("#confirmation_form_container").addClass("shake animatedSlow");
             setTimeout(function(){
@@ -74,18 +78,17 @@ $(document).ready(function(){
             setTimeout(function(){
                 $("#confirmation_form_container").removeClass("shake animatedSlow");
             },1000);
-            return false;
+            return true;
         }
         else{
-            confirmation($("#confirmation_code").val(), successfullyConfirmed)
+            confirmation($("#confirmation_code").val(), successfullyConfirmed);
             return true;
             //login($("#login_e_mail").val(),$("#login_password").val());
-        }
+        }*/
+        confirmation($("#confirmation_code").val(), successfullyConfirmed);
     });
 
-    successfullyConfirmed = function(data){
-        debugger
-    }
+
 
     loginAndCreateCookie = function(userData){
         $("#login_form_container").addClass("fadeOutLeft animatedSlow");
