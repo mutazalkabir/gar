@@ -25,57 +25,34 @@
     <script type="text/javascript" src="js/TheGardrobeScripts/preloader.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            /*  $("#login_admin").on("click",function(){
-             var eMail = $("#username").val();
-             var atpos=eMail.indexOf("@");
-             var dotpos=eMail.lastIndexOf(".");
-             if (atpos<1 || dotpos<atpos+2 || dotpos+2>=eMail.length){
-             $("#username").addClass("wrong_email");
-             $("#form_container").addClass("shake animatedSlow");
-             setTimeout(function(){
-             $("#form_container").removeClass("shake animatedSlow");
-             },1000);
-             $("#username").focus();
-             setTimeout(function(){
-             $("#username, #password").removeClass("wrong_email");
-             },2000);
-             return false;
-             }
-             else{
-             if($.trim($("#password").val()).length < 6 || $.trim($("#login_password").val()) == ""){
-             $("#password").addClass("wrong_email");
-             $("#form_container").addClass("shake animatedSlow");
-             setTimeout(function(){
-             $("#username, #password").removeClass("wrong_email");
-             },2000);
-             setTimeout(function(){
-             $("#form_container").removeClass("shake animatedSlow");
-             },1000);
-             return false;
-             }
-             else{
-             return true;
-             //login($("#login_e_mail").val(),$("#login_password").val());
-             }
-             }
-             });*/
+            getBrands(setBrands);
+
+            function setBrands(data){
+                for(var i=0; i<data.length; i++){
+                     $("#admin_tables_container table").append('<tr><td>'+ data[i].brand_name +'</td><td><img src="storage/brand_images/'+ data[i].brand_pic +'"/></td></tr>');
+                }
+            }
         });
     </script>
 </head>
+<?php include 'admin_left_menu.php';?>
+
+<div id="admin_tables_container">
+    <table>
+        <tr>
+          <th>Marka Adı</th>
+          <th>Marka Logosu</th>
+        </tr>
+    </table>
 
 
-
-
-
-<div id="form_container">
-    <form action="src/addbrand.php" method="post"
-          enctype="multipart/form-data">
-        <label for="file">eklemek istediğiniz resmi seçiniz:</label>
-        <input type="file" name="file" id="file" />
-        <input type="text" id="brand_name" name="brand_name">
-        <br />
-        <input type="submit" name="submit" value="ekle" />
-    </form>
-
+<form class="admin_forms" action="src/addbrand.php" method="post" enctype="multipart/form-data">
+    <div class="admin_page_form_header">Yeni Öğe Ekle</div>
+    <label for="file"></label>
+    <input type="file" name="file" id="file" />
+    <input type="text" id="brand_name" name="brand_name" placeholder="Marka Adı Giriniz">
+    <input class="admin_submit_buttons" type="submit" name="submit" value="Yeni Marka Ekle" />
+</form>
 </div>
+
 </html>

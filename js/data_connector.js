@@ -465,6 +465,7 @@ function getCategories(_successFunction){
 
 
 function getBrands(_successFunction){
+    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",

@@ -359,3 +359,119 @@ input:focus{
 .wrong_email{
     border: 1px solid red !important;
 }
+
+#admin_left_menu_holder{
+    background-color: #333333;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    position: absolute;
+    -webkit-box-shadow: 5px 1px 11px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow:    5px 1px 11px 0px rgba(0, 0, 0, 0.5);
+    box-shadow:         5px 1px 11px 0px rgba(0, 0, 0, 0.5);
+}
+
+.left_menu_nav_holder{
+    width: 100%;
+    float: left;
+    padding: 20px 10px;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #666666;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+.left_menu_nav_holder a{
+    color: #ffffff;
+}
+
+.left_menu_nav_holder:last-of-type{
+    border-bottom: none;
+}
+
+#default_admin_text{
+    font-weight: 100;
+    font-size: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin: -40px 0px 0px -210px;
+}
+
+#admin_tables_container{
+    top: 50px;
+    right: 50px;
+    bottom: 50px;
+    left: 300px;
+    position: absolute;
+    overflow: auto;
+}
+
+#admin_tables_container table{
+    width: 100%;
+    float: left;
+}
+
+#admin_tables_container table tr{
+    border-bottom: 1px solid #333333;
+}
+
+#admin_tables_container table th{
+    background-color: #333333;
+    color: #ffffff;
+    font-weight: 100;
+    font-size: 20px;
+    text-align: left;
+    padding: 20px;
+}
+
+#admin_tables_container table td{
+    padding: 20px 10px;
+    border-bottom: 1px solid #333333;
+}
+
+.admin_forms{
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    margin-top: 50px;
+    border: 1px dotted #333333;
+    padding-top: 80px;
+    overflow: visible;
+}
+
+.admin_forms *{
+    width: 100%;
+    display: block;
+    margin: 15px 0px;
+}
+
+.admin_submit_buttons{
+    background: #ee2c2c;
+    color: #fff;
+    -webkit-box-shadow: 0 6px #b00c0c;
+    -moz-box-shadow:    0 6px #b00c0c;
+    box-shadow:         0 6px #b00c0c;
+    cursor: pointer;
+    border: none !important;
+}
+
+.admin_page_form_header{
+    position: absolute;
+    left: -20px;
+    top: 0px;
+    right: 150px;
+    height: 60px;
+    background-color: #517fa4;
+    line-height: 60px;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 100;
+    padding-left: 40px;
+}
