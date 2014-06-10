@@ -1432,19 +1432,13 @@ $data= array();
 
     if ($operation == "deletehanger") {
         $data = array();
-        $result = mysql_query("SELECT r.*, h.*, CONCAT(u.name,' ',u.surname) as reported, CONCAT(u2.name,' ',u2.surname) as reporter
-            FROM reports r, users u, users u2, hanger h
-            WHERE r.hanger_id = h.hanger_id
-            AND r.reported_id = u.user_id
-            AND r.reporter_id = u2.user_id");
-
-        while ($row = mysql_fetch_assoc($result)) {
-            $data[]=$row;
-        }
+        $hanger_id= (string)$_GET['hanger_id'];
+        $delete = mysql_query("DELETE FROM hanger where hanger_id=$hanger_id");
+        $delete = mysql_query("DELETE FROM reports where hanger_id=$hanger_id");
 
 
-        header('Content-Type: application/json');
-        echo json_encode($data);
+        header('Location: ../reports.php');
+
         //  exit();
     }
     if ($operation == "emptyreports") {
