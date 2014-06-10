@@ -50,10 +50,6 @@ else
     move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
     // exec('doya_adi_duzenle.bat');
 
-    $dir = 'photos/';
-    foreach(glob($dir.'*.*') as $v){
-        unlink($v);
-    }
 }
 
 

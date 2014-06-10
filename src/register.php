@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $confirmation_code = genarateID();
 
 
-    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','avatar.png','$confirmation_code','','','0','')");
+    $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','avatar.png','$confirmation_code','','','0','','')");
     $user_id = mysql_insert_id();
     $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
 
