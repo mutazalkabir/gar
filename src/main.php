@@ -204,7 +204,7 @@ $data = array();
     if ($operation == "getcategory") {
         $data = array();
 
-        $result = mysql_query("SELECT * FROM category ORDER BY category_order DESC ");
+        $result = mysql_query("SELECT * FROM category ORDER BY category_order ASC ");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;

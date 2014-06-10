@@ -75,7 +75,7 @@ else if ($_SERVER['REQUEST_METHOD'] == 'GET')
             $confirmation_code = genarateID();
             //TODO Generate Confirmation Code
 
-            $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','1','$gender','***','','','avatar.png','$confirmation_code','','','1','$fbid')");
+            $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','1','$gender','***','','','avatar.png','$confirmation_code','','','1','$fbid','')");
             $user_id = mysql_insert_id();
             $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
 
