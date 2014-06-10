@@ -14,9 +14,10 @@
 
 #img_container{
     position: absolute;
-    width: 500px;
+    width: auto;
     height: auto;
     left: 250px;
+    max-height: 455px;
 /*    position: absolute;
     left: 0;
     margin-top: 10px;*/

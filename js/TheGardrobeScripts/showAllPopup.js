@@ -55,7 +55,7 @@ showAllPopup = function(_popupBodyArray, _popupType, _closeFunction){
                 $(".status_popup").removeClass("animated bounceOutUp");
             },550);
             removeGardrobeKaristir();
-            searchResult("city",$(this).find(".show_all_item_content").text(),createMainPageFeed);
+            window.location="index.php?type=city&type_id="+$(this).find(".show_all_item_content").text();
 
         });
 
