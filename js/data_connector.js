@@ -467,7 +467,7 @@ function getReports(_successFunction){
     $.ajax({
         url: "src/main.php",
         type: "GET",
-        data:{operation: "getReports"},
+        data:{operation: "getreports"},
         dataType:"json",
         cache: false,
         xhrFields: {

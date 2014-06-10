@@ -28,11 +28,15 @@
             getReports(setReports);
 
             function setReports(data){
-                debugger
                 for(var i=0; i<data.length; i++){
-                     $("#admin_tables_container table").append('<tr><td>'+ data[i].brand_name +'</td><td><img src="storage/brand_images/'+ data[i].brand_pic +'"/></td></tr>');
+                     $("#admin_tables_container table").append('<tr><td>'+ data[i].report_comment +'</td><td>'+ data[i].reporter +'</td><td>'+ data[i].reported +'</td><td><img style="max-width:200px; height:auto" src="storage/user_images/' + data[i].user_id + "/" + data[i].pic_id +'"></td><td>'+ data[i].about +'</td><td>'+ data[i].hanger_id +'</td><td><div class="delete_hanger" hanger_id="'+ data[i].hanger_id +'">Sil</div></td></tr>');
                 }
             }
+
+
+            $(".delete_hanger").on("click",function(){
+
+            })
         });
     </script>
 </head>
@@ -41,8 +45,13 @@
 <div id="admin_tables_container">
     <table>
         <tr>
-          <th>Marka Adı</th>
-          <th>Marka Logosu</th>
+          <th>Şikayet Sebebi</th>
+          <th>Şikayet Eden</th>
+          <th>Askı Sahibi</th>
+          <th>Askı Fotoğrafı</th>
+          <th>Askı Hakkında</th>
+          <th>Askı ID</th>
+          <th>Askıyı Sil</th>
         </tr>
     </table>
 </div>
