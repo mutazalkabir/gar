@@ -31,12 +31,13 @@
                 for(var i=0; i<data.length; i++){
                      $("#admin_tables_container table").append('<tr><td>'+ data[i].report_comment +'</td><td>'+ data[i].reporter +'</td><td>'+ data[i].reported +'</td><td><img style="max-width:200px; height:auto" src="storage/user_images/' + data[i].user_id + "/" + data[i].pic_id +'"></td><td>'+ data[i].about +'</td><td>'+ data[i].hanger_id +'</td><td><div class="delete_hanger" hanger_id="'+ data[i].hanger_id +'">Sil</div></td></tr>');
                 }
+
+                $(".delete_hanger").on("click",function(){
+                    deleteHanger($(this).attr("hanger_id"));
+                })
             }
 
 
-            $(".delete_hanger").on("click",function(){
-
-            })
         });
     </script>
 </head>
