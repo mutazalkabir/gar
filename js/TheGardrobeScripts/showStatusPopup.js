@@ -41,7 +41,7 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction, _picURL){
                 '<i id="close_info_popup" class="fa fa-times fa-2"></i>' +
                 '</div>' +
                 '<div style="top: 55px; margin-top: 0px; font-size: 16px;" class="popup_body">'+ _popupMessage +'</div>'+
-                    '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.thegardrobe.com/facebook_sharer.php?pic_url=http://www.thegardrobe.com/'+ window.picURL +'"><span class="symbol facebook">circlefacebook</span></a>'+
+                    '<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://www.thegardrobe.com/facebook_sharer.php?pic_url='+ window.picURL +'"><span class="symbol facebook">circlefacebook</span></a>'+
                     '<a target="_blank" href="https://twitter.com/intent/tweet?button_hashtag=TheGardrobe&text=TheGardrobe.comdan bir askı paylaştım! '+  window.picURL +'" +><span class="symbol twitter">circletwitterbird</span></a>'
 
         }));

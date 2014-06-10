@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     else{
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($result);
+        echo json_encode(false);
     }
 
 }

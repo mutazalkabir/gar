@@ -53,9 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 //These are the variables for the email
 
     $sendto = $mail; // this is the email address collected form the form
-    $ccto = "mutazalkabir@gmail.com"; //you can cc it to yourself
-    $subject = "email activasyon"; // Subject
-    $message = "Merhabalar <br>\r\n alt taraftaki like tıklayarak hesabınızı aktive edebilirsiniz. <br>\r\n".$confirmation_path;
+    $ccto = ""; //you can cc it to yourself
+    $subject = "TheGardrobe email activasyon"; // Subject
+    $message = "Merhabalar \r\n alt taraftaki like tıklayarak hesabınızı aktive edebilirsiniz. \r\n".$confirmation_path;
     $header = "From: thegeo@thegardrobe.com\r\n";
 
 // This is the function to send the email

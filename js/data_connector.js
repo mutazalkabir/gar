@@ -60,7 +60,16 @@ function login(_email,_pass){
             withCredentials: true
         }
     }).done(function(data) {
+        if(data=="false" || data==false)
+        {
+            showWrongUserNameOrPassword();
+
+        }
+        else
+        {
             loginAndCreateCookie(data);
+        }
+
             // alert( "success" +data );
         }).fail(function(data) {
             showWrongUserNameOrPassword();

@@ -226,7 +226,15 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             showPreloader();
 
             $(".tagsContainer").remove();
-            var tags = JSON.parse(tagData);
+            try
+            {
+                var tags = JSON.parse(tagData);
+            }
+            catch(e)
+            {
+
+            }
+
 
             $("#aski_picture img").load(function() {
                 var tagsContainerHeight = parseInt($("#aski_picture img").height());

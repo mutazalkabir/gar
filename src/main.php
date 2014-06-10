@@ -118,15 +118,21 @@ $data = array();
       //  $min_side=993;// Desired thumbnail side size
         // END OF SETTINGS
 
-        $image_extension = explode('.', $image_name); // I assume that images are named only following 'imagename.ext' pattern
+        $image_extension = explode('.', $pic_id); // I assume that images are named only following 'imagename.ext' pattern
 
-        /* if (preg_match('/jpg|jpeg/', $image_extension[1])) {
+        /*    echo($image_extension."  ");
+            echo($image_extension[1]."  ");
+            echo($image_extension[1]."  ");*/
+         if (preg_match('/jpg|jpeg|JPG|JPEG/', $image_extension[1])) {
              $src_image = imagecreatefromjpeg($image_name);
              $image_extension = 'jpg';
-         } else if (preg_match('/png/', $image_extension[1])) {*/
-        $src_image = imagecreatefrompng($image_name);
-        $image_extension = 'png';
-        //}
+         } else if (preg_match('/png|PNG/', $image_extension[1])) {
+            $src_image = imagecreatefrompng($image_name);
+            $image_extension = 'png';
+         } else{
+             $src_image = imagecreatefrompng($image_name);
+             $image_extension = 'png';
+         }
 
         $src_width = imageSX($src_image);   // Width of the original image
         $src_height = imageSY($src_image);  // Height of the original image
@@ -146,7 +152,7 @@ $data = array();
         switch ($image_extension)
         {
             case 'jpg':
-                imagejpeg($dst_image, $image_name, 5);
+                imagejpeg($dst_image, $image_name, 90);
                 break;
             case 'png':
                 imagepng($dst_image, $image_name, 5);
@@ -856,7 +862,7 @@ $data= array();
             $data[]=$row;
         }
 
-        $result = mysql_query(" SELECT  'share' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, s.share_id as hanger_id, s.share_date as date
+        $result = mysql_query(" SELECT  'share' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, s.hanger_id as hanger_id, s.share_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
         WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
         ORDER BY s.share_date ASC");
@@ -1438,6 +1444,7 @@ $data= array();
 
 
         header('Location: ../reports.php');
+        die();
 
         //  exit();
     }
