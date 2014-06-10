@@ -78,9 +78,9 @@
 
                     <span id="new_aski_button"><i class="flaticon-clothing1"></i>Askı Ekle</span>
                 </div>
-                <div id="notifications" class="topbar_items" hasNewItem="true">
+                <div id="notifications" class="topbar_items" hasNewItem="false">
                     <i class="fa fa-globe"></i>
-                    <div class="notification_count_holder">3</div>
+                    <div class="notification_count_holder"></div>
                     <div class="topbar_items_submenus" id="notifications_submenu">
                         <div id="notifications_content">
 
