@@ -173,6 +173,7 @@ openAddAskiPopup = function(){
     $("#close_popup").on("click",function(){
         $("#glass_inner").removeClass("bounceInLeft animated");
         $("#glass_inner").addClass("bounceOutRight animated");
+        newAskiForm= null;
         setTimeout(function(){
             $("#glass, #glass_inner").remove();
         },400);

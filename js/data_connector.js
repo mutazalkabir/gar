@@ -462,7 +462,26 @@ function getCategories(_successFunction){
         });
 }
 /* Aski Yükle */
-
+function getReports(_successFunction){
+    debugger
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "getReports"},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+        _successFunction(data);
+        // alert( "success" +data );
+    }).fail(function(data) {
+        // alert( "error" +data );
+    }).always(function(data) {
+        // alert( "finished" + data);
+    });
+}
 
 function getBrands(_successFunction){
     debugger
