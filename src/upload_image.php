@@ -1,7 +1,3 @@
-
-
-
-
 <?php
 /**
  * Created by PhpStorm.
@@ -16,9 +12,10 @@
 }*/
 
 include "includes.php";
+include "ImageUtils.php";
 session_start();
 
-$user_id=$_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 /*
 $data = array();
 $user_id = $_SESSION['userid'];
@@ -33,23 +30,47 @@ $insert = mysql_query("INSERT INTO hanger VALUES ('','$user_id','$category_id','
 */
 
 
-if ($_FILES["file"]["error"] > 0)
-{
+if ($_FILES["file"]["error"] > 0) {
 
     echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-}
-else
-{
+} else {
 
-    $save_path=$UPLOADED_IMAGE_FOLDER_PATH.$_SESSION['user_id']."/"; // Folder where you wanna move the file.
+
+    $newHeight=700;
+    $newWidth=700;
+
+    $save_path = $UPLOADED_IMAGE_FOLDER_PATH . $_SESSION['user_id'] . "/"; // Folder where you wanna move the file.
     //chmod($save_path, 0777);
     if (!file_exists($save_path)) {
         mkdir($save_path, 0777, true);
     }
-    $newfilename=genarateID().".".end(explode(".",$_FILES["file"]["name"]));
-    move_uploaded_file($_FILES["file"]["tmp_name"],$save_path.$newfilename);
+    $newfilename = genarateID() . "." . end(explode(".", $_FILES["file"]["name"]));
+
+
+    move_uploaded_file($_FILES["file"]["tmp_name"], $save_path.$newfilename);
+    //move_uploaded_file($image, $save_path.$newfilename);
     // exec('doya_adi_duzenle.bat');
 
+
+
+    $image = new ImageUtils();
+    $image->load($save_path.$newfilename);
+
+    $height = $image->getHeight();
+    $width = $image->getWidth();
+    if($width>$height)
+    {
+        $newWidth = ($width*$newHeight)/$height;
+    }
+    else{
+        $newHeight = ($height*$newWidth)/$width;
+    }
+
+   // echo($height." ".$width." ".$newHeight);
+   $image->resize($newWidth,$newHeight);
+   // $image->resizeToWidth(700);
+
+    $image->save($save_path.$newfilename);
 }
 
 
@@ -63,7 +84,7 @@ if($insert==false)
 //header('Content-Type: application/json');
 //echo json_encode('<img src=\"/storage/user_image/.$user_id/.$newfilename\">');
 
-echo "<img id='$newfilename' src='../storage/user_images/".$user_id. "/".$newfilename."'  class='aski_uploaded_picture_holder photoTag'>";
+echo "<img id='$newfilename' src='../storage/user_images/" . $user_id . "/" . $newfilename . "'  class='aski_uploaded_picture_holder photoTag'>";
 
 // }
 //else

@@ -873,7 +873,7 @@ $data= array();
             $data[]=$row;
         }
 
-        $result = mysql_query("SELECT  'comment' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, c.comment_id as hanger_id, c.comment_date as date
+        $result = mysql_query("SELECT  'comment' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, c.hanger_id as hanger_id, c.comment_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
         WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellowed_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
         ORDER BY c.comment_date ASC");
