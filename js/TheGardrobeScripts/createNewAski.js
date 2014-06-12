@@ -132,12 +132,16 @@ openAddAskiPopup = function(){
     $("#my_gardrobes").on("change",function(){
         window.selectedGardrobeId = $(this).find("option:selected").attr("id");
     });
-
+    $('#file_browse').die();
     $('#file_browse').live('change', function(){
         $("#image_upload_form").ajaxForm({
             target: '#aski_uploaded_picture_holder',
             success: function(){
-                $(".photoTag").photoTag();
+                $('img').load(function() {
+                    //Mutaz image load olmadan height width alamayız
+                    $(".photoTag").photoTag();
+                });
+
             }
         }).submit();
     });

@@ -356,8 +356,13 @@
 		};
 
 		var wrapImage = function( image, image_id ){
-			var imageHeight = image.height();
-			var imageWidth = image.width();
+
+			//var imageHeight = image.height();
+			//var imageWidth = image.width();
+            //Mutaz : jquery yanlış yazmış düzelttik :)
+
+            var imageHeight=image[0].naturalHeight;
+            var imageWidth=image[0].naturalWidth;
 			var canvas = $('<div id="' + options.imageWrapBox.canvasIdPrefix + image_id + '" style="position:relative;height:'+ (imageHeight + options.imageWrapBox.controlPanelHeight) +'px;width:100%; max-height:625px;"></div>');
 			var wrapper = $('<div class="' + options.imageWrapBox.cssClass + '" id="' + options.imageWrapBox.idPrefix + image_id +'" style="position:absolute;max-height:590px;top:20px;left:50%;height:'+ imageHeight +'px;width:'+ imageWidth +'px;margin-left:'+ (-1 * (imageWidth / 2)) +'px;"></div>');
 			canvas.append(wrapper);

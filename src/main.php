@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "getuser") {
         $data = array();
         $user_id = (string)$_GET['user_id'];
-        $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id AND active=1");
+        $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id AND active=1 AND confirm=1");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
     if ($operation == "getuserdata") {
         $data = array();
         $user_id = (string)$_GET['user_id'];
-        $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id AND active=1");
+        $result = mysql_query("SELECT * FROM users WHERE user_id=$user_id AND active=1 AND confirm=1");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
     if ($operation == "getallusers") {
         $data = array();
-        $result = mysql_query("SELECT *, CONCAT(u.name,' ',u.surname) as label, CONCAT(u.name,' ',u.surname) as value, u.user_id as id FROM users u WHERE u.active =1");
+        $result = mysql_query("SELECT *, CONCAT(u.name,' ',u.surname) as label, CONCAT(u.name,' ',u.surname) as value, u.user_id as id FROM users u WHERE u.active =1  AND u.confirm=1");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -258,7 +258,7 @@ $data = array();
         $user_id =$_SESSION['user_id'];
         $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.hanger_id=$hanger_id AND u.active='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.hanger_id=$hanger_id AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date ASC");
 
 
 
@@ -277,7 +277,7 @@ $data = array();
             $id= $data[$i]['hanger_id'];
             $likes= array();
 
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id , u.pic_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id , u.pic_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1' AND u.confirm='1'  ");
 
             while ($row2 = mysql_fetch_assoc($result2)) {
                 if($row2["user_id"]==$user_id)
@@ -297,7 +297,7 @@ $data = array();
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $shares= array();
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1' AND u.confirm='1' ");
 
 
 
@@ -319,7 +319,7 @@ $data = array();
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $comments= array();
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1' AND u.confirm='1' ");
 
 
 
@@ -382,41 +382,41 @@ $data = array();
 
             $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND u.active='1'");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND u.active='1' AND u.confirm='1' ");
 	
         }
         else if($state=="fellowed")
         {
             $result = mysql_query("SELECT DISTINCT f.fellower_id, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
             FROM users u, hanger h, gardrobe g,category c,fellowship f
-            WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellowed_id = h.user_id AND  f.fellower_id=$user_id AND u.active='1'");
+            WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellowed_id = h.user_id AND  f.fellower_id=$user_id AND u.active='1' AND u.confirm='1' ");
 
         }
         else if($type==$BY_CATEGORY){
             $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND c.category_id = $type_id  AND u.active='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND c.category_id = $type_id  AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date ASC");
         }
         else if($type==$BY_BRAND){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c, hanger_brands hb
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND hb.brand_id = '$type_id' AND hb.hanger_id = h.hanger_id AND u.active='1' ORDER BY h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND hb.brand_id = '$type_id' AND hb.hanger_id = h.hanger_id AND u.active='1' AND u.confirm='1'  ORDER BY h.create_date ASC");
         }
         else if($type==$BY_DATE){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.create_date BETWEEN $start_date AND $end_date AND u.active='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.create_date BETWEEN $start_date AND $end_date AND u.active='1' AND u.confirm='1'  ORDER BY  h.create_date ASC");
         }
         else if($type==$BY_CITY){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.city = '$type_id' AND u.active='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.city = '$type_id' AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date ASC");
         }
         else if($type==$BY_GARDROBE)
         {
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND g.gardrobe_id = '$type_id' AND u.active='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND g.gardrobe_id = '$type_id' AND u.active='1' AND u.confirm='1'  ORDER BY  h.create_date ASC");
         }
 
 
@@ -435,7 +435,7 @@ $data = array();
             $id= $data[$i]['hanger_id'];
             $likes= array();
 
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id , u.pic_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id , u.pic_id ,l.*  FROM likes l, users u WHERE liked_id = $id AND u.user_id= l.user_id AND u.active='1'  AND u.confirm='1' ");
 
             while ($row2 = mysql_fetch_assoc($result2)) {
                 if($row2["user_id"]==$user_id)
@@ -455,7 +455,7 @@ $data = array();
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $shares= array();
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,s.*  FROM share s, users u WHERE hanger_id = $id AND u.user_id= s.user_id  AND u.active='1'  AND u.confirm='1' ");
 
 
 
@@ -477,7 +477,7 @@ $data = array();
         for($i=0;$i<$max;$i++){
             $id= $data[$i]['hanger_id'];
             $comments= array();
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1' ");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ',u.surname) as liker_name, u.user_id, u.pic_id ,c.*  FROM comment c, users u WHERE hanger_id = $id AND u.user_id= c.user_id AND u.active='1'  AND u.confirm='1' ");
 
 
 
@@ -548,7 +548,7 @@ $data = array();
     if ($operation == "listgardrobe") {
         $data = array();
         $user_id = (string)$_GET['user_id'];
-        $result = mysql_query("SELECT g.*, u.pic_id as avatar FROM gardrobe g, users u WHERE g.user_id=$user_id AND u.user_id= g.user_id  AND u.active='1' ");
+        $result = mysql_query("SELECT g.*, u.pic_id as avatar FROM gardrobe g, users u WHERE g.user_id=$user_id AND u.user_id= g.user_id  AND u.active='1'  AND u.confirm='1' ");
         $total_hanger_count=0;
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -597,7 +597,7 @@ $data = array();
         $data = array();
         $gardrobe_id = (string)$_GET['gardrobe_id'];
 
-        $result = mysql_query("SELECT g.*, u.pic_id FROM gardrobe g, users u WHERE u._user_id = g.user_id AND g.gardrobe_id='$gardrobe_id'  AND u.active='1' ");
+        $result = mysql_query("SELECT g.*, u.pic_id FROM gardrobe g, users u WHERE u._user_id = g.user_id AND g.gardrobe_id='$gardrobe_id'  AND u.active='1'  AND u.confirm='1' ");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[] = $row;
@@ -743,7 +743,7 @@ $data = array();
 $data= array();
         $fellowed_id =(string)$_GET['fellowed_id'];
 
-        $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellowed_id=$fellowed_id AND u.user_id =f.fellower_id AND u.active='1' ");
+        $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellowed_id=$fellowed_id AND u.user_id =f.fellower_id AND u.active='1' AND u.confirm='1'  ");
 
       //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -765,7 +765,7 @@ $data= array();
 $data= array();
         $fellower_id =(string)$_GET['fellower_id'];//$_SESSION['userid'];
 
-        $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellower_id=$fellower_id AND u.user_id =f.fellowed_id AND u.active='1' ");
+        $result = mysql_query("SELECT * FROM fellowship f, users u WHERE f.fellower_id=$fellower_id AND u.user_id =f.fellowed_id AND u.active='1'  AND u.confirm='1' ");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -837,7 +837,7 @@ $data= array();
         $user_id = (string)$_GET['user_id'];
         $result = mysql_query("SELECT 'fellowship' as feed_type, u.pic_id as user_one_pic, u.user_id as user_one_id, CONCAT(u.name, ' ', u.surname) as user_one, u2.pic_id as user_two_pic, u2.user_id as user_two_id, CONCAT(u2.name, ' ', u2.surname) as user_two, f.fellowship_date as date
         FROM fellowship f, fellowship f2, users u, users u2
-        WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1'
+        WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1'
         ORDER BY f.fellowship_date ASC");
 
         while ($row = mysql_fetch_assoc($result)) {
@@ -847,7 +847,7 @@ $data= array();
 
         $result = mysql_query(" SELECT  'like' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, l.liked_id as hanger_id, l.like_date as date
            FROM users u, users u2, users u3,fellowship f,fellowship f2, likes l,type t
-           WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+           WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
            ORDER BY l.like_date ASC");
 
 /*
@@ -864,7 +864,7 @@ $data= array();
 
         $result = mysql_query(" SELECT  'share' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, s.hanger_id as hanger_id, s.share_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
-        WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+        WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
         ORDER BY s.share_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -875,7 +875,7 @@ $data= array();
 
         $result = mysql_query("SELECT  'comment' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, c.hanger_id as hanger_id, c.comment_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
-        WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellowed_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+        WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellowed_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
         ORDER BY c.comment_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -914,7 +914,7 @@ $data= array();
         $user_id = (string)$_GET['user_id'];
          $result = mysql_query("SELECT u.pic_id as fellower_pic, u.user_id as fellower_id, CONCAT(u.name, ' ', u.surname) as fellower, u2.pic_id as fellowed_pic, u2.user_id as fellowed_id, CONCAT(u2.name, ' ', u2.surname) as fellowed
         FROM fellowship f, fellowship f2, users u, users u2
-        WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1'
+        WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1'
         ORDER BY f.fellowship_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -940,7 +940,7 @@ $data= array();
 
        $result = mysql_query(" SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name
        FROM users u, users u2, users u3,fellowship f,fellowship f2, likes l,type t
-       WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+       WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
        ORDER BY l.like_date ASC");
 
        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -964,7 +964,7 @@ $data= array();
         $user_id = (string)$_GET['user_id'];
         $result = mysql_query("SELECT u2.name as sharer_name, u2.surname as sharer_surname,u2.user_id as sharer_user_id, u3.name as shared_name, u3.surname as shared_surname,u3.user_id as shared_user_id, s.share_id, s.share_date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
-        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
         ORDER BY s.share_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -988,7 +988,7 @@ $data= array();
         $user_id = (string)$_GET['user_id'];
         $result = mysql_query("SELECT u2.name as commenter_name, u2.surname as commenter_surname,u2.user_id as commenter_user_id, u3.name as commented_name, u3.surname as commented_surname,u3.user_id as commented_user_id, c.comment_id, c.comment_date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
-        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1'
+        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
         ORDER BY c.comment_date ASC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
@@ -1191,7 +1191,7 @@ $data= array();
         //check if there is valid conversation
         $result = mysql_query(" SELECT CONCAT(u.name, ' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name, ' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, c.conversation_date as date,c.receiver_read , c.c_id as conversation_id
         FROM users u, users u2 ,conversation c
-        WHERE (u.user_id=c.user_one OR u.user_id=c.user_two) AND u.user_id=$user_id AND (u2.user_id=c.user_one OR u2.user_id=c.user_two) AND u2.user_id != $user_id AND u.active='1' AND u2.active='1' ORDER BY c.conversation_date ASC");
+        WHERE (u.user_id=c.user_one OR u.user_id=c.user_two) AND u.user_id=$user_id AND (u2.user_id=c.user_one OR u2.user_id=c.user_two) AND u2.user_id != $user_id AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1' ORDER BY c.conversation_date ASC");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;
@@ -1200,7 +1200,7 @@ $data= array();
             $conversation_id=$row["conversation_id"];
           //  $result2 = mysql_query(" SELECT * FROM pm WHERE conversation_id = '$conversation_id' ORDER BY message_date ASC");
 
-            $result2 = mysql_query("SELECT CONCAT(u.name,' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name,' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, p.* FROM users u, users u2, pm p WHERE p.conversation_id ='$conversation_id' AND (u.user_id = p.user_one OR u.user_id = p.user_two) AND ( u2.user_id = p.user_one OR u2.user_id = p.user_two ) AND u.user_id != u2.user_id AND u.user_id = p.user_one AND u.active='1' AND u2.active='1' ORDER BY message_date ASC LIMIT 0 , 30");
+            $result2 = mysql_query("SELECT CONCAT(u.name,' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name,' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, p.* FROM users u, users u2, pm p WHERE p.conversation_id ='$conversation_id' AND (u.user_id = p.user_one OR u.user_id = p.user_two) AND ( u2.user_id = p.user_one OR u2.user_id = p.user_two ) AND u.user_id != u2.user_id AND u.user_id = p.user_one AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1' ORDER BY message_date ASC LIMIT 0 , 30");
             $max = sizeof($data);
 
 
@@ -1329,7 +1329,7 @@ $data= array();
 
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
 
-        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, n.seen, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id= u.user_id AND u.active='1'");
+        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, n.seen, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id= u.user_id AND u.active='1'AND u.confirm='1' ");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;

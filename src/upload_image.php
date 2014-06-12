@@ -11,8 +11,10 @@
     mkdir('path/to/directory', 0777, true);
 }*/
 
+include "config/dbconfig.php";
 include "includes.php";
 include "ImageUtils.php";
+
 session_start();
 
 $user_id = $_SESSION['user_id'];
@@ -50,9 +52,11 @@ if ($_FILES["file"]["error"] > 0) {
     move_uploaded_file($_FILES["file"]["tmp_name"], $save_path.$newfilename);
     //move_uploaded_file($image, $save_path.$newfilename);
     // exec('doya_adi_duzenle.bat');
+    $extension = explode(".", strtolower($_FILES['file']['name']));
+    $image = new ImageUtils();
+    $newimage=$image->ResizeToDimension(600, $save_path.$newfilename, $extension[1], $save_path.$newfilename);
 
-
-
+/*
     $image = new ImageUtils();
     $image->load($save_path.$newfilename);
 
@@ -66,11 +70,14 @@ if ($_FILES["file"]["error"] > 0) {
         $newHeight = ($height*$newWidth)/$width;
     }
 
-   // echo($height." ".$width." ".$newHeight);
+
+
+
+
    $image->resize($newWidth,$newHeight);
-   // $image->resizeToWidth(700);
 
     $image->save($save_path.$newfilename);
+*/
 }
 
 
@@ -83,6 +90,7 @@ if($insert==false)
 */
 //header('Content-Type: application/json');
 //echo json_encode('<img src=\"/storage/user_image/.$user_id/.$newfilename\">');
+
 
 echo "<img id='$newfilename' src='../storage/user_images/" . $user_id . "/" . $newfilename . "'  class='aski_uploaded_picture_holder photoTag'>";
 
