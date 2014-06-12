@@ -82,6 +82,28 @@ openAddAskiPopup = function(){
     $("#add_new_aski_left_side").append(newAskiForm);
     $("#add_new_aski_left_side").append('<button id="add_new_aski_button">Kaydet</button>');
 
+
+    $("#file_browse_wrapper").on("click",function(){
+        //showPreloader();
+    })
+
+    $(".aski_uploaded_picture_holder").load(function() {
+        removePreloader();
+        var picture = $(".aski_uploaded_picture_holder");
+        if(parseInt(picture.height()) < 600){
+            var marginTop = (-1 * parseInt(picture.height()) / 2) + "px";
+            var marginLeft = (-1 * parseInt(picture.width()) / 2) + "px";
+
+            picture.css({
+                "position": "absolute",
+                "top": "50%",
+                "left": "50%",
+                "margin-left": marginLeft,
+                "margin-top": marginTop
+            })
+        }
+    });
+
     $("#add_new_gardrobe_button").on("click",function(){
         if($.trim($("#gardrobe_title").val()) != ""){
             addGardrobe(window.user[0].user_id, $("#gardrobe_title").val()  , "dummy");

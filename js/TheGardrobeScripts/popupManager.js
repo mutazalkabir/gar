@@ -237,6 +237,22 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
 
 
             $("#aski_picture img").load(function() {
+                var picture = askiPictureHolder.find("#aski_picture img");
+
+                if(parseInt(picture.height()) < 600){
+                    var marginTop = (-1 * parseInt(picture.height()) / 2) + "px";
+                    var marginLeft = (-1 * parseInt(picture.width()) / 2) + "px";
+
+                    picture.css({
+                        "position": "absolute",
+                        "top": "50%",
+                        "left": "50%",
+                        "margin-left": marginLeft,
+                        "margin-top": marginTop
+                    })
+                }
+
+
                 var tagsContainerHeight = parseInt($("#aski_picture img").height());
                 var tagsContainerWidth = parseInt($("#aski_picture img").width());
                 var tagsContainerMarginLeft = -1 * (parseInt($("#aski_picture img").width()) / 2);
