@@ -1002,6 +1002,28 @@ input:focus{
     width: 60px;
 }
 
+#aski_picture_holder .buttons{
+    left: -75px;
+    opacity: 0 !important;
+}
+
+#aski_picture_holder .buttons{
+    top: 20px !important;
+}
+
+#glass_inner:hover  .like_button, #glass_inner:hover .share_button{
+    -moz-transform: translateX(75px) !important;
+    -webkit-transform: translateX(75px) !important;
+    -o-transform: translateX(75px) !important;
+    -ms-transform: translateX(75px) !important;
+    transform: translateX(75px) !important;
+    opacity: 1 !important;
+}
+
+#glass_inner:hover .share_button{
+    top: 75px !important;
+}
+
 .buttons{
     position: absolute;
     padding: 10px;
@@ -1305,6 +1327,7 @@ input:focus{
     box-shadow:         6px 0px 20px 0px rgba(0, 0, 0, 0.2), inset 0px 3px 22px 0px rgba(0, 0, 0, 0.75);
     border-bottom: 0;
     padding: 50px;
+    overflow: hidden;
     text-align: center;
 }
 

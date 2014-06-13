@@ -72,14 +72,14 @@ createMainPageFeed = function(mainPageFeedData){
         }
 
         if(mainPageFeedData[i].hadliked == "true"){
-            var likeHTML = '<div style="opacity:0.8; cursor:default" class="buttons like_button" hanger_owner_id="'+ mainPageFeedData[i].user_id +'" hanger_id="'+ mainPageFeedData[i].hanger_id +'">Beğendin</div>'
+            var likeHTML = '<div style="opacity:0.8;" class="buttons like_button" hanger_owner_id="'+ mainPageFeedData[i].user_id +'" hanger_id="'+ mainPageFeedData[i].hanger_id +'">Beğendin</div>'
         }
         else{
             var likeHTML = '<div class="buttons like_button" hanger_owner_id="'+ mainPageFeedData[i].user_id +'" hanger_id="'+ mainPageFeedData[i].hanger_id +'"><i class="fa fa-heart-o"></i>Beğen</div>'
         }
 
         if(mainPageFeedData[i].hadshared == "true"){
-            var shareHTML = '<div style="opacity:0.8; cursor:default" class="buttons share_button">Paylaştın</div>'
+            var shareHTML = '<div style="opacity:0.8;" class="buttons share_button">Paylaştın</div>'
         }
         else{
             var shareHTML = '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>'

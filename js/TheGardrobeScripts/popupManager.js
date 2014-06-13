@@ -162,6 +162,24 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     }));
 
     askiContentsHolder.append(askiPictureHolder);
+
+    if(askiDetayData.hadliked == "true"){
+        var likeHTML = '<div style="opacity:0.8;" class="buttons like_button" hanger_owner_id="'+ askiDetayData.user_id +'" hanger_id="'+ askiDetayData.hanger_id +'">Beğendin</div>'
+    }
+    else{
+        var likeHTML = '<div class="buttons like_button" hanger_owner_id="'+ askiDetayData.user_id +'" hanger_id="'+ askiDetayData.hanger_id +'"><i class="fa fa-heart-o"></i>Beğen</div>'
+    }
+
+    if(askiDetayData.hadshared == "true"){
+        var shareHTML = '<div style="opacity:0.8;" class="buttons share_button">Paylaştın</div>'
+    }
+    else{
+        var shareHTML = '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>'
+    }
+
+    askiPictureHolder.append(likeHTML);
+    askiPictureHolder.append(shareHTML);
+
     askiContentsHolder.append(askiProfileItems);
 
     $("#popup_profile_name, #popup_profile_picture").on("click",function(){
