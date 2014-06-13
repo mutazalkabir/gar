@@ -69,8 +69,8 @@ openAddAskiPopup = function(){
                             '<td><select id="cities"><option selected>Şehir Seçiniz</option></select></td>' +
                         '</tr>' +
                         '<tr>' +
-                            '<td>Mekan Adı</td>' +
-                            '<td><input type="text" id="new_aski_place" placeholder="Yer"></td>' +
+                            '<td>Yer Adı</td>' +
+                            '<td><input type="text" id="new_aski_place" placeholder="Yer Adı Giriniz"></td>' +
                         '</tr>' +
                         '<tr>' +
                         '<td>Askı Açıklaması</td>' +
