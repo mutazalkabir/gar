@@ -383,6 +383,23 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
         }
     }
 
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+        if (results==null){
+            return null;
+        }
+        else{
+            return results[1] || 0;
+        }
+    }
+    var type = decodeURIComponent($.urlParam('type'));
+    var type_id =decodeURIComponent($.urlParam('type_id'));
+    if(type_id!="null" || type!="null")
+    {
+        $(".fa-angle-right").remove();
+        $(".fa-angle-left").remove();
+    }
+
     if(_hasArrowButtons == false){
         $(".fa-angle-right").remove();
         $(".fa-angle-left").remove();
