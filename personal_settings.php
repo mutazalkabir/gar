@@ -105,7 +105,7 @@
     <div id="main_navigation_bar">
         <div id="navigation_bar_contents">
             <div id="main_logo"></div>
-            <input id="search_input" type="text" placeholder="Gardrobe Karıştır">
+            <input id="search_input" readonly="readonly" type="text" placeholder="Gardrobe Karıştır">
             <?php include 'gardrobe_karistir.php';?>
             <div id="messages_notifications_etc_holder">
                 <div id="topbar_profile_picture_and_name">

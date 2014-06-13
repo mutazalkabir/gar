@@ -90,6 +90,13 @@ $(document).ready(function(){
         },1500);
     });
 
+    $('input').on('keyup', function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            $("#login_button").trigger("click");
+        }
+    });
+
     $("#login_button").on("click",function(){
         var eMail = $("#login_e_mail").val();
         var atpos=eMail.indexOf("@");
