@@ -132,7 +132,7 @@
 
     <div id="page_contents" class="clearfix">
                 <div id="profile_page_profile_picture">
-                    <img src="images/dummy_images/profil.jpg"/>
+                    <img src="images/dummy_images/avatar.png"/>
                 </div>
         <div id="profile_page_header">
             <span id="profile_page_profile_name"></span>
@@ -194,7 +194,7 @@
                     <img src="images/dummy_images/kiyafet.jpg" />
                 </div>
                 <div class="profile_photo">
-                    <img src="images/dummy_images/profil.jpg">
+                    <img src="images/dummy_images/avatar.png">
                 </div>
 
                 <span class="tag_name feed_item_span">Spor Kıyafetler</span>

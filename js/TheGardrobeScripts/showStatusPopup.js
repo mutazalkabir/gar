@@ -25,10 +25,10 @@ showStatusPopup = function(_popupMessage, _popupType, _closeFunction, _picURL){
                         '</div>' +
                         '<div style="top: 50px; margin-top: 0px; font-size: 14px;" class="popup_body">'+ _popupMessage +'</div>'+
                         '<div class="all_friends_holder"></div>'+
-                        "<button class='tag_them'>Seçilileri Tag'le :)</button>"
+                        "<button class='tag_them'>Seçilileri Etiketle</button>"
         }));
 
-        getPromotedUsers(setFriendsForTagging);
+        getTaggableFriends(setFriendsForTagging);
     }
     else if(_popupType == "share"){
 

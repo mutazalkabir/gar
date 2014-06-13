@@ -96,7 +96,7 @@ if(isset($_SESSION['user_id']))/* && !$_SESSION['userid']*/ //&& !isset($_COOKIE
 
             <div id="messages_notifications_etc_holder">
                 <div id="topbar_profile_picture_and_name">
-                    <img id="avatar" src="images/dummy_images/profil.jpg"/>
+                    <img id="avatar" src="images/dummy_images/avatar.png"/>
                     <span id="logged_in_user_name"></span>
 
                     <span id="new_aski_button"><i class="flaticon-clothing1"></i>Askı Ekle</span>

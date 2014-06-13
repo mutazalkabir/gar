@@ -23,7 +23,7 @@ setMyFeed = function(myFeedData){
                     htmlContent:'<div class="my_feed_items">'+
                         '<div class="my_feed_item_content">'+
                         '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ myFeedData[i].user_one_pic +'">'+
-                        '<span class="my_feed_feed_content"><span class="feed_user">'+ myFeedData[i].user_one +'</span> ve <span class="feed_user">'+ myFeedData[i].user_two  +'</span> artık arkadaşlar!</span>'+
+                        '<span class="my_feed_feed_content"><span class="feed_user">'+ myFeedData[i].user_one +'</span>, <span class="feed_user">'+ myFeedData[i].user_two  +'</span>ı takip ediyor!</span>'+
                         '</div>'+
                         '</div>'
                 }));

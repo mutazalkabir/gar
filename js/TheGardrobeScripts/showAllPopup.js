@@ -42,7 +42,7 @@ showAllPopup = function(_popupBodyArray, _popupType, _closeFunction){
                 classNames:"show_all_items",
                 attributes:{"popup_type":_popupType},
                 htmlContent:'<div class="show_all_item_content" style="padding-left: 55px;">'+
-                                '<img class="show_all_items_profile_picture" src="images/dummy_images/profil.jpg">'+
+                                '<img class="show_all_items_profile_picture" src="images/dummy_images/avatar.png">'+
                                 '<span class="show_all_user">'+ _popupBodyArray[i] +'</span>'+
                             '</div>'
             }));

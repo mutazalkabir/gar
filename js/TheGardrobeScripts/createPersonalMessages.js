@@ -23,7 +23,7 @@ createPersonalMessages = function(conservations){
             classNames:"messages",
             attributes:{"message_body": JSON.stringify(conservations[i].messages), conversation_id: conservations[i].conversation_id },
             htmlContent:'<div class="message_sender_picture">' +
-                            '<img src="images/dummy_images/profil.jpg"/>' +
+                            '<img src="images/dummy_images/avatar.png"/>' +
                         '</div>' +
                         '<div class="message_body">' +
                             '<span class="message_sender_name">'+ conservations[i].user_two_name +'</span>' +

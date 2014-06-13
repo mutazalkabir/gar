@@ -3481,6 +3481,16 @@ input:focus{
     display: table;
 }
 
+.visible_popup_glass{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.visible_popup_glass img{
+    -webkit-box-shadow: -1px -1px 9px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow:    -1px -1px 9px 0px rgba(0, 0, 0, 0.75);
+    box-shadow:         -1px -1px 9px 0px rgba(0, 0, 0, 0.75);
+}
+
 .popup_glass_inner{
     vertical-align: middle;
     display: table-cell;

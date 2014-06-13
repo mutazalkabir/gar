@@ -37,6 +37,12 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
 
 
     $("body").append(askiDetay);
+    $('html').off("click");
+    $('html').click(function(e) {
+        if(e.target.id == "glass"){
+            $("#close_popup").trigger("click");
+        }
+    });
 
     var askiContentsHolder = $("#glass_inner_shadow");
     if(askiDetayData.comments != undefined){
@@ -74,11 +80,11 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     var askiProfileItems = $(GenerateDomElement({
         nodeType:"div",
         attributes:{"id":"popup_profile_holder"},
-        htmlContent:'<div id="popup_profile_picture" class="popup_profile_items">' +
+        htmlContent:'<div user_id="'+ askiDetayData.user_id +'" id="popup_profile_picture" class="popup_profile_items">' +
                         '<img src="storage/user_images/avatars/'+ askiDetayData.avatar +'" />'+
                     '</div>'+
 
-                    '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
+                    '<div user_id="'+ askiDetayData.user_id +'" id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
                     "<div id='popup_aski_date' class='popup_profile_items'><span create_date="+ askiDetayData.create_date +" id='gardrobe_karistir_date'>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span id='gardrobe_karistir_category' category_id="+ askiDetayData.category_id +">"+ askiDetayData.category_name +"</span> kategorisinde, <span gardrobe_id="+ askiDetayData.gardrobe_id +" id='gardrobe_karistir_gardrobe'>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
                     '<div id="popup_aski_place" class="popup_profile_items">Yer: '+ city  + " / " + place +'</div>'+
                     '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
@@ -158,6 +164,9 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     askiContentsHolder.append(askiPictureHolder);
     askiContentsHolder.append(askiProfileItems);
 
+    $("#popup_profile_name, #popup_profile_picture").on("click",function(){
+        window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
+    });
     $("#gardrobe_karistir_category").on("click",function(){
         window.location="index.php?type=category&type_id="+$(this).attr("category_id");
         //searchResult("category",$(this).attr("category_id"),createMainPageFeed);

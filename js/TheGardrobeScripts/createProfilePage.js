@@ -78,7 +78,6 @@ setGardrobesForProfilePage = function(gardrobeData){
                             ' </div>'+
                             '<div class="profile_photo">'+
                                 '<img user_id="'+gardrobeData[i].user_id+'" class="main_page_feed_profile_image" src="storage/user_images/avatars/'+ gardrobeData[i].avatar+'">'+
-                                '<img src="images/dummy_images/profil.jpg">'+
                             '</div>'+
                             '<span class="gardrobe_name feed_item_span">'+ gardrobeData[i].gardrobe_name +'</span>'+
                             '<div class="like_comment_share_holder">'+
@@ -222,6 +221,17 @@ setUserData = function(data){
     $("#profile_page_profile_name").text(data[0].name +" "+ data[0].surname);
     $("#profile_description").text(data[0].about);
     $("#profile_page_profile_picture img").attr("src","storage/user_images/avatars/"+ data[0].pic_id);
+
+    $("#profile_page_profile_picture").on("click",function(){
+        $("body").append('<div class="popup_glass visible_popup_glass"><div class="popup_glass_inner"><img id="big_profile_picture"/></div> </div> ');
+        $("#big_profile_picture").attr("src","storage/user_images/avatars/"+ data[0].pic_id);
+    })
+
+    $('html').click(function(e) {
+        if(e.target.className == "popup_glass_inner"){
+            $(".popup_glass").remove();
+        }
+    });
 }
 
 createAskiForProfilePage = function(data){

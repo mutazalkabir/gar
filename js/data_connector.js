@@ -743,6 +743,25 @@ function getPromotedUsers(_successFunction){
         });
 }
 
+function getTaggableFriends(_successFunction){
+    $.ajax({
+        url: "src/main.php",
+        type: "GET",
+        data:{operation: "getfellows", fellower_id: window.user[0].user_id},
+        dataType:"json",
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        }
+    }).done(function(data) {
+            _successFunction(data);
+            // alert( "success" +data );
+        }).fail(function(data) {
+            // alert( "error" +data );
+        }).always(function(data) {
+            // alert( "finished" + data);
+        });
+}
 
 
 function followUser(_userId, _followedId, _successFunction){
