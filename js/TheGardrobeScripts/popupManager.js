@@ -64,7 +64,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     }
     else{
         var likeCount = 0;
-    }debugger
+    }
 
     var city = askiDetayData.city;
     var place = askiDetayData.place;
@@ -90,9 +90,9 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
                     '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
 
                     '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
-                        '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i>'+ likeCount +' Beğeni</div>' +
+                        '<div activate="likes_" class="like_count aski_detail_tabs"><i class="fa fa-heart-o"></i><span class="no_border">'+ likeCount +'</span> Beğeni</div>' +
                         '<div id="aski_comment_tab" activate="comments_" class="comment_count aski_detail_tabs aski_detail_active_tab_item"><i class="fa fa-comment-o"></i><span id="aski_detay_comment">'+ commentCount +'</span>  Yorum</div>' +
-                        '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i>'+ shareCount +'  Paylaşım</div>' +
+                        '<div activate="shares_" class="share_count aski_detail_tabs"><i class="fa fa-share"></i><span class="no_border">'+ shareCount +'</span>  Paylaşım</div>' +
                     '</div>'+
 
                     '<div id="comments_holder" class="aski_detail_tab_contents">' +
@@ -171,14 +171,72 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     }
 
     if(askiDetayData.hadshared == "true"){
-        var shareHTML = '<div style="opacity:0.8;" class="buttons share_button">Paylaştın</div>'
+        var shareHTML = '<div style="opacity:0.8;" class="buttons share_button" hanger_owner_id="'+ askiDetayData.user_id +'" hanger_id="'+ askiDetayData.hanger_id +'">Paylaştın</div>'
     }
     else{
-        var shareHTML = '<div class="buttons share_button"><i class="fa fa-share"></i>Paylaş</div>'
+        var shareHTML = '<div class="buttons share_button" hanger_owner_id="'+ askiDetayData.user_id +'" hanger_id="'+ askiDetayData.hanger_id +'"><i class="fa fa-share"></i>Paylaş</div>'
     }
 
     askiPictureHolder.append(likeHTML);
     askiPictureHolder.append(shareHTML);
+
+    $("#aski_picture_holder").find(".like_button").on("click",function(){
+        if($(this).text() != "Beğendin"){
+            var likeCount = parseInt($("#glass").find(".like_count span").text());
+            $("#glass").find(".like_count span").text(likeCount + 1);
+            $(this).text("Beğendin");
+            $(this).css({
+                opacity:"0.8",
+                cursor:"default"
+            });
+            addLike($(this).attr("hanger_id"),window.user[0].user_id,"3",$(this).attr("hanger_owner_id"));
+
+            var newLike = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"my_feed_items",
+                htmlContent:'<div class="my_feed_item_content">' +
+                            '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ window.user[0].pic_id +'" />'+
+                            '<span user_id="'+ window.user[0].user_id +'" class="my_feed_feed_content popup_user_name">'+ window.user[0].name + " " + window.user[0].surname +'</span>'+
+                            '<span class="my_feed_feed_content">'+ $("#aski_comment_textarea").val() +'</span>' +
+                            '</div>'
+            }));
+
+            $("#likes_holder").find(".no_item_span").remove();
+            $("#likes_holder").find(".mCSB_container").append(newLike);
+            $("#likes_holder").mCustomScrollbar("update");
+            $("#likes_holder").mCustomScrollbar("scrollTo","bottom");
+        }
+        else{
+            showStatusPopup("Bu gönderiyi zaten beğenmişsin:(","error","");
+        }
+    });
+
+
+    $("#aski_picture_holder").find(".share_button").on("click",function(){
+        var shareCount = parseInt($("#glass").find(".share_count span").text());
+        $("#glass").find(".share_count span").text(shareCount + 1);
+        $(this).text("Paylaştın");
+        $(this).css({
+            opacity:"0.8"
+        });
+        showStatusPopup("Beğendiğin askıyı aşağıdaki sosyal ağlardan paylaşabilirsin! :)","share","",$("#glass").find("#aski_picture img").attr("src"));
+        addShare($(this).attr("hanger_id"),window.user[0].user_id,$(this).attr("hanger_owner_id"));
+
+        var newShare = $(GenerateDomElement({
+            nodeType:"div",
+            classNames:"my_feed_items",
+            htmlContent:'<div class="my_feed_item_content">' +
+                        '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ window.user[0].pic_id +'" />'+
+                        '<span user_id="'+ window.user[0].user_id +'" class="my_feed_feed_content popup_user_name">'+ window.user[0].name + " " + window.user[0].surname +'</span>'+
+                        '<span class="my_feed_feed_content">'+ $("#aski_comment_textarea").val() +'</span>' +
+                        '</div>'
+        }));
+
+        $("#shares_holder").find(".no_item_span").remove();
+        $("#shares_holder").find(".mCSB_container").append(newShare);
+        $("#shares_holder").mCustomScrollbar("update");
+        $("#shares_holder").mCustomScrollbar("scrollTo","bottom");
+    });
 
     askiContentsHolder.append(askiProfileItems);
 
@@ -222,7 +280,6 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     });
 
     $("#report_aski").on("click",function(){
-      debugger
        // function reportHanger(_hangerId, _userid, _hanger_owner_id,_comment){
         reportHanger(askiDetayData.hanger_id,window.user[0].user_id,askiDetayData.user_id,"uygunsuz resim");
     });
@@ -336,7 +393,6 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             sendComment(askiDetayData.hanger_id, askiDetayData.user_id, $("#aski_comment_textarea").val(), window.user[0].user_id, askiDetayData.user_id);
             if(window.taggedFriends.length>0)
             {
-                debugger
                 sendMentionedFriends(askiDetayData.hanger_id, $("#aski_comment_textarea").val(), window.user[0].user_id,window.taggedFriendsList);
             }
 

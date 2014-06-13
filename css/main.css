@@ -1346,6 +1346,10 @@ input:focus{
     position: relative;
 }
 
+.no_border{
+    border-bottom:none !important;
+}
+
 #aski_picture{
     height: 100%;
 }
