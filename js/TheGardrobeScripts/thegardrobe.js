@@ -67,6 +67,11 @@ var Thegardrobe = function(){
 
         }
 
+        if(type_id!="null" || type!="null")
+        {
+            $("#all_or_followers_only_selector").css("display","none");
+        }
+
 
         /*================================================== */
 
