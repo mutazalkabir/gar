@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
 
     $mail=(string)$_POST['mail'];
-    $name=(string)$_POST['name'];
-    $surname=(string)$_POST['surname'];
-    $pass=(string)$_POST['pass'];
+    $name=mysql_real_escape_string((string)$_POST['name']);
+    $surname=mysql_real_escape_string((string)$_POST['surname']);
+    $pass=mysql_real_escape_string((string)$_POST['pass']);
     $gender=(string)$_POST['gender'];
 
     $bdate =intval((string)$_POST['bdate'])/1000;
@@ -27,6 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
     $insert = mysql_query("INSERT INTO users VALUES('','$name','$surname','$bdate','$date','$mail','0','$gender','$pass','','','avatar.png','$confirmation_code','','','0','','')");
+   if(!$insert)
+   {
+
+       header('Content-Type: text/plain; charset=utf-8');
+       echo ($insert);
+       die();
+       exit();
+   }
     $user_id = mysql_insert_id();
     $insert2 = mysql_query("INSERT INTO gardrobe VALUES ('','$user_id','ilk gardrobum','genel','$date')");
 
@@ -65,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 
     header('Content-Type: text/plain; charset=utf-8');
-    echo ($sendto."ok".$message);
+    echo ($insert);
     //mysql_close($dbhandle);
 
     //TODO Send mail

@@ -83,12 +83,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GET
 
 $data = array();
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
-        $name=(string)$_GET['name'];
-        $surname=(string)$_GET['surname'];
-        $pass=(string)$_GET['pass'];
+        $name=mysql_real_escape_string((string)$_GET['name']);
+        $surname=mysql_real_escape_string((string)$_GET['surname']);
+        $pass=mysql_real_escape_string((string)$_GET['pass']);
         $phone=(string)$_GET['phone'];
-        $city=(string)$_GET['city'];
-        $about=(string)$_GET['about'];
+        $city=mysql_real_escape_string((string)$_GET['city']);
+        $about=mysql_real_escape_string((string)$_GET['about']);
         $pic_id=(string)$_GET['pic_id'];
         $min_side=(string)$_GET['min_side'];
         $x=(string)$_GET['x'];
@@ -511,10 +511,10 @@ $data = array();
         $category_id = (string)$_GET['category_id'];
         $gardrobe_id = (string)$_GET['gardrobe_id'];
         $city = (string)$_GET['city'];
-        $place = (string)$_GET['place'];
-        $about = (string)$_GET['about'];
+        $place = mysql_real_escape_string((string)$_GET['place']);
+        $about = mysql_real_escape_string((string)$_GET['about']);
         $newfilename = (string)$_GET['newfilename'];
-        $brands = (string)$_GET['brands'];
+        $brands = mysql_real_escape_string((string)$_GET['brands']);
         $tags = (string)$_GET['tags'];
         $date = new DateTime();
         $date = $date->getTimestamp();
@@ -616,8 +616,8 @@ $data = array();
         $data = array();
 
         $user_id = (string)$_GET['user_id'];
-        $title = (string)$_GET['title'];
-        $about = (string)$_GET['about'];
+        $title = mysql_real_escape_string((string)$_GET['title']);
+        $about = mysql_real_escape_string((string)$_GET['about']);
         $date = new DateTime();
         $date = $date->getTimestamp();
 
@@ -708,7 +708,7 @@ $data = array();
     if ($operation == "addbrand") {
         $data = array();
 
-        $brand_name = (string)$_GET['brand_name'];
+        $brand_name = mysql_real_escape_string((string)$_GET['brand_name']);
         $brand_pic = (string)$_GET['brand_pic'];
 
 
@@ -1038,7 +1038,7 @@ $data= array();
 
         $hanger_id= (string)$_GET['hanger_id'];
         $hanger_owner_id = (string)$_GET['hanger_owner_id'];
-        $comment= (string)$_GET['comment'];
+        $comment= mysql_real_escape_string((string)$_GET['comment']);
         $commeter_id= (string)$_GET['commeter_id'];
         $date = new DateTime();
         $date = $date->getTimestamp();
@@ -1270,7 +1270,7 @@ $data= array();
 
         $data = array();
 
-        $message= (string)$_GET['message'];
+        $message= mysql_real_escape_string((string)$_GET['message']);
         $sender_id = (string)$_GET['sender_id'];
         $receiver_id= (string)$_GET['receiver_id'];
         $date = new DateTime();
@@ -1329,7 +1329,7 @@ $data= array();
 
         $user_id =(string)$_GET['user_id'];//$_SESSION['userid'];
 
-        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, n.seen, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id= u.user_id AND u.active='1'AND u.confirm='1' ");
+        $result = mysql_query("SELECT u.pic_id, CONCAT(u.name,' ',u.surname) as notifier_name,  n.notification_id, n.notifier_id, n.notified_id, n.notificated_item_id ,n.notification_date, n.seen, nt.* FROM notifications n, notification_types nt, users u WHERE n.notification_type_id = nt.notification_type_id AND n.notified_id=$user_id AND n.notifier_id != $user_id AND n.notifier_id= u.user_id AND u.active='1'AND u.confirm='1' ");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;
@@ -1366,7 +1366,7 @@ $data= array();
 
         $hanger_id= (string)$_GET['hanger_id'];
         $mentionedFriendsList = (string)$_GET['mentionedFriendsList'];
-        $comment= (string)$_GET['comment'];
+        $comment= mysql_real_escape_string((string)$_GET['comment']);
         $mentioner_id= (string)$_GET['mentioner_id'];
 
         $date = new DateTime();
@@ -1406,7 +1406,7 @@ $data= array();
         $data = array();
         $reporter_id = (string)$_GET['reporter_id'];
         $hanger_id= (string)$_GET['hanger_id'];
-        $comment= (string)$_GET['comment'];
+        $comment= mysql_real_escape_string((string)$_GET['comment']);
         $hanger_owner_id= (string)$_GET['hanger_owner_id'];
         $date = new DateTime();
         $date=$date->getTimestamp();
@@ -1441,6 +1441,7 @@ $data= array();
         $hanger_id= (string)$_GET['hanger_id'];
         $delete = mysql_query("DELETE FROM hanger where hanger_id=$hanger_id");
         $delete = mysql_query("DELETE FROM reports where hanger_id=$hanger_id");
+        $delete = mysql_query("DELETE FROM notifications where notificated_item_id=$hanger_id AND (notification_type = 1 || notification_type = 2 || notification_type = 3 )");
 
 
         header('Location: ../reports.php');

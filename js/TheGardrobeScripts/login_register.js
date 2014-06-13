@@ -17,9 +17,13 @@ $(document).ready(function(){
                 //var stringResponse=JSON.stringify(response)
                 var jsonResponse=response;
                 console.log(jsonResponse);
-                loginWithFacebook(jsonResponse.id,jsonResponse.email,jsonResponse.first_name,jsonResponse.last_name,
-                    loginAndCreateCookie,
-                    function(){})
+                if(response.status === 'connected')
+                {
+                    loginWithFacebook(jsonResponse.id,jsonResponse.email,jsonResponse.first_name,jsonResponse.last_name,
+                        loginAndCreateCookie,
+                        function(){})
+                }
+
             });
 
         }, {

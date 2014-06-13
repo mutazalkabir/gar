@@ -16,9 +16,9 @@ include 'utils.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $data = array();
-    $mail=(string)$_POST['mail'];
+    $mail=mysql_real_escape_string((string)$_POST['mail']);
 
-    $pass=(string)$_POST['pass'];
+    $pass=mysql_real_escape_string((string)$_POST['pass']);
 
     $result = mysql_query("SELECT * FROM `users` WHERE mail='$mail' AND pass='$pass' AND confirm=1 limit 1");
 
