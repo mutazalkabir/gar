@@ -70,7 +70,7 @@ openAddAskiPopup = function(){
                         '</tr>' +
                         '<tr>' +
                             '<td>Mekan Adı</td>' +
-                            '<td><input type="text" id="new_aski_place" placeholder="Mekan Adı Giriniz"></td>' +
+                            '<td><input type="text" id="new_aski_place" placeholder="Yer"></td>' +
                         '</tr>' +
                         '<tr>' +
                         '<td>Askı Açıklaması</td>' +

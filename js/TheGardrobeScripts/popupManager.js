@@ -59,6 +59,18 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     else{
         var likeCount = 0;
     }debugger
+
+    var city = askiDetayData.city;
+    var place = askiDetayData.place;
+
+    if(city == "Şehir Seçiniz"){
+        city = "-";
+    }
+
+    if(place == ""){
+        place = "-";
+    }
+
     var askiProfileItems = $(GenerateDomElement({
         nodeType:"div",
         attributes:{"id":"popup_profile_holder"},
@@ -68,6 +80,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
 
                     '<div id="popup_profile_name" class="popup_profile_items">'+ askiDetayData.name + " " + askiDetayData.surname +'</div>'+
                     "<div id='popup_aski_date' class='popup_profile_items'><span create_date="+ askiDetayData.create_date +" id='gardrobe_karistir_date'>"+ convertDate(askiDetayData.create_date) +"</span> tarihinde, <span id='gardrobe_karistir_category' category_id="+ askiDetayData.category_id +">"+ askiDetayData.category_name +"</span> kategorisinde, <span gardrobe_id="+ askiDetayData.gardrobe_id +" id='gardrobe_karistir_gardrobe'>" + askiDetayData.gardrobe_name +"</span> gardrobe'unda paylaşıldı.</div>"+
+                    '<div id="popup_aski_place" class="popup_profile_items">Yer: '+ city  + " / " + place +'</div>'+
                     '<div id="popup_aski_description" class="popup_profile_items">'+ askiDetayData.about +'</div>'+
 
                     '<div id="popup_like_share_comment_count" class="popup_profile_items">' +
@@ -292,7 +305,6 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     }
 
     $("#send_comment_button").on("click",function(){
-        debugger
         if($.trim($("#aski_comment_textarea").val()) != ""){
             sendComment(askiDetayData.hanger_id, askiDetayData.user_id, $("#aski_comment_textarea").val(), window.user[0].user_id, askiDetayData.user_id);
             if(window.taggedFriends.length>0)
@@ -316,6 +328,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
                 classNames:"my_feed_items",
                 htmlContent:'<div class="my_feed_item_content">' +
                                 '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ window.user[0].pic_id +'" />'+
+                                '<span user_id="'+ window.user[0].user_id +'" class="my_feed_feed_content popup_user_name">'+ window.user[0].name + " " + window.user[0].surname +'</span>'+
                                 '<span class="my_feed_feed_content">'+ $("#aski_comment_textarea").val() +'</span>' +
                             '</div>'
             }));
@@ -349,37 +362,47 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
             classNames:"my_feed_items",
             htmlContent:'<div class="my_feed_item_content">' +
                             '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.comments[i].pic_id +'" />'+
+                            '<span user_id="'+ askiDetayData.comments[i].user_id +'" class="my_feed_feed_content popup_user_name">'+ askiDetayData.comments[i].liker_name +'</span>'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.comments[i].comment +'</span>' +
                         '</div>'
         }));
 
         $("#comments_holder").append(commentItem);
+        commentItem.find(".popup_user_name").on("click",function(){
+            window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
+        });
     }
 
     for(var i=0;i<likeCount;i++){
         var likeItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"my_feed_items",
-            htmlContent:'<div class="my_feed_item_content">' +
+            htmlContent:'<div user_id="'+ askiDetayData.likes[i].user_id +'" class="my_feed_item_content">' +
                             '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.likes[i].pic_id +'" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.likes[i].liker_name +'</span>' +
                         '</div>'
         }));
 
         $("#likes_holder").append(likeItem);
+        likeItem.find(".my_feed_item_content").on("click",function(){
+            window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
+        });
     }
 
     for(var i=0;i<shareCount;i++){
         var shareItem = $(GenerateDomElement({
             nodeType:"div",
             classNames:"my_feed_items",
-            htmlContent:'<div class="my_feed_item_content">' +
+            htmlContent:'<div user_id="'+ askiDetayData.shares[i].user_id +'" class="my_feed_item_content">' +
                             '<img class="my_feed_profile_picture" src="storage/user_images/avatars/'+ askiDetayData.shares[i].pic_id +'" />'+
                             '<span class="my_feed_feed_content">'+ askiDetayData.shares[i].liker_name +'</span>' +
                         '</div>'
         }));
 
         $("#shares_holder").append(shareItem);
+        shareItem.find(".my_feed_item_content").on("click",function(){
+            window.location = "profile_page.php?user_id=" + $(this).attr("user_id");
+        });
     }
 
     $("#comments_holder, #likes_holder, #shares_holder").mCustomScrollbar();
