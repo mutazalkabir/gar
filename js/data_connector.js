@@ -93,12 +93,12 @@ function logoff(){
         }
     }).done(function(data) {
         debugger
-        window.location = "login_register.php";
+        //window.location = "login_register.php";
 
     }).fail(function(data) {
-
+       // window.location = "login_register.php";
     }).always(function(data) {
-
+        window.location = "login_register.php";
     });
 }
 /* Login - Register */

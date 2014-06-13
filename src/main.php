@@ -382,41 +382,41 @@ $data = array();
 
             $result = mysql_query("SELECT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND u.active='1' AND u.confirm='1' ");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND u.active='1' AND u.confirm='1' ORDER BY h.create_date DESC");
 	
         }
         else if($state=="fellowed")
         {
             $result = mysql_query("SELECT DISTINCT f.fellower_id, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
             FROM users u, hanger h, gardrobe g,category c,fellowship f
-            WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellowed_id = h.user_id AND  f.fellower_id=$user_id AND u.active='1' AND u.confirm='1' ");
+            WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND f.fellowed_id = h.user_id AND  f.fellower_id=$user_id AND u.active='1' AND u.confirm='1' ORDER BY h.create_date DESC");
 
         }
         else if($type==$BY_CATEGORY){
             $result = mysql_query("SELECT DISTINCT c.category_id, c.category_name, h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND c.category_id = $type_id  AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND c.category_id = $type_id  AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date DESC");
         }
         else if($type==$BY_BRAND){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c, hanger_brands hb
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND hb.brand_id = '$type_id' AND hb.hanger_id = h.hanger_id AND u.active='1' AND u.confirm='1'  ORDER BY h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id AND hb.brand_id = '$type_id' AND hb.hanger_id = h.hanger_id AND u.active='1' AND u.confirm='1'  ORDER BY h.create_date DESC");
         }
         else if($type==$BY_DATE){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.create_date BETWEEN $start_date AND $end_date AND u.active='1' AND u.confirm='1'  ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.create_date BETWEEN $start_date AND $end_date AND u.active='1' AND u.confirm='1'  ORDER BY  h.create_date DESC");
         }
         else if($type==$BY_CITY){
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.city = '$type_id' AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND h.city = '$type_id' AND u.active='1'  AND u.confirm='1' ORDER BY  h.create_date DESC");
         }
         else if($type==$BY_GARDROBE)
         {
             $result = mysql_query("SELECT DISTINCT h.hanger_id, u.user_id, u.name, u.surname, u.pic_id as avatar, g.gardrobe_name, g.gardrobe_id, c.category_id, c.category_name, h.about, h.city, h.place, h.pic_id, h.create_date, h.tags
              FROM users u, hanger h, gardrobe g,category c
-             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND g.gardrobe_id = '$type_id' AND u.active='1' AND u.confirm='1'  ORDER BY  h.create_date ASC");
+             WHERE c.category_id =h.category_id AND u.user_id=h.user_id AND g.gardrobe_id=h.gardrobe_id  AND g.gardrobe_id = '$type_id' AND u.active='1' AND u.confirm='1'  ORDER BY  h.create_date DESC");
         }
 
 
@@ -838,7 +838,7 @@ $data= array();
         $result = mysql_query("SELECT 'fellowship' as feed_type, u.pic_id as user_one_pic, u.user_id as user_one_id, CONCAT(u.name, ' ', u.surname) as user_one, u2.pic_id as user_two_pic, u2.user_id as user_two_id, CONCAT(u2.name, ' ', u2.surname) as user_two, f.fellowship_date as date
         FROM fellowship f, fellowship f2, users u, users u2
         WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1'
-        ORDER BY f.fellowship_date ASC");
+        ORDER BY f.fellowship_date DESC");
 
         while ($row = mysql_fetch_assoc($result)) {
             $data[]=$row;
@@ -848,7 +848,7 @@ $data= array();
         $result = mysql_query(" SELECT  'like' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, l.liked_id as hanger_id, l.like_date as date
            FROM users u, users u2, users u3,fellowship f,fellowship f2, likes l,type t
            WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
-           ORDER BY l.like_date ASC");
+           ORDER BY l.like_date DESC");
 
 /*
         $result = mysql_query(" SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name
@@ -865,7 +865,7 @@ $data= array();
         $result = mysql_query(" SELECT  'share' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, s.hanger_id as hanger_id, s.share_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
         WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellowed_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
-        ORDER BY s.share_date ASC");
+        ORDER BY s.share_date DESC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -876,7 +876,7 @@ $data= array();
         $result = mysql_query("SELECT  'comment' as feed_type, u2.pic_id as user_one_pic, u2.user_id as user_one_id, CONCAT(u2.name, ' ', u2.surname) as user_one, u3.pic_id as user_two_pic, u3.user_id as user_two_id, CONCAT(u3.name, ' ', u3.surname) as user_two, c.hanger_id as hanger_id, c.comment_date as date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
         WHERE u.user_id=$user_id and u2.user_id = f.fellowed_id AND f.fellower_id=$user_id AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellowed_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
-        ORDER BY c.comment_date ASC");
+        ORDER BY c.comment_date DESC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -915,7 +915,7 @@ $data= array();
          $result = mysql_query("SELECT u.pic_id as fellower_pic, u.user_id as fellower_id, CONCAT(u.name, ' ', u.surname) as fellower, u2.pic_id as fellowed_pic, u2.user_id as fellowed_id, CONCAT(u2.name, ' ', u2.surname) as fellowed
         FROM fellowship f, fellowship f2, users u, users u2
         WHERE u.user_id= f.fellower_id AND  u2.user_id =f.fellowed_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1'
-        ORDER BY f.fellowship_date ASC");
+        ORDER BY f.fellowship_date DESC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -941,7 +941,7 @@ $data= array();
        $result = mysql_query(" SELECT u2.name as liker_name, u2.surname as liker_surname,u2.user_id as liker_user_id, u3.name as liked_name, u3.surname as liked_surname,u3.user_id as liked_user_id, l.liked_id, l.like_date, t.type_name
        FROM users u, users u2, users u3,fellowship f,fellowship f2, likes l,type t
        WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =l.user_id AND u3.user_id=l.liked_user_id AND t.type_id = l.liked_type_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
-       ORDER BY l.like_date ASC");
+       ORDER BY l.like_date DESC");
 
        //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -965,7 +965,7 @@ $data= array();
         $result = mysql_query("SELECT u2.name as sharer_name, u2.surname as sharer_surname,u2.user_id as sharer_user_id, u3.name as shared_name, u3.surname as shared_surname,u3.user_id as shared_user_id, s.share_id, s.share_date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, share s
         WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =s.user_id AND u3.user_id=s.shared_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
-        ORDER BY s.share_date ASC");
+        ORDER BY s.share_date DESC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
@@ -989,7 +989,7 @@ $data= array();
         $result = mysql_query("SELECT u2.name as commenter_name, u2.surname as commenter_surname,u2.user_id as commenter_user_id, u3.name as commented_name, u3.surname as commented_surname,u3.user_id as commented_user_id, c.comment_id, c.comment_date
         FROM users u, users u2, users u3,fellowship f,fellowship f2, comment c
         WHERE u.user_id=4 and u2.user_id = f.fellowed_id AND f.fellower_id=4 AND u2.user_id =c.user_id AND u3.user_id=c.commented_user_id AND f2.fellowed_id= f.fellower_id AND f2.fellower_id=$user_id AND u.active='1' AND u2.active='1' AND u3.active='1' AND u.confirm='1' AND u2.confirm='1' AND u3.confirm='1'
-        ORDER BY c.comment_date ASC");
+        ORDER BY c.comment_date DESC");
 
         //  SELECT DISTINCT * FROM fellowship f, user u WHERE f.fellowed_id=4 AND u.user_id =f.fellower_id
 
