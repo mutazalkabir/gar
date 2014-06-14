@@ -385,6 +385,7 @@ function getAllConversationsDetailPage(_userId,_succesFunction){
 }
 
 function setConversationsRead(_conversationId){
+    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",

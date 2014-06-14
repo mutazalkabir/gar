@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
    {
 
        header('Content-Type: text/plain; charset=utf-8');
-       echo ($insert);
+       echo ("false");
        die();
        exit();
    }
