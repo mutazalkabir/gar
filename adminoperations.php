@@ -6,7 +6,7 @@
  * Time: 14:42
  */
 
-include "src/sessionTest.php";
+include "src/adminSessionTest.php";
 
 // If you are logged in, but you don't have the tzRemember cookie (browser restart)
 // and you have not checked the rememberMe checkbox:
