@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $_SESSION['user_id'] =$data[0]["user_id"];
         $_SESSION['user_name'] =$data[0]["user_name"];
         header('Location: ../adminoperations.php');
+        die();
         echo json_encode($data);
 
 
