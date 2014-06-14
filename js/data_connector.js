@@ -393,7 +393,7 @@ function getAllConversationsDetailPage(_userId,_succesFunction){
         });
 }
 
-function setConversationsRead(_conversationId){
+function setConversationsRead(_conversationId,_succesFunction){
     debugger
     $.ajax({
         url: "src/main.php",
@@ -411,7 +411,7 @@ function setConversationsRead(_conversationId){
             debugger
             // alert( "error" +data );
         }).always(function(data) {
-            debugger
+        _succesFunction();
             // alert( "finished" + data);
         });
 }

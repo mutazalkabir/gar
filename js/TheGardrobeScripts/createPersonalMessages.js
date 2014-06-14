@@ -43,21 +43,22 @@ createPersonalMessages = function(conservations){
         $("#messages").attr("hasNewItem","false");
     }
 
-    $(".messages").on("click",function(){
-        debugger
-        setConversationsRead($(this).attr("conversation_id"));
-    });
-
     messagesContainer.mCustomScrollbar();
     $(".messages").on("click",function(){
-        window.location = "messages_detail.php";
-        debugger
-        if (typeof(Storage) != "undefined"){
-            localStorage.setItem("conservation", $(this).attr("message_body"));
-            debugger
-            localStorage.setItem("conversationid", $(this).attr("conversation_id"));
 
-        }
+        var message=$(this);
+        setConversationsRead($(this).attr("conversation_id"),function(){
+            if (typeof(Storage) != "undefined"){
+                localStorage.setItem("conservation", message.attr("message_body"));
+                debugger
+                localStorage.setItem("conversationid", message.attr("conversation_id"));
+
+            }
+            window.location = "messages_detail.php";
+
+
+        });
+
     });
 }
 
