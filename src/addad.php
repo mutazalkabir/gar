@@ -21,7 +21,7 @@ include "includes.php";
 session_start();
 
 
-$ad_name=(string)$_POST['ad_name'];
+//$ad_name=(string)$_POST['ad_name'];
 
 if ($_FILES["file"]["error"] > 0)
 {
@@ -41,5 +41,6 @@ else
 
 
 header('Location: ../add_ad.php');
+//die();
 echo json_encode($insert);
 ?>

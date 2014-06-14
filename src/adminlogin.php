@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             $data[] = $row;
         }
 
-        session_name("admin_login");
+       // session_name("admin_login");
         session_start();
         $_SESSION['user_id'] =$data[0]["user_id"];
         $_SESSION['user_name'] =$data[0]["user_name"];
