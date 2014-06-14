@@ -7,9 +7,10 @@
  */
 
 createNotifications = function(data){
-    debugger
     if(data)
     {
+        sortMyData(data);
+
     var unreadNotificationCount = 0;
     var  notificationsContainer = $("#notifications_content");
     for(var i=0; i<data.length; i++){
@@ -105,4 +106,12 @@ createNotifications = function(data){
     });
     notificationsContainer.mCustomScrollbar();
 }
+}
+
+sortMyData = function(array){
+    for(var i=0; i<array.length; i++){
+        array.sort(function(first_element,second_element){
+            return parseInt(second_element.notification_date) - parseInt(first_element.notification_date)
+        } );
+    }
 }

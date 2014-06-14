@@ -83,10 +83,6 @@ openAddAskiPopup = function(){
     $("#add_new_aski_left_side").append('<button id="add_new_aski_button">Kaydet</button>');
 
 
-    $("#file_browse_wrapper").on("click",function(){
-        //showPreloader();
-    })
-
     $(".aski_uploaded_picture_holder").load(function() {
         removePreloader();
         var picture = $(".aski_uploaded_picture_holder");
