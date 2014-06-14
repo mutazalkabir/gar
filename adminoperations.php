@@ -5,6 +5,15 @@
  * Date: 08.06.2014
  * Time: 14:42
  */
+
+include "src/sessionTest.php";
+
+// If you are logged in, but you don't have the tzRemember cookie (browser restart)
+// and you have not checked the rememberMe checkbox:
+
+
+
+
 ?>
 <html>
 <head>

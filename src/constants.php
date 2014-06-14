@@ -6,7 +6,7 @@
  * Time: 13:29
  */
 
-
+include "sessionTest.php";
 
 
 $BY_CATEGORY = "category";

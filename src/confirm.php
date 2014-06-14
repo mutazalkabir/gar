@@ -8,6 +8,7 @@
 
 //include 'constants.php';
 //include 'dbconnect.php';
+include "sessionTest.php";
 include 'config/dbconfig.php';
 include 'utils.php';
 

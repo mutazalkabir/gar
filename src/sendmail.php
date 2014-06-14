@@ -18,14 +18,14 @@ $mail =(string)$_GET['mail'];
 
 
 
-$result = mysql_query("SELECT pass FROM `users` WHERE mail='$mail'");
+$result = mysql_query("SELECT confirmation_code FROM `users` WHERE mail='$mail'");
 
 
 while($row = mysql_fetch_assoc($result)) {
     $data[] = $row;
 
 }
-if(isset($data[0]["pass"]))
+if(isset($data[0]["confirmation_code"]))
 {
 
 
@@ -34,12 +34,14 @@ if(isset($data[0]["pass"]))
 
 
     $update = mysql_query("UPDATE users SET active='1' WHERE mail='$mail'");
-    $pass =$data[0]["pass"];
+    $confirmation_code =$data[0]["confirmation_code"];
+
+    $confirmation_path="http://www.thegardrobe.com/password_reset.php?confirmation_code=".$confirmation_code;
 
     $sendto = $mail; // this is the email address collected form the form
     $ccto = "mutazalkabir@gmail.com"; //you can cc it to yourself
     $subject = "Şifre Sıfırlama"; // Subject
-    $message = "Şifreniz :" .$pass;
+    $message = "Merhabalar \r\n Güvenlik Kodu : " .$confirmation_code."\r\n Alt taraftaki linke tıklayarak hesabınızı aktive edebilirsiniz. \r\n".$confirmation_path;
     $header = "From: thegeo@thegardrobe.com\r\n";
 
 // This is the function to send the email

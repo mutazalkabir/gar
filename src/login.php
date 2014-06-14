@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     if(isset($data[0]["user_id"]))
     {
         session_start();
+        session_name("user_login");
         $update = mysql_query("UPDATE users SET active='1' WHERE mail='$mail'");
         $_SESSION['user_id'] =$data[0]["user_id"];
         header('Content-Type: application/json; charset=utf-8');

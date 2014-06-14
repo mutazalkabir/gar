@@ -1,7 +1,7 @@
 <?php
 //Always place this code at the top of the Page
 session_start();
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user_id']) && session_name()=="user_login") {
     // Redirection to login page twitter or facebook
     header("location: index.php");
 }

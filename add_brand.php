@@ -5,6 +5,7 @@
  * Date: 08.06.2014
  * Time: 14:42
  */
+include "src/sessionTest.php";
 ?>
 <html>
 <head>

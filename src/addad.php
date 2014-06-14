@@ -14,6 +14,8 @@
 /*if (!file_exists('path/to/directory')) {
     mkdir('path/to/directory', 0777, true);
 }*/
+
+
 include "config/dbconfig.php";
 include "includes.php";
 session_start();
