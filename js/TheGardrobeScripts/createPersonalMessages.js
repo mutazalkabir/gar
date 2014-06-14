@@ -44,6 +44,7 @@ createPersonalMessages = function(conservations){
     }
 
     $(".messages").on("click",function(){
+        debugger
         setConversationsRead($(this).attr("conversation_id"));
     });
 

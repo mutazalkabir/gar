@@ -236,6 +236,7 @@ function updateComments(){
 
 /* My Feed Data */
 function createMyFeed(_userId, _successFunction){
+    debugger
     $.ajax({
         url: "src/main.php",
         type: "GET",
@@ -246,12 +247,15 @@ function createMyFeed(_userId, _successFunction){
             withCredentials: true
         }
     }).done(function(mainPageFeedData) {
+            debugger
             _successFunction(mainPageFeedData);
             //eval("setMyFeed(mainPageFeedData)");
             // alert( "success" +data );
         }).fail(function(data) {
+            debugger
             // alert( "error" +data );
         }).always(function(data) {
+            debugger
             // alert( "finished" + data);
         });
 }
@@ -404,8 +408,10 @@ function setConversationsRead(_conversationId){
             debugger
             // alert( "success" +data );
         }).fail(function(data) {
+            debugger
             // alert( "error" +data );
         }).always(function(data) {
+            debugger
             // alert( "finished" + data);
         });
 }
