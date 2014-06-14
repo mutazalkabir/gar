@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     if(isset($data[0]["user_id"]))
     {
 
-        $update = mysql_query("UPDATE users SET active='1', pass=$pass WHERE mail='$mail'");
+        $update = mysql_query("UPDATE users SET active='1', pass='$pass' WHERE mail='$mail'");
 
         header('Location: ../login_register.php');
        die();
