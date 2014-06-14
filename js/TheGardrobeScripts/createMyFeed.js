@@ -83,7 +83,7 @@ setMyFeed = function(myFeedData){
             });
         }
         $("#my_feed").mCustomScrollbar();
-        $("#ads").append('<a href="mailto:reklam@thegardrobe.com" ><img id="ad_image" src="http://www.thegardrobe.com/storage/ad_images/ad1.jpg"/></a>');
+        $("#ads").append('<a href="mailto:reklam@thegardrobe.com" ><img id="ad_image" src="http://www.thegardrobe.com/storage/ad_images/ad.jpg"/></a>');
     }
 }
 
