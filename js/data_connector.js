@@ -29,8 +29,9 @@ function confirmation(_confirmationCode, _successFunction)
     });
 }
 
-function register(_email,_name,_surname,_pass,_gender,_bDate)
+function register(_email,_name,_surname,_pass,_gender,_bDate, _successFunction)
 {
+    debugger
     $.ajax({
         url: "src/register.php",
         type: "POST",
@@ -41,10 +42,14 @@ function register(_email,_name,_surname,_pass,_gender,_bDate)
             withCredentials: true
         }
     }).done(function(data) {
+            debugger
+            _successFunction(data);
        // window.location=data;
         }).fail(function(data) {
+            debugger
             // alert( "error" +data );
         }).always(function(data) {
+            debugger
             // alert( "finished" + data);
         });
 }

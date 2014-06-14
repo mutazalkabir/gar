@@ -137,8 +137,43 @@ $(document).ready(function(){
 
 
     successfullyConfirmed = function(data){
-        debugger
+
     }
+
+
+    registerStatus = function(data){
+        if(data == true || data == "true"){
+            $("#register_form_container").addClass("fadeOutLeft animatedSlow");
+            setTimeout(function(){
+                $("#successfully_registered_container").css("display","block");
+                $("#successfully_registered_container").addClass("fadeInRight animatedSlow");
+            },150);
+
+            setTimeout(function(){
+                $("#successfully_registered_container").removeClass("fadeInRight animatedSlow");
+                $("#register_form_container").removeClass("fadeOutLeft animatedSlow");
+                $("#register_form_container").css("display","none");
+            },1000);
+            $("#successfully_registered_container .register_title").text("Başarıyla Kayıt Oldunuz! E-Posta adresinize kayıt link'i gönderilmiştir.");
+            $("#successfully_registered_container .fa-check").css("display","block");
+        }
+        else{
+            $("#register_form_container").addClass("fadeOutLeft animatedSlow");
+            setTimeout(function(){
+                $("#successfully_registered_container").css("display","block");
+                $("#successfully_registered_container").addClass("fadeInRight animatedSlow");
+            },150);
+
+            setTimeout(function(){
+                $("#successfully_registered_container").removeClass("fadeInRight animatedSlow");
+                $("#register_form_container").removeClass("fadeOutLeft animatedSlow");
+                $("#register_form_container").css("display","none");
+            },1000);
+            $("#successfully_registered_container .register_title").text("Üzgünüz, daha önce bu e-posta ile kayıt olmuşsunuz.");
+            $("#successfully_registered_container .fa-check").css("display","none");
+        }
+    }
+
     $("#submit_confirmation_code").on("click",function(){
         debugger
        /* if($.trim($("#confirmation_code").val()).length < 16 || $.trim($("#confirmation_code").val()) == ""){
@@ -266,21 +301,12 @@ $(document).ready(function(){
                 return false;
             }
             else{
-                register($("#register_e_mail").val(), $("#register_name").val(), $("#register_surname").val(), $("#register_password").val(), window.gender , convertToMiliseconds($("#birth_day").val(), $("#birth_month").val(), $("#birth_year").val()))
-                $("#register_form_container").addClass("fadeOutLeft animatedSlow");
-                setTimeout(function(){
-                    $("#successfully_registered_container").css("display","block");
-                    $("#successfully_registered_container").addClass("fadeInRight animatedSlow");
-                },150);
-
-                setTimeout(function(){
-                    $("#successfully_registered_container").removeClass("fadeInRight animatedSlow");
-                    $("#register_form_container").removeClass("fadeOutLeft animatedSlow");
-                    $("#register_form_container").css("display","none");
-                },1000);
+                debugger
+                register($("#register_e_mail").val(), $("#register_name").val(), $("#register_surname").val(), $("#register_password").val(), window.gender , convertToMiliseconds($("#birth_day").val(), $("#birth_month").val(), $("#birth_year").val()), registerStatus)
             }
         }
     });
+
 
     $("#reset_password_button").on("click",function(){
         var eMail = $("#reset_password_email").val();
