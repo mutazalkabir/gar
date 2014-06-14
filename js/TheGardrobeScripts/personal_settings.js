@@ -133,16 +133,16 @@ var Thegardrobe = function(){
         $("#settings_page_pass1").val(window.user[0].pass);
         $("#settings_page_pass2").val(window.user[0].pass);
         $("#settings_page_about").val(window.user[0].about);
-        $("#settings_page_city").text(window.user[0].city);
 
         $("#psp_profile_picture_holder").append('<img src="storage/user_images/avatars/'+ window.user[0].pic_id +'"/>')
 
         $("#settings_page_phone").mask("(999) 999-99-99");
 
         for(var j=0; j<cities.length; j++){
-            $("#settings_page_city").append('<option>'+ cities[j] +'</option>')
+            $("#settings_page_city").append('<option value="'+ cities[j] +'">'+ cities[j] +'</option>')
         }
 
+        $("#settings_page_city").val(window.user[0].city);
         window.newCity = $($("#settings_page_city option")[0]).text();
         $("#settings_page_city").on("change",function(){
             window.newCity = $(this).find("option:selected").text();

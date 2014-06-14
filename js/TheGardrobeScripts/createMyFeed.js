@@ -8,9 +8,11 @@
 
 setMyFeed = function(myFeedData){
     if(myFeedData.length == 0){
-        $("#my_feed").append('<span id="my_feed_no_followers">Henüz Takip Ettiğin Kimse yok :(</span>')
+        $("#my_feed").append('<span id="my_feed_no_followers">Henüz Takip Ettiğin Kişilerin Gösterilecek Hareketi Yok :(</span>')
     }
     else{
+        sortMyData(myFeedData);
+
         myFeedContainer = $("#my_feed");
         $("#my_feed_no_followers").remove();
 
@@ -83,6 +85,15 @@ setMyFeed = function(myFeedData){
         $("#my_feed").mCustomScrollbar();
     }
 }
+
+sortMyData = function(array){
+    for(var i=0; i<array.length; i++){
+        array.sort(function(first_element,second_element){
+            return parseInt(second_element.date) - parseInt(first_element.date)
+        } );
+    }
+}
+
 
 showPopupFromFeed = function(hangerData){
     showPopup(hangerData,"","",true,false);
