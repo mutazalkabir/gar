@@ -41,6 +41,18 @@ a {
     text-decoration: none;
 }
 
+#ad_image{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -170px;
+}
+
+#ads{
+    position: relative;
+}
+
 .clearfix:after {
     visibility: hidden;
     display: block;
@@ -481,6 +493,7 @@ input:focus{
     width: 100%;
     top: 60px;
     height: 50%;
+    position: relative;
 }
 
 #page_contents{
