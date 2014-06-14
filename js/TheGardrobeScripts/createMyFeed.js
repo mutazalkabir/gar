@@ -7,12 +7,12 @@
  */
 
 setMyFeed = function(myFeedData){
+    sortMyFeed(myFeedData);
+
     if(myFeedData.length == 0){
         $("#my_feed").append('<span id="my_feed_no_followers">Henüz Takip Ettiğin Kişilerin Gösterilecek Hareketi Yok :(</span>')
     }
     else{
-        sortMyData(myFeedData);
-
         myFeedContainer = $("#my_feed");
         $("#my_feed_no_followers").remove();
 
@@ -86,7 +86,8 @@ setMyFeed = function(myFeedData){
     }
 }
 
-sortMyData = function(array){
+sortMyFeed = function(array){
+    debugger
     for(var i=0; i<array.length; i++){
         array.sort(function(first_element,second_element){
             return parseInt(second_element.date) - parseInt(first_element.date)
