@@ -370,7 +370,12 @@
 			canvas.append(controlPane);
 			image.wrap(canvas);
 			if(!options.externalAddTagLinks.bind)
+            {
+
+
 				$('#aski_main_image_options').find(".mCustomScrollBox").append(createAddTagLink(image,image_id));
+            removePreloader();
+            }
 			else{
 				var externalAddLinks = $(options.externalAddTagLinks.selector);
 				externalAddLinks.each(function(){

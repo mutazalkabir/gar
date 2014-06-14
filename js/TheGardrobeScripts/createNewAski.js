@@ -151,11 +151,14 @@ openAddAskiPopup = function(){
         window.selectedGardrobeId = $(this).find("option:selected").attr("id");
     });
     $('#file_browse').die();
-    $('#file_browse').live('change', function(){
+    $('#file_browse').live('change', function(e){
+        debugger
+        showPreloader();
         $("#image_upload_form").ajaxForm({
             target: '#aski_uploaded_picture_holder',
             success: function(){
                 $('img').load(function() {
+                    removePreloader();
                     //Mutaz image load olmadan height width alamayız
                     $(".photoTag").photoTag();
                 });
