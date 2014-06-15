@@ -65,6 +65,23 @@ createNotifications = function(data){
                 unreadNotificationCount++;
             }
         }
+        else if(data[i].notification_type == "mention"){
+            var notification = $(GenerateDomElement({
+                nodeType:"div",
+                classNames:"notifications",
+                attributes: {notification_type: data[i].notification_type, aski_id: data[i].notificated_item_id},
+                htmlContent:'<div class="notification_owner_picture">' +
+                    '<img src="storage/user_images/avatars/'+ data[i].pic_id +'" />' +
+                    '</div>' +
+                    '<div class="notification_body">' +
+                    '<span class="notification_content">'+ data[i].notifier_name +' bir askıda senden bahsetti!</span>' +
+                    '</div>'
+            }));
+            notificationsContainer.append(notification);
+            if(data[i].seen == 0){
+                unreadNotificationCount++;
+            }
+        }
         else{
             var notification = $(GenerateDomElement({
                 nodeType:"div",
