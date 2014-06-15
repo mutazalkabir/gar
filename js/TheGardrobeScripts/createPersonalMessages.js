@@ -10,7 +10,7 @@ createPersonalMessages = function(conservations){
     var  messagesContainer = $("#messages_content");
     var unreadMessageCount = 0;
     for(i=0;i<conservations.length;i++){
-        if(conservations[i].receiver_read == 0){
+        if(conservations[i].receiver_read == 0&&conservations[i].last_sender != window.user[0].user_id){
             unreadMessageCount++;
         }
 

@@ -1190,7 +1190,7 @@ $data= array();
         $i=0;
 
         //check if there is valid conversation
-        $result = mysql_query(" SELECT CONCAT(u.name, ' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name, ' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, c.conversation_date as date,c.receiver_read , c.c_id as conversation_id
+        $result = mysql_query("SELECT CONCAT(u.name, ' ', u.surname) as user_one_name, u.pic_id as user_one_pic_id, CONCAT(u2.name, ' ', u2.surname) as user_two_name, u2.pic_id as user_two_pic_id, c.conversation_date as date,c.receiver_read, c.last_sender , c.c_id as conversation_id
         FROM users u, users u2 ,conversation c
         WHERE (u.user_id=c.user_one OR u.user_id=c.user_two) AND u.user_id=$user_id AND (u2.user_id=c.user_one OR u2.user_id=c.user_two) AND u2.user_id != $user_id AND u.active='1' AND u2.active='1' AND u.confirm='1' AND u2.confirm='1' ORDER BY c.conversation_date ASC");
 
@@ -1294,8 +1294,8 @@ $data= array();
         if($insert==false)
             echo mysql_error();
 
-        $update = mysql_query("UPDATE conversation SET receiver_read = '0' WHERE c_id=$conversation_id");
-        $update = mysql_query("UPDATE conversation SET conversation_date = $date WHERE c_id=$conversation_id");
+        $update = mysql_query("UPDATE conversation SET receiver_read = '0', last_sender='$sender_id' WHERE c_id=$conversation_id");
+        $update = mysql_query("UPDATE conversation SET conversation_date = '$date' WHERE c_id=$conversation_id");
         if($update==false)
             echo mysql_error();
 
