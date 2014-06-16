@@ -250,6 +250,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
     });
 
     $("#gardrobe_karistir_date").on("click",function(){
+        debugger
         var selectedDate = new Date(parseInt($(this).attr("create_date")));
         var startDate = new Date();
         var endDate = new Date();
@@ -266,7 +267,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
         endDate.setMinutes(59);
         endDate.setSeconds(59);
 
-        window.location="index.php?type=date&start_date="+startDate+"&end_date="+endDate;
+        window.location="index.php?type=date&start_date="+startDate.getTime()/1000+"&end_date="+endDate.getTime()/1000;
 
         //window.location="index.php?type=category&type_id="+$(this).attr("category_id");
         //searchResult("category",$(this).attr("category_id"),createMainPageFeed);
