@@ -251,7 +251,7 @@ showPopup = function(askiDetayData, allFeed, orderNumber, fromMainFeed, _hasArro
 
     $("#gardrobe_karistir_date").on("click",function(){
         debugger
-        var selectedDate = new Date(parseInt($(this).attr("create_date")));
+        var selectedDate = new Date(parseInt($(this).attr("create_date"))*1000);
         var startDate = new Date();
         var endDate = new Date();
         startDate.setDate(selectedDate.getDate());
